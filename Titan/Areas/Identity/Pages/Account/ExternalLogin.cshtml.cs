@@ -142,7 +142,7 @@ namespace Titan.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
+                    await _userManager.AddToRoleAsync(user, SD.Role_User);
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {

@@ -84,7 +84,7 @@ namespace Titan.Areas.Admin.Controllers
         }
 
 
-        [Authorize(Roles =SD.Role_Admin+","+SD.Role_Employee)]
+        [Authorize(Roles =SD.Role_Admin+","+SD.Role_User)]
         public IActionResult StartProcessing(int id)
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
@@ -94,7 +94,7 @@ namespace Titan.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_User)]
         public IActionResult ShipOrder()
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
@@ -107,7 +107,7 @@ namespace Titan.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_User)]
         public IActionResult CancelOrder(int id)
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
@@ -169,7 +169,7 @@ namespace Titan.Areas.Admin.Controllers
 
             IEnumerable<OrderHeader> orderHeaderList;
 
-            if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+            if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_User))
             {
                 orderHeaderList = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser");
             }

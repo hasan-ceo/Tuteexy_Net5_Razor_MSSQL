@@ -40,10 +40,9 @@ namespace Titan.DataAccess.Initializer
 
             if (_db.Roles.Any(r => r.Name == SD.Role_Admin)) return;
 
+            _roleManager.CreateAsync(new IdentityRole(SD.Role_TitanAdmin)).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-            _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-            _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp)).GetAwaiter().GetResult();
-            _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi)).GetAwaiter().GetResult();
+            _roleManager.CreateAsync(new IdentityRole(SD.Role_User)).GetAwaiter().GetResult();
 
             _userManager.CreateAsync(new ApplicationUser
             {
@@ -55,7 +54,7 @@ namespace Titan.DataAccess.Initializer
 
             ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@titan.com").FirstOrDefault();
 
-            _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
+            _userManager.AddToRoleAsync(user, SD.Role_TitanAdmin).GetAwaiter().GetResult();
         }
     }
 }

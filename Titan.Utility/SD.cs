@@ -12,10 +12,11 @@ namespace Titan.Utility
         public const string Proc_CoverType_Update = "usp_UpdateCoverType";
         public const string Proc_CoverType_Delete = "usp_DeleteCoverType";
 
-        public const string Role_User_Indi = "Individual Customer";
-        public const string Role_User_Comp = "Company Customer";
+        //public const string Role_User_Indi = "Individual Customer";
+        //public const string Role_User_Comp = "Company Customer";
         public const string Role_Admin = "Admin";
-        public const string Role_Employee = "Employee";
+        public const string Role_TitanAdmin = "TitanAdmin";
+        public const string Role_User = "User";
 
         public const string ssShoppingCart = "Shoping Cart Session";
 

@@ -102,7 +102,7 @@ namespace Titan.Areas.Identity.Pages.Account
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
-                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User_Indi).Select(x=>x.Name).Select(i => new SelectListItem
+                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x=>x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
@@ -134,7 +134,7 @@ namespace Titan.Areas.Identity.Pages.Account
                    
                     if (user.Role == null)
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
+                        await _userManager.AddToRoleAsync(user, SD.Role_User);
                     }
                     else
                     {
@@ -211,7 +211,7 @@ namespace Titan.Areas.Identity.Pages.Account
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
-                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User_Indi).Select(x => x.Name).Select(i => new SelectListItem
+                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
