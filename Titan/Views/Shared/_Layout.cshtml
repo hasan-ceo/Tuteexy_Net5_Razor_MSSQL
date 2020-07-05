@@ -35,6 +35,61 @@
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-end">
 
+
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    Content Management
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                </div>
+                            </div>
+                        }
+
+
+                        @if (User.IsInRole(SD.Role_Employee) || User.IsInRole(SD.Role_Admin))
+                        {
+
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    User / Company
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                    <hr class="navbar-divider">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
+                                </div>
+                            </div>
+                        }
+
+
+
+                        <div class="navbar-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
+                                @if (User.IsInRole(SD.Role_Employee) || User.IsInRole(SD.Role_Admin))
+                                {
+                                    <span>Manage Order</span> }
+                                else
+                                {
+                                    <span>Order History</span>}
+                            </a>
+
+
+                        </div>
+                        @if (User.IsInRole(SD.Role_Employee) || User.IsInRole(SD.Role_Admin))
+                        {
+                            <div class="navbar-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="BrainTree" asp-action="Index">BrainTree</a>
+                            </div>}
                         <partial name="_LoginPartial" />
 
                     </div>
