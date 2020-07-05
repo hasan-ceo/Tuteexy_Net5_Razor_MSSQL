@@ -1,0 +1,66 @@
+﻿@page
+@model LoginModel
+
+<section class="hero is-white is-fullheight">
+    <div class="hero-head">
+    </div>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
+
+                    <h3 class="subtitle is-3 has-text-black">
+                        Welcome Back
+                    </h3>
+
+                    <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div class="field">
+                            <label class="label" asp-for="Input.Email">Enter your email.</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.Email" class="input" type="email" placeholder="e.g. azmain@fiaz.com">
+                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <span asp-validation-for="Input.Email" class="help is-danger"></span>
+                        </div>
+                        <div class="field">
+                            <label class="label" asp-for="Input.Password">Password</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.Password" class="input" type="password" placeholder="e.g. Abc123$">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <span asp-validation-for="Input.Password" class="help is-danger"></span>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox" asp-for="Input.RememberMe">
+                                    <input type="checkbox" asp-for="Input.RememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-success is-fullwidth">Log in</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="logingrid" style="width: 100%;">
+                        <div id="a" class="center-column">
+                            <p class="subtitle is-7 has-text-centered has-text-black">
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-foot">
+    </div>
+</section>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

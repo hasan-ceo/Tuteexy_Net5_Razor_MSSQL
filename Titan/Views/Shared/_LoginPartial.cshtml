@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="navbar-item">
+    @if (SignInManager.IsSignedIn(User))
+    {
+<div class="buttons">
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })">
+        <button type="submit" class="button is-light">Logout</button>
+    </form>
+    <a class="button is-success" asp-area="Identity" asp-page="/Account/Manage/Index">
+        <strong>@await Component.InvokeAsync("UserName")</strong>
+    </a>
+
+</div> }
+            else
+            {
+<div class="buttons">
+
+    <a class="button is-light" asp-area="Identity" asp-page="/Account/Login">
+        Log in
+    </a>
+    <a class="button is-success" asp-area="Identity" asp-page="/Account/Register">
+        <strong>START FREE</strong>
+    </a>
+</div>}
+</div>
+
+

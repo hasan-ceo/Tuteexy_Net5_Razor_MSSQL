@@ -1,0 +1,123 @@
+﻿@using Titan.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuteely - For Student, Develop by Student</title>
+    <link rel="icon" href="/Images/pencil/favicon.png" sizes="any" type="image/svg+xml">
+    <link rel="stylesheet" href="~/css/bulma.css" />
+    <link rel="stylesheet" href="~/css/grid.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/helpers.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />*@
+</head>
+<body>
+    <header>
+        <nav class="navbar is-fixed-top is-shadowless" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" asp-area="Customer" asp-controller="home" asp-action="index">
+                        <img src="~/images/core/logo.jpg" width="112" height="28">
+                    </a>
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-end">
+
+                        <partial name="_LoginPartial" />
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @RenderBody()
+
+    <section class="section is-medium">
+        <div class="container has-text-centered">
+            <div class="item columns">
+                <div class="column is-2">
+                </div>
+                <div class="column is-8">
+                    <p class="subtitle is-6 has-text-weight-light has-text-grey">
+                        Work together as a team, with:
+                    </p>
+                    <a class="center" asp-area="" asp-controller="home" asp-action="index">
+                        <img src="~/images/core/logo.jpg" class="image" style="width:150px">
+                    </a>
+                    <p class="subtitle is-6 has-text-weight-light has-text-grey">
+                        Built with your best interests at heart in July 2020. © Tuteely
+                    </p>
+                    <a href="http://wwww.facebook.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-facebook-f fa-2x"></i>
+                        </span>
+                    </a>
+                    <a href="http://wwww.twitter.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </span>
+                    </a>
+                    <a href="http://wwww.youtube.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-youtube fa-2x"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="column is-2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://kit.fontawesome.com/e19c476714.js"></script>*@
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
