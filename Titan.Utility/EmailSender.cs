@@ -4,6 +4,8 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,15 +21,27 @@ namespace Titan.Utility
         }
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            return Execute(emailOptions.SendGridKey, subject, htmlMessage, email);
+            return Execute(subject, htmlMessage, email);
         }
-        private Task Execute(string sendGridKEy, string subject,string message, string email)
+        private Task Execute(string subject, string message, string email)
         {
-            var client = new SendGridClient(sendGridKEy);
-            var from = new EmailAddress("admin@bulky.com", "Bulky Books");
-            var to = new EmailAddress(email, "End User");
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", message);
-            return client.SendEmailAsync(msg);
+            var smtpClient = new SmtpClient();
+
+            smtpClient.EnableSsl = true;
+            smtpClient.Host = emailOptions.Host;
+            smtpClient.Port = emailOptions.Port;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(emailOptions.From, emailOptions.Pvalue);
+
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(emailOptions.From, emailOptions.Alias);
+            mailMessage.BodyEncoding = Encoding.UTF8;
+            mailMessage.To.Add(email);
+            mailMessage.Body = message;
+            mailMessage.Subject = subject;
+            mailMessage.IsBodyHtml = true;
+
+            return smtpClient.SendMailAsync(mailMessage);
         }
     }
 }

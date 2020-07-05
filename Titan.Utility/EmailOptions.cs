@@ -6,7 +6,11 @@ namespace Titan.Utility
 {
     public class EmailOptions
     {
-        public string SendGridKey { get; set; }
-        public string SendGridUser { get; set; }
+        public string Host { get; set; }
+        public string From { get; set; }
+        public string Alias { get; set; }
+        public int Port { get; set; }
+
+        public string Pvalue { get; set; }
     }
 }

@@ -34,20 +34,13 @@ namespace Titan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var userList = _db.ApplicationUsers.Include(u=>u.Company).ToList();
+            var userList = _db.ApplicationUsers.ToList();
             var userRole = _db.UserRoles.ToList();
             var roles = _db.Roles.ToList();
             foreach(var user in userList)
             {
                 var roleId = userRole.FirstOrDefault(u => u.UserId == user.Id).RoleId;
                 user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
-                if (user.Company == null)
-                {
-                    user.Company = new Company()
-                    {
-                        Name = ""
-                    };
-                }
             }
 
             return Json(new { data = userList });

@@ -122,11 +122,6 @@ namespace Titan.Areas.Identity.Pages.Account
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    CompanyId = Input.CompanyId,
-                    StreetAddress = Input.StreetAddress,
-                    City = Input.City,
-                    State = Input.State,
-                    PostalCode = Input.PostalCode,
                     Name = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
                     Role = Input.Role
@@ -143,10 +138,6 @@ namespace Titan.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        if(user.CompanyId > 0)
-                        {
-                            await _userManager.AddToRoleAsync(user, SD.Role_User_Comp);
-                        }
                         await _userManager.AddToRoleAsync(user, user.Role);
                     }
 

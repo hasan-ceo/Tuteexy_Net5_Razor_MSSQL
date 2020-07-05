@@ -42,7 +42,7 @@ namespace Titan
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
             
-            services.Configure<EmailOptions>(Configuration);
+            services.Configure<EmailOptions>(Configuration.GetSection("Email"));
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<BrainTreeSettings>(Configuration.GetSection("BrainTree"));
             services.Configure<TwilioSettings>(Configuration.GetSection("Twilio"));

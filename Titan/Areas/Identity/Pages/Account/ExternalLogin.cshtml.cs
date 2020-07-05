@@ -136,10 +136,6 @@ namespace Titan.Areas.Identity.Pages.Account
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    StreetAddress = Input.StreetAddress,
-                    City = Input.City,
-                    State = Input.State,
-                    PostalCode = Input.PostalCode,
                     Name = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
                 };
