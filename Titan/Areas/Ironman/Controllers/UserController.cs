@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace Titan.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_User)]
+    [Area("Ironman")]
+    [Authorize(Roles = SD.Role_Ironman)]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;

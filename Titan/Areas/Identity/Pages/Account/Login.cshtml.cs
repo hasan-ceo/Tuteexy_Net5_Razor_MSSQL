@@ -92,11 +92,18 @@ namespace Titan.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Email == Input.Email);
-
-                    int count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == user.Id).Count();
-                    HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
+                    string role = (await _signInManager.UserManager.GetRolesAsync(user)).FirstOrDefault();
 
                     _logger.LogInformation("User logged in.");
+                    switch (role)
+                    {
+                        case SD.Role_Ironman:
+                            return LocalRedirect("/Ironman/User/Index");
+                        case SD.Role_User:
+                            return LocalRedirect("/Customer/Home/Index");
+                        default:
+                            break;
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

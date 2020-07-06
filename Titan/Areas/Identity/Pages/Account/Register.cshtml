@@ -37,6 +37,15 @@
                             </div>
 
                             <div class="field">
+                                <label class="label" asp-for="Input.PhoneNumber">Enter your phone.</label>
+                                <div class="control has-icons-left">
+                                    <input asp-for="Input.PhoneNumber" class="input is-success" type="text" placeholder="e.g. +8801765123456">
+                                    <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
+                                </div>
+                                <span asp-validation-for="Input.PhoneNumber" class="help is-danger"></span>
+                            </div>
+
+                            <div class="field">
                                 <label class="label" asp-for="Input.Password">Password</label>
                                 <div class="control has-icons-left">
                                     <input asp-for="Input.Password" class="input" type="password" placeholder="e.g. Abc123$">

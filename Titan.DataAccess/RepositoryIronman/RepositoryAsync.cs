@@ -36,12 +36,12 @@ namespace Titan.DataAccess.Repository
         {
             IQueryable<T> query = dbSet;
 
-            if(filter != null)
+            if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            if(includeProperties != null)
+            if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
@@ -73,7 +73,7 @@ namespace Titan.DataAccess.Repository
                 }
             }
 
-            
+
             return await query.FirstOrDefaultAsync();
         }
 
@@ -83,14 +83,16 @@ namespace Titan.DataAccess.Repository
             await RemoveAsync(entity);
         }
 
-        public async Task RemoveAsync(T entity)
+        public async Task<bool> RemoveAsync(T entity)
         {
             dbSet.Remove(entity);
+            return await Task.FromResult(true);
         }
 
-        public async Task RemoveRangeAsync(IEnumerable<T> entity)
+        public async Task<bool> RemoveRangeAsync(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);
+            return await Task.FromResult(true);
         }
     }
 }

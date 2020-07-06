@@ -15,7 +15,7 @@ namespace Titan.Utility
         //public const string Role_User_Indi = "Individual Customer";
         //public const string Role_User_Comp = "Company Customer";
         public const string Role_Admin = "Admin";
-        public const string Role_TitanAdmin = "TitanAdmin";
+        public const string Role_Ironman = "Ironman";
         public const string Role_User = "User";
 
         public const string ssShoppingCart = "Shoping Cart Session";

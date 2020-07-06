@@ -78,15 +78,11 @@ namespace Titan.Areas.Identity.Pages.Account
 
             [Required]
             public string Name { get; set; }
-            public string StreetAddress { get; set; }
-            public string City { get; set; }
-            public string State { get; set; }
-            public string PostalCode { get; set; }
+
             public string PhoneNumber { get; set; }
-            public int? CompanyId { get; set; }
+
             public string Role { get; set; }
 
-            public IEnumerable<SelectListItem> CompanyList { get; set; }
             public IEnumerable<SelectListItem> RoleList { get; set; }
 
         }
@@ -97,11 +93,6 @@ namespace Titan.Areas.Identity.Pages.Account
 
             Input = new InputModel()
             {
-                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
                 RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x=>x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
@@ -206,11 +197,6 @@ namespace Titan.Areas.Identity.Pages.Account
             }
             Input = new InputModel()
             {
-                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
                 RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
