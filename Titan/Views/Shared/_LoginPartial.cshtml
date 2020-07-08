@@ -1,17 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@using Titan.Utility
 
 
-
-@if (SignInManager.IsSignedIn(User))
-{
+    @if (SignInManager.IsSignedIn(User))
+    {
 <div class="navbar-item has-dropdown is-hoverable">
     <a class="navbar-link">
         <strong>@await Component.InvokeAsync("UserName")</strong>
     </a>
     <div class="navbar-dropdown">
-        <a class="navbar-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>
+        @if (!User.IsInRole(SD.Role_Ironman))
+        {
+<a class="navbar-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a>}
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })">
             <button type="submit" class="button is-white is-fullwidth navbar-item">
                 <span class="icon is-medium">
@@ -22,10 +24,9 @@
         </form>
     </div>
 
-</div>
-}
-else
-{
+</div> }
+            else
+            {
 <div class="navbar-item">
     <div class="buttons">
         <a class="button is-light" asp-area="Identity" asp-page="/Account/Login">
@@ -35,8 +36,7 @@ else
             <strong>START FREE</strong>
         </a>
     </div>
-</div>
-}
+</div>}
 
 
 
