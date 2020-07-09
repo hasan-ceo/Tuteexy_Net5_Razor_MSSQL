@@ -1,0 +1,97 @@
+﻿
+
+
+<section class="hero is-white is-fullheight">
+    <div class="hero-head">
+        test
+    </div>
+    <div class="hero-body">
+        <div class="container">
+
+            <div class="columns is-vcentered">
+                <div class="column is-half">
+                    <h1 class="title is-1">
+                        Go from questioning to understanding
+                    </h1>
+                    <h2 class="subtitle">
+                        Tuteely is the knowledge-sharing community where students and experts put their heads together to crack their toughest homework questions.
+                    </h2>
+
+                    <a class="button is-success is-rounded has-text-weight-bold has-text-white" asp-area="Identity" asp-page="/Account/Register">
+                        <strong>START FREE</strong>
+                    </a>
+
+                    <p style="text-align: left; font-size: 14px; margin-top: 5px; margin-left: 10px;">
+                        No credit card required
+                    </p>
+
+                </div>
+                <div class="column">
+                    <img src="~/images/core/cover.jpg" class="image" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-foot center">
+        <div id="grid" style="width: 768px;">
+            <div id="a" class="center-column">
+                <p class="has-text-centered has-text-black">
+                    ​You love simplicity. So do we. Let’s grow together.
+                </p>
+            </div>
+            <div id="b" class="center-column">
+                <p class="title has-text-black"><span class="is-size-5">+</span>24/7<span class="is-size-5"></span></p>
+                <p class="subtitle is-7 has-text-black">Support</p>
+            </div>
+            <div id="c" class="center-column" style="border-left: 1px solid gray;">
+                <p class="title has-text-black"><span class="is-size-5">+</span>0<span class="is-size-5">USD</span></p>
+                <p class="subtitle is-7 has-text-black">Maintanence Cost</p>
+            </div>
+            <div id="d" class="center-column" style="border-left: 1px solid gray;">
+                <p class="title has-text-black"><span class="is-size-5">+</span>0<span class="is-size-5">USD</span></p>
+                <p class="subtitle is-7 has-text-black">Licence Fee</p>
+            </div>
+            @*<div id="e" class="center-column">
+                    <a class="button is-success is-rounded has-text-weight-bold has-text-white is-fullwidth" asp-area="Identity" asp-page="/Account/Register">
+                        <span>Start Free</span>
+                    </a>
+                </div>*@
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@*@model IEnumerable<Titan.Models.Product>
+        <partial name="_Notifications">
+    <div class="row pb-3 backgroundWhite">
+
+        @foreach (var product in Model)
+        {
+    <div class="col-lg-3 col-md-6">
+        <div class="row p-2">
+            <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                <div class="card" style="border:0px;">
+                    <img src="@product.ImageUrl" class="card-img-top rounded" />
+                    <div class="pl-1">
+                        <p class="card-title h5"><b style="color:#2c3e50">@product.Title</b></p>
+                        <p class="card-title text-primary">by <b>@product.Author</b></p>
+                    </div>
+                    <div style="padding-left:5px;">
+                        <p>List Price: <strike><b class="">$@product.ListPrice.ToString("0.00")</b></strike></p>
+                    </div>
+                    <div style="padding-left:5px;">
+                        <p style="color:maroon">As low as: <b class="">$@product.Price100.ToString("0.00")</b></p>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>}
+
+    </div>*@
+

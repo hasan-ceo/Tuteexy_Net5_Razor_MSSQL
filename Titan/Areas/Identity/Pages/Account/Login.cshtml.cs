@@ -98,9 +98,9 @@ namespace Titan.Areas.Identity.Pages.Account
                     switch (role)
                     {
                         case SD.Role_Ironman:
-                            return LocalRedirect("/Ironman/Users/Index");
+                            return LocalRedirect("/Ironman/Dashboard/Index");
                         case SD.Role_User:
-                            return LocalRedirect("/Customer/Homes/Index");
+                            return LocalRedirect("/User/Dashboard/Index");
                         default:
                             break;
                     }
