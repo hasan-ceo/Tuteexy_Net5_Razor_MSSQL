@@ -15,12 +15,12 @@
 
                     <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
                         <div class="field">
-                            <label class="label" asp-for="Input.Email">Enter your email.</label>
+                            <label class="label" asp-for="Input.UserName">Enter your User ID.</label>
                             <div class="control has-icons-left">
-                                <input asp-for="Input.Email" class="input" type="email" placeholder="e.g. azmain@fiaz.com">
+                                <input asp-for="Input.UserName" class="input" type="text" placeholder="e.g. azmainfiaz">
                                 <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
                             </div>
-                            <span asp-validation-for="Input.Email" class="help is-danger"></span>
+                            <span asp-validation-for="Input.UserName" class="help is-danger"></span>
                         </div>
                         <div class="field">
                             <label class="label" asp-for="Input.Password">Password</label>

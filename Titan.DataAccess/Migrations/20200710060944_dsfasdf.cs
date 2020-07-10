@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Titan.DataAccess.Migrations
 {
-    public partial class dsafsd : Migration
+    public partial class dsfasdf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -135,6 +135,24 @@ namespace Titan.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_randomComp", x => x.randomCompId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "userlist",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(maxLength: 50, nullable: true),
+                    Email = table.Column<string>(maxLength: 50, nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(maxLength: 50, nullable: true),
+                    SchoolName = table.Column<string>(maxLength: 50, nullable: true),
+                    ClassName = table.Column<string>(maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_userlist", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -477,6 +495,9 @@ namespace Titan.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");
+
+            migrationBuilder.DropTable(
+                name: "userlist");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

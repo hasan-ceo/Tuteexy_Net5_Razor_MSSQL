@@ -13,8 +13,9 @@ namespace Titan.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            Category = new CategoryRepository(_db);
+            Pages = new PageRepository(_db);
             CoverType = new CoverTypeRepository(_db);
+            userlist = new userlistRepository(_db);
             Company = new CompanyRepository(_db);
             Product = new ProductRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
@@ -25,7 +26,7 @@ namespace Titan.DataAccess.Repository
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
-        public ICategoryRepository Category { get; private set; }
+        public IPageRepository Pages { get; private set; }
         public ICompanyRepository Company { get; private set; }
         public IProductRepository Product { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
@@ -33,6 +34,7 @@ namespace Titan.DataAccess.Repository
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public ISP_Call SP_Call { get; private set; }
+        public IuserlistRepository userlist { get; private set; }
 
         public void Dispose()
         {

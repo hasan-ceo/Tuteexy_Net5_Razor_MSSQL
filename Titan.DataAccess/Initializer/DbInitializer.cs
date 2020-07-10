@@ -33,9 +33,9 @@ namespace Titan.DataAccess.Initializer
                     _db.Database.Migrate();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
             }
 
             if (_db.Roles.Any(r => r.Name == SD.Role_Admin)) return;
@@ -50,8 +50,8 @@ namespace Titan.DataAccess.Initializer
                 Email = "admin@titan.com",
                 EmailConfirmed = true,
                 Name = "Hasan Habib",
-                PhoneNumber="+8801765263343"
-            },"Admin123!").GetAwaiter().GetResult() ;
+                PhoneNumber = "+8801765263343"
+            }, "Admin123!").GetAwaiter().GetResult();
 
             ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@titan.com").FirstOrDefault();
 

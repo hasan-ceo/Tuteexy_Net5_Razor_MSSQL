@@ -6,7 +6,7 @@ namespace Titan.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        ICategoryRepository Category { get; }
+        IPageRepository Pages { get; }
         ICoverTypeRepository CoverType { get; }
         IProductRepository Product { get; }
         ICompanyRepository Company { get; }
@@ -15,7 +15,7 @@ namespace Titan.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart { get; }
         IOrderHeaderRepository OrderHeader { get; }
         IOrderDetailsRepository OrderDetails { get; }
-
+        IuserlistRepository userlist { get; }
         void Save();
     }
 }

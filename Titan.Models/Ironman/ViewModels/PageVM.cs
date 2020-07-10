@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Titan.Models.ViewModels
 {
-    public class CategoryVM
+    public class PageVM
     {
-        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Page> Pages { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

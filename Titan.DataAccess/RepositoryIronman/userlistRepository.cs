@@ -8,21 +8,21 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class CategoryRepository : RepositoryAsync<Category>, ICategoryRepository
+    public class userlistRepository : Repository<userlist>, IuserlistRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public CategoryRepository(ApplicationDbContext db) : base(db)
+        public userlistRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Category category)
+        public void Update(userlist userlist)
         {
-            var objFromDb = _db.Categories.FirstOrDefault(s => s.Id == category.Id);
+            var objFromDb = _db.userlist.FirstOrDefault(s => s.Id == userlist.Id);
             if (objFromDb != null)
             {
-                objFromDb.Name = category.Name;
+                objFromDb.Name = userlist.Name;
                
             }
         }

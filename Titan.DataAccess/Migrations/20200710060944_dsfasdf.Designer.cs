@@ -10,8 +10,8 @@ using Titan.DataAccess.Data;
 namespace Titan.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200706085758_dsafsd")]
-    partial class dsafsd
+    [Migration("20200710060944_dsfasdf")]
+    partial class dsfasdf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -531,6 +531,42 @@ namespace Titan.DataAccess.Migrations
                     b.HasKey("randomCompId");
 
                     b.ToTable("randomComp");
+                });
+
+            modelBuilder.Entity("Titan.Models.userlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("SchoolName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("userlist");
                 });
 
             modelBuilder.Entity("Titan.Models.ApplicationUser", b =>

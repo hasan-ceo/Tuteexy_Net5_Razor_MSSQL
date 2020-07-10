@@ -93,7 +93,7 @@ namespace Titan.Areas.Identity.Pages.Account
 
             Input = new InputModel()
             {
-                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x=>x.Name).Select(i => new SelectListItem
+                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
                     Value = i
@@ -103,6 +103,29 @@ namespace Titan.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        //bulk user create
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    foreach (userlist v in _unitOfWork.userlist.GetAll())
+        //    {
+        //        var user = new ApplicationUser
+        //        {
+        //            UserName = v.UserName,
+        //            Email = v.Email,
+        //            Name = v.Name,
+        //            PhoneNumber = v.PhoneNumber,
+        //            Role = SD.Role_User
+        //        };
+        //        await _userManager.CreateAsync(user, "Abc123$");
+        //        await _userManager.AddToRoleAsync(user, SD.Role_User);
+        //    }
+
+        //    return RedirectToPage("RegisterConfirmation", new { email = "a@a.a" });
+        //}
+
+        //bulk user create End
+
+        //Normal user create
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -122,7 +145,7 @@ namespace Titan.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                   
+
                     if (user.Role == null)
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_User);
@@ -207,5 +230,7 @@ namespace Titan.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
+        //Normal user create
     }
 }

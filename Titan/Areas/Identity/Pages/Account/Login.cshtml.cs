@@ -26,7 +26,7 @@ namespace Titan.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly IUnitOfWork _unitOfWork;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             IEmailSender emailSender,
@@ -52,8 +52,8 @@ namespace Titan.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            [DataType(DataType.Text)]
+            public string UserName { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
@@ -88,10 +88,10 @@ namespace Titan.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Email == Input.Email);
+                    var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.UserName == Input.UserName);
                     string role = (await _signInManager.UserManager.GetRolesAsync(user)).FirstOrDefault();
 
                     _logger.LogInformation("User logged in.");
@@ -122,7 +122,7 @@ namespace Titan.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-            
+
             // If we got this far, something failed, redisplay form
             return Page();
         }
@@ -134,7 +134,7 @@ namespace Titan.Areas.Identity.Pages.Account
                 return Page();
             }
 
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            var user = await _userManager.FindByEmailAsync(Input.UserName);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
@@ -148,7 +148,7 @@ namespace Titan.Areas.Identity.Pages.Account
                 values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
-                Input.Email,
+                user.Email,
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 

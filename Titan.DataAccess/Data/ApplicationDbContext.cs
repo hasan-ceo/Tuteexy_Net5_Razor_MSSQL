@@ -13,7 +13,6 @@ namespace Titan.DataAccess.Data
             : base(options)
         {
         }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<CoverType> CoverTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
@@ -25,6 +24,9 @@ namespace Titan.DataAccess.Data
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<eclass> eclasses { get; set; }
         public DbSet<randomComp> randomComp { get; set; }
+
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<userlist> userlist { get; set; }
     }
 }
 

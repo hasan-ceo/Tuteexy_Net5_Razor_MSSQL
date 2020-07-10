@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepositoryAsync<Category>
+    public interface IPageRepository : IRepositoryAsync<Page>
     {
-        void Update(Category category);
+        void Update(Page page);
     }
 }

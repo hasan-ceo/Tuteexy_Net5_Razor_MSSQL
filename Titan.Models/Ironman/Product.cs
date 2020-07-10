@@ -35,7 +35,7 @@ namespace Titan.Models
         public int CategoryId { get; set; }
         
         [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
+        public Page Category { get; set; }
 
         [Required]
         public int CoverTypeId { get; set; }

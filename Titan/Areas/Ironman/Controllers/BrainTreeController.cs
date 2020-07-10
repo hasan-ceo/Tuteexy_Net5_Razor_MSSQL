@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Braintree;
-using Titan.Utility;
+﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using Titan.Utility;
 
-namespace Titan.Areas.Admin.Controllers
+namespace Titan.Areas.Ironman.Controllers
 {
-    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Ironman)]
+    [Area("Ironman")]
     public class BrainTreeController : Controller
     {
         public IBrainTreeGate _brain { get; set; }
