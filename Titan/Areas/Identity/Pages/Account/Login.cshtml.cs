@@ -91,7 +91,7 @@ namespace Titan.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.UserName == Input.UserName);
+                    var user =await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.UserName == Input.UserName);
                     string role = (await _signInManager.UserManager.GetRolesAsync(user)).FirstOrDefault();
 
                     _logger.LogInformation("User logged in.");

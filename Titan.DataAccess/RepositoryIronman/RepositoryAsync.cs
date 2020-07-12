@@ -27,9 +27,9 @@ namespace Titan.DataAccess.Repository
             await dbSet.AddAsync(entity);
         }
 
-        public async Task<T> GetAsync(long id)
+        public async Task<T> GetAsync(long Id)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet.FindAsync(Id);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
@@ -77,13 +77,13 @@ namespace Titan.DataAccess.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task RemoveAsync(long id)
+        public async Task RemoveIDAsync(long Id)
         {
-            T entity = await dbSet.FindAsync(id);
-            await RemoveAsync(entity);
+            T entity = await dbSet.FindAsync(Id);
+            await RemoveEntityAsync(entity);
         }
 
-        public async Task<bool> RemoveAsync(T entity)
+        public async Task<bool> RemoveEntityAsync(T entity)
         {
             dbSet.Remove(entity);
             return await Task.FromResult(true);

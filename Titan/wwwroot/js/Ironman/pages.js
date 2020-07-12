@@ -8,40 +8,24 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/Company/GetAll"
+            "url": "/Ironman/Pages/GetAll"
         },
         "columns": [
-            { "data": "name", "width": "15%" },
-            { "data": "streetAddress", "width": "15%" },
-            { "data": "city", "width": "10%" },
-            { "data": "state", "width": "10%" },
-            { "data": "phoneNumber", "width": "15%" },
+            { "data": "pageName" },
             {
-                "data": "isAuthorizedCompany",
-                "render": function (data) {
-                    if (data) {
-                        return `<input type="checkbox" disabled checked />`
-                    }
-                    else {
-                        return `<input type="checkbox" disabled/>`
-                    }
-                },
-                "width": "10%"
-            },
-            {
-                "data": "id",
+                "data": "pageID",
                 "render": function (data) {
                     return `
-                            <div class="text-center">
-                                <a href="/Admin/Company/Upsert/${data}" class="btn btn-success text-white" style="cursor:pointer">
+                            <div class="buttons has-addons is-centered">
+                                <a href="/Ironman/Pages/Upsert/${data}" class="button is-primary">
                                     <i class="fas fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Admin/Company/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer">
+                                <a onclick=Delete("/Ironman/Pages/Delete/${data}") class="button is-danger">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>
                            `;
-                }, "width": "25%"
+                },
             }
         ]
     });

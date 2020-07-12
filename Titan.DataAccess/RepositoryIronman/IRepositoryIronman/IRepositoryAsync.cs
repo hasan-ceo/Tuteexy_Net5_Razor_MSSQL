@@ -9,7 +9,7 @@ namespace Titan.DataAccess.Repository.IRepository
 {
     public interface IRepositoryAsync<T> where T : class
     {
-        Task<T> GetAsync(long id);
+        Task<T> GetAsync(long Id);
 
         Task<IEnumerable<T>> GetAllAsync(
             Expression<Func<T, bool>> filter = null,
@@ -23,8 +23,8 @@ namespace Titan.DataAccess.Repository.IRepository
             );
 
         Task AddAsync(T entity);
-        Task RemoveAsync(long id);
-        Task<bool> RemoveAsync(T entity);
+        Task RemoveIDAsync(long Id);
+        Task<bool> RemoveEntityAsync(T entity);
         Task<bool> RemoveRangeAsync(IEnumerable<T> entity);
 
 

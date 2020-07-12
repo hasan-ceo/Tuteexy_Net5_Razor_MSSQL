@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface IuserlistRepository : IRepository<userlist>
+    public interface IuserlistRepository : IRepositoryAsync<userlist>
     {
         void Update(userlist userlist);
     }

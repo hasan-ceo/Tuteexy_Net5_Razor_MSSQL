@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
+    public class ApplicationUserRepository : RepositoryAsync<ApplicationUser>, IApplicationUserRepository
     {
         private readonly ApplicationDbContext _db;
 

@@ -14,9 +14,9 @@ namespace Titan.DataAccess.Repository
         {
             _db = db;
             Pages = new PageRepository(_db);
-            CoverType = new CoverTypeRepository(_db);
-            userlist = new userlistRepository(_db);
-            Company = new CompanyRepository(_db);
+            //CoverType = new CoverTypeRepository(_db);
+            //userlist = new userlistRepository(_db);
+            //Company = new CompanyRepository(_db);
 
             ApplicationUser = new ApplicationUserRepository(_db);
             SP_Call = new SP_Call(_db);
@@ -25,10 +25,7 @@ namespace Titan.DataAccess.Repository
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
         public IPageRepository Pages { get; private set; }
-        public ICompanyRepository Company { get; private set; }
-
-        public ICoverTypeRepository CoverType { get; private set; }
-
+       
         public ISP_Call SP_Call { get; private set; }
         public IuserlistRepository userlist { get; private set; }
 

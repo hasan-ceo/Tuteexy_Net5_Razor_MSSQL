@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RepositoryIronman\CompanyRepository.cs" />
+    <Compile Remove="RepositoryIronman\CoverTypeRepository.cs" />
+    <Compile Remove="RepositoryIronman\IRepositoryIronman\ICompanyRepository.cs" />
+    <Compile Remove="RepositoryIronman\IRepositoryIronman\ICoverTypeRepository.cs" />
+    <Compile Remove="RepositoryIronman\userlistRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
