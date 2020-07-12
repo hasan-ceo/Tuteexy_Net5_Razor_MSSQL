@@ -27,7 +27,7 @@ namespace Titan.DataAccess.Repository
             await dbSet.AddAsync(entity);
         }
 
-        public async Task<T> GetAsync(int id)
+        public async Task<T> GetAsync(long id)
         {
             return await dbSet.FindAsync(id);
         }
@@ -77,7 +77,7 @@ namespace Titan.DataAccess.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task RemoveAsync(int id)
+        public async Task RemoveAsync(long id)
         {
             T entity = await dbSet.FindAsync(id);
             await RemoveAsync(entity);

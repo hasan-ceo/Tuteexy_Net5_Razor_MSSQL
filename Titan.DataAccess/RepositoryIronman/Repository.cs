@@ -26,7 +26,7 @@ namespace Titan.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public T Get(int id)
+        public T Get(long id)
         {
             return dbSet.Find(id);
         }
@@ -35,12 +35,12 @@ namespace Titan.DataAccess.Repository
         {
             IQueryable<T> query = dbSet;
 
-            if(filter != null)
+            if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            if(includeProperties != null)
+            if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
@@ -72,11 +72,11 @@ namespace Titan.DataAccess.Repository
                 }
             }
 
-            
+
             return query.FirstOrDefault();
         }
 
-        public void Remove(int id)
+        public void Remove(long id)
         {
             T entity = dbSet.Find(id);
             Remove(entity);

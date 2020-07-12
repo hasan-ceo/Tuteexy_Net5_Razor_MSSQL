@@ -1,48 +1,98 @@
-﻿@model Titan.Models.Category
+﻿@model Titan.Models.Page
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Create Category";
+@{ var title = "Create Page"; }
+
+@section Scripts {
+    <partial name="_tinymceScriptPartial" />
 }
 
 
-<form method="post">
-    <div class="row p-3 border">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Id != 0)
-        {
-            //edit
-            title = "Edit Category";
-        }
-        <div class="col-12 border-bottom">
-            <h2 class="text-primary">@title</h2>
-        </div>
-        <div class="col-8 pt-4">
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Name"></label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-8 offset-4">
-                    @if (Model.Id != 0)
-                    {
-                        <partial name="_EditAndBackToListButton" model="Model.Id" />
-                    }
-                    else
-                    {
-                        <partial name="_CreateAndBackToListButton" />
-                    }
-                </div>
+<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
+    <ul>
+        <li>
+            <a asp-area="Ironman"
+               asp-controller="Pages"
+               asp-action="index"><strong>Pages</strong></a>
+        </li>
+        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Create</strong></a></li>
+    </ul>
+</div>
+<!-- Main container -->
+<div class="level">
+    <!-- Left side -->
+    <div class="level-left">
+        <div class="level-item">
+            <div class="title has-text-white">
+                @if (Model.PageID != 0)
+                {
+                    //edit
+                    title = "Edit Page";
+                }
+                <strong>@title</strong>
             </div>
         </div>
     </div>
-</form>
 
-@section Scripts{ 
-<partial name="_ValidationScriptsPartial" />
-}
+    <!-- Right side -->
+    <div class="level-right">
+
+    </div>
+</div>
+
+<div class="columns is-multiline">
+    <div class="column is-9">
+        <form method="post" autocomplete="off" asp-route-returnUrl="">
+            <input type="hidden" asp-for="PageID" />
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="PageName">Name</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="Page Name" asp-for="PageName">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-pager"></i>
+                            </span>
+                            <span asp-validation-for="PageName" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="Description">Description</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <textarea class="textarea" placeholder="Description" asp-for="Description"></textarea>
+                            <span asp-validation-for="Description" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white"></label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-grouped">
+                        @if (Model.PageID != 0)
+                        {
+            <partial name="_EditAndBackToListButton" model="Model.PageID" /> }
+        else
+        {
+<partial name="_CreateAndBackToListButton" />}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

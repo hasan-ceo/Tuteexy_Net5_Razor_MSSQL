@@ -32,9 +32,10 @@ namespace Titan.Areas.Front.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Page(string name)
         {
-            return View();
+            var allObj = await _unitOfWork.Pages.GetFirstOrDefaultAsync(e => e.PageName == name);
+            return View(allObj);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

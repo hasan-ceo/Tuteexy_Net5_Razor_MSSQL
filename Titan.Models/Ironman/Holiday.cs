@@ -8,14 +8,16 @@ namespace Titan.Models
     public class Holiday
     {
         [Key]
-        public int HolidayID { get; set; }
+        public long HolidayID { get; set; }
+        public long SchoolID { get; set; }
+        //public virtual School School { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
 
-        [Display(Name="Holiday Name")]
+        [Display(Name = "Holiday Name")]
         [Required]
-        [MaxLength(50)]
-        public string HolidayName { get; set; }
-
-        public DateTime FromDate { get; set; }
-        public DateTime ToDate { get; set; }
+        [MaxLength(100)]
+        public string NameHoliday { get; set; }
+        public int DurationHoliday { get; set; }
     }
 }

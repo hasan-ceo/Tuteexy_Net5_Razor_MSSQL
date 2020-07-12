@@ -22,14 +22,14 @@ namespace Titan.Areas.Ironman.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IActionResult> Index(int productPage = 1)
+        public async Task<IActionResult> Index()
         {
 
             var allObj = await _unitOfWork.Pages.GetAllAsync();
             return View(allObj);
         }
 
-        public async Task<IActionResult> Upsert(int? id)
+        public async Task<IActionResult> Upsert(long? id)
         {
             Page page = new Page();
             if (id == null)
@@ -49,53 +49,25 @@ namespace Titan.Areas.Ironman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert(Page page)
+        public IActionResult Upsert(Page page)
         {
             if (ModelState.IsValid)
             {
                 if (page.PageID == 0)
                 {
-                    await _unitOfWork.Pages.AddAsync(page);
+                    _unitOfWork.Pages.AddAsync(page);
 
                 }
                 else
                 {
                     _unitOfWork.Pages.Update(page);
                 }
+
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(page);
         }
 
-
-        #region API CALLS
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var allObj = await _unitOfWork.Pages.GetAllAsync();
-            return Json(new { data = allObj });
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var objFromDb = await _unitOfWork.Pages.GetAsync(id);
-            if (objFromDb == null)
-            {
-                TempData["Error"] = "Error deleting Page";
-                return Json(new { success = false, message = "Error while deleting" });
-            }
-
-            await _unitOfWork.Pages.RemoveAsync(objFromDb);
-            _unitOfWork.Save();
-
-            TempData["Success"] = "Page successfully deleted";
-            return Json(new { success = true, message = "Delete Successful" });
-
-        }
-
-        #endregion
     }
 }

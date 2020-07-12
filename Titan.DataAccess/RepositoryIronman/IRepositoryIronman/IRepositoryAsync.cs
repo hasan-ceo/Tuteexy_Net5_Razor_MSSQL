@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface IRepositoryAsync<T> where T :class
+    public interface IRepositoryAsync<T> where T : class
     {
-        Task<T> GetAsync(int id);
+        Task<T> GetAsync(long id);
 
         Task<IEnumerable<T>> GetAllAsync(
             Expression<Func<T, bool>> filter = null,
@@ -23,7 +23,7 @@ namespace Titan.DataAccess.Repository.IRepository
             );
 
         Task AddAsync(T entity);
-        Task RemoveAsync(int id);
+        Task RemoveAsync(long id);
         Task<bool> RemoveAsync(T entity);
         Task<bool> RemoveRangeAsync(IEnumerable<T> entity);
 

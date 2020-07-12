@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface IRepository<T> where T :class
+    public interface IRepository<T> where T : class
     {
-        T Get(int id);
+        T Get(long id);
 
         IEnumerable<T> GetAll(
             Expression<Func<T, bool>> filter = null,
@@ -22,7 +22,7 @@ namespace Titan.DataAccess.Repository.IRepository
             );
 
         void Add(T entity);
-        void Remove(int id);
+        void Remove(long id);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
 

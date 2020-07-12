@@ -2936,12 +2936,12 @@ a.tag:hover {
   white-space: nowrap; }
   .breadcrumb a {
     align-items: center;
-    color: #fa7c91;
+    color: #48c774;
     display: flex;
     justify-content: center;
     padding: 0 0.75em; }
     .breadcrumb a:hover {
-      color: #fa7c91; }
+      color: #48c774; }
   .breadcrumb li {
     align-items: center;
     display: flex; }
@@ -3241,7 +3241,7 @@ button.dropdown-item {
       background-color: rgba(0, 0, 0, 0.4);
       color: #f8f8f2; }
     .menu-list a.is-active {
-      background-color: #ff79c6;
+      background-color: #48c774;
       color: #f8f8f2; }
   .menu-list li ul {
     border-left: 1px solid #dbdbdb;
@@ -3962,7 +3962,7 @@ body.has-navbar-fixed-bottom {
   overflow-y: hidden; }
 
 .navbar-burger {
-  color: #ff79c6;
+  color: #48c774;
   cursor: pointer;
   display: block;
   height: 3.25rem;
@@ -4000,7 +4000,7 @@ body.has-navbar-fixed-bottom {
 
 .navbar-item,
 .navbar-link {
-  color: #ff79c6;
+  color: #48c774;
   display: block;
   line-height: 1.5;
   padding: 0.5rem 0.75rem;
@@ -7509,7 +7509,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   .aside .menu-label {
     margin-left: 0.5em; }
 
-.button {
+.buttoncust {
   border: none;
   color: #f8f8f2;
   text-align: center;
@@ -7518,7 +7518,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 0;
   background: none; }
 
-.button:hover {
+.buttoncust:hover {
   color: #f8f8f2; }
 
 .nav-tag {
@@ -7564,13 +7564,13 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     background-color: #8be9fd; }
 
 .navbar-link {
-  color: #ff79c6; }
+  color: #48c774; }
   .navbar-link figure img {
     border-radius: 50%;
     max-height: 2em; }
   .navbar-link:hover {
     background-color: #44475a;
-    color: #ff79c6; }
+    color: #48c774; }
 
 .main {
   padding: 1em 1em 0 1em; }
@@ -7581,10 +7581,9 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 @media screen and (min-width: 1088px) {
   .navbar-item.has-dropdown:hover .navbar-link,
   .navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: #44475a; } }
-
-.columnsfullheight {
-  height: 100vh; }
+    background-color: #44475a; }
+  .columnsfullheight {
+    min-height: 450px; } }
 
 /*
 

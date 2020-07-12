@@ -7,7 +7,8 @@ namespace Titan.Models
 {
     public class NoticeBoard
     {
-           public long NoticBoardId { get; set; }
+        [Key]
+        public long NoticBoardId { get; set; }
 
         [Required]
         [MaxLength(50)]

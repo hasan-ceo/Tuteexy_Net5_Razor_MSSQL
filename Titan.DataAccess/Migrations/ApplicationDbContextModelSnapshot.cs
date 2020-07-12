@@ -221,21 +221,139 @@ namespace Titan.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Titan.Models.Category", b =>
+            modelBuilder.Entity("Titan.Models.Attendance", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Student_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<int>("Term1Absent")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Term1Late")
+                        .HasColumnType("int");
 
-                    b.ToTable("Categories");
+                    b.Property<int>("Term1Present")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term1WorkingDays")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term2Absent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term2Late")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term2Present")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term2WorkingDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TypeAttendance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Student_ID");
+
+                    b.ToTable("Attendance");
+                });
+
+            modelBuilder.Entity("Titan.Models.ClassRoutine", b =>
+                {
+                    b.Property<long>("ClassRoutineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClassID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClassRoutineID");
+
+                    b.ToTable("ClassRoutine");
+                });
+
+            modelBuilder.Entity("Titan.Models.ClassRoutineStudent", b =>
+                {
+                    b.Property<long>("ClassRoutineStudentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Period9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("StudentID")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ClassRoutineStudentID");
+
+                    b.ToTable("ClassRoutineStudent");
                 });
 
             modelBuilder.Entity("Titan.Models.Company", b =>
@@ -291,221 +409,131 @@ namespace Titan.DataAccess.Migrations
 
             modelBuilder.Entity("Titan.Models.Holiday", b =>
                 {
-                    b.Property<int>("HolidayID")
+                    b.Property<long>("HolidayID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FromDate")
+                    b.Property<DateTime>("DateEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("HolidayName")
+                    b.Property<DateTime>("DateStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DurationHoliday")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameHoliday")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.Property<DateTime>("ToDate")
-                        .HasColumnType("datetime2");
+                    b.Property<long>("SchoolID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("HolidayID");
 
                     b.ToTable("Holidays");
                 });
 
-            modelBuilder.Entity("Titan.Models.OrderDetails", b =>
+            modelBuilder.Entity("Titan.Models.NoticeBoard", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("NoticBoardId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("Titan.Models.OrderHeader", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Carrier")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("OrderTotal")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("PaymentDueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PaymentStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ShippingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TrackingNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("OrderHeaders");
-                });
-
-            modelBuilder.Entity("Titan.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CoverTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("ListPrice")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Price100")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Price50")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CoverTypeId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Titan.Models.ShoppingCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShoppingCarts");
-                });
-
-            modelBuilder.Entity("Titan.Models.eclass", b =>
-                {
-                    b.Property<int>("eclassID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("classname")
+                    b.Property<string>("NoticHead")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("year")
-                        .HasColumnType("int");
+                    b.Property<string>("Noticebody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1024)")
+                        .HasMaxLength(1024);
 
-                    b.HasKey("eclassID");
+                    b.Property<long>("classid")
+                        .HasColumnType("bigint");
 
-                    b.ToTable("eclasses");
+                    b.HasKey("NoticBoardId");
+
+                    b.ToTable("NoticeBoard");
+                });
+
+            modelBuilder.Entity("Titan.Models.Page", b =>
+                {
+                    b.Property<long>("PageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("PageID");
+
+                    b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("Titan.Models.ReportCard", b =>
+                {
+                    b.Property<long>("ReportCardID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AverageGrade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("StudentID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Subjects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Term_1_Classmarks")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Term_1_ExamMarks")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Term_1_Grade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Term_1_RemarksCodeNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Term_1_Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Term_2_Classmarks")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Term_2_ExamMarks")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Term_2_Grade")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Term_2_RemarksCodeNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Term_2_Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalMarksAverage")
+                        .HasColumnType("real");
+
+                    b.HasKey("ReportCardID");
+
+                    b.ToTable("ReportCard");
                 });
 
             modelBuilder.Entity("Titan.Models.randomComp", b =>
@@ -625,56 +653,6 @@ namespace Titan.DataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Titan.Models.OrderDetails", b =>
-                {
-                    b.HasOne("Titan.Models.OrderHeader", "OrderHeader")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Titan.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Titan.Models.OrderHeader", b =>
-                {
-                    b.HasOne("Titan.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Titan.Models.Product", b =>
-                {
-                    b.HasOne("Titan.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Titan.Models.CoverType", "CoverType")
-                        .WithMany()
-                        .HasForeignKey("CoverTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Titan.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("Titan.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Titan.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,87 +1,85 @@
 ﻿@page
 @model RegisterModel
 @using Titan.Utility
-@{
-    ViewData["Title"] = "Register";
-}
+@{ ViewData["Title"] = "Register"; }
 
-    <section class="hero is-white is-fullheight">
-        <div class="hero-head">
-        </div>
-        <div class="hero-body">
-            <div class="container">
-                <div class="columns is-centered">
-                    <div class="column is-4">
+<section class="hero is-white is-fullheight">
+    <div class="hero-head">
+    </div>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4">
 
-                        <h3 class="subtitle is-3 has-text-black">
-                            Create an account
-                        </h3>
+                    <h3 class="subtitle is-3 has-text-black">
+                        Create an account
+                    </h3>
 
-                        <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
-                            <div class="field">
-                                <label class="label" asp-for="Input.Name">Enter your name.</label>
-                                <div class="control has-icons-left">
-                                    <input asp-for="Input.Name" class="input" type="text" placeholder="e.g Azmain Fiaz">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user"></i>
-                                    </span>
-                                </div>
+                    <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div class="field">
+                            <label class="label" asp-for="Input.Name">Enter your name.</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.Name" class="input" type="text" placeholder="e.g Azmain Fiaz">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
                             </div>
-                            <div class="field">
-                                <label class="label" asp-for="Input.Email">Enter your email.</label>
-                                <div class="control has-icons-left">
-                                    <input asp-for="Input.Email" class="input is-success" type="email" placeholder="e.g. azmain@fiaz.com">
-                                    <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
-                                </div>
-                                <span asp-validation-for="Input.Email" class="help is-danger"></span>
+                        </div>
+                        <div class="field">
+                            <label class="label" asp-for="Input.Email">Enter your email.</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.Email" class="input is-success" type="email" placeholder="e.g. azmain@fiaz.com">
+                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
                             </div>
+                            <span asp-validation-for="Input.Email" class="help is-danger"></span>
+                        </div>
 
-                            <div class="field">
-                                <label class="label" asp-for="Input.PhoneNumber">Enter your phone.</label>
-                                <div class="control has-icons-left">
-                                    <input asp-for="Input.PhoneNumber" class="input is-success" type="text" placeholder="e.g. +8801765123456">
-                                    <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
-                                </div>
-                                <span asp-validation-for="Input.PhoneNumber" class="help is-danger"></span>
+                        <div class="field">
+                            <label class="label" asp-for="Input.PhoneNumber">Enter your phone.</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.PhoneNumber" class="input is-success" type="text" placeholder="e.g. +8801765123456">
+                                <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
                             </div>
+                            <span asp-validation-for="Input.PhoneNumber" class="help is-danger"></span>
+                        </div>
 
-                            <div class="field">
-                                <label class="label" asp-for="Input.Password">Password</label>
-                                <div class="control has-icons-left">
-                                    <input asp-for="Input.Password" class="input" type="password" placeholder="e.g. Abc123$">
-                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                                </div>
-                                <span asp-validation-for="Input.Password" class="help is-danger"></span>
+                        <div class="field">
+                            <label class="label" asp-for="Input.Password">Password</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.Password" class="input" type="password" placeholder="e.g. Abc123$">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                             </div>
+                            <span asp-validation-for="Input.Password" class="help is-danger"></span>
+                        </div>
 
-                            <div class="field">
-                                <label class="label" asp-for="Input.ConfirmPassword">Confirm Password</label>
-                                <div class="control has-icons-left">
-                                    <input asp-for="Input.ConfirmPassword" class="input" type="password" placeholder="e.g. Abc123$">
-                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                                </div>
-                                <span asp-validation-for="Input.ConfirmPassword" class="help is-danger"></span>
+                        <div class="field">
+                            <label class="label" asp-for="Input.ConfirmPassword">Confirm Password</label>
+                            <div class="control has-icons-left">
+                                <input asp-for="Input.ConfirmPassword" class="input" type="password" placeholder="e.g. Abc123$">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                             </div>
+                            <span asp-validation-for="Input.ConfirmPassword" class="help is-danger"></span>
+                        </div>
 
-                            <h5 class="subtitle is-5 has-text-black">
-                                By clicking <em>Sign Up</em> you agree to our <a href="" target="_blank"> terms of service </a>
-                            </h5>
+                        <h5 class="subtitle is-5 has-text-black">
+                            By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
+                        </h5>
 
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-success is-fullwidth">Sign Up</button>
-                                </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-success is-fullwidth">Sign Up</button>
                             </div>
-                        </form>
+                        </div>
+                    </form>
 
-          
-                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="hero-foot">
-        </div>
-    </section>
+    </div>
+    <div class="hero-foot">
+    </div>
+</section>
 
 
 

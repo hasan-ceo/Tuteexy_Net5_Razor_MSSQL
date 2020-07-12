@@ -19,7 +19,7 @@
 
 
     <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="body">
     <header class="mb-0 py-0">
@@ -49,7 +49,7 @@
         </nav>
     </header>
 
-    <div class="columns mt-6 pt-2 pb-0 mb-0 is-fullheight has-background-dark columnsfullheight">
+    <div class="columns mt-6 pt-2 pb-0 mb-0 has-background-dark">
         <div class="column is-2 aside">
             <p class="menu-label">General</p>
             <ul class="menu-list">
@@ -86,10 +86,23 @@
                         Schools
                     </a>
                 </li>
+                <li>
+                    <a asp-area="Ironman"
+                       asp-controller="Pages"
+                       asp-action="index">
+
+                        <span class="icon is-small">
+                            <i class="fa fa-pager"></i>
+                        </span>
+                        Pages
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="column main">
+
             @RenderBody()
+
         </div>
     </div>
 

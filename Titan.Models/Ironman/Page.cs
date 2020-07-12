@@ -8,7 +8,7 @@ namespace Titan.Models
     public class Page
     {
         [Key]
-        public int PageID { get; set; }
+        public long PageID { get; set; }
 
         [Display(Name = "Page Name")]
         [Required]
