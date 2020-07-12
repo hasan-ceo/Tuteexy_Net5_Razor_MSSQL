@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface ICompanyRepository : IRepository<Company>
+    public interface ISchoolRepository : IRepositoryAsync<School>
     {
-        void Update(Company company);
+        void Update(School school);
     }
 }

@@ -10,8 +10,8 @@ using Titan.DataAccess.Data;
 namespace Titan.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200711203100_asfasdfdfk")]
-    partial class asfasdfdfk
+    [Migration("20200712152923_ddklk")]
+    partial class ddklk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -358,40 +358,6 @@ namespace Titan.DataAccess.Migrations
                     b.ToTable("ClassRoutineStudent");
                 });
 
-            modelBuilder.Entity("Titan.Models.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAuthorizedCompany")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companies");
-                });
-
             modelBuilder.Entity("Titan.Models.CoverType", b =>
                 {
                     b.Property<int>("Id")
@@ -538,6 +504,51 @@ namespace Titan.DataAccess.Migrations
                     b.ToTable("ReportCard");
                 });
 
+            modelBuilder.Entity("Titan.Models.School", b =>
+                {
+                    b.Property<long>("SchoolID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsAuthorizedSchool")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SchoolID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("School");
+                });
+
             modelBuilder.Entity("Titan.Models.randomComp", b =>
                 {
                     b.Property<int>("randomCompId")
@@ -657,6 +668,13 @@ namespace Titan.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Titan.Models.School", b =>
+                {
+                    b.HasOne("Titan.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

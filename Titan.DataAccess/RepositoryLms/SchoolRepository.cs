@@ -8,18 +8,18 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class CompanyRepository : Repository<Company>, ICompanyRepository
+    public class SchoolRepository : RepositoryAsync<School>, ISchoolRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public CompanyRepository(ApplicationDbContext db) : base(db)
+        public SchoolRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Company company)
+        public void Update(School school)
         {
-            _db.Update(company);
+            _db.Update(school);
         }
     }
 }

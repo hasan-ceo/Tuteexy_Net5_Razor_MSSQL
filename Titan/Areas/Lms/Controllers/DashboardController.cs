@@ -1,19 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using Titan.DataAccess.Data;
 using Titan.DataAccess.Repository.IRepository;
 using Titan.Utility;
 
-namespace Titan.Areas.Admin.Controllers
+namespace Titan.Areas.Lms.Controllers
 {
-    [Area("Ironman")]
-    [Authorize(Roles = SD.Role_Ironman)]
-    public class SchoolsController : Controller
+    [Area("Lms")]
+    [Authorize(Roles = SD.Role_User)]
+    public class DashboardController : Controller
     {
-        private readonly ILogger<SchoolsController> _logger;
+        private readonly ILogger<DashboardController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public SchoolsController(ILogger<SchoolsController> logger, IUnitOfWork unitOfWork)
+        public DashboardController(ILogger<DashboardController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -23,13 +26,5 @@ namespace Titan.Areas.Admin.Controllers
         {
             return View();
         }
-
-
-
-        #region API CALLS
-
-
-
-        #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace Titan.DataAccess.Data
         public DbSet<CoverType> CoverTypes { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<School> Companies { get; set; }
 
 
         public DbSet<Holiday> Holidays { get; set; }
@@ -29,6 +29,7 @@ namespace Titan.DataAccess.Data
         public DbSet<ClassRoutineStudent> ClassRoutineStudent { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
         public DbSet<Page> Pages { get; set; }
+        public DbSet<School> Schools { get; set; }
 
     }
 }

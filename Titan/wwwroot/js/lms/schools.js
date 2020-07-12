@@ -8,19 +8,19 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Ironman/Pages/GetAll"
+            "url": "/Lms/Schools/GetAll"
         },
         "columns": [
-            { "data": "pageName" },
+            { "data": "schoolName" },
             {
-                "data": "pageID",
+                "data": "schoolID",
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">
-                                <a href="/Ironman/Pages/Upsert/${data}" class="button is-primary is-small">
+                                <a href="/Lms/Schools/Upsert/${data}" class="button is-primary is-small">
                                     <i class="fas fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Ironman/Pages/Delete/${data}") class="button is-danger is-small">
+                                <a onclick=Delete("/Lms/Schools/Delete/${data}") class="button is-danger is-small">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Titan.DataAccess.Migrations
 {
-    public partial class asfasdfdfk : Migration
+    public partial class ddklk : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -115,25 +115,6 @@ namespace Titan.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ClassRoutineStudent", x => x.ClassRoutineStudentID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Companies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    PostalCode = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    IsAuthorizedCompany = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -360,6 +341,32 @@ namespace Titan.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "School",
+                columns: table => new
+                {
+                    SchoolID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolName = table.Column<string>(maxLength: 100, nullable: false),
+                    StreetAddress = table.Column<string>(maxLength: 100, nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: true),
+                    State = table.Column<string>(maxLength: 100, nullable: true),
+                    PostalCode = table.Column<string>(maxLength: 100, nullable: true),
+                    PhoneNumber = table.Column<string>(maxLength: 100, nullable: true),
+                    IsAuthorizedSchool = table.Column<bool>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_School", x => x.SchoolID);
+                    table.ForeignKey(
+                        name: "FK_School_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -398,6 +405,11 @@ namespace Titan.DataAccess.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_UserId",
+                table: "School",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -427,9 +439,6 @@ namespace Titan.DataAccess.Migrations
                 name: "ClassRoutineStudent");
 
             migrationBuilder.DropTable(
-                name: "Companies");
-
-            migrationBuilder.DropTable(
                 name: "CoverTypes");
 
             migrationBuilder.DropTable(
@@ -446,6 +455,9 @@ namespace Titan.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "ReportCard");
+
+            migrationBuilder.DropTable(
+                name: "School");
 
             migrationBuilder.DropTable(
                 name: "userlist");

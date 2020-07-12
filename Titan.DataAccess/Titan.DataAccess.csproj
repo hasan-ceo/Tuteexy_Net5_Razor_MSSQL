@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="RepositoryIronman\CompanyRepository.cs" />
     <Compile Remove="RepositoryIronman\CoverTypeRepository.cs" />
-    <Compile Remove="RepositoryIronman\IRepositoryIronman\ICompanyRepository.cs" />
     <Compile Remove="RepositoryIronman\IRepositoryIronman\ICoverTypeRepository.cs" />
     <Compile Remove="RepositoryIronman\userlistRepository.cs" />
   </ItemGroup>

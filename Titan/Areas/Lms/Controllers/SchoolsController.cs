@@ -9,17 +9,18 @@ using Titan.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
-namespace Titan.Areas.Ironman.Controllers
+namespace Titan.Areas.Lms.Controllers
 {
-    [Area("Ironman")]
-    [Authorize(Roles = SD.Role_Ironman)]
-    public class PagesController : Controller
+    [Area("Lms")]
+    //[Authorize(Roles = SD.Role_User)]
+    public class SchoolsController : Controller
     {
-        private readonly ILogger<PagesController> _logger;
+        private readonly ILogger<SchoolsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
-        public PagesController(ILogger<PagesController> logger, IUnitOfWork unitOfWork)
+        
+        public SchoolsController(ILogger<SchoolsController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -32,42 +33,44 @@ namespace Titan.Areas.Ironman.Controllers
 
         public async Task<IActionResult> Upsert(long? Id)
         {
-            Page page = new Page();
+            
+            School school = new School();
             if (Id == null)
             {
                 //this is for create
-                return View(page);
+                return View(school);
             }
             //this is for edit
-            page = await _unitOfWork.Pages.GetAsync(Id.GetValueOrDefault());
-            if (page == null)
+            school = await _unitOfWork.Schools.GetAsync(Id.GetValueOrDefault());
+            if (school == null)
             {
                 return NotFound();
             }
-            return View(page);
+            return View(school);
 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Page page)
+        public IActionResult Upsert(School school)
         {
             if (ModelState.IsValid)
             {
-                if (page.PageID == 0)
+                if (school.SchoolID == 0)
                 {
-                    _unitOfWork.Pages.AddAsync(page);
+                    school.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    _unitOfWork.Schools.AddAsync(school);
 
                 }
                 else
                 {
-                    _unitOfWork.Pages.Update(page);
+                    _unitOfWork.Schools.Update(school);
                 }
 
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(page);
+            return View(school);
         }
 
         #region API CALLS
@@ -75,19 +78,19 @@ namespace Titan.Areas.Ironman.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var allObj = await _unitOfWork.Pages.GetAllAsync();
+            var allObj = await _unitOfWork.Schools.GetAllAsync();
             return Json(new { data = allObj });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Pages.GetAsync(id);
+            var objFromDb = await _unitOfWork.Schools.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Pages.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.Schools.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

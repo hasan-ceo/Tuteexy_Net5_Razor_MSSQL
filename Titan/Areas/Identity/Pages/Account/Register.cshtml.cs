@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace Titan.Areas.Identity.Pages.Account
 {
@@ -81,25 +82,11 @@ namespace Titan.Areas.Identity.Pages.Account
 
             public string PhoneNumber { get; set; }
 
-            public string Role { get; set; }
-
-            public IEnumerable<SelectListItem> RoleList { get; set; }
-
         }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-
-            Input = new InputModel()
-            {
-                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x => x.Name).Select(i => new SelectListItem
-                {
-                    Text = i,
-                    Value = i
-                })
-            };
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
@@ -137,30 +124,25 @@ namespace Titan.Areas.Identity.Pages.Account
                     UserName = Input.Email,
                     Email = Input.Email,
                     Name = Input.Name,
-                    PhoneNumber = Input.PhoneNumber,
-                    Role = Input.Role
+                    PhoneNumber = Input.PhoneNumber
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    await _userManager.AddToRoleAsync(user, SD.Role_User);
+                    _logger.LogInformation("Set Role to User");
 
-                    if (user.Role == null)
-                    {
-                        await _userManager.AddToRoleAsync(user, SD.Role_User);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, user.Role);
-                    }
+                    await _userManager.AddClaimAsync(user, new Claim("InstituteID", Guid.NewGuid().ToString()));
+                    _logger.LogInformation("Create a InstituteName");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code },
+                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
 
@@ -195,37 +177,17 @@ namespace Titan.Areas.Identity.Pages.Account
 
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email", messageBody);
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
-                    }
-                    else
-                    {
-                        if (user.Role == null)
-                        {
-                            await _signInManager.SignInAsync(user, isPersistent: false);
-                            return LocalRedirect(returnUrl);
-                        }
-                        else
-                        {
-                            //admin is registering a new user
-                            return RedirectToAction("Index", "User", new { Area = "Admin" });
-                        }
-                    }
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect("/User/Dashboard/index");
+
+
                 }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            Input = new InputModel()
-            {
-                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User).Select(x => x.Name).Select(i => new SelectListItem
-                {
-                    Text = i,
-                    Value = i
-                })
-            };
 
             // If we got this far, something failed, redisplay form
             return Page();

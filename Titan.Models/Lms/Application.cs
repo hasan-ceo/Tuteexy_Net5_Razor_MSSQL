@@ -13,4 +13,4 @@ namespace Titan.Models
         public long ApplicationConvoID { get; set; }
         public string Subject { get; set; }
     }
-}
+} 

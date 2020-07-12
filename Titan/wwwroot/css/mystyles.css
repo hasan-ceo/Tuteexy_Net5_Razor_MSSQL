@@ -7583,7 +7583,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   .navbar-item.has-dropdown.is-active .navbar-link {
     background-color: #44475a; }
   .columnsfullheight {
-    min-height: 450px; } }
+    min-height: 100vh; } }
 
 /*
 
