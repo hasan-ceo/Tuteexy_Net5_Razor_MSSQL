@@ -2,11 +2,6 @@
 
 @{ var title = "Create School"; }
 
-@section Scripts {
-    <partial name="_tinymceScriptPartial" />
-}
-
-
 <div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
     <ul>
         <li>
@@ -50,10 +45,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="Page Name" asp-for="SchoolName">
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-pager"></i>
-                            </span>
+                            <input class="input" type="text" placeholder="School Name" asp-for="SchoolName">
                             <span asp-validation-for="SchoolName" class="help is-danger"></span>
                         </p>
                     </div>
@@ -62,13 +54,69 @@
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="StreetAddress">Description</label>
+                    <label class="label has-text-white" asp-for="StreetAddress">Street Address</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <textarea class="textarea" placeholder="Street Address" asp-for="StreetAddress"></textarea>
+                            <input class="input" type="text" placeholder="Street Address" asp-for="StreetAddress">
                             <span asp-validation-for="StreetAddress" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="City">City</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="City" asp-for="City">
+                            <span asp-validation-for="City" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="State">State</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="State" asp-for="State">
+                            <span asp-validation-for="State" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="PostalCode">Postal Code</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="Postal Code" asp-for="PostalCode">
+                            <span asp-validation-for="PostalCode" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="PhoneNumber">Phone Number</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="Phone Number" asp-for="PhoneNumber">
+                            <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
                         </p>
                     </div>
                 </div>
@@ -83,10 +131,17 @@
                     <div class="field is-grouped">
                         @if (Model.SchoolID != 0)
                         {
-            <partial name="_EditAndBackToListButton" model="Model.SchoolID" /> }
+            <div class="control">
+                <button type="submit" class="button is-link" asp-route-id="@Model.SchoolID">Update</button>
+            </div> }
         else
         {
-<partial name="_CreateAndBackToListButton" />}
+<div class="control">
+    <button type="submit" class="button is-link">Create</button>
+</div>}
+                        <div class="control">
+                            <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>

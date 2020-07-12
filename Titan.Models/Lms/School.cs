@@ -10,17 +10,21 @@ namespace Titan.Models
     {
         [Key]
         public long SchoolID { get; set; }
+        [Display(Name = "School Name")]
         [Required]
         [MaxLength(100)]
         public string SchoolName { get; set; }
+        [Display(Name = "Street Address")]
         [MaxLength(100)]
         public string StreetAddress { get; set; }
         [MaxLength(100)]
         public string City { get; set; }
         [MaxLength(100)]
         public string State { get; set; }
+        [Display(Name = "Postal Code")]
         [MaxLength(100)]
         public string PostalCode { get; set; }
+        [Display(Name = "Phone Number")]
         [MaxLength(100)]
         public string PhoneNumber { get; set; }
 

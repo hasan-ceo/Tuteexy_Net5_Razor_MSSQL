@@ -83,10 +83,17 @@
                     <div class="field is-grouped">
                         @if (Model.PageID != 0)
                         {
-            <partial name="_EditAndBackToListButton" model="Model.PageID" /> }
-        else
-        {
-<partial name="_CreateAndBackToListButton" />}
+            <div class="control">
+                <button type="submit" class="button is-link" asp-route-id="@Model.PageID">Update</button>
+            </div> }
+                        else
+                        {
+            <div class="control">
+                <button type="submit" class="button is-link">Create</button>
+            </div>}
+                        <div class="control">
+                            <button class="button is-link is-light" asp-area="Ironman" asp-controller="Pages" asp-action="Index">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>

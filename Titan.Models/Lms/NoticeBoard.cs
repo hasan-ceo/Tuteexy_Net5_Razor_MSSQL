@@ -7,17 +7,18 @@ namespace Titan.Models
 {
     public class NoticeBoard
     {
-        [Key]
-        public long NoticBoardId { get; set; }
+        public long NoticeBoardID { get; set; }
+        public long SchoolID { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string NoticHead { get; set; }
+        [MaxLength(128)]
+        [Display(Name = "Notice Title")]
+        public string NoticeTitle { get; set; }
 
+        [DataType(DataType.Html)]
         [Required]
-        [MaxLength(1024)]
-        public string Noticebody { get; set; }
-
-        public long classid { get; set; }
+        [MaxLength(4096)]
+        [Display(Name = "Notice Description:")]
+        public string NoticeBody { get; set; }
     }
 }

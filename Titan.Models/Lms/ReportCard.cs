@@ -9,19 +9,32 @@ namespace Titan.Models
     {
         [Key]
         public long ReportCardID { get; set; }
+
+        [Required]
         public long StudentID { get; set; }
+        [Required]
         public string Subjects { get; set; }
-        public float Term_1_Classmarks { get; set; }
-        public float Term_1_ExamMarks { get; set; }
-        public float Term_1_Total { get; set; }
-        public string Term_1_Grade { get; set; }
-        public string Term_1_RemarksCodeNo { get; set; }
-        public float Term_2_Classmarks { get; set; }
-        public float Term_2_ExamMarks { get; set; }
-        public float Term_2_Total { get; set; }
-        public float Term_2_Grade { get; set; }
-        public string Term_2_RemarksCodeNo { get; set; }
+        [Required]
+        public float Term1Classmarks { get; set; }
+        [Required]
+        public float Term1ExamMarks { get; set; }
+        [Required]
+        public float Term1Total { get; set; }
+        [Required]
+        public string Term1Grade { get; set; }
+        public string Term1RemarksCodeNo { get; set; }
+        [Required]
+        public float Term2Classmarks { get; set; }
+        [Required]
+        public float Term2ExamMarks { get; set; }
+        [Required]
+        public float Term2Total { get; set; }
+        [Required]
+        public string Term2Grade { get; set; }
+        public string Term2RemarksCodeNo { get; set; }
+        [Required]
         public float TotalMarksAverage { get; set; }
+        [Required]
         public string AverageGrade { get; set; }
     }
 }
