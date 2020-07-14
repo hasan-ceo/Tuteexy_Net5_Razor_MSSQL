@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class ClassRoutineStudent
+    public class ClassRoutineStudent : EntryInfo
     {
         [Key]
         public long ClassRoutineStudentID { get; set; }

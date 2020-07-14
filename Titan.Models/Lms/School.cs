@@ -6,7 +6,8 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class School
+    [Table("LmsSchools")]
+    public class School : EntryInfo
     {
         [Key]
         public long SchoolID { get; set; }
@@ -29,9 +30,9 @@ namespace Titan.Models
         public string PhoneNumber { get; set; }
 
         public bool IsAuthorizedSchool { get; set; }
-        [ForeignKey("Id")]
-        public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        
+        public string OwnerId { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
 
     }
 }

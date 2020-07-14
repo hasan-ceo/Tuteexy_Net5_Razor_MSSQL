@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class ReportCard
+    public class ReportCard : EntryInfo
     {
         [Key]
         public long ReportCardID { get; set; }

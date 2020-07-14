@@ -69,6 +69,19 @@ namespace Titan.DataAccess.Initializer
             user = _db.ApplicationUsers.Where(u => u.Email == "azmainfiaz@gmail.com").FirstOrDefault();
 
             _userManager.AddToRoleAsync(user, SD.Role_User).GetAwaiter().GetResult();
+
+            _userManager.CreateAsync(new ApplicationUser
+            {
+                UserName = "bmgigs1@gmail.com",
+                Email = "bmgigs1@gmail.com",
+                EmailConfirmed = true,
+                Name = "GIMSC Online",
+                PhoneNumber = "+8801407483604"
+            }, "Bmgigs1@").GetAwaiter().GetResult();
+
+            user = _db.ApplicationUsers.Where(u => u.Email == "bmgigs1@gmail.com").FirstOrDefault();
+
+            _userManager.AddToRoleAsync(user, SD.Role_User).GetAwaiter().GetResult();
         }
     }
 }

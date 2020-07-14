@@ -8,11 +8,11 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class PageRepository : RepositoryAsync<Page>, IPageRepository
+    public class PagesRepository : RepositoryAsync<Page>, IPagesRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public PageRepository(ApplicationDbContext db) : base(db)
+        public PagesRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
@@ -24,6 +24,9 @@ namespace Titan.DataAccess.Repository
             {
                 objFromDb.PageName = page.PageName;
                 objFromDb.Description = page.Description;
+
+                objFromDb.UpdatedBy = page.UpdatedBy;
+                objFromDb.UpdatedDate = page.UpdatedDate;
 
             }
         }

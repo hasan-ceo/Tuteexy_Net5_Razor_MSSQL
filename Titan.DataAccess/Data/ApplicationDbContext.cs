@@ -13,24 +13,31 @@ namespace Titan.DataAccess.Data
             : base(options)
         {
         }
-        public DbSet<CoverType> CoverTypes { get; set; }
-
+        //Iron Man
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<School> Companies { get; set; }
-
-
-        public DbSet<Holiday> Holidays { get; set; }
-        public DbSet<ReportCard> ReportCard { get; set; }
-        public DbSet<randomComp> randomComp { get; set; }
-
-        public DbSet<NoticeBoard> NoticeBoard { get; set; }
-        public DbSet<userlist> userlist { get; set; }
-        public DbSet<ClassRoutine> ClassRoutine { get; set; }
-        public DbSet<ClassRoutineStudent> ClassRoutineStudent { get; set; }
-        public DbSet<Attendance> Attendance { get; set; }
         public DbSet<Page> Pages { get; set; }
-        public DbSet<School> Schools { get; set; }
+        public DbSet<userlist> userlist { get; set; }
 
+
+        //public DbSet<Holiday> Holidays { get; set; }
+        //public DbSet<ReportCard> ReportCard { get; set; }
+        //public DbSet<randomComp> randomComp { get; set; }
+
+        //public DbSet<NoticeBoard> NoticeBoard { get; set; }
+
+        //public DbSet<ClassRoutine> ClassRoutine { get; set; }
+        //public DbSet<ClassRoutineStudent> ClassRoutineStudent { get; set; }
+        //public DbSet<Attendance> Attendance { get; set; }
+
+
+
+        //LMS
+        public DbSet<School> Schools { get; set; }
+        public DbSet<ClassRoom> ClassRooms { get; set; }
+        public DbSet<SchoolTeacher> SchoolTeachers { get; set; }
+        public DbSet<ClassRoomStudent> ClassRoomStudents { get; set; }
+        public DbSet<Homework> Homeworks { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
     }
 }
 

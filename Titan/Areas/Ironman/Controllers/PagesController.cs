@@ -18,7 +18,7 @@ namespace Titan.Areas.Ironman.Controllers
     {
         private readonly ILogger<PagesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
+        //private string _userId;
         public PagesController(ILogger<PagesController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
@@ -54,13 +54,21 @@ namespace Titan.Areas.Ironman.Controllers
         {
             if (ModelState.IsValid)
             {
+                var workdate = DateTime.Now;
                 if (page.PageID == 0)
                 {
+
+                    page.CreatedBy = User.Identity.Name;
+                    page.CreatedDate = workdate;
+                    page.UpdatedBy = User.Identity.Name;
+                    page.UpdatedDate = workdate;
                     _unitOfWork.Pages.AddAsync(page);
 
                 }
                 else
                 {
+                    page.UpdatedBy = User.Identity.Name;
+                    page.UpdatedDate = workdate;
                     _unitOfWork.Pages.Update(page);
                 }
 

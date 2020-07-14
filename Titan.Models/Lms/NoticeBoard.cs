@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class NoticeBoard
+    public class NoticeBoard : EntryInfo
     {
         public long NoticeBoardID { get; set; }
         public long SchoolID { get; set; }

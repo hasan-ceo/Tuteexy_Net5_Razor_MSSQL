@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class ApplicationThread
+    public class ApplicationThread : EntryInfo
     {
         [Key]
         public long ApplicationThreadID { get; set; }

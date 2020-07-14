@@ -93,7 +93,8 @@ namespace Titan.Areas.Identity.Pages.Account
         //bulk user create
         //public async Task<IActionResult> OnPostAsync()
         //{
-        //    foreach (userlist v in _unitOfWork.userlist.GetAll())
+        //    var vv =await _unitOfWork.userlist.GetAllAsync();
+        //    foreach (userlist v in vv)
         //    {
         //        var user = new ApplicationUser
         //        {
@@ -103,7 +104,7 @@ namespace Titan.Areas.Identity.Pages.Account
         //            PhoneNumber = v.PhoneNumber,
         //            Role = SD.Role_User
         //        };
-        //        await _userManager.CreateAsync(user, "Abc123$");
+        //        await _userManager.CreateAsync(user, v.PhoneNumber);
         //        await _userManager.AddToRoleAsync(user, SD.Role_User);
         //    }
 

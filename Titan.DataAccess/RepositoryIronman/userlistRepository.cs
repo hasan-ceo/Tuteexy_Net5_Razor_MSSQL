@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class userlistRepository : Repository<userlist>, IuserlistRepository
+    public class userlistRepository : RepositoryAsync<userlist>, IuserlistRepository
     {
         private readonly ApplicationDbContext _db;
 

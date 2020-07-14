@@ -6,15 +6,22 @@ namespace Titan.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IPageRepository Pages { get; }
+        //IM Start
+        IPagesRepository Pages { get; }
 
         IApplicationUserRepository ApplicationUser { get; }
         ISP_Call SP_Call { get; }
 
         IuserlistRepository userlist { get; }
+        //IM End
 
         //Lms start
-        ISchoolRepository Schools { get; }
+        ISchoolsRepository Schools { get; }
+        IClassRoomsRepository ClassRooms { get; }
+        IClassRoomStudentsRepository ClassRoomStudents { get; }
+        ISchoolTeachersRepository SchoolTeachers { get; }
+        IHomeworksRepository Homeworks { get; }
+        ISubjectsRepository Subjects { get; }
         //Lms End
 
 

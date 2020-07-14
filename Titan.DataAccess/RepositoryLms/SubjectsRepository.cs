@@ -8,21 +8,21 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository
 {
-    public class CoverTypeRepository : Repository<CoverType>, ICoverTypeRepository
+    public class SubjectsRepository : RepositoryAsync<Subject>, ISubjectsRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public CoverTypeRepository(ApplicationDbContext db) : base(db)
+        public SubjectsRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(CoverType coverType)
+        public void Update(Subject subject)
         {
-            var objFromDb = _db.CoverTypes.FirstOrDefault(s => s.Id == coverType.Id);
+            var objFromDb = _db.Subjects.FirstOrDefault(s => s.SubjectID == subject.SubjectID);
             if (objFromDb != null)
             {
-                objFromDb.Name = coverType.Name;
+                objFromDb.SubjectName = subject.SubjectName;
                
             }
         }

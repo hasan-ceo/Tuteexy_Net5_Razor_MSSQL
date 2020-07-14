@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface ISchoolRepository : IRepositoryAsync<School>
+    public interface IClassRoomStudentsRepository : IRepositoryAsync<ClassRoomStudent>
     {
-        void Update(School school);
+        void Update(ClassRoomStudent classroomstudent);
     }
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface ICoverTypeRepository : IRepository<CoverType>
+    public interface IClassRoomsRepository : IRepositoryAsync<ClassRoom>
     {
-        void Update(CoverType coverType);
+        void Update(ClassRoom classroom);
     }
 }

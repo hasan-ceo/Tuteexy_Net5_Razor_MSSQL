@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Titan.DataAccess.Repository.IRepository
 {
-    public interface IPageRepository : IRepositoryAsync<Page>
+    public interface ISchoolTeachersRepository : IRepositoryAsync<SchoolTeacher>
     {
-        void Update(Page page);
+        void Update(SchoolTeacher schoolteachers);
     }
 }

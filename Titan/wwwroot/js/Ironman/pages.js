@@ -7,6 +7,8 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
+        "pageLength": 100,
+        "ordering": false,
         "ajax": {
             "url": "/Ironman/Pages/GetAll"
         },

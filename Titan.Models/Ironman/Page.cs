@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Titan.Models
 {
-    public class Page
+    [Table("IMPage")]
+    public class Page : EntryInfo
     {
         [Key]
         public long PageID { get; set; }

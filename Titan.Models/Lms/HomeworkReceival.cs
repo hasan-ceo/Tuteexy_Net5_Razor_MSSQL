@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.Models
 {
-    public class HomeworkReceival
+    public class HomeworkReceival : EntryInfo
     {
         [Key]
         public long HomeworkReceivalID { get; set; }

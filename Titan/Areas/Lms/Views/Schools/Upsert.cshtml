@@ -1,6 +1,9 @@
 ﻿@model Titan.Models.School
 
-@{ var title = "Create School"; }
+@{ 
+    var title = "Create School";
+    var rd = false;
+}
 
 <div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
     <ul>
@@ -38,6 +41,11 @@
     <div class="column is-9">
         <form method="post" autocomplete="off" asp-route-returnUrl="">
             <input type="hidden" asp-for="SchoolID" />
+            @if(Model.SchoolID!=0)
+            {
+                rd = true;
+            }
+            
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
                     <label class="label has-text-white" asp-for="SchoolName">Name</label>
@@ -45,7 +53,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="School Name" asp-for="SchoolName">
+                            <input class="input" type="text" placeholder="School Name" asp-for="SchoolName" readonly="@rd">
                             <span asp-validation-for="SchoolName" class="help is-danger"></span>
                         </p>
                     </div>

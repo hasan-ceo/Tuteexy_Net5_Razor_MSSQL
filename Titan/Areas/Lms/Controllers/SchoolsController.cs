@@ -14,16 +14,18 @@ using System.Security.Claims;
 namespace Titan.Areas.Lms.Controllers
 {
     [Area("Lms")]
-    //[Authorize(Roles = SD.Role_User)]
+    [Authorize(Roles = SD.Role_User)]
     public class SchoolsController : Controller
     {
         private readonly ILogger<SchoolsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        
+        private string _userId;
+
+
         public SchoolsController(ILogger<SchoolsController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork; 
         }
 
         public IActionResult Index()
@@ -33,7 +35,7 @@ namespace Titan.Areas.Lms.Controllers
 
         public async Task<IActionResult> Upsert(long? Id)
         {
-            
+
             School school = new School();
             if (Id == null)
             {
@@ -56,14 +58,28 @@ namespace Titan.Areas.Lms.Controllers
         {
             if (ModelState.IsValid)
             {
+                var workdate= DateTime.Now;
+
+
                 if (school.SchoolID == 0)
                 {
-                    school.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                    school.OwnerId = _userId;
+
+                    school.CreatedBy = User.Identity.Name;
+                    school.CreatedDate = workdate;
+                    school.UpdatedBy = User.Identity.Name;
+                    school.UpdatedDate = workdate;
                     _unitOfWork.Schools.AddAsync(school);
 
                 }
                 else
                 {
+
+                    school.UpdatedBy = User.Identity.Name;
+                    school.UpdatedDate = workdate;
+
                     _unitOfWork.Schools.Update(school);
                 }
 
@@ -78,7 +94,8 @@ namespace Titan.Areas.Lms.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var allObj = await _unitOfWork.Schools.GetAllAsync();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.Schools.GetAllAsync(t => t.OwnerId == _userId);
             return Json(new { data = allObj });
         }
 
