@@ -71,39 +71,46 @@ namespace Titan.Areas.Lms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Homework homework)
+        public async Task<IActionResult> Upsert(HomeworkVM homeworkVM)
         {
             if (ModelState.IsValid)
             {
-                var workdate = DateTime.Now;
-
-
-                if (homework.HomeworkID == 0)
+                
+                if (homeworkVM.Homework.HomeworkID == 0)
                 {
-                    _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-                    homework.TeacherID = _userId;
-
-                    //homework.CreatedBy = User.Identity.Name;
-                    //homework.CreatedDate = workdate;
-                    //homework.UpdatedBy = User.Identity.Name;
-                    //homework.UpdatedDate = workdate;
-                    _unitOfWork.Homeworks.AddAsync(homework);
+                    await _unitOfWork.Homeworks.AddAsync(homeworkVM.Homework);
 
                 }
                 else
                 {
-
-                    //homework.UpdatedBy = User.Identity.Name;
-                    //homework.UpdatedDate = workdate;
-
-                    _unitOfWork.Homeworks.Update(homework);
+                    _unitOfWork.Homeworks.Update(homeworkVM.Homework);
                 }
-
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(homework);
+            else
+            {
+                _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var y = await _unitOfWork.SchoolTeachers.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+                IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRooms.GetAllAsync(c => c.SchoolID == y.SchoolID);
+                IEnumerable<Subject> SubList = await _unitOfWork.Subjects.GetAllAsync(c => c.SchoolID == y.SchoolID);
+
+                homeworkVM.ClassRoomList = clsList.Select(i => new SelectListItem
+                {
+                    Text = i.ClassRoomName,
+                    Value = i.ClassRoomID.ToString()
+                });
+                homeworkVM.SubjectList = SubList.Select(i => new SelectListItem
+                {
+                    Text = i.SubjectName,
+                    Value = i.SubjectName
+                });
+                if (homeworkVM.Homework.HomeworkID != 0)
+                {
+                    homeworkVM.Homework = await _unitOfWork.Homeworks.GetAsync(homeworkVM.Homework.HomeworkID);
+                }
+            }
+            return View(homeworkVM);
         }
 
         #region API CALLS

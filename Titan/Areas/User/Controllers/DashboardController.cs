@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Titan.DataAccess.Data;
 using Titan.DataAccess.Repository.IRepository;
 using Titan.Utility;
@@ -22,9 +24,18 @@ namespace Titan.Areas.User.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            long classrooomid = 0;
+            var _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var classroomStudents = await _unitOfWork.ClassRoomStudents.GetFirstOrDefaultAsync(c => c.StudentID == _userId);
+            if (classroomStudents != null)
+            {
+                classrooomid = classroomStudents.ClassRoomID;
+            }
+            var allObj = await _unitOfWork.Homeworks.GetAllAsync(h => h.ClassRoomID == classrooomid, includeProperties: "ClassRoom,Teacher");
+
+            return View(allObj);
         }
     }
 }
