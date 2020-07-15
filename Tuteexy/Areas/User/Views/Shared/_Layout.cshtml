@@ -1,0 +1,191 @@
+﻿@*@using Tuteexy.Utility
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6PGPD8LSJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N6PGPD8LSJ');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuteely - For Student, Develop by Student</title>
+    <link rel="icon"
+          href="/Images/pencil/favicon.png"
+          sizes="any"
+          type="image/svg+xml" />
+
+    <link rel="stylesheet" href="~/css/grid.css" />
+    <link rel="stylesheet" href="~/css/helpers.css" />
+    <link rel="stylesheet" href="~/css/mystyles.css" />
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+</head>
+<body class="body">
+    <header class="mb-0 py-0">
+        <nav class="navbar is-fixed-top is-bordered" role="navigation" aria-label="dropdown navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item"
+                   asp-area="User"
+                   asp-controller="Dashboard"
+                   asp-action="index">
+                    <img src="~/images/core/logowhite.jpg" width="112" height="28" />
+                </a>
+                <a role="button"
+                   class="navbar-burger burger"
+                   aria-label="menu"
+                   aria-expanded="false"
+                   data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-end">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="columns mt-6 pt-2 pb-1 mb-0 has-background-dark">
+        <div class="column is-2 aside">
+            <p class="menu-label">General</p>
+            <ul class="menu-list">
+                <li>
+                    <a class="is-active"
+                       asp-area="User"
+                       asp-controller="Dashboard"
+                       asp-action="index">
+                        <span class="icon is-small">
+                            <i class="fa fa-tachometer"></i>
+                        </span>
+                        Dashboard
+                    </a>
+                </li>
+            </ul>
+            <p class="menu-label">Administration</p>
+            <ul class="menu-list">
+
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="Schools"
+                       asp-action="index">
+                        <span class="icon is-small"><i class="fas fa-school"></i></span>
+                        Schools
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="ClassRooms"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-warehouse"></i>
+                        </span>
+                        Class Rooms
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="SchoolTeachers"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-book-reader"></i>
+                        </span>
+                        Teachers
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="Subjects"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        Subjects
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="Homeworks"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-briefcase"></i>
+                        </span>
+                        Homeworks
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="column main columnsfullheight">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <div class="item columns">
+                <div class="column is-2">
+                </div>
+                <div class="column is-8 pt-2">
+                    <p class="subtitle is-6 has-text-weight-light has-text-grey">
+                        Work together as a team, with:
+                    </p>
+                    <a class="center" asp-area="" asp-controller="home" asp-action="index">
+                        <img src="~/images/core/logowhite.jpg" class="image" style="width:150px">
+                    </a>
+                    <p class="subtitle is-6 has-text-weight-light has-text-grey">
+                        Built with your best interests at heart in July 2020. © Tuteely
+                    </p>
+                    <a href="http://wwww.facebook.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-facebook-f fa-2x"></i>
+                        </span>
+                    </a>
+                    <a href="http://wwww.twitter.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </span>
+                    </a>
+                    <a href="http://wwww.youtube.com/tuteely">
+                        <span class="icon has-text-weight-light has-text-grey is-large">
+                            <i class="fab fa-youtube fa-2x"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="column is-2">
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <partial name="_NavBurgerScriptsPartial" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
