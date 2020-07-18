@@ -1,15 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -18,25 +14,29 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
+using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
 
-namespace Tuteexy.Areas.Identity.Pages.Account
+namespace Tuteexy.Areas.Front.Controllers
 {
+    [Area("Front")]
     [AllowAnonymous]
-    public class RegisterModel : PageModel
+    public class IdentityController : Controller
     {
+        
+
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<IdentityController> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public RegisterModel(
+        public IdentityController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<IdentityController> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager,
             IUnitOfWork unitOfWork,
@@ -51,82 +51,30 @@ namespace Tuteexy.Areas.Identity.Pages.Account
             _unitOfWork = unitOfWork;
         }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
-
-        public string ReturnUrl { get; set; }
-
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-
-            [Required]
-            public string Name { get; set; }
-
-            public string PhoneNumber { get; set; }
-
-        }
-
-        public async Task OnGetAsync(string returnUrl = null)
-        {
-            ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        }
-
-        //bulk user create
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    var vv =await _unitOfWork.userlist.GetAllAsync();
-        //    foreach (userlist v in vv)
-        //    {
-        //        var user = new ApplicationUser
-        //        {
-        //            UserName = v.UserName,
-        //            Email = v.Email,
-        //            Name = v.Name,
-        //            PhoneNumber = v.PhoneNumber,
-        //            Role = SD.Role_User
-        //        };
-        //        await _userManager.CreateAsync(user, v.PhoneNumber);
-        //        await _userManager.AddToRoleAsync(user, SD.Role_User);
-        //    }
-
-        //    return RedirectToPage("RegisterConfirmation", new { email = "a@a.a" });
-        //}
-
-        //bulk user create End
-
-        //Normal user create
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        [HttpGet]
+        [Route("/Front/Identity/Register", Name = "Register")]
+        public ActionResult Register(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            return LocalRedirect(returnUrl);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterVM registerVM,string returnUrl= null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+           
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    Name = Input.Name,
-                    PhoneNumber = Input.PhoneNumber
+                    UserName = registerVM.Email,
+                    Email = registerVM.Email,
+                    Name = registerVM.Name,
+                    PhoneNumber = registerVM.PhoneNumber
                 };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var result = await _userManager.CreateAsync(user, registerVM.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -176,7 +124,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                         );
 
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email", messageBody);
+                    await _emailSender.SendEmailAsync(registerVM.Email, "Confirm your email", messageBody);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect("/User/Dashboard/index");
@@ -190,9 +138,61 @@ namespace Tuteexy.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
-            return Page();
+            return LocalRedirect(returnUrl);
         }
 
-        //Normal user create
+        [HttpGet]     
+        [Route("/Front/Identity/Login", Name = "Login")]
+        public ActionResult Login(string returnUrl = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+            return LocalRedirect(returnUrl);
+        }
+
+        //login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Login(LoginVM loginVM,string returnUrl = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (ModelState.IsValid)
+            {
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, true, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    var user = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.UserName == loginVM.UserName);
+                    string role = (await _signInManager.UserManager.GetRolesAsync(user)).FirstOrDefault();
+
+                    _logger.LogInformation("User logged in.");
+                    switch (role)
+                    {
+                        case SD.Role_Ironman:
+                            return LocalRedirect("/Ironman/Dashboard/Index");
+                        case SD.Role_User:
+                            return LocalRedirect("/User/Dashboard/Index");
+                        default:
+                            break;
+                    }
+                    return LocalRedirect(returnUrl);
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return RedirectToPage("./Lockout");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return LocalRedirect(returnUrl);
+                }
+            }
+            ModelState.AddModelError("Login", "Invalid login attempt.");
+            // If we got this far, something failed, redisplay form
+            return LocalRedirect(returnUrl);
+        }
     }
 }

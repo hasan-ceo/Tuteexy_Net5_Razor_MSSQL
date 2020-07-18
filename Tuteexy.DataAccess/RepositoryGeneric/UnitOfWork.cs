@@ -13,32 +13,32 @@ namespace Tuteexy.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            Pages = new PagesRepository(_db);
-            ClassRooms = new ClassRoomsRepository(_db);
-            ClassRoomStudents = new ClassRoomStudentsRepository(_db);
+            Page = new PageRepository(_db);
+            ClassRoom = new ClassRoomRepository(_db);
+            ClassRoomStudent = new ClassRoomStudentRepository(_db);
             userlist = new userlistRepository(_db);
-            Schools = new SchoolsRepository(_db);
-            SchoolTeachers = new SchoolTeachersRepository(_db);
-            Homeworks = new HomeworksRepository(_db);
-            Subjects = new SubjectsRepository(_db);
+            School = new SchoolRepository(_db);
+            SchoolTeacher = new SchoolTeacherRepository(_db);
+            Homework = new HomeworkRepository(_db);
+            Subject = new SubjectRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
             SP_Call = new SP_Call(_db);
 
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
-        public IPagesRepository Pages { get; private set; }
+        public IPageRepository Page { get; private set; }
 
         public ISP_Call SP_Call { get; private set; }
         public IuserlistRepository userlist { get; private set; }
 
 
-        public ISchoolsRepository Schools { get; private set; }
-        public ISchoolTeachersRepository SchoolTeachers { get; private set; }
-        public IClassRoomsRepository ClassRooms { get; private set; }
-        public IClassRoomStudentsRepository ClassRoomStudents { get; private set; }
-        public IHomeworksRepository Homeworks { get; private set; }
-        public ISubjectsRepository Subjects { get; private set; }
+        public ISchoolRepository School { get; private set; }
+        public ISchoolTeacherRepository SchoolTeacher { get; private set; }
+        public IClassRoomRepository ClassRoom { get; private set; }
+        public IClassRoomStudentRepository ClassRoomStudent { get; private set; }
+        public IHomeworkRepository Homework { get; private set; }
+        public ISubjectRepository Subject { get; private set; }
 
         public void Dispose()
         {

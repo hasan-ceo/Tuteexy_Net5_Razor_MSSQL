@@ -7,7 +7,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
     public interface IUnitOfWork : IDisposable
     {
         //IM Start
-        IPagesRepository Pages { get; }
+        IPageRepository Page { get; }
 
         IApplicationUserRepository ApplicationUser { get; }
         ISP_Call SP_Call { get; }
@@ -16,12 +16,12 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         //IM End
 
         //Lms start
-        ISchoolsRepository Schools { get; }
-        IClassRoomsRepository ClassRooms { get; }
-        IClassRoomStudentsRepository ClassRoomStudents { get; }
-        ISchoolTeachersRepository SchoolTeachers { get; }
-        IHomeworksRepository Homeworks { get; }
-        ISubjectsRepository Subjects { get; }
+        ISchoolRepository School { get; }
+        IClassRoomRepository ClassRoom { get; }
+        IClassRoomStudentRepository ClassRoomStudent { get; }
+        ISchoolTeacherRepository SchoolTeacher { get; }
+        IHomeworkRepository Homework { get; }
+        ISubjectRepository Subject { get; }
         //Lms End
 
 

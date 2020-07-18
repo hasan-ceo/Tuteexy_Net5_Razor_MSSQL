@@ -39,7 +39,7 @@ namespace Tuteexy.Areas.Ironman.Controllers
                 return View(page);
             }
             //this is for edit
-            page = await _unitOfWork.Pages.GetAsync(Id.GetValueOrDefault());
+            page = await _unitOfWork.Page.GetAsync(Id.GetValueOrDefault());
             if (page == null)
             {
                 return NotFound();
@@ -62,14 +62,14 @@ namespace Tuteexy.Areas.Ironman.Controllers
                     page.CreatedDate = workdate;
                     page.UpdatedBy = User.Identity.Name;
                     page.UpdatedDate = workdate;
-                    _unitOfWork.Pages.AddAsync(page);
+                    _unitOfWork.Page.AddAsync(page);
 
                 }
                 else
                 {
                     page.UpdatedBy = User.Identity.Name;
                     page.UpdatedDate = workdate;
-                    _unitOfWork.Pages.Update(page);
+                    _unitOfWork.Page.Update(page);
                 }
 
                 _unitOfWork.Save();
@@ -83,19 +83,19 @@ namespace Tuteexy.Areas.Ironman.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var allObj = await _unitOfWork.Pages.GetAllAsync();
+            var allObj = await _unitOfWork.Page.GetAllAsync();
             return Json(new { data = allObj });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Pages.GetAsync(id);
+            var objFromDb = await _unitOfWork.Page.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Pages.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.Page.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

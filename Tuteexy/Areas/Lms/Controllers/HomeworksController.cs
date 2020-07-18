@@ -37,9 +37,9 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> Upsert(long? Id)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var y = await _unitOfWork.SchoolTeachers.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
-            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRooms.GetAllAsync(c => c.SchoolID == y.SchoolID);
-            IEnumerable<Subject> SubList = await _unitOfWork.Subjects.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
             HomeworkVM homeworkVM = new HomeworkVM()
             {
                 Homework = new Homework(),
@@ -60,7 +60,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 return View(homeworkVM);
             }
             //this is for edit
-            homeworkVM.Homework = await _unitOfWork.Homeworks.GetAsync(Id.GetValueOrDefault());
+            homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
             if (homeworkVM.Homework == null)
             {
                 return NotFound();
@@ -79,11 +79,11 @@ namespace Tuteexy.Areas.Lms.Controllers
                     _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     homeworkVM.Homework.TeacherID = _userId;
                     homeworkVM.Homework.DateAssigned = DateTime.Now;
-                    await _unitOfWork.Homeworks.AddAsync(homeworkVM.Homework);
+                    await _unitOfWork.Homework.AddAsync(homeworkVM.Homework);
                 }
                 else
                 {
-                    _unitOfWork.Homeworks.Update(homeworkVM.Homework);
+                    _unitOfWork.Homework.Update(homeworkVM.Homework);
                 }
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
@@ -91,9 +91,9 @@ namespace Tuteexy.Areas.Lms.Controllers
             else
             {
                 _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                var y = await _unitOfWork.SchoolTeachers.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
-                IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRooms.GetAllAsync(c => c.SchoolID == y.SchoolID);
-                IEnumerable<Subject> SubList = await _unitOfWork.Subjects.GetAllAsync(c => c.SchoolID == y.SchoolID);
+                var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+                IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
+                IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
 
                 homeworkVM.ClassRoomList = clsList.Select(i => new SelectListItem
                 {
@@ -107,7 +107,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 });
                 if (homeworkVM.Homework.HomeworkID != 0)
                 {
-                    homeworkVM.Homework = await _unitOfWork.Homeworks.GetAsync(homeworkVM.Homework.HomeworkID);
+                    homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(homeworkVM.Homework.HomeworkID);
                 }
             }
             return View(homeworkVM);
@@ -118,19 +118,19 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Homeworks.GetAllAsync(h=>h.TeacherID== _userId, includeProperties:"ClassRoom,Teacher");
+            var allObj = await _unitOfWork.Homework.GetAllAsync(h=>h.TeacherID== _userId && h.ScheduleDate==DateTime.Now.Date, h => h.OrderByDescending(p => p.DateDue), includeProperties:"ClassRoom,Teacher");
             return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title,datedue=a.DateDue.Date.ToString("dd/MMM/yyyy")}) });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Homeworks.GetAsync(id);
+            var objFromDb = await _unitOfWork.Homework.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Homeworks.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.Homework.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

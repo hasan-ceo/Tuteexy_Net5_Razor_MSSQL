@@ -34,7 +34,7 @@ namespace Tuteexy.Areas.Front.Controllers
 
         public async Task<IActionResult> Page(string name)
         {
-            var allObj = await _unitOfWork.Pages.GetFirstOrDefaultAsync(e => e.PageName == name);
+            var allObj = await _unitOfWork.Page.GetFirstOrDefaultAsync(e => e.PageName == name);
             return View(allObj);
         }
 
@@ -42,6 +42,13 @@ namespace Tuteexy.Areas.Front.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("/Front/Home/HandleError/{code:int}")]
+        public IActionResult HandleError(int code)
+        {
+            ViewData["ErrorMessage"] = $"Error occurred. The ErrorCode is: {code}";
+            return View();
         }
     }
 }

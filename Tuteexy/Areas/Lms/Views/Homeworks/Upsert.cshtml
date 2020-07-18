@@ -130,6 +130,20 @@
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
+                    <label class="label has-text-white" asp-for="Homework.ScheduleDate">Schedule Due</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" type="date" placeholder="Date Due" asp-for="Homework.ScheduleDate">
+                            <span asp-validation-for="Homework.ScheduleDate" class="help is-danger"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
                     <label class="label has-text-white" asp-for="Homework.DateDue">Date Due</label>
                 </div>
                 <div class="field-body">

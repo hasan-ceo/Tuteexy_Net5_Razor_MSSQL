@@ -3,6 +3,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.rightcolumn {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
 /*
 .center-column {
     flex-direction: column;

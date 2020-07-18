@@ -1,12 +1,4 @@
-﻿@page
-@model ErrorModel
-@{ ViewData["Title"] = "Error"; }
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
-
-
+﻿@{ ViewData["Title"] = "Error !!!"; }
 
 <section class="hero is-white is-fullheight">
     <div class="hero-head">
@@ -19,11 +11,7 @@
                         @ViewData["Title"]
                     </h1>
                     <h3 class="subtitle is-3 has-text-black">
-                        @if (Model.ShowRequestId)
-                        {
-                    <p>
-                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-                    </p>}
+                        @ViewData["ErrorMessage"]
                     </h3>
                 </div>
             </div>

@@ -69,7 +69,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     classRoom.CreatedDate = workdate;
                     classRoom.UpdatedBy = User.Identity.Name;
                     classRoom.UpdatedDate = workdate;
-                    _unitOfWork.ClassRooms.AddAsync(classRoom);
+                    _unitOfWork.ClassRoom.AddAsync(classRoom);
 
                 }
                 else
@@ -78,7 +78,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     classRoom.UpdatedBy = User.Identity.Name;
                     classRoom.UpdatedDate = workdate;
 
-                    _unitOfWork.ClassRooms.Update(classRoom);
+                    _unitOfWork.ClassRoom.Update(classRoom);
                 }
 
                 _unitOfWork.Save();
@@ -93,19 +93,19 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.ClassRooms.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
+            var allObj = await _unitOfWork.ClassRoom.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
             return Json(new { data = allObj });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.ClassRooms.GetAsync(id);
+            var objFromDb = await _unitOfWork.ClassRoom.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.ClassRooms.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.ClassRoom.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

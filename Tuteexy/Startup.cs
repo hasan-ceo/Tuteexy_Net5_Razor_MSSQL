@@ -58,10 +58,7 @@ namespace Tuteexy
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 
             services.Configure<EmailOptions>(Configuration.GetSection("Email"));
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
-            services.Configure<BrainTreeSettings>(Configuration.GetSection("BrainTree"));
-            services.Configure<TwilioSettings>(Configuration.GetSection("Twilio"));
-            services.AddSingleton<IBrainTreeGate, BrainTreeGate>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -101,10 +98,20 @@ namespace Tuteexy
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Front/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithReExecute("/Front/Home/HandleError/{0}");
+            //app.Use(async (context, next) =>
+            //{
+            //    await next();
+            //    if (context.Response.StatusCode == 404)
+            //    {
+            //        context.Request.Path = "/Front/Home/Error";
+            //        await next();
+            //    }
+            //});
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

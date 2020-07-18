@@ -43,7 +43,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 return View(school);
             }
             //this is for edit
-            school = await _unitOfWork.Schools.GetAsync(Id.GetValueOrDefault());
+            school = await _unitOfWork.School.GetAsync(Id.GetValueOrDefault());
             if (school == null)
             {
                 return NotFound();
@@ -71,7 +71,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     school.CreatedDate = workdate;
                     school.UpdatedBy = User.Identity.Name;
                     school.UpdatedDate = workdate;
-                    _unitOfWork.Schools.AddAsync(school);
+                    _unitOfWork.School.AddAsync(school);
 
                 }
                 else
@@ -80,7 +80,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     school.UpdatedBy = User.Identity.Name;
                     school.UpdatedDate = workdate;
 
-                    _unitOfWork.Schools.Update(school);
+                    _unitOfWork.School.Update(school);
                 }
 
                 _unitOfWork.Save();
@@ -95,19 +95,19 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
-            var allObj = await _unitOfWork.SchoolTeachers.GetAllAsync(t => t.School.OwnerId == _userId, includeProperties: "School,Teacher");
+            var allObj = await _unitOfWork.SchoolTeacher.GetAllAsync(t => t.School.OwnerId == _userId, includeProperties: "School,Teacher");
             return Json(new { data = allObj.Select(o=> new {o.SchoolTeacherID, o.School.SchoolName, o.Teacher.Name, o.ApprovedBy,o.IsApproved}) });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Schools.GetAsync(id);
+            var objFromDb = await _unitOfWork.School.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Schools.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.School.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

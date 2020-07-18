@@ -1,0 +1,74 @@
+﻿@model Tuteexy.Models.ViewModels.RegisterVM
+@using Tuteexy.Utility
+@{ ViewData["Title"] = "Register"; }
+
+
+
+
+
+                    <h3 class="subtitle is-5 has-text-black py-1 my-1">
+                        Create a free account
+                    </h3>
+
+                    <form method="post" autocomplete="off" asp-route="register">
+                        <div class="field">
+                              <div class="control has-icons-left">
+                                <input asp-for="@Model.Name" class="input is-rounded" type="text" placeholder="Enter your name.">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                               <div class="control has-icons-left">
+                                <input asp-for="@Model.Email" class="input is-rounded" type="email" placeholder="Enter your email.">
+                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <span asp-validation-for="@Model.Email" class="help is-danger"></span>
+                        </div>
+
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input asp-for="@Model.PhoneNumber" class="input is-rounded" type="text" placeholder="Enter your phone.">
+                                <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <span asp-validation-for="@Model.PhoneNumber" class="help is-danger"></span>
+                        </div>
+
+                        <div class="field">
+                                <div class="control has-icons-left">
+                                <input asp-for="@Model.Password" class="input is-rounded" type="password" placeholder="Password">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <span asp-validation-for="@Model.Password" class="help is-danger"></span>
+                        </div>
+
+                        <div class="field">
+                                <div class="control has-icons-left">
+                                <input asp-for="@Model.ConfirmPassword" class="input is-rounded" type="password" placeholder="Confirm Password">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <span asp-validation-for="@Model.ConfirmPassword" class="help is-danger"></span>
+                        </div>
+
+                        <h5 class="subtitle is-6 has-text-black">
+                            By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
+                        </h5>
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-success is-fullwidth has-text-weight-bold">START FREE</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -2,37 +2,54 @@
 
 
 <section class="hero is-white is-fullheight">
-    <div class="hero-head">
-        test
-    </div>
-    <div class="hero-body">
+    <div class="hero-body pt-1">
         <div class="container">
+              <div class="columns">
+                <div class="column is-7">
+    
+                    <div class="columns is-multiline ">
+                        <div class="column is-12">
+                            <a asp-area="Customer" asp-controller="home" asp-action="index">
+                                <img src="~/images/core/logo.jpg" width="200">
+                            </a>
+                        </div>
 
-            <div class="columns is-vcentered">
-                <div class="column is-half">
-                    <h1 class="title is-1">
-                        Go from questioning to understanding
-                    </h1>
-                    <h2 class="subtitle">
-                        Tuteely is the knowledge-sharing community where students and experts put their heads together to crack their toughest homework questions.
-                    </h2>
+                        
+                        <div class="column is-12">
+                          
+                                <a asp-area="Customer" asp-controller="home" asp-action="index">
+                                    <img src="~/images/core/cover.jpg" style="width:100%">
+                                </a>
+                           
+                            
+                        </div>
+                    </div>
 
-                    <a class="button is-success is-rounded has-text-weight-bold has-text-white" asp-area="Identity" asp-page="/Account/Register">
-                        <strong>START FREE</strong>
-                    </a>
 
-                    <p style="text-align: left; font-size: 14px; margin-top: 5px; margin-left: 10px;">
-                        No credit card required
-                    </p>
 
-                </div>
-                <div class="column">
-                    <img src="~/images/core/cover.jpg" class="image" />
+                    </div>
+                <div class="column is-4 is-offset-1">
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <partial name="_loginPartial" />
+                        </div>
+                        <div class="column is-12 py-0 my-0">
+                            <div class="has-text-centered"><strong>- - - OR - - -</strong></div>
+                        </div>
+                        <div class="column is-12">
+                            <partial name="_RegisterPartial" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <div class="hero-foot center">
+
+
+
+
+    <div class="hero-foot center ">
         <div id="grid" style="width: 768px;">
             <div id="a" class="center-column">
                 <p class="has-text-centered has-text-black">

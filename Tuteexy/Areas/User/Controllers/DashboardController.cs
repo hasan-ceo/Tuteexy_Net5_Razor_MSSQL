@@ -28,11 +28,11 @@ namespace Tuteexy.Areas.User.Controllers
         {
             long classrooomid=0;
             var _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var classroomStudents = await _unitOfWork.ClassRoomStudents.GetFirstOrDefaultAsync(c => c.StudentID == _userId);
+            var classroomStudents = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c => c.StudentID == _userId);
             if (classroomStudents!=null){
                 classrooomid = classroomStudents.ClassRoomID;
             }
-            var allObj = await _unitOfWork.Homeworks.GetAllAsync(h => h.ClassRoomID == classrooomid, includeProperties: "ClassRoom,Teacher");
+            var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classrooomid, h=>h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
 
             return View(allObj);
         }

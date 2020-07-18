@@ -69,7 +69,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     subject.CreatedDate = workdate;
                     subject.UpdatedBy = User.Identity.Name;
                     subject.UpdatedDate = workdate;
-                    _unitOfWork.Subjects.AddAsync(subject);
+                    _unitOfWork.Subject.AddAsync(subject);
 
                 }
                 else
@@ -78,7 +78,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     subject.UpdatedBy = User.Identity.Name;
                     subject.UpdatedDate = workdate;
 
-                    _unitOfWork.Subjects.Update(subject);
+                    _unitOfWork.Subject.Update(subject);
                 }
 
                 _unitOfWork.Save();
@@ -93,19 +93,19 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Subjects.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
+            var allObj = await _unitOfWork.Subject.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
             return Json(new { data = allObj });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Subjects.GetAsync(id);
+            var objFromDb = await _unitOfWork.Subject.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Subjects.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.Subject.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

@@ -31,7 +31,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> Index(long id)
         {
             //_userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
-            var allObj = await _unitOfWork.ClassRoomStudents.GetAllAsync(t => t.ClassRoomID == id, includeProperties: "ClassRoom,Student");
+            var allObj = await _unitOfWork.ClassRoomStudent.GetAllAsync(t => t.ClassRoomID == id, includeProperties: "ClassRoom,Student");
             return View(allObj.ToList());
         }
 
@@ -45,7 +45,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 return View(classroomstudent);
             }
             //this is for edit
-            classroomstudent = await _unitOfWork.ClassRoomStudents.GetAsync(Id.GetValueOrDefault());
+            classroomstudent = await _unitOfWork.ClassRoomStudent.GetAsync(Id.GetValueOrDefault());
             if (classroomstudent == null)
             {
                 return NotFound();
@@ -68,7 +68,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
 
-                    _unitOfWork.ClassRoomStudents.AddAsync(classroomstudent);
+                    _unitOfWork.ClassRoomStudent.AddAsync(classroomstudent);
 
                 }
                 else
@@ -76,7 +76,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
 
 
-                    _unitOfWork.ClassRoomStudents.Update(classroomstudent);
+                    _unitOfWork.ClassRoomStudent.Update(classroomstudent);
                 }
 
                 _unitOfWork.Save();
@@ -91,19 +91,19 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
-            var allObj = await _unitOfWork.ClassRoomStudents.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom,Student");
+            var allObj = await _unitOfWork.ClassRoomStudent.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom,Student");
             return Json(new { data = allObj.Select(o=> new {o.ClassRoomStudentID, o.ClassRoom.ClassRoomName, o.Student.Name, o.ApprovedBy,o.IsApproved}) });
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.ClassRoomStudents.GetAsync(id);
+            var objFromDb = await _unitOfWork.ClassRoomStudent.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.ClassRoomStudents.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.ClassRoomStudent.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

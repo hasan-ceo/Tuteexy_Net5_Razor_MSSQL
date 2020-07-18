@@ -45,6 +45,12 @@ namespace Tuteexy.Models
         public DateTime DateAssigned { get; set; }
 
         [Required]
+        [Display(Name = "Schedule Due")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime ScheduleDate { get; set; }
+
+        [Required]
         [Display(Name = "Date Due")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]

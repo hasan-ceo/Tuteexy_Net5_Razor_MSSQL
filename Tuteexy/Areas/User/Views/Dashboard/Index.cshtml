@@ -28,21 +28,49 @@
     </div>
 </div>
 
+
 @if (Model != null)
 {
-<div class="tile is-ancestor">
+<div class="columns is-success is-multiline">
     @foreach (Homework item in Model)
     {
-    <div class="tile is-parent">
-        <article class="tile is-child box notification is-warning">
-            <p class="title is-4 py-0 my-0 has-text-black">Title: @item.Title</p>
-            <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @item.Teacher.Name</p>
-            <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-            <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy H:mm") </p>
-            <p class="subtitle is-6"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
-            <div class="content">
-                @Html.Raw(item.Description)
-            </div>
-        </article>
-    </div>}
-</div>}
+<div class="column">
+    <article class="tile is-child box notification is-warning">
+        <p class="title is-4 py-0 my-0 has-text-black">Title: @item.Title</p>
+        <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @item.Teacher.Name</p>
+        <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+        <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+        <p class="subtitle is-6"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+        
+        <p class="subtitle is-6">
+            @if (string.IsNullOrWhiteSpace(@item.RefLink) == false && (string.IsNullOrEmpty(item.RefLink) == false))
+            {
+        <a href="@item.RefLink" class="button is-small is-success has-text-white">
+            <span class="icon is-medium">
+                <i class="fas fa-link"></i>
+            </span>  <span>Attachment</span>
+        </a>
+            }
+            @{
+             var eml="mailto:" +@item.Teacher.Email;
+            }
+
+                                <a href="@eml" class="button is-small is-link has-text-white">
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-link"></i>
+                                    </span>  <span>Reply</span>
+                                </a>
+                                                    </p>
+        <p class="subtitle is-6">
+            
+        </p>
+        <div class="content">
+            @Html.Raw(item.Description)
+        </div>
+    </article>
+</div>
+    }
+                </div>
+}
+
+               
