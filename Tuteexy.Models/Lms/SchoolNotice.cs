@@ -17,12 +17,12 @@ namespace Tuteexy.Models
         [Required]
         [MaxLength(128)]
         [Display(Name = "Title")]
-        public string NoticeTitle { get; set; }
+        public string Title { get; set; }
 
         [DataType(DataType.Html)]
         [Required]
         [MaxLength(4000)] 
-        [Display(Name = "Description:")]
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         [Required]

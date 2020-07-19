@@ -46,6 +46,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             HomeworkVM homeworkVM = new HomeworkVM()
             {
                 Homework = hw,
+                ScheduleTime = DateTime.Now.TimeOfDay.ToString(),
                 ClassRoomList = clsList.Select(i => new SelectListItem
                 {
                     Text = i.ClassRoomName,

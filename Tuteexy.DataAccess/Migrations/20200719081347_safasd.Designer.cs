@@ -10,8 +10,8 @@ using Tuteexy.DataAccess.Data;
 namespace Tuteexy.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200718195415_jjjjjj")]
-    partial class jjjjjj
+    [Migration("20200719081347_safasd")]
+    partial class safasd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -291,6 +291,91 @@ namespace Tuteexy.DataAccess.Migrations
                     b.ToTable("LmsClassRoomStudent");
                 });
 
+            modelBuilder.Entity("Tuteexy.Models.ClassRoutine", b =>
+                {
+                    b.Property<long>("ClassRoutineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClassRoomID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DayName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period10")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period5")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period6")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period7")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period8")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Period9")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ClassRoutineID");
+
+                    b.HasIndex("ClassRoomID");
+
+                    b.ToTable("LmsClassRoutine");
+                });
+
             modelBuilder.Entity("Tuteexy.Models.Homework", b =>
                 {
                     b.Property<long>("HomeworkID")
@@ -453,16 +538,16 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
-                    b.Property<string>("NoticeTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
                     b.Property<DateTime>("ScheduleDateTime")
                         .HasColumnType("datetime");
 
                     b.Property<long>("SchoolID")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(50)")
@@ -664,6 +749,15 @@ namespace Tuteexy.DataAccess.Migrations
                     b.HasOne("Tuteexy.Models.ApplicationUser", "Student")
                         .WithMany()
                         .HasForeignKey("StudentID");
+                });
+
+            modelBuilder.Entity("Tuteexy.Models.ClassRoutine", b =>
+                {
+                    b.HasOne("Tuteexy.Models.ClassRoom", "ClassRoom")
+                        .WithMany()
+                        .HasForeignKey("ClassRoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Tuteexy.Models.Homework", b =>

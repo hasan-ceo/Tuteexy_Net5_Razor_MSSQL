@@ -536,16 +536,16 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
-                    b.Property<string>("NoticeTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
                     b.Property<DateTime>("ScheduleDateTime")
                         .HasColumnType("datetime");
 
                     b.Property<long>("SchoolID")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(50)")

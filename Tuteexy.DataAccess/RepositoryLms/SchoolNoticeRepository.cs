@@ -20,7 +20,7 @@ namespace Tuteexy.DataAccess.Repository
             var objFromDb = _db.SchoolNotice.FirstOrDefault(s => s.SchoolNoticeID == schoolnotice.SchoolNoticeID);
             if (objFromDb != null)
             {
-                objFromDb.NoticeTitle = schoolnotice.NoticeTitle;
+                objFromDb.Title = schoolnotice.Title;
                 objFromDb.Description = schoolnotice.Description;
                 objFromDb.ScheduleDateTime = schoolnotice.ScheduleDateTime;
 

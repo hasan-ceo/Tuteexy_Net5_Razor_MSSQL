@@ -35,57 +35,71 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public IActionResult Create(long Id)
         {
-
-            SchoolNotice subject = new SchoolNotice();
+            var sn = new SchoolNotice();
+            sn.SchoolID = Id;
+            sn.ScheduleDateTime = DateTime.Now;
+            SchoolNoticeVM schoolnoticeVM = new SchoolNoticeVM()
+            {
+                SchoolNotice = sn,
+                ScheduleTime = DateTime.Now.TimeOfDay.ToString()
+            };
 
             //this is for create
-            subject.SchoolID = Id;
-            return View(subject);
+            return View("Upsert",schoolnoticeVM);            
+        }
 
+        public async Task<IActionResult> Edit(long Id)
+        {
+            var schoolnotice = await _unitOfWork.SchoolNotice.GetAsync(Id);
+            
             //this is for edit
-            //subject = await _unitOfWork.Subjects.GetAsync(Id.GetValueOrDefault());
-            //if (subject == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(subject);
-
+            
+            if (schoolnotice == null)
+            {
+                return NotFound();
+            }
+            SchoolNoticeVM schoolnoticeVM = new SchoolNoticeVM()
+            {
+                SchoolNotice = schoolnotice,
+                ScheduleTime = schoolnotice.ScheduleDateTime.TimeOfDay.ToString()
+            };
+            return View("Upsert", schoolnoticeVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Subject subject)
+        public async Task<IActionResult> Upsert(SchoolNoticeVM schoolnoticevm)
         {
             if (ModelState.IsValid)
             {
                 var workdate = DateTime.Now;
+                _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                TimeSpan ts = TimeSpan.Parse(schoolnoticevm.ScheduleTime);
+                schoolnoticevm.SchoolNotice.ScheduleDateTime = schoolnoticevm.SchoolNotice.ScheduleDateTime.Add(ts);
 
-
-                if (subject.SubjectID == 0)
+                if (schoolnoticevm.SchoolNotice.SchoolNoticeID == 0)
                 {
-                    _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    schoolnoticevm.SchoolNotice.CreatedBy = _userId;
+                    schoolnoticevm.SchoolNotice.CreatedDate = workdate;
+                    schoolnoticevm.SchoolNotice.UpdatedBy = _userId;
+                    schoolnoticevm.SchoolNotice.UpdatedDate = workdate;
 
-                    subject.CreatedBy = User.Identity.Name;
-                    subject.CreatedDate = workdate;
-                    subject.UpdatedBy = User.Identity.Name;
-                    subject.UpdatedDate = workdate;
-                    _unitOfWork.Subject.AddAsync(subject);
+                    await _unitOfWork.SchoolNotice.AddAsync(schoolnoticevm.SchoolNotice);
 
                 }
                 else
                 {
-
-                    subject.UpdatedBy = User.Identity.Name;
-                    subject.UpdatedDate = workdate;
-
-                    _unitOfWork.Subject.Update(subject);
+                    schoolnoticevm.SchoolNotice.UpdatedBy = _userId;
+                    schoolnoticevm.SchoolNotice.UpdatedDate = workdate;
+                    _unitOfWork.SchoolNotice.Update(schoolnoticevm.SchoolNotice);
                 }
 
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(subject);
+            return View(schoolnoticevm.SchoolNotice);
         }
+
 
         #region API CALLS
 
@@ -93,19 +107,20 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Subject.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
-            return Json(new { data = allObj });
+            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(includeProperties: "School");
+            return Json(new { data = allObj.Select(a => new { id=a.SchoolNoticeID, schoolname=a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt") }) });
+
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.Subject.GetAsync(id);
+            var objFromDb = await _unitOfWork.SchoolNotice.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.Subject.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.SchoolNotice.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

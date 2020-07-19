@@ -79,13 +79,13 @@
             </ul>
             <p class="menu-label">Administration</p>
             <ul class="menu-list">
-                
+
                 <li>
                     <a asp-area="Lms"
                        asp-controller="Schools"
                        asp-action="index">
                         <span class="icon is-small"><i class="fas fa-school"></i></span>
-                        Schools
+                        School's List
                     </a>
                 </li>
                 <li>
@@ -119,6 +119,17 @@
                             <i class="fas fa-book"></i>
                         </span>
                         Subjects
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="SchoolNotices"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-briefcase"></i>
+                        </span>
+                        General Notices
                     </a>
                 </li>
                 <li>

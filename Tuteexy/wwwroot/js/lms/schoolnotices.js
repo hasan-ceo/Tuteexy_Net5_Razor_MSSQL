@@ -10,31 +10,19 @@ function loadDataTable() {
         "pageLength": 100,
         "ordering": false,
         "ajax": {
-            "url": "/Lms/Schools/GetAll"
+            "url": "/Lms/SchoolNotices/GetAll"
         },
         "columns": [
-            { "data": "schoolName" },
-            { "data": "phoneNumber" },
+            { "data": "schoolname" },
+            { "data": "title" },
+            { "data": "scheduledate"},
             {
-                "data": "schoolID",
+                "data": "id",
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">
- <a href="/Lms/SchoolNotices/Create/${data}" class="button is-gray is-small has-tooltip-top" data-tooltip="Add School Notice">
-                                    <i class="fas fa-desktop"></i> 
-                                </a>
-                                <a href="/Lms/ClassRooms/Create/${data}" class="button is-warning is-small has-tooltip-top" data-tooltip="Add Class">
-                                    <i class="fas fa-warehouse"></i> 
-                                </a>
-
-                                <a href="/Lms/Schools/Upsert/${data}" class="button is-primary is-small has-tooltip-top" data-tooltip="Edit School">
-                                    <i class="fas fa-edit"></i> 
-                                </a>
-                                <a onclick=Delete("/Lms/Schools/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a onclick=Delete("/Lms/SchoolNotices/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-trash-alt"></i> 
-                                </a>
-<a href="/Lms/Subjects/Create/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Add Subject">
-                                    <i class="fas fa-book"></i> 
                                 </a>
                             </div>
                            `;
