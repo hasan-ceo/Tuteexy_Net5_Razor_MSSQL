@@ -19,7 +19,7 @@ namespace Tuteexy.DataAccess.Repository
 
         public void Update(Page page)
         {
-            var objFromDb = _db.Pages.FirstOrDefault(s => s.PageID == page.PageID);
+            var objFromDb = _db.Page.FirstOrDefault(s => s.PageID == page.PageID);
             if (objFromDb != null)
             {
                 objFromDb.PageName = page.PageName;

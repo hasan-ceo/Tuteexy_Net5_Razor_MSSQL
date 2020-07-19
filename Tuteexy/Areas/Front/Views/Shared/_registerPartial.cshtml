@@ -10,7 +10,7 @@
                         Create a free account
                     </h3>
 
-                    <form method="post" autocomplete="off" asp-route="register">
+                    <form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Register" >
                         <div class="field">
                               <div class="control has-icons-left">
                                 <input asp-for="@Model.Name" class="input is-rounded" type="text" placeholder="Enter your name.">

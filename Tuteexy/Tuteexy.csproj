@@ -5,6 +5,17 @@
 		<UserSecretsId>aspnet-BulkyBook-5E51917C-DF90-4298-8B2B-619BD0A557E7</UserSecretsId>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Areas\Front\Controllers\IdentityController.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Views\Shared\Error.cshtml" />
+	  <Content Remove="Views\Shared\_DeleteScriptsPartial.cshtml" />
+	  <Content Remove="Views\Shared\_FooterScriptsPartial.cshtml" />
+	  <Content Remove="Views\Shared\_Layout.cshtml" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.5" />

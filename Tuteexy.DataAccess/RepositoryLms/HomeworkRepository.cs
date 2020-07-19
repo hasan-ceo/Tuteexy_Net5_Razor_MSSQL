@@ -17,13 +17,14 @@ namespace Tuteexy.DataAccess.Repository
 
         public void Update(Homework homework)
         {
-            var objFromDb = _db.Homeworks.FirstOrDefault(s => s.HomeworkID == homework.HomeworkID);
+            var objFromDb = _db.Homework.FirstOrDefault(s => s.HomeworkID == homework.HomeworkID);
             if (objFromDb != null)
             {
                 objFromDb.Subject = homework.Subject;
                 objFromDb.Title = homework.Title;
                 objFromDb.Description = homework.Description;
                 objFromDb.DateDue = homework.DateDue;
+                objFromDb.ScheduleDateTime = homework.ScheduleDateTime;
                 objFromDb.RefLink = homework.RefLink;
             }
         }

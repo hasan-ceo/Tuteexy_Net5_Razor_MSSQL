@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Tuteexy.Models
 {
+    [Table("LmsClassRoutine")]
     public class ClassRoutine : EntryInfo
     {
         [Key]
         public long ClassRoutineID { get; set; }
-        public long ClassID { get; set; }
+        public long ClassRoomID { get; set; }
+        public virtual ClassRoom ClassRoom {get; set;}
+
+        [Required]
+        [MaxLength(50)]
         public string DayName { get; set; }
         [Required]
         [MaxLength(50)]

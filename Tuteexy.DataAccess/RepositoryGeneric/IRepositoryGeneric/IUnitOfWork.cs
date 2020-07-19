@@ -22,6 +22,8 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         ISchoolTeacherRepository SchoolTeacher { get; }
         IHomeworkRepository Homework { get; }
         ISubjectRepository Subject { get; }
+        ISchoolNoticeRepository SchoolNotice { get; }
+        IClassRoutineRepository ClassRoutine { get; }
         //Lms End
 
 

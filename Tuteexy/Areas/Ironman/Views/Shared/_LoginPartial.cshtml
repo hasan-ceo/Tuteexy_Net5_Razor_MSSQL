@@ -15,10 +15,10 @@
                             </figure>*@
                         @await Component.InvokeAsync("UserName")
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="navbar-dropdown is-right">
                         <div class="navbar-item">
                             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
-                                <button type="submit" class="buttoncust is-fullwidth">
+                                <button type="submit" class="button buttoncust is-fullwidth">
                                     <span class="icon is-small">
                                         <i class="fa fa-sign-out"></i>
                                     </span>

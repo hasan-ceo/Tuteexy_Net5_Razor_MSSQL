@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Tuteexy.DataAccess.Migrations
 {
-    public partial class asfsdf : Migration
+    public partial class jjjjjj : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

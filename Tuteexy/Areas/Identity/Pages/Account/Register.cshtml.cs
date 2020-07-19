@@ -113,7 +113,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
         //bulk user create End
 
         //Normal user create
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+          public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

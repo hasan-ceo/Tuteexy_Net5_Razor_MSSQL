@@ -20,40 +20,36 @@ namespace Tuteexy.Models
 
         [Required]
         [MaxLength(64)]
-        [Display(Name = "Homework Subject")]
+        [Display(Name = "Subject")]
         public string Subject { get; set; }
 
         [Required]
         [MaxLength(128)]
-        [Display(Name = "Homework Title")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
         [DataType(DataType.Html)]
-        [MaxLength(4096)]
+        [MaxLength(4000)]
         public string Description { get; set; }
-
-        ////Teacher who has assigned a homework
-        //[Required]
-        //[MaxLength(128)]
-        //[Display(Name = "Homework assigned by:")]
-        //public string Assignedby { get; set; }
 
         [Required]
         [Display(Name = "Date Assigned")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateAssigned { get; set; }
 
         [Required]
-        [Display(Name = "Schedule Due")]
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Schedule Date")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime ScheduleDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime ScheduleDateTime { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime")]
         [Display(Name = "Date Due")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateDue { get; set; }
 
         [MaxLength(150)]

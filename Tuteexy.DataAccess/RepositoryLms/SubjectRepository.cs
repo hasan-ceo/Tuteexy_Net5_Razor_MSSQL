@@ -19,7 +19,7 @@ namespace Tuteexy.DataAccess.Repository
 
         public void Update(Subject subject)
         {
-            var objFromDb = _db.Subjects.FirstOrDefault(s => s.SubjectID == subject.SubjectID);
+            var objFromDb = _db.Subject.FirstOrDefault(s => s.SubjectID == subject.SubjectID);
             if (objFromDb != null)
             {
                 objFromDb.SubjectName = subject.SubjectName;

@@ -4,7 +4,7 @@
         Alraedy Have an account?
     </h3>
     <div asp-validation-summary="All" class="text-danger"></div>
-    <form method="post" autocomplete="off" asp-route="Login">
+    <form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Login" >
         <div class="field is-horizontal">
             <div class="field-body">
                 <div class="field">

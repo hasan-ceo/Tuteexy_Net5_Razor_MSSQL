@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-
+    <link href="~/css/bulma-calendar.min.css" rel="stylesheet">
 </head>
 <body class="body">
     <header class="mb-0 py-0">
@@ -79,48 +79,15 @@
             </ul>
             <p class="menu-label">Administration</p>
             <ul class="menu-list">
-
                 <li>
                     <a asp-area="Lms"
-                       asp-controller="Schools"
+                       asp-controller="Dashboard"
                        asp-action="index">
                         <span class="icon is-small"><i class="fas fa-school"></i></span>
                         Schools
                     </a>
                 </li>
-                <li>
-                    <a asp-area="Lms"
-                       asp-controller="ClassRooms"
-                       asp-action="Index">
-
-                        <span class="icon is-small">
-                            <i class="fas fa-warehouse"></i>
-                        </span>
-                        Class Rooms
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="Lms"
-                       asp-controller="SchoolTeachers"
-                       asp-action="Index">
-
-                        <span class="icon is-small">
-                            <i class="fas fa-book-reader"></i>
-                        </span>
-                        Teachers
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="Lms"
-                       asp-controller="Subjects"
-                       asp-action="Index">
-
-                        <span class="icon is-small">
-                            <i class="fas fa-book"></i>
-                        </span>
-                        Subjects
-                    </a>
-                </li>
+               
                 <li>
                     <a asp-area="Lms"
                        asp-controller="Homeworks"
@@ -183,9 +150,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+    <script src="~/js/bulma-calendar.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
+
+    <script>
+
+        // Initialize all input of type date
+        var calendars = bulmaCalendar.attach('[type="date"]', options);
+
+        // Loop on each calendar initialized
+        for (var i = 0; i < calendars.length; i++) {
+            // Add listener to date:selected event
+            calendars[i].on('select', date => {
+                console.log(date);
+            });
+        }
+
+        // To access to bulmaCalendar instance of an element
+        var element = document.querySelector('#my-element');
+        if (element) {
+            // bulmaCalendar instance is available as element.bulmaCalendar
+            element.bulmaCalendar.on('select', function (datepicker) {
+                console.log(datepicker.data.value());
+            });
+        }
+    </script>
 </body>
 </html>

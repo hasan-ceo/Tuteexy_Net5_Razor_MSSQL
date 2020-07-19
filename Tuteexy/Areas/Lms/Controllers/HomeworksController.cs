@@ -40,9 +40,12 @@ namespace Tuteexy.Areas.Lms.Controllers
             var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
             IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
             IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            var hw = new Homework();
+            hw.ScheduleDateTime = DateTime.Now;
+            hw.DateDue = DateTime.Now;
             HomeworkVM homeworkVM = new HomeworkVM()
             {
-                Homework = new Homework(),
+                Homework = hw,
                 ClassRoomList = clsList.Select(i => new SelectListItem
                 {
                     Text = i.ClassRoomName,
@@ -61,6 +64,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
             //this is for edit
             homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
+            homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime.TimeOfDay.ToString();
             if (homeworkVM.Homework == null)
             {
                 return NotFound();
@@ -79,10 +83,14 @@ namespace Tuteexy.Areas.Lms.Controllers
                     _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     homeworkVM.Homework.TeacherID = _userId;
                     homeworkVM.Homework.DateAssigned = DateTime.Now;
+                    TimeSpan ts = TimeSpan.Parse(homeworkVM.ScheduleTime);
+                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(ts);
                     await _unitOfWork.Homework.AddAsync(homeworkVM.Homework);
                 }
                 else
                 {
+                    TimeSpan ts = TimeSpan.Parse(homeworkVM.ScheduleTime);
+                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(ts);
                     _unitOfWork.Homework.Update(homeworkVM.Homework);
                 }
                 _unitOfWork.Save();
@@ -118,8 +126,8 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Homework.GetAllAsync(h=>h.TeacherID== _userId && h.ScheduleDate==DateTime.Now.Date, h => h.OrderByDescending(p => p.DateDue), includeProperties:"ClassRoom,Teacher");
-            return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title,datedue=a.DateDue.Date.ToString("dd/MMM/yyyy")}) });
+            var allObj = await _unitOfWork.Homework.GetAllAsync(h=>h.TeacherID== _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties:"ClassRoom,Teacher");
+            return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title,datedue=a.DateDue.Date.ToString("dd/MMM/yyyy hh:mm tt")}) });
         }
 
         [HttpDelete]

@@ -25,7 +25,7 @@ namespace Tuteexy.Models
         [Required]
         [Display(Name = "Approved Date")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
         public DateTime ApprovedDate { get; set; }
 

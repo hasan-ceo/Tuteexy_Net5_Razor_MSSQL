@@ -10,8 +10,8 @@ using Tuteexy.DataAccess.Data;
 namespace Tuteexy.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200718082846_asfsdf")]
-    partial class asfsdf
+    [Migration("20200718195415_jjjjjj")]
+    partial class jjjjjj
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -305,15 +305,18 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateDue")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
-                        .HasMaxLength(4096);
+                        .HasColumnType("nvarchar(4000)")
+                        .HasMaxLength(4000);
 
                     b.Property<string>("RefLink")
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
+
+                    b.Property<DateTime>("ScheduleDateTime")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -327,9 +330,6 @@ namespace Tuteexy.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
-
-                    b.Property<DateTime>("scheduleDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("HomeworkID");
 
@@ -432,6 +432,50 @@ namespace Tuteexy.DataAccess.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("LmsSchools");
+                });
+
+            modelBuilder.Entity("Tuteexy.Models.SchoolNotice", b =>
+                {
+                    b.Property<long>("SchoolNoticeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4000)")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("NoticeTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("ScheduleDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<long>("SchoolID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("SchoolNoticeID");
+
+                    b.HasIndex("SchoolID");
+
+                    b.ToTable("LmsSchoolNotice");
                 });
 
             modelBuilder.Entity("Tuteexy.Models.SchoolTeacher", b =>
@@ -640,6 +684,15 @@ namespace Tuteexy.DataAccess.Migrations
                     b.HasOne("Tuteexy.Models.ApplicationUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId");
+                });
+
+            modelBuilder.Entity("Tuteexy.Models.SchoolNotice", b =>
+                {
+                    b.HasOne("Tuteexy.Models.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Tuteexy.Models.SchoolTeacher", b =>

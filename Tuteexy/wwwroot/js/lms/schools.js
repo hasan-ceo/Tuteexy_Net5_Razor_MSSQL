@@ -20,8 +20,8 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">
- <a href="/Lms/Subjects/Create/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Add Subject">
-                                    <i class="fas fa-book"></i> 
+ <a href="/Lms/SchoolNotices/Upsert/${data}" class="button is-gray is-small has-tooltip-top" data-tooltip="Add School Notice">
+                                    <i class="fas fa-desktop"></i> 
                                 </a>
                                 <a href="/Lms/ClassRooms/Create/${data}" class="button is-warning is-small has-tooltip-top" data-tooltip="Add Class">
                                     <i class="fas fa-warehouse"></i> 
@@ -32,6 +32,9 @@ function loadDataTable() {
                                 </a>
                                 <a onclick=Delete("/Lms/Schools/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-trash-alt"></i> 
+                                </a>
+<a href="/Lms/Subjects/Create/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Add Subject">
+                                    <i class="fas fa-book"></i> 
                                 </a>
                             </div>
                            `;

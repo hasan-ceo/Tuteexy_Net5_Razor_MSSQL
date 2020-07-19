@@ -4,9 +4,9 @@
 <section class="hero is-white is-fullheight">
     <div class="hero-body pt-1">
         <div class="container">
-              <div class="columns">
+            <div class="columns">
                 <div class="column is-7">
-    
+
                     <div class="columns is-multiline ">
                         <div class="column is-12">
                             <a asp-area="Customer" asp-controller="home" asp-action="index">
@@ -14,20 +14,20 @@
                             </a>
                         </div>
 
-                        
+
                         <div class="column is-12">
-                          
-                                <a asp-area="Customer" asp-controller="home" asp-action="index">
-                                    <img src="~/images/core/cover.jpg" style="width:100%">
-                                </a>
-                           
-                            
+
+                            <a asp-area="Customer" asp-controller="home" asp-action="index">
+                                <img src="~/images/core/cover.jpg" style="width:100%">
+                            </a>
+
+
                         </div>
                     </div>
 
 
 
-                    </div>
+                </div>
                 <div class="column is-4 is-offset-1">
                     <div class="columns is-multiline">
                         <div class="column is-12">
@@ -77,38 +77,6 @@
     </div>
 </section>
 
-
-
-
-
-@*@model IEnumerable<Tuteexy.Models.Product>
-        <partial name="_Notifications">
-    <div class="row pb-3 backgroundWhite">
-
-        @foreach (var product in Model)
-        {
-    <div class="col-lg-3 col-md-6">
-        <div class="row p-2">
-            <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
-                <div class="card" style="border:0px;">
-                    <img src="@product.ImageUrl" class="card-img-top rounded" />
-                    <div class="pl-1">
-                        <p class="card-title h5"><b style="color:#2c3e50">@product.Title</b></p>
-                        <p class="card-title text-primary">by <b>@product.Author</b></p>
-                    </div>
-                    <div style="padding-left:5px;">
-                        <p>List Price: <strike><b class="">$@product.ListPrice.ToString("0.00")</b></strike></p>
-                    </div>
-                    <div style="padding-left:5px;">
-                        <p style="color:maroon">As low as: <b class="">$@product.Price100.ToString("0.00")</b></p>
-                    </div>
-                </div>
-                <div>
-                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a>
-                </div>
-            </div>
-        </div>
-    </div>}
-
-    </div>*@
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

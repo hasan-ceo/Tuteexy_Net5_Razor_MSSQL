@@ -15,7 +15,7 @@ namespace Tuteexy.DataAccess.Data
         }
         //Iron Man
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Page> Pages { get; set; }
+        public DbSet<Page> Page { get; set; }
         public DbSet<userlist> userlist { get; set; }
 
 
@@ -23,7 +23,7 @@ namespace Tuteexy.DataAccess.Data
         //public DbSet<ReportCard> ReportCard { get; set; }
         //public DbSet<randomComp> randomComp { get; set; }
 
-        //public DbSet<NoticeBoard> NoticeBoard { get; set; }
+        //
 
         //public DbSet<ClassRoutine> ClassRoutine { get; set; }
         //public DbSet<ClassRoutineStudent> ClassRoutineStudent { get; set; }
@@ -32,12 +32,15 @@ namespace Tuteexy.DataAccess.Data
 
 
         //LMS
-        public DbSet<School> Schools { get; set; }
-        public DbSet<ClassRoom> ClassRooms { get; set; }
-        public DbSet<SchoolTeacher> SchoolTeachers { get; set; }
-        public DbSet<ClassRoomStudent> ClassRoomStudents { get; set; }
-        public DbSet<Homework> Homeworks { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<School> School { get; set; }
+        public DbSet<ClassRoom> ClassRoom { get; set; }
+        public DbSet<SchoolTeacher> SchoolTeacher { get; set; }
+        public DbSet<ClassRoomStudent> ClassRoomStudent { get; set; }
+        public DbSet<Homework> Homework { get; set; }
+        public DbSet<Subject> Subject { get; set; }
+
+        public DbSet<SchoolNotice> SchoolNotice { get; set; }
+        public DbSet<ClassRoutine> ClassRoutine { get; set; }
     }
 }
 

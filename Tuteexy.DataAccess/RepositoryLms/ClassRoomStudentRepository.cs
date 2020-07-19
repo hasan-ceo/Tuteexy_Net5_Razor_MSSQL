@@ -19,7 +19,7 @@ namespace Tuteexy.DataAccess.Repository
 
         public void Update(ClassRoomStudent classroomstudent)
         {
-            var objFromDb = _db.ClassRoomStudents.FirstOrDefault(s => s.ClassRoomStudentID == classroomstudent.ClassRoomStudentID);
+            var objFromDb = _db.ClassRoomStudent.FirstOrDefault(s => s.ClassRoomStudentID == classroomstudent.ClassRoomStudentID);
             if (objFromDb != null)
             {
 

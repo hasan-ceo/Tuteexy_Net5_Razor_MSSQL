@@ -13,7 +13,10 @@ namespace Tuteexy.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            ApplicationUser = new ApplicationUserRepository(_db);
+            SP_Call = new SP_Call(_db);
             Page = new PageRepository(_db);
+
             ClassRoom = new ClassRoomRepository(_db);
             ClassRoomStudent = new ClassRoomStudentRepository(_db);
             userlist = new userlistRepository(_db);
@@ -21,9 +24,8 @@ namespace Tuteexy.DataAccess.Repository
             SchoolTeacher = new SchoolTeacherRepository(_db);
             Homework = new HomeworkRepository(_db);
             Subject = new SubjectRepository(_db);
-            ApplicationUser = new ApplicationUserRepository(_db);
-            SP_Call = new SP_Call(_db);
-
+            SchoolNotice = new SchoolNoticeRepository(_db);
+            ClassRoutine = new ClassRoutineRepository(_db);
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
@@ -39,6 +41,8 @@ namespace Tuteexy.DataAccess.Repository
         public IClassRoomStudentRepository ClassRoomStudent { get; private set; }
         public IHomeworkRepository Homework { get; private set; }
         public ISubjectRepository Subject { get; private set; }
+        public ISchoolNoticeRepository SchoolNotice { get; private set; }
+        public IClassRoutineRepository ClassRoutine { get; private set; }
 
         public void Dispose()
         {
