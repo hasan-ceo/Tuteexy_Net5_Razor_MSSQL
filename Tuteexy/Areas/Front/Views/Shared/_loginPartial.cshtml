@@ -1,6 +1,4 @@
-﻿@model Tuteexy.Models.ViewModels.LoginVM
-
-    <h3 class="subtitle is-5 has-text-black py-1 my-1">
+﻿    <h3 class="subtitle is-5 has-text-black py-1 my-1">
         Alraedy Have an account?
     </h3>
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -9,7 +7,7 @@
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
-                        <input asp-for="@Model.UserName" class="input" type="text" placeholder="User ID">
+                        <input id="UserName" name="UserName" class="input" type="text" placeholder="User ID">
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
@@ -17,7 +15,7 @@
                 </div>
                 <div class="field">
                     <p class="control is-expanded has-icons-left has-icons-right">
-                        <input asp-for="@Model.Password" class="input is-success" type="password" placeholder="Password">
+                        <input id="Password" name ="Password" class="input is-success" type="password" placeholder="Password">
                         <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>

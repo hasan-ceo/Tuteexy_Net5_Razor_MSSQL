@@ -10,21 +10,30 @@ function loadDataTable() {
         "pageLength": 100,
         "ordering": false,
         "ajax": {
-            "url": "/Lms/ClassRoomStudents/GetAll"
+            "url": "/Lms/ClassRout/GetAll"
         },
         "columns": [
-            { "data": "classRoomName" },
-            { "data": "name" },
-            { "data": "authorizedBy" },
-            { "data": "isAuthorizedTeacher" },
+            { "data": "classname" },
+            { "data": "day" },
+            { "data": "p1" },
+            { "data": "p2" },
+            { "data": "p3" },
+            { "data": "p4" },
+            { "data": "p5" },
+            { "data": "p6" },
+            { "data": "p7" },
+            { "data": "p8" },
+            { "data": "p9" },
+            { "data": "p10" },
             {
-                "data": "classRoomStudentID",
+                "data": "id",
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">
-
-
-                                <a onclick=Delete("/Lms/ClassRoomStudents/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+  <a href="/Lms/ClassRout/Upsert/${data}" class="button is-primary is-small has-tooltip-top" data-tooltip="Edit School">
+                                    <i class="fas fa-edit"></i> 
+                                </a>
+                                <a onclick=Delete("/Lms/ClassRout/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

@@ -140,12 +140,12 @@
                         @if (Model.SchoolID != 0)
                         {
             <div class="control">
-                <button type="submit" class="button is-link" asp-route-id="@Model.SchoolID">Update</button>
+                <button type="submit" class="button is-success" asp-route-id="@Model.SchoolID">Update</button>
             </div> }
         else
         {
 <div class="control">
-    <button type="submit" class="button is-link">Create</button>
+    <button type="submit" class="button is-success">Create</button>
 </div>}
                         <div class="control">
                             <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>

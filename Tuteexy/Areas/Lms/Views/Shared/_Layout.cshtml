@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tuteexy - For Student, Develop by Student</title>
     <link rel="icon"
-          href="/Images/pencil/favicon.png"
+          href="/Images/core/icon.png"
           sizes="any"
           type="image/svg+xml" />
 
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-    <link href="~/css/bulma-calendar.min.css" rel="stylesheet">
+    <link href="~/css/bulma-calendar.min.css" rel="stylesheet" type="text/css">
 </head>
 <body class="body">
     <header class="mb-0 py-0">
@@ -54,6 +54,14 @@
                 </a>
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item"
+                       asp-area="User"
+                       asp-controller="Dashboard"
+                       asp-action="Index">
+                        <span class="icon is-small"><i class="fas fa-home"></i></span>
+                    </a>
+                </div>
                 <div class="navbar-end">
                     <partial name="_LoginPartial" />
                 </div>
@@ -66,28 +74,18 @@
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
-                    <a class="is-active"
-                       asp-area="User"
-                       asp-controller="Dashboard"
+                    <a asp-area="Lms"
+                       asp-controller="Schools"
                        asp-action="index">
-                        <span class="icon is-small">
-                            <i class="fa fa-tachometer"></i>
-                        </span>
-                        Dashboard
+                        <span class="icon is-small"><i class="fas fa-school"></i></span>
+                        Manage Schools
                     </a>
                 </li>
             </ul>
             <p class="menu-label">Administration</p>
             <ul class="menu-list">
 
-                <li>
-                    <a asp-area="Lms"
-                       asp-controller="Schools"
-                       asp-action="index">
-                        <span class="icon is-small"><i class="fas fa-school"></i></span>
-                        School's List
-                    </a>
-                </li>
+                
                 <li>
                     <a asp-area="Lms"
                        asp-controller="ClassRooms"
@@ -130,6 +128,17 @@
                             <i class="fas fa-briefcase"></i>
                         </span>
                         General Notices
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Lms"
+                       asp-controller="ClassRout"
+                       asp-action="Index">
+
+                        <span class="icon is-small">
+                            <i class="fas fa-briefcase"></i>
+                        </span>
+                        Class Routine
                     </a>
                 </li>
                 <li>

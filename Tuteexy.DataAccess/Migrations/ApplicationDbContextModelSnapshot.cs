@@ -254,7 +254,7 @@ namespace Tuteexy.DataAccess.Migrations
 
                     b.HasIndex("SchoolID");
 
-                    b.ToTable("LmsClassRooms");
+                    b.ToTable("LmsClassRoom");
                 });
 
             modelBuilder.Entity("Tuteexy.Models.ClassRoomStudent", b =>
@@ -331,32 +331,26 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Period4")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Period5")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Period6")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Period7")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Period8")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Period9")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -514,7 +508,7 @@ namespace Tuteexy.DataAccess.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("LmsSchools");
+                    b.ToTable("LmsSchool");
                 });
 
             modelBuilder.Entity("Tuteexy.Models.SchoolNotice", b =>

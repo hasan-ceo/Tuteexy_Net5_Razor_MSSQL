@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Tuteexy.Models
 {
-    [Table("LmsClassRooms")]
+    [Table("LmsClassRoom")]
     public class ClassRoom : EntryInfo
 
     {

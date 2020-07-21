@@ -1,14 +1,16 @@
-﻿<div class="breadcrumb is-small" aria-label="breadcrumbs">
+﻿<!-- Top Breadcrumb -->
+<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
     <ul>
         <li>
-            <a asp-area="Ironman"
+            <a asp-area="Lms"
                asp-controller="Schools"
                asp-action="index"><strong>Schools</strong></a>
         </li>
-        <li class="is-active"><a href="#" aria-current="page"><strong>Index</strong></a></li>
+        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Index</strong></a></li>
     </ul>
 </div>
-<!-- Main container -->
+
+<!-- Top Level -->
 <div class="level">
     <!-- Left side -->
     <div class="level-left">
@@ -25,3 +27,25 @@
     </div>
 </div>
 
+<!-- Table -->
+<div class="table-container has-background-info-light px-2 py-2 mb-0">
+    <table id="tblData" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead class="has-background-grey-light">
+            <tr>
+
+                <th><abbr title="ID:">School ID</abbr></th>
+                <th><abbr title="N:">School Name</abbr></th>
+                <th><abbr title="T:">Phone Number</abbr></th>
+                <th><abbr title="S:">Status</abbr></th>
+                <th></th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/ironman/schools.js"></script>
+    @* <partial name="_DeleteScriptsPartial" />*@
+}

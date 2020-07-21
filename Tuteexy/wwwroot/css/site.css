@@ -1,1 +1,7 @@
-﻿
+﻿.menutop {
+    overflow: hidden;
+    background-color: #44475a !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

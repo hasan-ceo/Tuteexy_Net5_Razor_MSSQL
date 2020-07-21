@@ -6,10 +6,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Areas\Front\Controllers\IdentityController.cs" />
+	  <Compile Remove="Areas\Lms\Views\ClassRoutine\**" />
+	  <Content Remove="Areas\Lms\Views\ClassRoutine\**" />
+	  <EmbeddedResource Remove="Areas\Lms\Views\ClassRoutine\**" />
+	  <None Remove="Areas\Lms\Views\ClassRoutine\**" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Areas\Front\Controllers\IdentityController.cs" />
+	  <Compile Remove="Areas\Lms\Controllers\ClassRoutineController.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Areas\User\Controllers\Classroutines.cshtml" />
 	  <Content Remove="Views\Shared\Error.cshtml" />
 	  <Content Remove="Views\Shared\_DeleteScriptsPartial.cshtml" />
 	  <Content Remove="Views\Shared\_FooterScriptsPartial.cshtml" />
@@ -42,6 +51,11 @@
 
 	<ItemGroup>
 		<Folder Include="wwwroot\images\products\" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <None Include="Areas\User\Views\Dashboard\Classroutines.cshtml" />
 	</ItemGroup>
 
 </Project>

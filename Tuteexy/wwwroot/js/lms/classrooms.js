@@ -23,7 +23,7 @@ function loadDataTable() {
                                 <a href="/Lms/ClassRoomStudents/Index/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-desktop"></i> 
                                 </a>
-                                <a onclick=Delete("/Lms/Schools/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a onclick=Delete("/Lms/ClassRooms/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

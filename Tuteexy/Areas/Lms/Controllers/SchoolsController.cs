@@ -28,9 +28,11 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork; 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.School.GetAllAsync(t => t.OwnerId == _userId);
+            return View(allObj.Select(a => new SchoolVM { SchoolID = a.SchoolID, SchoolName = a.SchoolName, PhoneNumber = a.PhoneNumber, isauthorize = a.IsAuthorizedSchool == true ? "Authorized" : "Not Authorized" }));
         }
 
         public async Task<IActionResult> Upsert(long? Id)
@@ -96,7 +98,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.School.GetAllAsync(t => t.OwnerId == _userId);
-            return Json(new { data = allObj });
+            return Json(new { data = allObj.Select(a => new { id = a.SchoolID, schoolname = a.SchoolName, phonenumber = a.PhoneNumber, isauthorize = a.IsAuthorizedSchool == true ? "Authorized" : "Not Authorized" }) });
         }
 
         [HttpDelete]

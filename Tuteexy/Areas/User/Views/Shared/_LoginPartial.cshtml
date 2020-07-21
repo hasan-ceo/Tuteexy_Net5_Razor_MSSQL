@@ -5,40 +5,40 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<a class="navbar-item nav-tag">
-    <span class="icon is-small"><i class="fa fa-envelope-o"></i></span><span class="tag is-danger tag-notif">0</span>
-</a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        @*<figure class="image is-32x32" style="margin-right:.5em">
-                                <img src="https://avatars1.githubusercontent.com/u/7221389?v=4&amp;s=32">
-                            </figure>*@
-                        @await Component.InvokeAsync("UserName")
-                    </a>
+    <a class="navbar-item nav-tag">
+        <span class="icon is-small"><i class="fa fa-envelope-o"></i></span><span class="tag is-danger tag-notif">0</span>
+    </a>
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+            @*<figure class="image is-32x32" style="margin-right:.5em">
+                    <img src="https://avatars1.githubusercontent.com/u/7221389?v=4&amp;s=32">
+                </figure>*@
+            @await Component.InvokeAsync("UserName")
+        </a>
 
-                    <div class="navbar-dropdown is-right">
-                        <div class="navbar-item">
-                            <a class="button buttoncust" asp-area="User" asp-controller="Profile" asp-action="Index">
-                                <span class="icon is-small">
-                                    <i class="fa fa-user"></i>
-                                </span>
-                                <span>
-                                    Profile
-                                </span>
-                            </a>
+        <div class="navbar-dropdown is-right">
+            <div class="navbar-item">
+                <a class="button buttoncust" asp-area="User" asp-controller="Profile" asp-action="Index">
+                    <span class="icon is-small">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <span>
+                        Profile
+                    </span>
+                </a>
 
-                        </div>
+            </div>
 
-                        <div class="navbar-item has-text-centered">
-                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
-                                <button type="submit" class="button buttoncust is-fullwidth">
-                                    <span class="icon is-small">
-                                        <i class="fa fa-sign-out"></i>
-                                    </span>
-                                    <span>Logout</span>
-                                </button>
-                            </form>
-                        </div>
+            <div class="navbar-item has-text-centered">
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
+                    <button type="submit" class="button buttoncust is-fullwidth" style="width:100%">
+                        <span class="icon is-small">
+                            <i class="fa fa-sign-out"></i>
+                        </span>
+                        <span>Logout</span>
+                    </button>
+                </form>
+            </div>
 
-                    </div>
-                </div>}
+        </div>
+    </div>}

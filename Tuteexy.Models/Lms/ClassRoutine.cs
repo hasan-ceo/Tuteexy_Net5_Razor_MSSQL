@@ -29,27 +29,27 @@ namespace Tuteexy.Models
         [MaxLength(50)]
         [Display(Name = "Period - 3")]
         public string Period3 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 4")]
         public string Period4 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 5")]
         public string Period5 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 6")]
         public string Period6 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 7")]
         public string Period7 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 8")]
         public string Period8 { get; set; }
-        [Required]
+       
         [MaxLength(50)]
         [Display(Name = "Period - 9")]
         public string Period9 { get; set; }

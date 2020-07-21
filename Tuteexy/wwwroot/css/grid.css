@@ -18,6 +18,10 @@
     grid-area: e;
 }
 
+#f {
+    grid-area: f;
+}
+
 #grid {
     display: grid;
     grid-template-areas: "a a a" "b c d";
@@ -28,10 +32,20 @@
     #grid {
         grid-template-areas: "a a" "b c" "d d";
     }
+
+    #schoolgrid {
+        grid-template-areas: "a b c" "d e f";
+    }
 }
 
 #logingrid {
     display: grid;
     grid-template-areas: "a a" "b c";
+    grid-row-gap: 1rem;
+}
+
+#schoolgrid {
+    display: grid;
+    grid-template-areas: "a b c" "d e f";
     grid-row-gap: 1rem;
 }

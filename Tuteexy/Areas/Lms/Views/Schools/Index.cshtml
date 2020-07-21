@@ -1,4 +1,6 @@
-﻿<!-- Top Breadcrumb -->
+﻿@model IEnumerable<Tuteexy.Models.ViewModels.SchoolVM>
+
+<!-- Top Breadcrumb -->
 <div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
     <ul>
         <li>
@@ -24,27 +26,103 @@
     <!-- Right side -->
     <div class="level-right">
         <div class="buttons has-addons is-centered">
-            <a class="button is-warning" asp-area="Lms" asp-controller="Schools" asp-action="Upsert">Create</a>
+            <a class="button is-success" asp-area="Lms" asp-controller="Schools" asp-action="Upsert">Create School</a>
         </div>
     </div>
 </div>
 
-<!-- Table -->
-<div class="table-container has-background-info-light px-2 py-2 mb-0">
-    <table id="tblData" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-        <thead class="has-background-grey-light">
-            <tr>
-                <th><abbr title="Name">School Name</abbr></th>
-                <th><abbr title="P.N.:">Phone Number</abbr></th>
-                <th></th>
-       
-            </tr>
-        </thead>
-    </table>
-</div>
 
 
-@section Scripts {
-    <script src="~/js/lms/schools.js"></script>
-    @*<partial name="_DeleteScriptsPartial" />*@
-}
+<div class="columns is-multiline">
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+    <div class="column is-half">
+     
+            <div class="notification is-white-bis px-4">
+                <p class="title is-4 px-1 py-1 my-0 has-text-black"><strong>Name:</strong> @item.SchoolName</p>
+                <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>ID:</strong> @item.SchoolID</p>
+                <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>Phone:</strong> @item.PhoneNumber</p>
+
+                <p class="subtitle is-6 px-1 py-1 my-0 has-background-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
+
+
+
+                <div class="content mt-5">
+                    <div class="columns is-12 is-multiline">
+                        <div class="column"><a href="/Lms/SchoolNotices/Create/@item.SchoolID" class="button is-link is-fullwidth">
+    <span class="icon">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span>Notice</span>
+</a></div>
+                        <div class="column"><a href="/Lms/ClassRooms/Create/@item.SchoolID" class="button is-primary is-fullwidth">
+    <span class="icon">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span>Class Room</span>
+</a></div>
+                        <div class="column"><a href="/Lms/Subjects/Create/@item.SchoolID" class="button is-info is-fullwidth">
+    <span class="icon">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span>Subjects</span>
+</a></div>
+                        <div class="column">
+                            <a href="/Lms/Schools/Upsert/@item.SchoolID" class="button is-warning is-fullwidth">
+                                <span class="icon">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                                <span>School Edit</span>
+                            </a>
+                        </div>
+                        <div class="column center-column">
+                            <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="button is-danger is-fullwidth">
+                                <span class="icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                                <span>Delete</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+        
+    </div>
+        }
+        }
+    </div>
+
+
+
+<script>
+    function Delete(url) {
+        swal({
+            title: "Are you sure you want to Delete?",
+            text: "You will not be able to restore the data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            toastr.success(data.message);
+                            location.reload(true);
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+        });
+    }
+</script>
