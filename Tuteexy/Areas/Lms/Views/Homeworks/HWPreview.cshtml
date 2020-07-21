@@ -1,0 +1,68 @@
+﻿@model Tuteexy.Models.Homework
+
+<!-- Top Breadcrumb -->
+<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
+    <ul>
+        <li>
+            <a asp-area="Lms"
+               asp-controller="Homeworks"
+               asp-action="index"><strong>Homework</strong></a>
+        </li>
+        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Preview</strong></a></li>
+    </ul>
+</div>
+
+<!-- Top Level -->
+<div class="level">
+    <!-- Left side -->
+    <div class="level-left">
+        <div class="level-item">
+            <div class="title has-text-white">
+                <strong>Homework's Preview</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right side -->
+    <div class="level-right">
+        <div class="buttons has-addons is-centered">
+            <a class="button is-success" asp-area="Lms" asp-controller="Homeworks" asp-action="Upsert">Create</a>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-success is-multiline">
+
+<div class="column is-4-desktop">
+    <div class="notification is-warning">
+        <p class="title is-6 py-0 my-0 has-text-black">@Model.Title</p>
+        <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @Model.Teacher.Name</p>
+        <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
+        <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @Model.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+        <p class="subtitle is-6"><strong>Date Due:</strong> @Model.DateDue.ToString("dd/MMM/yyyy") </p>
+
+        <p class="subtitle is-6">
+            @if (string.IsNullOrWhiteSpace(@Model.RefLink) == false && (string.IsNullOrEmpty(Model.RefLink) == false))
+            {
+<a href="@Model.RefLink" class="button is-small is-success has-text-white">
+    <span class="icon is-medium">
+        <i class="fas fa-link"></i>
+    </span>  <span>Attachment</span>
+</a>}
+            @{ var eml = "mailto:" + @Model.Teacher.Email; }
+
+            <a href="@eml" class="button is-small is-link has-text-white">
+                <span class="icon is-medium">
+                    <i class="fas fa-link"></i>
+                </span>  <span>Reply</span>
+            </a>
+        </p>
+        <p class="subtitle is-6">
+
+        </p>
+        <div class="content">
+            @Html.Raw(Model.Description)
+        </div>
+    </div>
+</div>
+</div>

@@ -34,6 +34,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             return View();
         }
 
+
         public async Task<IActionResult> Upsert(long? Id)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -121,6 +122,15 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
             return View(homeworkVM);
         }
+
+
+        public async Task<IActionResult> HWPreview(long id)
+        {
+            var t = await _unitOfWork.Homework.GetFirstOrDefaultAsync(h=>h.HomeworkID==id,  includeProperties: "ClassRoom,Teacher");
+            return View(t);
+        }
+
+
         #region API CALLS
 
         [HttpGet]
@@ -128,7 +138,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.Homework.GetAllAsync(h=>h.TeacherID== _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties:"ClassRoom,Teacher");
-            return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title,datedue=a.DateDue.Date.ToString("dd/MMM/yyyy hh:mm tt")}) });
+            return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title, schdate = a.ScheduleDateTime.Date.ToString("dd/MMM/yyyy hh:mm tt"), datedue =a.DateDue.Date.ToString("dd/MMM/yyyy")}) });
         }
 
         [HttpDelete]

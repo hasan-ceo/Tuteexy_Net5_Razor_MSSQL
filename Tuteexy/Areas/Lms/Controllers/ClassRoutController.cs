@@ -173,7 +173,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     day = o.DayName,
                     p1 = o.Period1,
                     p2 = o.Period2,
-                    p3 = o.Period4,
+                    p3 = o.Period3,
                     p4 = o.Period4,
                     p5 = o.Period5,
                     p6 = o.Period6,

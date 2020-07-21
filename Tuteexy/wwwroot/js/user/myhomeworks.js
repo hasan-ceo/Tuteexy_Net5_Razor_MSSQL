@@ -16,6 +16,7 @@ function loadDataTable() {
             { "data": "classRoomName" },
             { "data": "subject" },
             { "data": "title" },
+            { "data": "schdate" },
             { "data": "datedue" }
         ]
     });

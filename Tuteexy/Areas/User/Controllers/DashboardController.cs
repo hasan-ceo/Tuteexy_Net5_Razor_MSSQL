@@ -81,7 +81,7 @@ namespace Tuteexy.Areas.User.Controllers
                         day = o.DayName,
                         p1 = o.Period1,
                         p2 = o.Period2,
-                        p3 = o.Period4,
+                        p3 = o.Period3,
                         p4 = o.Period4,
                         p5 = o.Period5,
                         p6 = o.Period6,
@@ -105,7 +105,7 @@ namespace Tuteexy.Areas.User.Controllers
                 classroomID = classroom.ClassRoomID;
             }
             var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classroomID, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
-            return Json(new { data = allObj.Select(a => new { a.HomeworkID, a.ClassRoom.ClassRoomName, a.Subject, a.Title, datedue = a.DateDue.Date.ToString("dd/MMM/yyyy hh:mm tt") }) });
+            return Json(new { data = allObj.Select(a => new { a.HomeworkID, a.ClassRoom.ClassRoomName, a.Subject, a.Title, schdate = a.ScheduleDateTime.Date.ToString("dd/MMM/yyyy hh:mm tt") , datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
         }
     }
 }

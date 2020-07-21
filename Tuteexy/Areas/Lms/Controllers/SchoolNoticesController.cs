@@ -107,7 +107,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(includeProperties: "School");
+            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(c => c.School.OwnerId == _userId,includeProperties: "School");
             return Json(new { data = allObj.Select(a => new { id=a.SchoolNoticeID, schoolname=a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt") }) });
 
         }
