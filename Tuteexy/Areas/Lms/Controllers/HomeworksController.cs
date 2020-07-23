@@ -39,39 +39,58 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+            if (y == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please register as teacher";
+                return LocalRedirect("/Lms/Homeworks/Index");
+            }
+
             IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            if (clsList == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please create class room from manage school";
+                return LocalRedirect("/Lms/Homeworks/Index");
+            }
+
             IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            if (clsList == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please create subject from manage school";
+                return LocalRedirect("/Lms/Homeworks/Index");
+            }
+
             var hw = new Homework();
-            hw.ScheduleDateTime = DateTime.Now;
-            hw.DateDue = DateTime.Now;
-            HomeworkVM homeworkVM = new HomeworkVM()
-            {
-                Homework = hw,
-                ScheduleTime = DateTime.Now.TimeOfDay.ToString(),
-                ClassRoomList = clsList.Select(i => new SelectListItem
+                hw.ScheduleDateTime = DateTime.Now;
+                hw.DateDue = DateTime.Now;
+                HomeworkVM homeworkVM = new HomeworkVM()
                 {
-                    Text = i.ClassRoomName,
-                    Value = i.ClassRoomID.ToString()
-                }),
-                SubjectList = SubList.Select(i => new SelectListItem
+                    Homework = hw,
+                    ScheduleTime = DateTime.Now.TimeOfDay.ToString(),
+                    ClassRoomList = clsList.Select(i => new SelectListItem
+                    {
+                        Text = i.ClassRoomName,
+                        Value = i.ClassRoomID.ToString()
+                    }),
+                    SubjectList = SubList.Select(i => new SelectListItem
+                    {
+                        Text = i.SubjectName,
+                        Value = i.SubjectName
+                    })
+                };
+                if (Id == null)
                 {
-                    Text = i.SubjectName,
-                    Value = i.SubjectName
-                })
-            };
-            if (Id == null)
-            {
-                //this is for create
+                    //this is for create
+                    return View(homeworkVM);
+                }
+                //this is for edit
+                homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
+                homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime.TimeOfDay.ToString();
+                if (homeworkVM.Homework == null)
+                {
+                    return NotFound();
+                }
                 return View(homeworkVM);
-            }
-            //this is for edit
-            homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
-            homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime.TimeOfDay.ToString();
-            if (homeworkVM.Homework == null)
-            {
-                return NotFound();
-            }
-            return View(homeworkVM);
+
         }
 
         [HttpPost]

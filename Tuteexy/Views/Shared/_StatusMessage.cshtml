@@ -1,0 +1,21 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
+    if (Model.StartsWith("Error") == true)
+    {
+        <div class="notification is-danger">
+            <span class="tile"> @Model </span>
+        </div>
+    }
+    else
+    {
+<div class="notification is-success">
+    <span class="tile"> @Model </span>
+</div>
+    }
+
+
+
+}

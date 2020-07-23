@@ -43,8 +43,25 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+            if (y==null)
+            {
+                TempData["StatusMessage"] = $"Error : Please register as teacher";
+                return LocalRedirect("/Lms/ClassRout/Index");
+            }
+
             IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            if (clsList == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please create class room from manage school";
+                return LocalRedirect("/Lms/ClassRout/Index");
+            }
+
             IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            if (clsList == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please create subject from manage school";
+                return LocalRedirect("/Lms/ClassRout/Index");
+            }
 
             var sbl = SubList.Select(i => new SelectListItem
             {
@@ -176,16 +193,16 @@ namespace Tuteexy.Areas.Lms.Controllers
                     id = o.ClassRoutineID,
                     classname = o.ClassRoom.ClassRoomName,
                     day = o.DayName,
-                    p1 = o.Period1 +"-"+ o.PeriodTime1.ToString("hh:mm tt"),
-                    p2 = o.Period2 + "-" + o.PeriodTime2.ToString("hh:mm tt"),
-                    p3 = o.Period3 + "-" + o.PeriodTime3.ToString("hh:mm tt"),
-                    p4 = o.Period4 + "-" + o.PeriodTime4.ToString("hh:mm tt"),
-                    p5 = o.Period5 + "-" + o.PeriodTime5.ToString("hh:mm tt"),
-                    p6 = o.Period6 + "-" + o.PeriodTime6.ToString("hh:mm tt"),
-                    p7 = o.Period7 + "-" + o.PeriodTime7.ToString("hh:mm tt"),
-                    p8 = o.Period8 + "-" + o.PeriodTime8.ToString("hh:mm tt"),
-                    p9 = o.Period9 + "-" + o.PeriodTime9.ToString("hh:mm tt"),
-                    p10 = o.Period10 + "-" + o.PeriodTime10.ToString("hh:mm tt")
+                    p1 = o.Period1 +" "+ o.PeriodTime1.ToString("hh:mm tt"),
+                    p2 = o.Period2 + " " + o.PeriodTime2.ToString("hh:mm tt"),
+                    p3 = o.Period3 + " " + o.PeriodTime3.ToString("hh:mm tt"),
+                    p4 = o.Period4 + " " + o.PeriodTime4.ToString("hh:mm tt"),
+                    p5 = o.Period5 + " " + o.PeriodTime5.ToString("hh:mm tt"),
+                    p6 = o.Period6 + " " + o.PeriodTime6.ToString("hh:mm tt"),
+                    p7 = o.Period7 + " " + o.PeriodTime7.ToString("hh:mm tt"),
+                    p8 = o.Period8 + " " + o.PeriodTime8.ToString("hh:mm tt"),
+                    p9 = o.Period9 + " " + o.PeriodTime9.ToString("hh:mm tt"),
+                    p10 = o.Period10 + " " + o.PeriodTime10.ToString("hh:mm tt")
                     
                 })
             });
