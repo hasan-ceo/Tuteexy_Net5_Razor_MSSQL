@@ -80,16 +80,16 @@ namespace Tuteexy.Areas.User.Controllers
                         id = o.ClassRoutineID,
                         classname = o.ClassRoom.ClassRoomName,
                         day = o.DayName,
-                        p1 = o.Period1 + "-" + o.PeriodTime1.ToString("hh:mm tt"),
-                        p2 = o.Period2 + "-" + o.PeriodTime2.ToString("hh:mm tt"),
-                        p3 = o.Period3 + "-" + o.PeriodTime3.ToString("hh:mm tt"),
-                        p4 = o.Period4 + "-" + o.PeriodTime4.ToString("hh:mm tt"),
-                        p5 = o.Period5 + "-" + o.PeriodTime5.ToString("hh:mm tt"),
-                        p6 = o.Period6 + "-" + o.PeriodTime6.ToString("hh:mm tt"),
-                        p7 = o.Period7 + "-" + o.PeriodTime7.ToString("hh:mm tt"),
-                        p8 = o.Period8 + "-" + o.PeriodTime8.ToString("hh:mm tt"),
-                        p9 = o.Period9 + "-" + o.PeriodTime9.ToString("hh:mm tt"),
-                        p10 = o.Period10 + "-" + o.PeriodTime10.ToString("hh:mm tt")
+                        p1 = o.Period1 + " " + o.PeriodTime1.ToString("hh:mm tt"),
+                        p2 = o.Period2 + " " + o.PeriodTime2.ToString("hh:mm tt"),
+                        p3 = o.Period3 + " " + o.PeriodTime3.ToString("hh:mm tt"),
+                        p4 = o.Period4 + " " + o.PeriodTime4.ToString("hh:mm tt"),
+                        p5 = o.Period5 + " " + o.PeriodTime5.ToString("hh:mm tt"),
+                        p6 = o.Period6 + " " + o.PeriodTime6.ToString("hh:mm tt"),
+                        p7 = o.Period7 + " " + o.PeriodTime7.ToString("hh:mm tt"),
+                        p8 = o.Period8 + " " + o.PeriodTime8.ToString("hh:mm tt"),
+                        p9 = o.Period9 + " " + o.PeriodTime9.ToString("hh:mm tt"),
+                        p10 = o.Period10 + " " + o.PeriodTime10.ToString("hh:mm tt")
                     })
                 });
             
