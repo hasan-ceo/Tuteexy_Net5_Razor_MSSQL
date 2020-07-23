@@ -90,13 +90,17 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period1">Period - 1</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period1, Model.P1List, "-Select a Subject",
            new { @class = "select" })
+
                                 <span asp-validation-for="ClassRoutine.Period1" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime1">
                         </div>
                     </div>
                 </div>
@@ -107,13 +111,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period2">Period - 2</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period2, Model.P2List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period2" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime2">
                         </div>
                     </div>
                 </div>
@@ -124,13 +131,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period3">Period - 3</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period3, Model.P3List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period3" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime3">
                         </div>
                     </div>
                 </div>
@@ -141,13 +151,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period4">Period - 4</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period4, Model.P4List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period4" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime4">
                         </div>
                     </div>
                 </div>
@@ -158,13 +171,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period5">Period - 5</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period5, Model.P5List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period5" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime5">
                         </div>
                     </div>
                 </div>
@@ -175,13 +191,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period6">Period - 6</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period6, Model.P6List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period6" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime6">
                         </div>
                     </div>
                 </div>
@@ -192,13 +211,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period7">Period - 7</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period7, Model.P7List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period7" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime7">
                         </div>
                     </div>
                 </div>
@@ -209,13 +231,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period8">Period - 8</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period8, Model.P8List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period8" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime8">
                         </div>
                     </div>
                 </div>
@@ -226,13 +251,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period9">Period - 9</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period9, Model.P9List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period9" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime9">
                         </div>
                     </div>
                 </div>
@@ -243,13 +271,16 @@
                     <label class="label has-text-white" asp-for="ClassRoutine.Period10">Period - 10</label>
                 </div>
                 <div class="field-body">
-                    <div class="field">
+                    <div class="field has-addons">
                         <div class="control">
                             <div class="select">
                                 @Html.DropDownListFor(m => m.ClassRoutine.Period10, Model.P10List, "-Select a Subject",
            new { @class = "select" })
                                 <span asp-validation-for="ClassRoutine.Period10" class="help is-danger"></span>
                             </div>
+                        </div>
+                        <div class="control">
+                            <input class="input" type="time" asp-for="ClassRoutine.PeriodTime10">
                         </div>
                     </div>
                 </div>
@@ -273,7 +304,7 @@
                             <button type="submit" class="button is-link">Create</button>
                         </div>}
                         <div class="control">
-                            <button class="button is-link is-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">Cancel</button>
+                            <button class="button is-link is-light" asp-area="Lms" asp-controller="ClassRout" asp-action="Index">Cancel</button>
                         </div>
                     </div>
                 </div>

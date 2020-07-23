@@ -238,7 +238,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SchoolID")
                         .HasColumnType("bigint");
@@ -248,13 +248,57 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("ClassRoomID");
 
                     b.HasIndex("SchoolID");
 
                     b.ToTable("LmsClassRoom");
+                });
+
+            modelBuilder.Entity("Tuteexy.Models.ClassRoomNotice", b =>
+                {
+                    b.Property<long>("ClassRoomNoticeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ClassRoomID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4000)")
+                        .HasMaxLength(4000);
+
+                    b.Property<DateTime>("ScheduleDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ClassRoomNoticeID");
+
+                    b.HasIndex("ClassRoomID");
+
+                    b.ToTable("LmsClassRoomNotice");
                 });
 
             modelBuilder.Entity("Tuteexy.Models.ClassRoomStudent", b =>
@@ -269,7 +313,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("ApprovedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("ClassRoomID")
                         .HasColumnType("bigint");
@@ -304,7 +348,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DayName")
                         .IsRequired()
@@ -354,12 +398,42 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("PeriodTime1")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime10")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime2")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime3")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime4")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime5")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime6")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime7")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime8")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PeriodTime9")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("ClassRoutineID");
 
@@ -379,7 +453,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateAssigned")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("DateDue")
                         .HasColumnType("datetime");
@@ -429,7 +503,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -445,7 +519,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("PageID");
 
@@ -468,7 +542,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsAuthorizedSchool")
                         .HasColumnType("bit");
@@ -502,7 +576,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("SchoolID");
 
@@ -523,7 +597,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -546,7 +620,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("SchoolNoticeID");
 
@@ -567,7 +641,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("ApprovedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
@@ -599,7 +673,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<long>("SchoolID")
                         .HasColumnType("bigint");
@@ -614,7 +688,7 @@ namespace Tuteexy.DataAccess.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.HasKey("SubjectID");
 
@@ -726,6 +800,15 @@ namespace Tuteexy.DataAccess.Migrations
                     b.HasOne("Tuteexy.Models.School", "School")
                         .WithMany()
                         .HasForeignKey("SchoolID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Tuteexy.Models.ClassRoomNotice", b =>
+                {
+                    b.HasOne("Tuteexy.Models.ClassRoom", "ClassRoom")
+                        .WithMany()
+                        .HasForeignKey("ClassRoomID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

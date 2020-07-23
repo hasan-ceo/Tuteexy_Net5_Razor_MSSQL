@@ -47,44 +47,60 @@
 
                 <p class="subtitle is-6 px-1 py-1 my-0 has-background-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
 
-
+                @if (item.isauthorize!="Authorized")
+                {
+            <p class="subtitle is-6 px-1 pt-3 pb-1 mb-0 mt-3 has-text-black">
+                We are reviewing your open school request. We will contact with you for verification. Once your request approve you can enjoy our school service.
+            </p>
+                }
 
                 <div class="content mt-5">
                     <div class="columns is-12 is-multiline">
-                        <div class="column"><a href="/Lms/SchoolNotices/Create/@item.SchoolID" class="button is-link is-fullwidth">
-    <span class="icon">
-        <i class="fas fa-plus"></i>
-    </span>
-    <span>Notice</span>
-</a></div>
-                        <div class="column"><a href="/Lms/ClassRooms/Create/@item.SchoolID" class="button is-primary is-fullwidth">
-    <span class="icon">
-        <i class="fas fa-plus"></i>
-    </span>
-    <span>Class Room</span>
-</a></div>
-                        <div class="column"><a href="/Lms/Subjects/Create/@item.SchoolID" class="button is-info is-fullwidth">
-    <span class="icon">
-        <i class="fas fa-plus"></i>
-    </span>
-    <span>Subjects</span>
-</a></div>
-                        <div class="column">
-                            <a href="/Lms/Schools/Upsert/@item.SchoolID" class="button is-warning is-fullwidth">
-                                <span class="icon">
-                                    <i class="fas fa-edit"></i>
-                                </span>
-                                <span>School Edit</span>
-                            </a>
-                        </div>
-                        <div class="column center-column">
-                            <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="button is-danger is-fullwidth">
-                                <span class="icon">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                                <span>Delete</span>
-                            </a>
-                        </div>
+                        @if (item.isauthorize == "Authorized")
+                        {
+                            <div class="column">
+                                <a href="/Lms/SchoolNotices/Create/@item.SchoolID" class="button is-link is-fullwidth">
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    <span>Notice</span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="/Lms/ClassRooms/Create/@item.SchoolID" class="button is-primary is-fullwidth">
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    <span>Class Room</span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="/Lms/Subjects/Create/@item.SchoolID" class="button is-info is-fullwidth">
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    <span>Subjects</span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="/Lms/Schools/Upsert/@item.SchoolID" class="button is-warning is-fullwidth">
+                                    <span class="icon">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+                                    <span>School Edit</span>
+                                </a>
+                            </div>
+                        }
+                        @if (item.isauthorize != "Authorized")
+                        {<div class="column center-column">
+                                <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="button is-danger is-fullwidth">
+                                    <span class="icon">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                    <span>Delete</span>
+                                </a>
+                            </div>
+                        }
                     </div>
 
 

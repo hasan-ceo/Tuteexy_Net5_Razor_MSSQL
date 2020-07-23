@@ -33,6 +33,7 @@ namespace Tuteexy.Models
         public string Description { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime")]
         [Display(Name = "Date Assigned")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

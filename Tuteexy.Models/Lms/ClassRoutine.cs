@@ -56,5 +56,70 @@ namespace Tuteexy.Models
         [MaxLength(50)]
         [Display(Name = "Period - 10")]
         public string Period10 { get; set; }
+
+        [Required]
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 1")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime1 { get; set; }
+
+        [Required]
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 2")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime2 { get; set; }
+
+        [Required]
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 3")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime3 { get; set; }
+
+      
+        [Display(Name = "Time - 4")]
+        [Column(TypeName = "datetime")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime4 { get; set; }
+
+
+        [Display(Name = "Time - 5")]
+        [Column(TypeName = "datetime")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime5 { get; set; }
+
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 6")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime6 { get; set; }
+
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 7")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime7 { get; set; }
+
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 8")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime8 { get; set; }
+
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 9")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime9 { get; set; }
+
+        [Column(TypeName = "datetime")]
+        [Display(Name = "Time - 10")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        public DateTime PeriodTime10 { get; set; }
     }
 }

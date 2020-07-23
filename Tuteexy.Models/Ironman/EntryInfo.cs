@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Tuteexy.Models
@@ -13,7 +14,8 @@ namespace Tuteexy.Models
 
         //Business Date of first entry
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Created Date")]
+        [Column(TypeName = "datetime")]
         [Display(Name = "Created Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -25,6 +27,7 @@ namespace Tuteexy.Models
 
         //Business Date of Last Update
         [Required(ErrorMessage = "Please enter Updated Date")]
+        [Column(TypeName = "datetime")]
         [Display(Name = "Updated Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]

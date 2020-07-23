@@ -28,9 +28,14 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
+            if (allObj != null)
+                return View();
+            else
+                return LocalRedirect("/User/Dashboard/index");
         }
 
         public IActionResult Create(long Id)

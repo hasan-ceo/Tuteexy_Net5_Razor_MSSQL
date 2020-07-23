@@ -7,7 +7,7 @@
                     <form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Register" >
                         <div class="field">
                               <div class="control has-icons-left">
-                                <input id="Name" name="Name" class="input is-rounded" type="text" placeholder="Enter your name.">
+                                <input id="Name" name="Name" class="input is-rounded" type="text" placeholder="Enter your name." required>
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-user"></i>
                                 </span>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="field">
                                <div class="control has-icons-left">
-                                <input id="Email" name="Email" class="input is-rounded" type="email" placeholder="Enter your email.">
+                                <input id="Email" name="Email" class="input is-rounded" type="email" placeholder="Enter your email." required>
                                 <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
                             </div>
                            
@@ -23,7 +23,7 @@
 
                         <div class="field">
                             <div class="control has-icons-left">
-                                <input id="PhoneNumber" name="PhoneNumber" class="input is-rounded" type="text" placeholder="Enter your phone.">
+                                <input id="PhoneNumber" name="PhoneNumber" class="input is-rounded" type="text" placeholder="Enter your phone." required>
                                 <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
                             </div>
                             
@@ -31,7 +31,7 @@
 
                         <div class="field">
                                 <div class="control has-icons-left">
-                                <input id="Password" name="Password" class="input is-rounded" type="password" placeholder="Password">
+                                <input id="Password" name="Password" class="input is-rounded" type="password" placeholder="Password" required>
                                 <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                             </div>
                             
@@ -39,7 +39,7 @@
 
                         <div class="field">
                                 <div class="control has-icons-left">
-                                <input id="ConfirmPassword" name="ConfirmPassword" class="input is-rounded" type="password" placeholder="Confirm Password">
+                                <input id="ConfirmPassword" name="ConfirmPassword" class="input is-rounded" type="password" placeholder="Confirm Password" required>
                                 <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                             </div>
                             

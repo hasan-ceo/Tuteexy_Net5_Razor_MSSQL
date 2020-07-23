@@ -23,6 +23,7 @@ namespace Tuteexy.Models
         public string ApprovedBy { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime")]
         [Display(Name = "Approved Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

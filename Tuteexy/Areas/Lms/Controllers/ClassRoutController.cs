@@ -29,9 +29,14 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
+            if (allObj != null)
+                return View();
+            else
+                return LocalRedirect("/User/Dashboard/index");
         }
 
         public async Task<IActionResult> Upsert(long? Id)
@@ -171,16 +176,17 @@ namespace Tuteexy.Areas.Lms.Controllers
                     id = o.ClassRoutineID,
                     classname = o.ClassRoom.ClassRoomName,
                     day = o.DayName,
-                    p1 = o.Period1,
-                    p2 = o.Period2,
-                    p3 = o.Period3,
-                    p4 = o.Period4,
-                    p5 = o.Period5,
-                    p6 = o.Period6,
-                    p7 = o.Period7,
-                    p8 = o.Period8,
-                    p9 = o.Period9,
-                    p10 = o.Period10
+                    p1 = o.Period1 +"-"+ o.PeriodTime1.ToString("hh:mm tt"),
+                    p2 = o.Period2 + "-" + o.PeriodTime2.ToString("hh:mm tt"),
+                    p3 = o.Period3 + "-" + o.PeriodTime3.ToString("hh:mm tt"),
+                    p4 = o.Period4 + "-" + o.PeriodTime4.ToString("hh:mm tt"),
+                    p5 = o.Period5 + "-" + o.PeriodTime5.ToString("hh:mm tt"),
+                    p6 = o.Period6 + "-" + o.PeriodTime6.ToString("hh:mm tt"),
+                    p7 = o.Period7 + "-" + o.PeriodTime7.ToString("hh:mm tt"),
+                    p8 = o.Period8 + "-" + o.PeriodTime8.ToString("hh:mm tt"),
+                    p9 = o.Period9 + "-" + o.PeriodTime9.ToString("hh:mm tt"),
+                    p10 = o.Period10 + "-" + o.PeriodTime10.ToString("hh:mm tt")
+                    
                 })
             });
         }
