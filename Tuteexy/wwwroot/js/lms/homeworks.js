@@ -22,13 +22,14 @@ function loadDataTable() {
             "url": "/Lms/Homeworks/GetAll"
         },
         "columns": [
-            { "data": "classRoomName" },
+            { "data": "teachername" },
+            { "data": "classroomname" },
             { "data": "subject" },
             { "data": "title" },
             { "data": "schdate" },
             { "data": "datedue" },
             {
-                "data": "homeworkID",
+                "data": "id",
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">

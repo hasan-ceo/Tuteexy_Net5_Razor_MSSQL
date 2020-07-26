@@ -40,9 +40,11 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public IActionResult Create(long Id)
         {
-            var sn = new SchoolNotice();
-            sn.SchoolID = Id;
-            sn.ScheduleDateTime = DateTime.Now;
+            var sn = new SchoolNotice {
+                SchoolID = Id,
+                ScheduleDateTime = DateTime.Now
+            };
+
             SchoolNoticeVM schoolnoticeVM = new SchoolNoticeVM()
             {
                 SchoolNotice = sn,

@@ -25,7 +25,9 @@ namespace Tuteexy.DataAccess.Repository
             Homework = new HomeworkRepository(_db);
             Subject = new SubjectRepository(_db);
             SchoolNotice = new SchoolNoticeRepository(_db);
+            ClassRoomNotice = new ClassRoomNoticeRepository(_db);
             ClassRoutine = new ClassRoutineRepository(_db);
+            Holiday = new HolidayRepository(_db);
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
@@ -42,7 +44,9 @@ namespace Tuteexy.DataAccess.Repository
         public IHomeworkRepository Homework { get; private set; }
         public ISubjectRepository Subject { get; private set; }
         public ISchoolNoticeRepository SchoolNotice { get; private set; }
+        public IClassRoomNoticeRepository ClassRoomNotice { get; private set; }
         public IClassRoutineRepository ClassRoutine { get; private set; }
+        public IHolidayRepository Holiday { get; private set; }
 
         public void Dispose()
         {

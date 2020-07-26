@@ -102,12 +102,12 @@ namespace Tuteexy.Areas.Lms.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
         {
-            var objFromDb = await _unitOfWork.School.GetAsync(id);
+            var objFromDb = await _unitOfWork.SchoolTeacher.GetAsync(id);
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            await _unitOfWork.School.RemoveEntityAsync(objFromDb);
+            await _unitOfWork.SchoolTeacher.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

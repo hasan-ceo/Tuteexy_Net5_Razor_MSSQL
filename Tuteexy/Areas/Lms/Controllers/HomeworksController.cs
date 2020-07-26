@@ -156,8 +156,17 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Homework.GetAllAsync(h=>h.TeacherID== _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties:"ClassRoom,Teacher");
-            return Json(new { data = allObj.Select(a=> new {a.HomeworkID, a.ClassRoom.ClassRoomName,a.Subject,a.Title, schdate = a.ScheduleDateTime.Date.ToString("dd/MMM/yyyy hh:mm tt"), datedue =a.DateDue.Date.ToString("dd/MMM/yyyy")}) });
+            var school = await _unitOfWork.School.GetFirstOrDefaultAsync(s => s.OwnerId == _userId);
+            if (school !=null)
+            {
+                var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
+                return Json(new { data = allObj.Select(a => new { id=a.HomeworkID, teachername=a.Teacher.Name , classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
+            }
+            else
+            {
+                var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
+                return Json(new { data = allObj.Select(a => new { id = a.HomeworkID, teachername = a.Teacher.Name, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
+            }
         }
 
         [HttpDelete]

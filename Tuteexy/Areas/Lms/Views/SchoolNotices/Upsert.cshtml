@@ -1,122 +1,114 @@
 ﻿@model Tuteexy.Models.ViewModels.SchoolNoticeVM
 
 @{
-    var title = "Create General Notice";
+    var title = "Create School Notice";
 }
 
 @section Scripts {
     <partial name="_tinymceScriptPartial" />
 }
 
-<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
-    <ul>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="SchoolNotices"
-               asp-action="index"><strong>General Notice</strong></a>
-        </li>
-        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Create</strong></a></li>
-    </ul>
-</div>
-<!-- Main container -->
-<div class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <div class="title has-text-white">
-                @if (Model.SchoolNotice.SchoolNoticeID != 0)
-                {
-                    //edit
-                    title = "Edit Notice";
-                }
-                <strong>@title</strong>
+<div class="box">
+
+
+    <!-- Main container -->
+    <div class="level">
+        <!-- Left side -->
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title has-text-black">
+                    @if (Model.SchoolNotice.SchoolNoticeID != 0)
+                    {
+                        //edit
+                        title = "Edit Notice";
+                    }
+                    <strong>@title</strong>
+                </div>
             </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+
         </div>
     </div>
 
-    <!-- Right side -->
-    <div class="level-right">
 
-    </div>
-</div>
+            <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="SchoolNotices" asp-action="Upsert">
+                <input type="hidden" asp-for="SchoolNotice.SchoolNoticeID" />
+                <input type="hidden" asp-for="SchoolNotice.SchoolID" />
 
-<div class="columns is-multiline">
-    <div class="column is-9">
-        <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="SchoolNotices" asp-action="Upsert">
-            <input type="hidden" asp-for="SchoolNotice.SchoolNoticeID" />
-            <input type="hidden" asp-for="SchoolNotice.SchoolID" />
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="SchoolNotice.Title">Title</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="Title" asp-for="SchoolNotice.Title">
-                            <span asp-validation-for="SchoolNotice.Title" class="help is-danger"></span>
-                        </p>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="SchoolNotice.Title">Title</label>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="SchoolNotice.Description">Description</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <textarea class="textarea" placeholder="Description" asp-for="SchoolNotice.Description"></textarea>
-                            <span asp-validation-for="SchoolNotice.Description" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="SchoolNotice.ScheduleDateTime">Schedule Date and Time</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
-                            <input id="datepicker" class="input" type="date" asp-for="SchoolNotice.ScheduleDateTime">
-                            <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
-                            <span asp-validation-for="SchoolNotice.ScheduleDateTime" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white"></label>
-                </div>
-                <div class="field-body">
-                    <div class="field is-grouped">
-                        @if (Model.SchoolNotice.SchoolNoticeID != 0)
-                        {
-                            <div class="control">
-                                <button type="submit" class="button is-link" asp-route-id="@Model.SchoolNotice.SchoolNoticeID">Update</button>
-                            </div> }
-                        else
-                        {
-                            <div class="control">
-                                <button type="submit" class="button is-link">Create</button>
-                            </div>}
-                        <div class="control">
-                            <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="text" placeholder="Title" asp-for="SchoolNotice.Title">
+                                <span asp-validation-for="SchoolNotice.Title" class="help is-danger"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="SchoolNotice.Description">Description</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <textarea class="textarea" placeholder="Description" asp-for="SchoolNotice.Description"></textarea>
+                                <span asp-validation-for="SchoolNotice.Description" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="SchoolNotice.ScheduleDateTime">Schedule Date and Time</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
+                                <input id="datepicker" class="input" type="date" asp-for="SchoolNotice.ScheduleDateTime">
+                                <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
+                                <span asp-validation-for="SchoolNotice.ScheduleDateTime" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black"></label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            @if (Model.SchoolNotice.SchoolNoticeID != 0)
+                            {
+                                <div class="control">
+                                    <button type="submit" class="button is-success" asp-route-id="@Model.SchoolNotice.SchoolNoticeID">Update</button>
+                                </div> }
+                            else
+                            {
+                                <div class="control">
+                                    <button type="submit" class="button is-success">Create</button>
+                                </div>}
+                            <div class="control">
+                                <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
 </div>

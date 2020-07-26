@@ -29,6 +29,9 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div class="buttons has-addons is-right">
+                                <a href="/Lms/ClassRoomNotices/Create/${data}" class="button is-link is-small has-tooltip-top" data-tooltip="Delete School">
+                                    <i class="fas fa-desktop"></i> 
+                                </a>
                                 <a href="/Lms/ClassRoomStudents/Index/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Delete School">
                                     <i class="fas fa-desktop"></i> 
                                 </a>

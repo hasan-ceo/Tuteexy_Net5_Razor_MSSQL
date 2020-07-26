@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Tuteexy.Models.ViewModels
 {
-    public class RegisterVM
+    public class UserCreateVM
     {
         [Required]
         [EmailAddress]
@@ -28,5 +29,9 @@ namespace Tuteexy.Models.ViewModels
 
         public string PhoneNumber { get; set; }
 
+        public long TmpID { get; set; }
+
+        [TempData]
+        public string StatusMessage { get; set; }
     }
 }

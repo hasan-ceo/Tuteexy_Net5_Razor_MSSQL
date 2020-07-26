@@ -6,14 +6,16 @@
 <html lang="en">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6PGPD8LSJ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Z9NNWXSFP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-N6PGPD8LSJ');
+        gtag('config', 'G-0Z9NNWXSFP');
     </script>
+
+    <script data-ad-client="ca-pub-9245786985241622" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,57 +33,83 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-    <link href="~/css/bulma-calendar.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        a {
+            color: #48c774;
+        }
+    </style>
+
 </head>
 <body class="body">
-    <header class="mb-0 py-0">
-        <nav class="navbar is-fixed-top is-bordered" role="navigation" aria-label="dropdown navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item"
-                   asp-area="User"
-                   asp-controller="Dashboard"
-                   asp-action="index">
-                    <img src="~/images/core/logowhite.jpg" width="112" height="28" />
-                </a>
-                <a role="button"
-                   class="navbar-burger burger"
-                   aria-label="menu"
-                   aria-expanded="false"
-                   data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item"
-                       asp-area="User"
+    <header class="mb-0 py-2">
+        <!-- Main container -->
+        <nav class="level navbar is-fixed-top is-mobile px-2 py-2 has-text-success">
+            <!-- Left side -->
+            <div class="level-left">
+                <div class="level-item">
+                    <a asp-area="User"
                        asp-controller="Dashboard"
-                       asp-action="Index">
-                        <span class="icon is-small"><i class="fas fa-home"></i></span>
+                       asp-action="index">
+                        <img src="~/images/core/logo.png" alt="" style="height: 30px;">
                     </a>
                 </div>
-                <div class="navbar-end">
-                    <partial name="_LoginPartial" />
+                <div class="level-item">
+                    <div>
+
+                    </div>
                 </div>
             </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <a asp-area="User"
+                           asp-controller="Dashboard"
+                           asp-action="index">
+                            <span class="icon is-small"><i class="fas fa-home"></i></span>
+                            <p class="heading">Dashboard</p>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <a asp-area="Lms"
+                           asp-controller="Schools"
+                           asp-action="index">
+                            <span class="icon is-small"><i class="fas fa-school"></i></span>
+                            <p class="heading">Schools</p>
+                        </a>
+
+                    </div>
+                </div>
+                @*<div class="level-item has-text-centered">
+                    <div>
+                        <a href="#">
+                            <span class="icon is-small"><i class="fas fa-envelope"></i></span>
+                            <p class="heading">Notification</p>
+                        </a>
+                        <a class="navbar-item nav-tag">
+                            <span class="icon is-small"><i class="fa fa-envelope-o"></i></span><span class="tag is-danger tag-notif">0</span>
+                        </a>
+                    </div>
+                </div>*@
+                <div class="level-item has-text-centered">
+                    <div>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+
+            </div>
         </nav>
+        
     </header>
 
     <div class="columns mt-6 pt-2 pb-1 mb-0 has-background-dark">
         <div class="column is-2 aside">
-            <p class="menu-label">General</p>
-            <ul class="menu-list">
-                <li>
-                    <a asp-area="Lms"
-                       asp-controller="Schools"
-                       asp-action="index">
-                        <span class="icon is-small"><i class="fas fa-school"></i></span>
-                        Manage Schools
-                    </a>
-                </li>
-            </ul>
+            
             <p class="menu-label">Administration</p>
             <ul class="menu-list">
 
@@ -107,7 +135,7 @@
                         Work together as a team, with:
                     </p>
                     <a class="center" asp-area="" asp-controller="home" asp-action="index">
-                        <img src="~/images/core/logowhite.jpg" class="image" style="width:150px">
+                        <img src="~/images/core/logo.png" class="image" style="width:150px">
                     </a>
                     <p class="subtitle is-6 has-text-weight-light has-text-grey">
                         Built with your best interests at heart in July 2020. © Tuteexy

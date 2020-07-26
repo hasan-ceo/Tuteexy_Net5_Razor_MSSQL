@@ -36,10 +36,11 @@ namespace Tuteexy.Areas.Lms.Controllers
         public IActionResult Create(long Id)
         {
 
-            ClassRoom classRoom = new ClassRoom();
+            ClassRoom classRoom = new ClassRoom {
+                SchoolID = Id
+            };
 
             //this is for create
-            classRoom.SchoolID = Id;
             return View(classRoom);
 
             //this is for edit

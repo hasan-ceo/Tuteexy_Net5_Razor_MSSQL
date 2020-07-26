@@ -1,16 +1,4 @@
 ﻿@model IEnumerable<Tuteexy.Models.ClassRoomStudent>
-<!-- Top Breadcrumb -->
-<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
-    <ul>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="ClassRooms"
-               asp-action="index"><strong>Stuent</strong></a>
-        </li>
-        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Index</strong></a></li>
-    </ul>
-</div>
-
 <!-- Top Level -->
 <div class="level">
     <!-- Left side -->
@@ -40,9 +28,7 @@
                 <th><abbr title="Name:">Student Name</abbr></th>
                 <th><abbr title="App by">Approved By</abbr></th>
                 <th><abbr title="Is acc">Is Approved</abbr></th>
-                <th></th>
-
-            </tr>
+              </tr>
         </thead>
         <tbody>
             @foreach (ClassRoomStudent item in Model)
@@ -53,7 +39,6 @@
     <td>@item.Student.Name</td>
     <td>@item.ApprovedBy</td>
     <td>@item.IsApproved</td>
-    <td></td>
 </tr>
             }
         </tbody>

@@ -7494,13 +7494,12 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 1.5rem 1.5rem 1.5rem; }
 
 .body {
-  background-color: #fa7c91; }
+  background-color: #f8f8ff; }
 
 .footer {
   margin-top: 0.25rem; }
 
 .aside {
-  background: #44475a;
   padding: 1em 0.2em 0 1em; }
   .aside a {
     color: #f8f8f2; }
@@ -7532,9 +7531,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   @media (max-width: 768px) {
     .tag-notif {
       margin-left: -2px; } }
-
-.hero {
-  background-color: #44475a; }
 
 .navbar-item {
   background-color: #44475a; }

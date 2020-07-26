@@ -1,0 +1,113 @@
+﻿@model Tuteexy.Models.ViewModels.ClassRoomNoticeVM
+
+@{
+    var title = "Create Class Notice";
+}
+
+@section Scripts {
+    <partial name="_tinymceScriptPartial" />
+}
+
+<div class="box">
+
+
+    <!-- Main container -->
+    <div class="level">
+        <!-- Left side -->
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title has-text-black">
+                    @if (Model.ClassRoomNotice.ClassRoomNoticeID != 0)
+                    {
+                        //edit
+                        title = "Edit Notice";
+                    }
+                    <strong>@title</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+
+        </div>
+    </div>
+
+
+    <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="ClassRoomNotices" asp-action="Upsert">
+        <input type="hidden" asp-for="ClassRoomNotice.ClassRoomNoticeID" />
+        <input type="hidden" asp-for="ClassRoomNotice.ClassRoomID" />
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="ClassRoomNotice.Title">Title</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" type="text" placeholder="Title" asp-for="ClassRoomNotice.Title">
+                        <span asp-validation-for="ClassRoomNotice.Title" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="ClassRoomNotice.Description">Description</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <textarea class="textarea" placeholder="Description" asp-for="ClassRoomNotice.Description"></textarea>
+                        <span asp-validation-for="ClassRoomNotice.Description" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="ClassRoomNotice.ScheduleDateTime">Schedule Date and Time</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
+                        <input id="datepicker" class="input" type="date" asp-for="ClassRoomNotice.ScheduleDateTime">
+                        <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
+                        <span asp-validation-for="ClassRoomNotice.ScheduleDateTime" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black"></label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    @if (Model.ClassRoomNotice.ClassRoomNoticeID != 0)
+                    {
+                        <div class="control">
+                            <button type="submit" class="button is-success" asp-route-id="@Model.ClassRoomNotice.ClassRoomNoticeID">Update</button>
+                        </div> }
+                    else
+                    {
+                        <div class="control">
+                            <button type="submit" class="button is-success">Create</button>
+                        </div>}
+                    <div class="control">
+                        <button class="button is-link is-light" asp-area="Lms" asp-controller="ClassRooms" asp-action="Index">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

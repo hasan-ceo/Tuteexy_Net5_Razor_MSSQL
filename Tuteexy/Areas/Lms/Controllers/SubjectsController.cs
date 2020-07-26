@@ -36,10 +36,11 @@ namespace Tuteexy.Areas.Lms.Controllers
         public IActionResult Create(long Id)
         {
 
-            Subject subject = new Subject();
+            Subject subject = new Subject {
+                SchoolID = Id
+            };
 
             //this is for create
-            subject.SchoolID = Id;
             return View(subject);
 
             //this is for edit

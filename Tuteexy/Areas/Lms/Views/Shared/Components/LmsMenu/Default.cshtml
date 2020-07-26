@@ -1,67 +1,89 @@
 ﻿@model Tuteexy.Models.School
 
-@if (Model!=null)
+@if (Model != null)
 {
-    
 
 
-        <li>
-            <a asp-area="Lms"
-               asp-controller="ClassRooms"
-               asp-action="Index">
 
-                <span class="icon is-small">
-                    <i class="fas fa-warehouse"></i>
-                </span>
-                Class Rooms
-            </a>
-        </li>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="SchoolTeachers"
-               asp-action="Index">
+    <li>
+        <a asp-area="Lms"
+           asp-controller="ClassRooms"
+           asp-action="Index">
 
-                <span class="icon is-small">
-                    <i class="fas fa-book-reader"></i>
-                </span>
-                Teachers
-            </a>
-        </li>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="Subjects"
-               asp-action="Index">
+            <span class="icon is-small">
+                <i class="fas fa-warehouse"></i>
+            </span>
+            Class Rooms
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="SchoolTeachers"
+           asp-action="Index">
 
-                <span class="icon is-small">
-                    <i class="fas fa-book"></i>
-                </span>
-                Subjects
-            </a>
-        </li>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="SchoolNotices"
-               asp-action="Index">
+            <span class="icon is-small">
+                <i class="fas fa-book-reader"></i>
+            </span>
+            Teachers
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="Subjects"
+           asp-action="Index">
 
-                <span class="icon is-small">
-                    <i class="fas fa-briefcase"></i>
-                </span>
-                General Notices
-            </a>
-        </li>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="ClassRout"
-               asp-action="Index">
+            <span class="icon is-small">
+                <i class="fas fa-book"></i>
+            </span>
+            Subjects
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="SchoolNotices"
+           asp-action="Index">
 
-                <span class="icon is-small">
-                    <i class="fas fa-briefcase"></i>
-                </span>
-                Class Routine
-            </a>
-        </li>
-       
-   
+            <span class="icon is-small">
+                <i class="fas fa-briefcase"></i>
+            </span>
+            School Notices
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="ClassRoomNotices"
+           asp-action="Index">
+
+            <span class="icon is-small">
+                <i class="fas fa-briefcase"></i>
+            </span>
+            Class Notices
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="Holidays"
+           asp-action="Index">
+
+            <span class="icon is-small">
+                <i class="fas fa-briefcase"></i>
+            </span>
+            Holidays
+        </a>
+    </li>
+    <li>
+        <a asp-area="Lms"
+           asp-controller="ClassRout"
+           asp-action="Index">
+
+            <span class="icon is-small">
+                <i class="fas fa-briefcase"></i>
+            </span>
+            Class Routine
+        </a>
+    </li>
+
+
 
 }
 

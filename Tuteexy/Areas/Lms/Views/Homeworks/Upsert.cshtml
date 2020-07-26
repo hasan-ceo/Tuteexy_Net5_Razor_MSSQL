@@ -9,182 +9,172 @@
     <partial name="_tinymceScriptPartial" />
 }
 
-<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
-    <ul>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="Homeworks"
-               asp-action="index"><strong>Homeworks</strong></a>
-        </li>
-        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Create</strong></a></li>
-    </ul>
-</div>
-<!-- Main container -->
-<div class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <div class="title has-text-white">
-                @if (Model.Homework.HomeworkID != 0)
-                {
-                    //edit
-                    title = "Edit Homework";
-                }
-                <strong>@title</strong>
+<div class="box">
+
+
+    <!-- Main container -->
+    <div class="level">
+        <!-- Left side -->
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title has-text-black">
+                    @if (Model.Homework.HomeworkID != 0)
+                    {
+                        //edit
+                        title = "Edit Homework";
+                    }
+                    <strong>@title</strong>
+                </div>
             </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+
         </div>
     </div>
 
-    <!-- Right side -->
-    <div class="level-right">
 
-    </div>
-</div>
+            <form method="post" autocomplete="off" asp-route-returnUrl="">
+                <input type="hidden" asp-for="Homework.HomeworkID" />
 
-<div class="columns is-multiline">
-    <div class="column is-9">
-        <form method="post" autocomplete="off" asp-route-returnUrl="">
-            <input type="hidden" asp-for="Homework.HomeworkID" />
+                @if (Model.Homework.HomeworkID != 0)
+                {
+                    rd = true;
+                }
 
-            @if (Model.Homework.HomeworkID != 0)
-            {
-                rd = true;
-            }
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.ClassRoomID">Class Name</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <div class="select">
-                                @Html.DropDownListFor(m => m.Homework.ClassRoomID, Model.ClassRoomList, "-Select a Class Room",
-           new { @class = "select" })
-                                <span asp-validation-for="Homework.ClassRoomID" class="help is-danger"></span>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.ClassRoomID">Class Name</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                    @Html.DropDownListFor(m => m.Homework.ClassRoomID, Model.ClassRoomList, "-Select a Class Room",
+               new { @class = "select" })
+                                    <span asp-validation-for="Homework.ClassRoomID" class="help is-danger"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.Subject">Subject</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <div class="select">
-                                @Html.DropDownListFor(m => m.Homework.Subject, Model.SubjectList, "-Select a Subject",
-           new { @class = "select" })
-                                <span asp-validation-for="Homework.Subject" class="help is-danger"></span>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.Subject">Subject</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                    @Html.DropDownListFor(m => m.Homework.Subject, Model.SubjectList, "-Select a Subject",
+               new { @class = "select" })
+                                    <span asp-validation-for="Homework.Subject" class="help is-danger"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.Title">Title</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="Title" asp-for="Homework.Title">
-                            <span asp-validation-for="Homework.Title" class="help is-danger"></span>
-                        </p>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.Title">Title</label>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.Description">Description</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <textarea class="textarea" placeholder="Description" asp-for="Homework.Description"></textarea>
-                            <span asp-validation-for="Homework.Description" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.RefLink">Ref Link</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="Ref Link" asp-for="Homework.RefLink">
-                            <span asp-validation-for="Homework.RefLink" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.ScheduleDateTime">Schedule Date and Time</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
-                            <input id="datepicker" class="input" type="date" asp-for="Homework.ScheduleDateTime">
-                            <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
-                            <span asp-validation-for="Homework.ScheduleDateTime" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-           
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white" asp-for="Homework.DateDue">Date Due</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
-                            <input class="input" type="date" asp-format="{0:yyyy-MM-dd}" asp-for="Homework.DateDue">
-                            <span asp-validation-for="Homework.DateDue" class="help is-danger"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label has-text-white"></label>
-                </div>
-                <div class="field-body">
-                    <div class="field is-grouped">
-                        @if (Model.Homework.HomeworkID != 0)
-                        {
-                            <div class="control">
-                                <button type="submit" class="button is-link" asp-route-id="@Model.Homework.HomeworkID">Update</button>
-                            </div> }
-                        else
-                        {
-                            <div class="control">
-                                <button type="submit" class="button is-link">Create</button>
-                            </div>}
-                        <div class="control">
-                            <button class="button is-link is-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">Cancel</button>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="text" placeholder="Title" asp-for="Homework.Title">
+                                <span asp-validation-for="Homework.Title" class="help is-danger"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.Description">Description</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <textarea class="textarea" placeholder="Description" asp-for="Homework.Description"></textarea>
+                                <span asp-validation-for="Homework.Description" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.RefLink">Ref Link</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="text" placeholder="Ref Link" asp-for="Homework.RefLink">
+                                <span asp-validation-for="Homework.RefLink" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.ScheduleDateTime">Schedule Date and Time</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
+                                <input id="datepicker" class="input" type="date" asp-for="Homework.ScheduleDateTime">
+                                <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
+                                <span asp-validation-for="Homework.ScheduleDateTime" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black level-left" asp-for="Homework.DateDue">Date Due</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                                <input class="input" type="date" asp-format="{0:yyyy-MM-dd}" asp-for="Homework.DateDue">
+                                <span asp-validation-for="Homework.DateDue" class="help is-danger"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-black"></label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            @if (Model.Homework.HomeworkID != 0)
+                            {
+                                <div class="control">
+                                    <button type="submit" class="button is-success" asp-route-id="@Model.Homework.HomeworkID">Update</button>
+                                </div> }
+                            else
+                            {
+                                <div class="control">
+                                    <button type="submit" class="button is-success">Create</button>
+                                </div>}
+                            <div class="control">
+                                <button class="button is-link is-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
 </div>
-
-

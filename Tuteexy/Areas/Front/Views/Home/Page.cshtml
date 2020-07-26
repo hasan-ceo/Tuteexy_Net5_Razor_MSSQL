@@ -1,5 +1,10 @@
 ﻿@model Tuteexy.Models.Page
 
+@{
+    Layout = "~/Views/Shared/_LayoutCommon.cshtml";
+}
+
+
 <section class="hero is-white is-fullheight">
     <div class="container px-6">
         @Html.Raw(Model.Description)

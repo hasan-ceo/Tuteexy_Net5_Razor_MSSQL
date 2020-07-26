@@ -32,7 +32,7 @@
 
 @if (Model != null)
 {
-<div class="columns is-success is-multiline">
+<div class="columns is-multiline">
     @foreach (SchoolNotice item in Model.SchoolNotice)
     {
 <div class="column is-full-desktop">
@@ -45,41 +45,55 @@
 </div>}
 </div>
 
-
-                <div class="columns is-success is-multiline">
-                    @foreach (Homework item in Model.Homework)
+                <div class="columns is-multiline">
+                    @foreach (ClassRoomNotice item in Model.ClassRoomNotice)
                     {
-    <div class="column is-4-desktop">
-        <div class="notification is-warning">
-            <p class="title is-6 py-0 my-0 has-text-black">@item.Title</p>
-            <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @item.Teacher.Name</p>
-            <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-            <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-            <p class="subtitle is-6"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
-
-            <p class="subtitle is-6">
-                @if (string.IsNullOrWhiteSpace(@item.RefLink) == false && (string.IsNullOrEmpty(item.RefLink) == false))
-                {
-<a href="@item.RefLink" class="button is-small is-success has-text-white">
-    <span class="icon is-medium">
-        <i class="fas fa-link"></i>
-    </span>  <span>Attachment</span>
-</a>}
-                @{ var eml = "mailto:" + @item.Teacher.Email; }
-
-                <a href="@eml" class="button is-small is-link has-text-white">
-                    <span class="icon is-medium">
-                        <i class="fas fa-link"></i>
-                    </span>  <span>Reply</span>
-                </a>
-            </p>
-            <p class="subtitle is-6">
-
-            </p>
+    <div class="column is-full-desktop">
+        <div class="notification is-primary">
+            <p class="title is-4 py-0 my-0 has-text-black">@item.Title</p>
             <div class="content">
                 @Html.Raw(item.Description)
             </div>
         </div>
     </div>}
-                </div>}
+                </div>
+
+
+
+                                <div class="columns is-success is-multiline">
+                                    @foreach (Homework item in Model.Homework)
+                                    {
+                    <div class="column is-4-desktop">
+                        <div class="notification is-warning">
+                            <p class="title is-6 py-0 my-0 has-text-black">@item.Title</p>
+                            <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @item.Teacher.Name</p>
+                            <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                            <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                            <p class="subtitle is-6"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+
+                            <p class="subtitle is-6">
+                                @if (string.IsNullOrWhiteSpace(@item.RefLink) == false && (string.IsNullOrEmpty(item.RefLink) == false))
+                                {
+            <a href="@item.RefLink" class="button is-small is-success has-text-white">
+                <span class="icon is-medium">
+                    <i class="fas fa-link"></i>
+                </span>  <span>Attachment</span>
+            </a>}
+                                @{ var eml = "mailto:" + @item.Teacher.Email; }
+
+                                <a href="@eml" class="button is-small is-link has-text-white">
+                                    <span class="icon is-medium">
+                                        <i class="fas fa-link"></i>
+                                    </span>  <span>Reply</span>
+                                </a>
+                            </p>
+                            <p class="subtitle is-6">
+
+                            </p>
+                            <div class="content">
+                                @Html.Raw(item.Description)
+                            </div>
+                        </div>
+                    </div>}
+                                </div>}
 
