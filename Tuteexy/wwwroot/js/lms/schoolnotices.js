@@ -24,7 +24,8 @@ function loadDataTable() {
         "columns": [
             { "data": "schoolname" },
             { "data": "title" },
-            { "data": "scheduledate"},
+            { "data": "scheduledate" },
+            { "data": "pin" },
             {
                 "data": "id",
                 "render": function (data) {

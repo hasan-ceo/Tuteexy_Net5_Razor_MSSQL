@@ -23,6 +23,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.Title = schoolnotice.Title;
                 objFromDb.Description = schoolnotice.Description;
                 objFromDb.ScheduleDateTime = schoolnotice.ScheduleDateTime;
+                objFromDb.isPined = schoolnotice.isPined;
 
                 objFromDb.UpdatedBy = schoolnotice.UpdatedBy;
                 objFromDb.UpdatedDate = schoolnotice.UpdatedDate;

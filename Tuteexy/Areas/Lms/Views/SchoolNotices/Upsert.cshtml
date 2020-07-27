@@ -96,6 +96,19 @@
             </div>
         </div>
 
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="SchoolNotice.isPined">Pin to Top?</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="checkbox" type="checkbox" asp-for="SchoolNotice.isPined">
+                        <span asp-validation-for="SchoolNotice.isPined" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">

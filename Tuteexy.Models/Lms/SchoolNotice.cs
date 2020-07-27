@@ -32,5 +32,7 @@ namespace Tuteexy.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ScheduleDateTime { get; set; }
 
+        public bool isPined { get; set; }
+
     }
 }

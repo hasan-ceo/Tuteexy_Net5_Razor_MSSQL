@@ -115,7 +115,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(c => c.School.OwnerId == _userId,includeProperties: "School");
-            return Json(new { data = allObj.Select(a => new { id=a.SchoolNoticeID, schoolname=a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt") }) });
+            return Json(new { data = allObj.Select(a => new { id=a.SchoolNoticeID, schoolname=a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"),pin=a.isPined }) });
 
         }
 
