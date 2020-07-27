@@ -25,7 +25,11 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.Description = homework.Description;
                 objFromDb.DateDue = homework.DateDue;
                 objFromDb.ScheduleDateTime = homework.ScheduleDateTime;
-                objFromDb.RefLink = homework.RefLink;
+                objFromDb.RefLink1 = homework.RefLink1;
+                objFromDb.RefLink2 = homework.RefLink2;
+                objFromDb.RefLink3 = homework.RefLink3;
+                objFromDb.RefLink4 = homework.RefLink4;
+                objFromDb.RefLink5 = homework.RefLink5;
             }
         }
 

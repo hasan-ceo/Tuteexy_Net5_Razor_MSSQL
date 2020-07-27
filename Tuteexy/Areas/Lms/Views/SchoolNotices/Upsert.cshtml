@@ -34,81 +34,91 @@
     </div>
 
 
-            <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="SchoolNotices" asp-action="Upsert">
-                <input type="hidden" asp-for="SchoolNotice.SchoolNoticeID" />
-                <input type="hidden" asp-for="SchoolNotice.SchoolID" />
+    <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="SchoolNotices" asp-action="Upsert">
+        <input type="hidden" asp-for="SchoolNotice.SchoolNoticeID" />
+        <input type="hidden" asp-for="SchoolNotice.SchoolID" />
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label has-text-black level-left" asp-for="SchoolNotice.Title">Title</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <p class="control is-expanded has-icons-left">
-                                <input class="input" type="text" placeholder="Title" asp-for="SchoolNotice.Title">
-                                <span asp-validation-for="SchoolNotice.Title" class="help is-danger"></span>
-                            </p>
-                        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="SchoolNotice.Title">Title</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" type="text" placeholder="Title" asp-for="SchoolNotice.Title">
+                        <span asp-validation-for="SchoolNotice.Title" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="SchoolNotice.Description">Description</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <textarea class="textarea" placeholder="Description" asp-for="SchoolNotice.Description"></textarea>
+                        <span asp-validation-for="SchoolNotice.Description" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="SchoolNotice.ScheduleDateTime">Schedule Date</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input id="datepicker" class="input" type="date" asp-for="SchoolNotice.ScheduleDateTime">
+                        <span asp-validation-for="SchoolNotice.ScheduleDateTime" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black level-left" asp-for="SchoolNotice.ScheduleDateTime">Schedule Time</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
+                        <span asp-validation-for="SchoolNotice.ScheduleDateTime" class="help is-danger"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label has-text-black"></label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    @if (Model.SchoolNotice.SchoolNoticeID != 0)
+                    {
+                        <div class="control">
+                            <button type="submit" class="button is-success" asp-route-id="@Model.SchoolNotice.SchoolNoticeID">Update</button>
+                        </div> }
+                    else
+                    {
+                        <div class="control">
+                            <button type="submit" class="button is-success">Create</button>
+                        </div>}
+                    <div class="control">
+                        <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
                     </div>
                 </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label has-text-black level-left" asp-for="SchoolNotice.Description">Description</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <p class="control is-expanded has-icons-left">
-                                <textarea class="textarea" placeholder="Description" asp-for="SchoolNotice.Description"></textarea>
-                                <span asp-validation-for="SchoolNotice.Description" class="help is-danger"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label has-text-black level-left" asp-for="SchoolNotice.ScheduleDateTime">Schedule Date and Time</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <p class="control is-expanded has-icons-left">
-                                @*asp-format="{0:MM/dd/yyyy hh:mm tt}"*@
-                                <input id="datepicker" class="input" type="date" asp-for="SchoolNotice.ScheduleDateTime">
-                                <input id="datepicker" class="input" type="time" asp-for="ScheduleTime">
-                                <span asp-validation-for="SchoolNotice.ScheduleDateTime" class="help is-danger"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label has-text-black"></label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field is-grouped">
-                            @if (Model.SchoolNotice.SchoolNoticeID != 0)
-                            {
-                                <div class="control">
-                                    <button type="submit" class="button is-success" asp-route-id="@Model.SchoolNotice.SchoolNoticeID">Update</button>
-                                </div> }
-                            else
-                            {
-                                <div class="control">
-                                    <button type="submit" class="button is-success">Create</button>
-                                </div>}
-                            <div class="control">
-                                <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            </div>
+        </div>
+    </form>
 
 </div>

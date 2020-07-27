@@ -54,8 +54,24 @@ namespace Tuteexy.Models
         public DateTime DateDue { get; set; }
 
         [MaxLength(150)]
-        [Display(Name = "Ref Link")]
-        public string RefLink { get; set; }
+        [Display(Name = "Ref Link - 1")]
+        public string RefLink1 { get; set; }
+
+        [MaxLength(150)]
+        [Display(Name = "Ref Link  - 2")]
+        public string RefLink2 { get; set; }
+
+        [MaxLength(150)]
+        [Display(Name = "Ref Link  - 3")]
+        public string RefLink3 { get; set; }
+
+        [MaxLength(150)]
+        [Display(Name = "Ref Link  - 4")]
+        public string RefLink4 { get; set; }
+
+        [MaxLength(150)]
+        [Display(Name = "Ref Link - 5")]
+        public string RefLink5 { get; set; }
 
         //[MaxLength(150)]
         //[Display(Name = "Attachment")]

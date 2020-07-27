@@ -109,7 +109,7 @@
 
     <div class="columns mt-6 pt-2 pb-1 mb-0 has-background-dark">
         <div class="column is-2 aside">
-            
+
             <p class="menu-label">Administration</p>
             <ul class="menu-list">
 
@@ -118,10 +118,24 @@
                 @await Component.InvokeAsync("HWMenu")
             </ul>
 
-           
+
         </div>
         <div class="column main columnsfullheight">
             @RenderBody()
+        </div>
+        <div class="column is-2 mx-1">
+
+            <div class="notification is-grey-lighter has-text-centered has-text-black px-3">
+                <span class="icon is-large"><i class="fas fa-user-circle fa-2x"></i></span>
+                <p class="subtitle is-5">
+                    @await Component.InvokeAsync("UserName")
+                </p>
+                <a class="button is-outlined is-fullwidth" asp-area="User" asp-controller="Dashboard" asp-action="Profile" style="width:100%">
+                    Profile
+                </a>
+            </div>
+
+
         </div>
     </div>
 
