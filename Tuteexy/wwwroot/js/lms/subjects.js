@@ -28,8 +28,8 @@ function loadDataTable() {
                 "data": "subjectID",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
-                                  <a onclick=Delete("/Lms/Subjects/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                            <div>
+                                  <a class="a-pointer" onclick=Delete("/Lms/Subjects/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

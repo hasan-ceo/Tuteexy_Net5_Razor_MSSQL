@@ -1,46 +1,50 @@
-﻿<!-- Top Level -->
-<div class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <div class="title has-text-white">
-                <strong>Class wise routine</strong>
+﻿
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Class Routine's List</h5>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Lms" asp-controller="ClassRout" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
+                        </div>
+                    </div>
+                 </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th><abbr title="C:">Class Name</abbr></th>
+                                    <th><abbr title="D:">Day</abbr></th>
+                                    <th><abbr title="P1:">Period - 1</abbr></th>
+                                    <th><abbr title="P2:">Period - 2</abbr></th>
+                                    <th><abbr title="P3:">Period - 3</abbr></th>
+                                    <th><abbr title="P4:">Period - 4</abbr></th>
+                                    <th><abbr title="P5:">Period - 5</abbr></th>
+                                    <th><abbr title="P6:">Period - 6</abbr></th>
+                                    <th><abbr title="P7:">Period - 7</abbr></th>
+                                    <th><abbr title="P8:">Period - 8</abbr></th>
+                                    <th><abbr title="P9:">Period - 9</abbr></th>
+                                    <th><abbr title="P10:">Period - 10</abbr></th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Right side -->
-    <div class="level-right">
-        <div class="buttons has-addons is-centered">
-            <a class="button is-success" asp-area="Lms" asp-controller="ClassRout" asp-action="Upsert">Create</a>
-        </div>
-    </div>
-</div>
-
-<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
-
-<!-- Table -->
-<div class="table-container has-background-info-light px-2 py-2 mb-0">
-    <table id="tblData" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth display compact">
-        <thead class="has-background-grey-light">
-            <tr>
-                <th><abbr title="C:">Class Name</abbr></th>
-                <th><abbr title="D:">Day</abbr></th>
-                <th><abbr title="P1:">Period - 1</abbr></th>
-                <th><abbr title="P2:">Period - 2</abbr></th>
-                <th><abbr title="P3:">Period - 3</abbr></th>
-                <th><abbr title="P4:">Period - 4</abbr></th>
-                <th><abbr title="P5:">Period - 5</abbr></th>
-                <th><abbr title="P6:">Period - 6</abbr></th>
-                <th><abbr title="P7:">Period - 7</abbr></th>
-                <th><abbr title="P8:">Period - 8</abbr></th>
-                <th><abbr title="P9:">Period - 9</abbr></th>
-                <th><abbr title="P10:">Period - 10</abbr></th>
-                <th></th>
-
-            </tr>
-        </thead>
-    </table>
 </div>
 
 

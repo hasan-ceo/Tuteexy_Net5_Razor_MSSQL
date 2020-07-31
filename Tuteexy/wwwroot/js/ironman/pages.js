@@ -27,11 +27,11 @@ function loadDataTable() {
                 "data": "pageID",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
-                                <a href="/Ironman/Pages/Upsert/${data}" class="button is-primary is-small">
-                                    <i class="fas fa-edit"></i> 
+                            <div>
+                                <a class="a-pointer" href="/Ironman/Pages/Upsert/${data}"  data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="far fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Ironman/Pages/Delete/${data}") class="button is-danger is-small">
+                                <a class="a-pointer" onclick=Delete("/Ironman/Pages/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

@@ -30,11 +30,11 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
-                                <a onclick=Authorized("/Ironman/Schools/Authorize/${data}") class="button is-warning is-small has-tooltip-top" data-tooltip="Delete School">
-                                    <i class="far fa-check-square"></i> 
+                            <div>
+                                <a class="a-pointer" onclick=Authorized("/Ironman/Schools/Authorize/${data}") data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="far fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Ironman/Schools/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a class="a-pointer" onclick=Delete("/Ironman/Schools/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

@@ -28,14 +28,14 @@ function loadDataTable() {
                 "data": "classRoomID",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
-                                <a href="/Lms/ClassRoomNotices/Create/${data}" class="button is-link is-small has-tooltip-top" data-tooltip="Delete School">
+                            <div>
+                                <a class="a-pointer" href="/Lms/ClassRoomNotices/Create/${data}" data-toggle="tooltip" data-placement="top" title="Create">
                                     <i class="fas fa-desktop"></i> 
                                 </a>
-                                <a href="/Lms/ClassRoomStudents/Index/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a class="a-pointer" href="/Lms/ClassRoomStudents/Index/${data}" data-toggle="tooltip" data-placement="top" title="Index">
                                     <i class="fas fa-desktop"></i> 
                                 </a>
-                                <a onclick=Delete("/Lms/ClassRooms/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a class="a-pointer" onclick=Delete("/Lms/ClassRooms/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

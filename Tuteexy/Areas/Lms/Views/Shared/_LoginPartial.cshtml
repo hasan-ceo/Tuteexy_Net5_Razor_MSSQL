@@ -7,11 +7,21 @@
 @if (SignInManager.IsSignedIn(User))
 {
 
-                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
-                    <button type="submit" class="button is-danger">
-                        <span class="icon is-small">
-                            <i class="fa fa-sign-out"></i>
-                        </span>
-                        
-                    </button>
-                </form>}
+<li class="nav-item dropdown">
+    <a class="nav-link text-center d-flex flex-column text-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fas fa-user fa-1x"><small>▼</small></span>
+        <span class="d-sm-inline px-1 mt-1">User</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right shadow-lg" aria-labelledby="navbarDropdown">
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
+            <button type="submit" class="dropdown-item">
+                <span class="fas fa-sign-out-alt fa-1x"></span>
+                <span>Logout</span>
+            </button>
+        </form>
+        @*<a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>*@
+    </div>
+</li>}

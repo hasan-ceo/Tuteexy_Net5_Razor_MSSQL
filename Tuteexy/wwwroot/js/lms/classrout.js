@@ -38,11 +38,11 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
-  <a href="/Lms/ClassRout/Upsert/${data}" class="button is-primary is-small has-tooltip-top" data-tooltip="Edit School">
+                            <div>
+                                <a class="a-pointer" href="/Lms/ClassRout/Upsert/${data}" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="fas fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Lms/ClassRout/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a class="a-pointer" onclick=Delete("/Lms/ClassRout/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>

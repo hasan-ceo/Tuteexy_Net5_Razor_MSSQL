@@ -1,61 +1,42 @@
-﻿<!-- Top Breadcrumb -->
-<div class="breadcrumb is-small is-white" aria-label="breadcrumbs">
-    <ul>
-        <li>
-            <a asp-area="Lms"
-               asp-controller="ClassRoutines"
-               asp-action="index"><strong>Class Routine</strong></a>
-        </li>
-        <li class="is-active"><a href="#" class="has-text-white" aria-current="page"><strong>Index</strong></a></li>
-    </ul>
-</div>
+﻿<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">My class routine</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped table-sm table-hover table-font-size">
+                            <thead class="thead-dark">
+                                <tr>
 
-<!-- Top Level -->
-<div class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <div class="title has-text-white">
-                <strong>My class routine</strong>
+                                    <th><abbr title="C:">Class Name</abbr></th>
+                                    <th><abbr title="D:">Day</abbr></th>
+                                    <th><abbr title="P1:">Period - 1</abbr></th>
+                                    <th><abbr title="P2:">Period - 2</abbr></th>
+                                    <th><abbr title="P3:">Period - 3</abbr></th>
+                                    <th><abbr title="P4:">Period - 4</abbr></th>
+                                    <th><abbr title="P5:">Period - 5</abbr></th>
+                                    <th><abbr title="P6:">Period - 6</abbr></th>
+                                    <th><abbr title="P7:">Period - 7</abbr></th>
+                                    <th><abbr title="P8:">Period - 8</abbr></th>
+                                    <th><abbr title="P9:">Period - 9</abbr></th>
+                                    <th><abbr title="P10:">Period - 10</abbr></th>
+
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:x-small">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Right side -->
-    <div class="level-right">
-        <div class="buttons has-addons is-centered">
-            
-        </div>
-    </div>
 </div>
-
-<!-- Table -->
-<div class="table-container has-background-info-light px-2 py-2 mb-0">
-    <table id="tblData" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth display compact">
-        <thead class="has-background-grey-light">
-            <tr>
-                <th><abbr title="C:">Class Name</abbr></th>
-                <th><abbr title="D:">Day</abbr></th>
-                <th><abbr title="P1:">Period - 1</abbr></th>
-                <th><abbr title="P2:">Period - 2</abbr></th>
-                <th><abbr title="P3:">Period - 3</abbr></th>
-                <th><abbr title="P4:">Period - 4</abbr></th>
-                <th><abbr title="P5:">Period - 5</abbr></th>
-                <th><abbr title="P6:">Period - 6</abbr></th>
-                <th><abbr title="P7:">Period - 7</abbr></th>
-                <th><abbr title="P8:">Period - 8</abbr></th>
-                <th><abbr title="P9:">Period - 9</abbr></th>
-                <th><abbr title="P10:">Period - 10</abbr></th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-</div>
-
 
 @section Scripts {
     <script src="~/js/user/myclassroutines.js"></script>
-   @* <partial name="_DeleteScriptsPartial" />*@
+    @* <partial name="_DeleteScriptsPartial" />*@
 }

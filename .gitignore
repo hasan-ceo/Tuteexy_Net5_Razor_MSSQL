@@ -344,3 +344,6 @@ healthchecksdb
 
 #Ignore RAW
 /RAW/*
+
+#Ignore archive
+/Archive/*

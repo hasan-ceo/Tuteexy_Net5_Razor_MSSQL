@@ -30,21 +30,21 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                            <div class="buttons has-addons is-right">
- <a href="/Lms/SchoolNotices/Create/${data}" class="button is-gray is-small has-tooltip-top" data-tooltip="Add School Notice">
+                            <div>
+                                <a class="a-pointer" href="/Lms/SchoolNotices/Create/${data}" data-toggle="tooltip" data-placement="top" title="Notice Create">
                                     <i class="fas fa-desktop"></i> 
                                 </a>
-                                <a href="/Lms/ClassRooms/Create/${data}" class="button is-warning is-small has-tooltip-top" data-tooltip="Add Class">
+                                <a class="a-pointer" href="/Lms/ClassRooms/Create/${data}" data-toggle="tooltip" data-placement="top" title="Class Room Create">
                                     <i class="fas fa-warehouse"></i> 
                                 </a>
 
-                                <a href="/Lms/Schools/Upsert/${data}" class="button is-primary is-small has-tooltip-top" data-tooltip="Edit School">
+                                <a class="a-pointer" href="/Lms/Schools/Upsert/${data}" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="fas fa-edit"></i> 
                                 </a>
-                                <a onclick=Delete("/Lms/Schools/Delete/${data}") class="button is-danger is-small has-tooltip-top" data-tooltip="Delete School">
+                                <a class="a-pointer" onclick=Delete("/Lms/Schools/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 
                                 </a>
-<a href="/Lms/Subjects/Create/${data}" class="button is-success is-small has-tooltip-top" data-tooltip="Add Subject">
+                                <a class="a-pointer" href="/Lms/Subjects/Create/${data}" data-toggle="tooltip" data-placement="top" title="Subject Create">
                                     <i class="fas fa-book"></i> 
                                 </a>
                             </div>
