@@ -43,14 +43,14 @@ namespace Tuteexy.Areas.Lms.Controllers
                 ScheduleDateTime = DateTime.Now
             };
 
-            ClassRoomNoticeVM schoolnoticeVM = new ClassRoomNoticeVM()
+            ClassRoomNoticeVM classroomnoticeVM = new ClassRoomNoticeVM()
             {
                 ClassRoomNotice = sn,
-                ScheduleTime = DateTime.Now.TimeOfDay.ToString()
+                ScheduleTime = DateTime.Now
             };
 
             //this is for create
-            return View("Upsert", schoolnoticeVM);
+            return View("Upsert", classroomnoticeVM);
         }
 
         public async Task<IActionResult> Edit(long Id)
@@ -66,43 +66,43 @@ namespace Tuteexy.Areas.Lms.Controllers
             ClassRoomNoticeVM schoolnoticeVM = new ClassRoomNoticeVM()
             {
                 ClassRoomNotice = schoolnotice,
-                ScheduleTime = schoolnotice.ScheduleDateTime.TimeOfDay.ToString()
+                ScheduleTime = schoolnotice.ScheduleDateTime
+
             };
             return View("Upsert", schoolnoticeVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert(ClassRoomNoticeVM schoolnoticevm)
+        public async Task<IActionResult> Upsert(ClassRoomNoticeVM classRoomNoticevm)
         {
             if (ModelState.IsValid)
             {
                 var workdate = DateTime.Now;
                 _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                TimeSpan ts = TimeSpan.Parse(schoolnoticevm.ScheduleTime);
-                schoolnoticevm.ClassRoomNotice.ScheduleDateTime = schoolnoticevm.ClassRoomNotice.ScheduleDateTime.Add(ts);
+                classRoomNoticevm.ClassRoomNotice.ScheduleDateTime = classRoomNoticevm.ClassRoomNotice.ScheduleDateTime.Add(classRoomNoticevm.ScheduleTime.TimeOfDay);
 
-                if (schoolnoticevm.ClassRoomNotice.ClassRoomNoticeID == 0)
+                if (classRoomNoticevm.ClassRoomNotice.ClassRoomNoticeID == 0)
                 {
-                    schoolnoticevm.ClassRoomNotice.CreatedBy = _userId;
-                    schoolnoticevm.ClassRoomNotice.CreatedDate = workdate;
-                    schoolnoticevm.ClassRoomNotice.UpdatedBy = _userId;
-                    schoolnoticevm.ClassRoomNotice.UpdatedDate = workdate;
+                    classRoomNoticevm.ClassRoomNotice.CreatedBy = _userId;
+                    classRoomNoticevm.ClassRoomNotice.CreatedDate = workdate;
+                    classRoomNoticevm.ClassRoomNotice.UpdatedBy = _userId;
+                    classRoomNoticevm.ClassRoomNotice.UpdatedDate = workdate;
 
-                    await _unitOfWork.ClassRoomNotice.AddAsync(schoolnoticevm.ClassRoomNotice);
+                    await _unitOfWork.ClassRoomNotice.AddAsync(classRoomNoticevm.ClassRoomNotice);
 
                 }
                 else
                 {
-                    schoolnoticevm.ClassRoomNotice.UpdatedBy = _userId;
-                    schoolnoticevm.ClassRoomNotice.UpdatedDate = workdate;
-                    _unitOfWork.ClassRoomNotice.Update(schoolnoticevm.ClassRoomNotice);
+                    classRoomNoticevm.ClassRoomNotice.UpdatedBy = _userId;
+                    classRoomNoticevm.ClassRoomNotice.UpdatedDate = workdate;
+                    _unitOfWork.ClassRoomNotice.Update(classRoomNoticevm.ClassRoomNotice);
                 }
 
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(schoolnoticevm.ClassRoomNotice);
+            return View(classRoomNoticevm);
         }
 
 

@@ -5,118 +5,69 @@
 <!-- Main container -->
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<div class="box">
-    <div class="level">
-        <!-- Left side -->
-        <div class="level-left">
-            <div class="level-item">
-                <div class="title has-text-black">
-                    <strong>@title</strong>
-                </div>
-            </div>
-        </div>
 
-        <!-- Right side -->
-        <div class="level-right">
-
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            @title
         </div>
     </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-area="Lms" asp-controller="UserCreates" asp-action="TeacherAdd">
+            <input type="hidden" asp-for="TmpID" />
 
-
-    <form method="post" autocomplete="off" asp-area="Lms" asp-controller="UserCreates" asp-action="TeacherAdd">
-        <input type="hidden" asp-for="TmpID" />
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black level-left" asp-for="Name">Teacher Name</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" asp-for="Name">
-                        <span asp-validation-for="Name" class="help is-danger"></span>
-                    </p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Name">Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="Name">
                 </div>
             </div>
-        </div>
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black level-left" asp-for="Email">Teacher Email</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="email" asp-for="Email">
-                        <span asp-validation-for="Email" class="help is-danger"></span>
-                    </p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Email">Email</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="email" asp-for="Email">
                 </div>
             </div>
-        </div>
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black level-left" asp-for="PhoneNumber">Phone Number</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" asp-for="PhoneNumber">
-                        <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
-                    </p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="PhoneNumber">Phone Number</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="PhoneNumber">
                 </div>
             </div>
-        </div>
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black level-left" asp-for="Password">Password</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="password" asp-for="Password" required>
-                        <span asp-validation-for="Password" class="help is-danger"></span>
-                    </p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Password">Password</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" asp-for="Password">
                 </div>
             </div>
-        </div>
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black level-left" asp-for="ConfirmPassword">Confirm Password</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="password" asp-for="ConfirmPassword">
-                        <span asp-validation-for="ConfirmPassword" class="help is-danger"></span>
-                    </p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ConfirmPassword">Confirm Password</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="password" asp-for="ConfirmPassword">
                 </div>
             </div>
-        </div>
 
-        <h5 class="subtitle is-6 has-text-black">
-            By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
-        </h5>
-
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label has-text-black"></label>
+            <div class="form-group row">
+                <h5 class="col-sm-12 card-subtitle">
+                    By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
+                </h5>
             </div>
-            <div class="field-body">
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button type="submit" class="button is-success">Sign Up</button>
-                    </div>
 
-                    <div class="control">
-                        <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
-                    </div>
-                </div>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-success">Create</button>
+                <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</a>
             </div>
-        </div>
 
-
-    </form>
+        </form>
+    </div>
 </div>
+
+
+
 

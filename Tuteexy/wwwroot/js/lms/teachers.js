@@ -31,8 +31,8 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div>
-                                <a class="a-pointer" onclick=Delete("/Lms/SchoolTeachers/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <i class="fas fa-trash-alt"></i> 
+                                <a class="a-pointer" onclick=Delete("/Lms/SchoolTeachers/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Separate">
+                                    <i class="fas fa-sign-out-alt"></i> 
                                 </a>
                             </div>
                            `;
@@ -44,7 +44,7 @@ function loadDataTable() {
 
 function Delete(url) {
     swal({
-        title: "Are you sure you want to Delete?",
+        title: "Are you sure you want to Separate?",
         text: "You will not be able to restore the data!",
         icon: "warning",
         buttons: true,

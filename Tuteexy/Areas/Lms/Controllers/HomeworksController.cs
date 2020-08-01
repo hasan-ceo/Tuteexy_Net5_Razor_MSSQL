@@ -65,7 +65,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 HomeworkVM homeworkVM = new HomeworkVM()
                 {
                     Homework = hw,
-                    ScheduleTime = DateTime.Now.TimeOfDay.ToString(),
+                    ScheduleTime = DateTime.Now,
                     ClassRoomList = clsList.Select(i => new SelectListItem
                     {
                         Text = i.ClassRoomName,
@@ -84,7 +84,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 }
                 //this is for edit
                 homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
-                homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime.TimeOfDay.ToString();
+                homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime;
                 if (homeworkVM.Homework == null)
                 {
                     return NotFound();
@@ -104,14 +104,12 @@ namespace Tuteexy.Areas.Lms.Controllers
                     _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     homeworkVM.Homework.TeacherID = _userId;
                     homeworkVM.Homework.DateAssigned = DateTime.Now;
-                    TimeSpan ts = TimeSpan.Parse(homeworkVM.ScheduleTime);
-                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(ts);
+                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(homeworkVM.ScheduleTime.TimeOfDay);
                     await _unitOfWork.Homework.AddAsync(homeworkVM.Homework);
                 }
                 else
                 {
-                    TimeSpan ts = TimeSpan.Parse(homeworkVM.ScheduleTime);
-                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(ts);
+                    homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(homeworkVM.ScheduleTime.TimeOfDay);
                     _unitOfWork.Homework.Update(homeworkVM.Homework);
                 }
                 _unitOfWork.Save();

@@ -11,21 +11,25 @@ namespace Tuteexy.Models
     {
         [Key]
         public long ClassRoutineID { get; set; }
+
+
         public long ClassRoomID { get; set; }
+        [Required(ErrorMessage = "Select Class Room")]
         public virtual ClassRoom ClassRoom {get; set;}
 
-        [Required]
+        [Required(ErrorMessage = "Select Day")]
         [MaxLength(50)]
         public string DayName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Select Period - 1 Subject")]
         [MaxLength(50)]
         [Display(Name = "Period - 1")]
         public string Period1 { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Select Period - 2 Subject")]
         [MaxLength(50)]
         [Display(Name = "Period - 2")]
         public string Period2 { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Select Period - 3 Subject")]
         [MaxLength(50)]
         [Display(Name = "Period - 3")]
         public string Period3 { get; set; }

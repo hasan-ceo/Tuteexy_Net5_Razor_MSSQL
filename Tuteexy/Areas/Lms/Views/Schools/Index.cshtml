@@ -1,124 +1,97 @@
 ﻿@model IEnumerable<Tuteexy.Models.ViewModels.SchoolVM>
 
-
-<!-- Top Level -->
-<div class="level">
-    <!-- Left side -->
-    <div class="level-left">
-        <div class="level-item">
-            <div class="title has-text-white">
-                <strong>School's List</strong>
-            </div>
-        </div>
-    </div>
-
-    <!-- Right side -->
-    <div class="level-right">
-        <div class="buttons has-addons is-centered">
-            <a class="button is-success" asp-area="Lms" asp-controller="Schools" asp-action="Upsert">Create School</a>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="columns is-multiline">
-    @if (Model != null)
-    {
-        foreach (var item in Model)
-        {
-            <div class="column is-half">
-
-                <div class="notification is-white-bis px-4">
-                    <p class="title is-4 px-1 py-1 my-0 has-text-black"><strong>Name:</strong> @item.SchoolName</p>
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>ID:</strong> @item.SchoolID</p>
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>Phone:</strong> @item.PhoneNumber</p>
-
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-background-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
-
-                    @if (item.isauthorize != "Authorized")
-                    {
-                        <p class="subtitle is-6 px-1 pt-3 pb-1 mb-0 mt-3 has-text-black">
-                            We are reviewing your open school request. We will contact with you for verification. Once your request approve you can enjoy our school service.
-                        </p>
-                    }
-
-                    <div class="content mt-5">
-                        <div class="columns is-12 is-multiline">
-                            @if (item.isauthorize == "Authorized")
-                            {
-                                <div class="column">
-                                    <a href="/Lms/SchoolNotices/Create/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span>Notice</span>
-                                    </a>
-                                </div>
-                                <div class="column">
-                                    <a href="/Lms/ClassRooms/Create/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span>Class Room</span>
-                                    </a>
-                                </div>
-                                <div class="column">
-                                    <a href="/Lms/Subjects/Create/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span>Subjects</span>
-                                    </a>
-                                </div>
-                                <div class="column">
-                                    <a href="/Lms/Schools/Upsert/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        <span>School Edit</span>
-                                    </a>
-                                </div>
-                                <div class="column">
-                                    <a href="/Lms/Holidays/Create/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span>Holiday</span>
-                                    </a>
-                                </div>
-                                <div class="column">
-                                    <a href="/Lms/UserCreates/TeacherAdd/@item.SchoolID" class="button is-dark is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                        <span>Teacher</span>
-                                    </a>
-                                </div>
-
-                            }
-                            @if (item.isauthorize != "Authorized")
-                            {<div class="column center-column">
-                                    <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="button is-danger is-fullwidth">
-                                        <span class="icon">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </span>
-                                        <span>Delete</span>
-                                    </a>
-                                </div>
-                            }
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">School's List</h5>
                         </div>
-
-
-
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Schools" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        }
-    }
+        </div>
+    </div>
 </div>
 
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title"><strong>Name:</strong> @item.SchoolName</p>
+                            <p class="card-subtitle"><strong>ID:</strong> @item.SchoolID</p>
+                            <p class="card-subtitle"><strong>Phone:</strong> @item.PhoneNumber</p>
+
+                            <p class="card-subtitle my-2 py-1 text-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
+
+                            @*@if (item.isauthorize != "Authorized")
+                            {
+                                <p class="card-subtitle">
+                                    We are reviewing your open school request. We will contact with you for verification. Once your request approve you can enjoy our school service.
+                                </p>
+                            }*@
+
+                            
+
+
+                                    <a href="/Lms/SchoolNotices/Create/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-plus"></span>
+                                        <span>Notice</span>
+                                    </a>
+
+                                    <a href="/Lms/ClassRooms/Create/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-plus"></span>
+                                        <span>Class</span>
+                                    </a>
+
+                                    <a href="/Lms/Subjects/Create/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-plus"></span>
+                                        <span>Subjects</span>
+                                    </a>
+
+
+
+                                    <a href="/Lms/Holidays/Create/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-plus"></span>
+                                        <span>Holiday</span>
+                                    </a>
+
+                                    <a href="/Lms/UserCreates/TeacherAdd/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-plus"></span>
+                                        <span>Teacher</span>
+                                    </a>
+
+                                    <a href="/Lms/Schools/Upsert/@item.SchoolID" class="btn btn-outline-dark my-1">
+                                        <span class="fas fa-edit"></span>
+                                        <span>School</span>
+                                    </a>
+                             
+                                @if (item.isauthorize != "Authorized")
+                                {
+                                    <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="btn btn-outline-dark my-1" href="#">
+                                        <span class="fas fa-trash-alt"></span>
+                                        <span>Delete</span>
+                                    </a>
+
+                                }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 
 
 <script>

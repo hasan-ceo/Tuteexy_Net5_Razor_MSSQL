@@ -29,11 +29,11 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div>
-                                <a class="a-pointer" href="/Lms/ClassRoomNotices/Create/${data}" data-toggle="tooltip" data-placement="top" title="Create">
+                                <a class="a-pointer" href="/Lms/ClassRoomNotices/Create/${data}" data-toggle="tooltip" data-placement="top" title="Create Class Notice">
                                     <i class="fas fa-desktop"></i> 
                                 </a>
-                                <a class="a-pointer" href="/Lms/ClassRoomStudents/Index/${data}" data-toggle="tooltip" data-placement="top" title="Index">
-                                    <i class="fas fa-desktop"></i> 
+                                <a class="a-pointer" href="/Lms/ClassRoomStudents/Index/${data}" data-toggle="tooltip" data-placement="top" title="Student List">
+                                    <i class="fas fa-user"></i> 
                                 </a>
                                 <a class="a-pointer" onclick=Delete("/Lms/ClassRooms/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="fas fa-trash-alt"></i> 

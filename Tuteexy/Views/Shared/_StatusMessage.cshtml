@@ -5,14 +5,18 @@
     var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
     if (Model.StartsWith("Error") == true)
     {
-        <div class="notification is-danger">
-            <span class="tile"> @Model </span>
+    <div class="card bg-danger">
+        <div class="card-body">
+            <span class="card-title"> @Model </span>
         </div>
+    </div>
     }
     else
     {
-<div class="notification is-success">
-    <span class="tile"> @Model </span>
+<div class="card bg-success">
+    <div class="card-body">
+        <span class="card-tile"> @Model </span>
+    </div>
 </div>
     }
 

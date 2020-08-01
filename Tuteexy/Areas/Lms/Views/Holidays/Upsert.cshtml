@@ -3,102 +3,56 @@
 @{
     var title = "Create Holiday";
 }
-
-    <div class="box">
-
-
-        <!-- Main container -->
-        <div class="level">
-            <!-- Left side -->
-            <div class="level-left">
-                <div class="level-item">
-                    <div class="title has-text-black">
-                        @if (Model.HolidayID != 0)
-                        {
-                            //edit
-                            title = "Edit Holiday";
-                        }
-                        <strong>@title</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right side -->
-            <div class="level-right">
-
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                @if (Model.HolidayID != 0)
+                {
+                    //edit
+                    title = "Edit Holiday";
+                }
+                @title
             </div>
         </div>
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="Holidays" asp-action="Upsert">
+                <input type="hidden" asp-for="HolidayID" />
+                <input type="hidden" asp-for="SchoolID" />
 
-                <form method="post" autocomplete="off" asp-route-returnUrl="" asp-area="Lms" asp-controller="Holidays" asp-action="Upsert">
-                    <input type="hidden" asp-for="HolidayID" />
-                    <input type="hidden" asp-for="SchoolID" />
 
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label has-text-black level-left" asp-for="HolidayName">Holiday Name</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control is-expanded has-icons-left">
-                                    <input class="input" type="text" placeholder="Title" asp-for="HolidayName">
-                                    <span asp-validation-for="HolidayName" class="help is-danger"></span>
-                                </p>
-                            </div>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="HolidayName">Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" asp-for="HolidayName">
                     </div>
+                </div>
 
-
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label has-text-black level-left" asp-for="DateStart">Date Start</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control is-expanded has-icons-left">
-                                    <input id="datepicker" class="input" type="date" asp-for="DateStart">
-                                    <span asp-validation-for="DateStart" class="help is-danger"></span>
-                                </p>
-                            </div>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="DateStart">Date Start</label>
+                    <div class="col-sm-10">
+                        <input id="datepicker" class="form-control" type="date" asp-for="DateStart">
                     </div>
+                </div>
 
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label has-text-black level-left" asp-for="DateEnd">Date Start</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control is-expanded has-icons-left">
-                                    <input id="datepicker" class="input" type="date" asp-for="DateEnd">
-                                    <span asp-validation-for="DateEnd" class="help is-danger"></span>
-                                </p>
-                            </div>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="DateEnd">Date End</label>
+                    <div class="col-sm-10">
+                        <input id="datepicker" class="form-control" type="date" asp-for="DateEnd">
                     </div>
+                </div>
 
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label has-text-white"></label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field is-grouped">
-                                @if (Model.HolidayID != 0)
-                                {
-                                    <div class="control">
-                                        <button type="submit" class="button is-success" asp-route-id="@Model.HolidayID">Update</button>
-                                    </div> }
-                                else
-                                {
-                                    <div class="control">
-                                        <button type="submit" class="button is-success">Create</button>
-                                    </div>}
-                                <div class="control">
-                                    <button class="button is-link is-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    @if (Model.HolidayID != 0)
+                    {
+                        <button type="submit" class="btn btn-success" asp-route-id="@Model.HolidayID">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-success">Create</button>
+                    }
+                    <button class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>

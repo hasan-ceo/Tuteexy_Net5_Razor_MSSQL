@@ -48,7 +48,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             SchoolNoticeVM schoolnoticeVM = new SchoolNoticeVM()
             {
                 SchoolNotice = sn,
-                ScheduleTime = DateTime.Now.TimeOfDay.ToString()
+                ScheduleTime = DateTime.Now
             };
 
             //this is for create
@@ -68,7 +68,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             SchoolNoticeVM schoolnoticeVM = new SchoolNoticeVM()
             {
                 SchoolNotice = schoolnotice,
-                ScheduleTime = schoolnotice.ScheduleDateTime.TimeOfDay.ToString()
+                ScheduleTime = schoolnotice.ScheduleDateTime
             };
             return View("Upsert", schoolnoticeVM);
         }
@@ -81,8 +81,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             {
                 var workdate = DateTime.Now;
                 _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                TimeSpan ts = TimeSpan.Parse(schoolnoticevm.ScheduleTime);
-                schoolnoticevm.SchoolNotice.ScheduleDateTime = schoolnoticevm.SchoolNotice.ScheduleDateTime.Add(ts);
+                schoolnoticevm.SchoolNotice.ScheduleDateTime = schoolnoticevm.SchoolNotice.ScheduleDateTime.Add(schoolnoticevm.ScheduleTime.TimeOfDay);
 
                 if (schoolnoticevm.SchoolNotice.SchoolNoticeID == 0)
                 {
@@ -104,7 +103,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(schoolnoticevm.SchoolNotice);
+            return View(schoolnoticevm);
         }
 
 

@@ -18,7 +18,7 @@ namespace Tuteexy.Models
         public string TeacherID { get; set; }
         public virtual ApplicationUser Teacher { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Select Subject")]
         [MaxLength(64)]
         [Display(Name = "Subject")]
         public string Subject { get; set; }
