@@ -18,8 +18,6 @@
     <title>Tuteely - For Student, Develop by Student</title>
     <link rel="icon" href="/Images/core/icon.png" sizes="any" type="image/svg+xml">
 
-    <link rel="stylesheet" href="~/css/grid.css" />
-    <link rel="stylesheet" href="~/css/helpers.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/sitefront.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
@@ -30,7 +28,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column" asp-area="Ironman" asp-controller="Dashboard" asp-action="index">
+                        <a class="nav-link d-flex flex-column" asp-area="Front" asp-controller="Home" asp-action="index">
                             <img src="~/images/core/logo.png" alt="" style="height: 30px;">
                         </a>
                     </li>
@@ -66,7 +64,7 @@
                     </p>
                 </div>
                 <div class="col-12">
-                    <a class="center" asp-area="" asp-controller="home" asp-action="index">
+                    <a class="center" asp-area="Front" asp-controller="Home" asp-action="index">
                         <img src="~/images/core/logo.png" class="image" style="width:150px">
                     </a>
                 </div>
@@ -91,7 +89,6 @@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 

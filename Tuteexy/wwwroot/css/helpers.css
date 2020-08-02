@@ -9,6 +9,17 @@
     justify-content: right;
     align-items: center;
 }
+
+
+body {
+    background-image: url('/images/core/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+/*    font-family: 'Poppins', sans-serif;
+    font-size: 20px;*/
+}
+
 /*
 .center-column {
     flex-direction: column;
