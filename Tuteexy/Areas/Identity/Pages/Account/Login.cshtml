@@ -1,65 +1,27 @@
 ﻿@page "/Login"
 @model LoginModel
 
-<section class="hero is-white is-fullheight">
-    <div class="hero-head">
-    </div>
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-4">
-
-                    <h3 class="subtitle is-3 has-text-black">
-                        Welcome Back
-                    </h3>
-                    @*<div asp-validation-summary="All"></div>*@
-                    <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
-                        <div class="field">
-                            <label class="label" asp-for="Input.UserName">Enter your User ID.</label>
-                            <div class="control has-icons-left">
-                                <input asp-for="Input.UserName" class="input" type="text" placeholder="e.g. azmainfiaz">
-                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
-                            </div>
-                            <span asp-validation-for="Input.UserName" class="help is-danger"></span>
-                        </div>
-                        <div class="field">
-                            <label class="label" asp-for="Input.Password">Password</label>
-                            <div class="control has-icons-left">
-                                <input asp-for="Input.Password" class="input" type="password" placeholder="e.g. Abc123$">
-                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                            </div>
-                            <span asp-validation-for="Input.Password" class="help is-danger"></span>
-                        </div>
-                        <div class="field is-hidden">
-                            <div class="control">
-                                <label class="checkbox" asp-for="Input.RememberMe">
-                                    <input type="checkbox" asp-for="Input.RememberMe">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="button is-success is-fullwidth">Log in</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div id="logingrid" style="width: 100%;">
-                        <div id="a" class="center-column">
-                            <p class="subtitle is-7 has-text-centered has-text-black">
-                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br>
-                            </p>
-                        </div>
-                    </div>
+<div class="row justify-content-center align-content-center">
+    <div class="col-sm-10 col-md-10 p-4">
+        <section>
+            <form id="account" method="post" class="inplgnin">
+                <p class="lead">Welcome Back</p>
+                <div class="form-group my-1">
+                    <input type="text" class="form-control form-control-sm" asp-for="Input.UserName" aria-describedby="emailHelp"
+                           placeholder="Enter your User ID..." required>
                 </div>
-            </div>
-        </div>
+                <div class="form-group my-1">
+                    <input type="password" class="form-control form-control-sm" asp-for="Input.Password"
+                           placeholder="Enter your Password..." required>
+                </div>
+                <div class="form-group my-1">
+                    <button type="submit" class="btn btn-primary btn-sm btn-block">Log in</button>
+                    <a id="forgot-password" class="btn btn-link btn-sm w-100" asp-page="./ForgotPassword">Forgot your password?</a>
+                </div>
+            </form>
+        </section>
     </div>
-    <div class="hero-foot">
-    </div>
-</section>
-
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

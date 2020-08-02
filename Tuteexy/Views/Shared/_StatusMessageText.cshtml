@@ -3,7 +3,6 @@
 @if (!String.IsNullOrEmpty(Model))
 {
     var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
-    <h5 class="text-@statusMessageClass">
-        @Model
-    </h5>
-}
+<h5 class="text-@statusMessageClass">
+    @Model
+</h5>}

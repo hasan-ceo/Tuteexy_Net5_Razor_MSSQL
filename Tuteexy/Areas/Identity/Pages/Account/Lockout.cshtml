@@ -2,23 +2,16 @@
 @model LockoutModel
 @{ ViewData["Title"] = "Locked out"; }
 
-<section class="hero is-white is-fullheight">
-    <div class="hero-head">
+
+<div class="row justify-content-center align-content-center">
+    <div class="col-sm-10 col-md-10 p-4">
+        <section>
+            <h3>
+                @ViewData["Title"]
+            </h3>
+            <h5 class="text-danger">
+                This account has been locked out, please try again later.
+            </h5>
+        </section>
     </div>
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-half">
-                    <h1 class="title is-1">
-                        @ViewData["Title"]
-                    </h1>
-                    <h3 class="subtitle is-3 has-text-danger">
-                        This account has been locked out, please try again later.
-                    </h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="hero-foot">
-    </div>
-</section>
+</div>
