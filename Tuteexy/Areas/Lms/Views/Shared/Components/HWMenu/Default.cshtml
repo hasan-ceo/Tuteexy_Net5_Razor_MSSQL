@@ -1,16 +1,23 @@
 ﻿@model Tuteexy.Models.SchoolTeacher
 
-@if (Model!=null)
+@if (Model != null)
 {
-    
+
     <li>
         <a class="nav-link" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">
             <span class="fas fa-envelope-open-text"></span>
             Homeworks
         </a>
     </li>
-       
-   
+
+    <li>
+        <a class="nav-link" asp-area="Lms" asp-controller="Classworks" asp-action="Index">
+            <span class="fas fa-atom"></span>
+            Classworks
+        </a>
+    </li>
+
+
 
 }
 

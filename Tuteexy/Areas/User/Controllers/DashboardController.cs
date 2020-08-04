@@ -43,12 +43,14 @@ namespace Tuteexy.Areas.User.Controllers
                 var classRoom = await _unitOfWork.ClassRoom.GetFirstOrDefaultAsync(c => c.ClassRoomID == classroomStudents.ClassRoomID);
                 schoolid = classRoom.SchoolID;
             }
+            var classwork = await _unitOfWork.Classwork.GetAllAsync(h => h.ClassRoomID == classrooomid && h.TimeStart <= DateTime.Now && h.TimeStart.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.TimeStart),includeProperties: "ClassRoom,Teacher");
             var homework = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
             var schoolnotice = await _unitOfWork.SchoolNotice.GetAllAsync(h => h.SchoolID == schoolid && h.ScheduleDateTime <= DateTime.Now && h.isPined == true, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "School");
             var classroomnotice = await _unitOfWork.ClassRoomNotice.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "ClassRoom");
 
             UserHomeVM userhome = new UserHomeVM()
             {
+                Classwork=classwork,
                 Homework = homework,
                 SchoolNotice = schoolnotice,
                 ClassRoomNotice = classroomnotice
@@ -127,6 +129,22 @@ namespace Tuteexy.Areas.User.Controllers
                 classroomID = classroom.ClassRoomID;
             }
             var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classroomID && h.ScheduleDateTime <= DateTime.Now, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
+            return View(allObj);
+
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ClassWorks()
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var classroom = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c => c.StudentID == _userId);
+            long classroomID = 0;
+            if (classroom != null)
+            {
+                classroomID = classroom.ClassRoomID;
+            }
+            var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.ClassRoomID == classroomID && h.TimeStart <= DateTime.Now, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
             return View(allObj);
 
         }

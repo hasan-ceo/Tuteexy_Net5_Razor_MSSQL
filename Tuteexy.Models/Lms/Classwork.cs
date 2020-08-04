@@ -73,9 +73,5 @@ namespace Tuteexy.Models
         [Display(Name = "Ref Link - 5")]
         public string RefLink5 { get; set; }
 
-        //[MaxLength(150)]
-        //[Display(Name = "Attachment")]
-        //public string Attachment { get; set; }
-
     }
 }

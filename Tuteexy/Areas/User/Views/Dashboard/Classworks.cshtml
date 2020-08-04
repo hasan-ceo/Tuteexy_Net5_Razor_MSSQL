@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Tuteexy.Models.Homework>
+﻿@model IEnumerable<Tuteexy.Models.Classwork>
 
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">My homeworks</h5>
+                    <h5 class="card-title">My Classworks</h5>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
-            @foreach (Homework item in Model)
+            @foreach (Classwork item in Model)
             {
                 <div class="card">
                     <div class="card-body">
@@ -23,7 +23,9 @@
                         <p class="subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
                         <p class="subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
                         <p class="subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                        <p class="subtitle"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                        <p class="card-subtitle"><strong>Class Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
+                        <p class="card-subtitle"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
+                        <p class="card-subtitle"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
 
                         <div class="btn-group">
                             @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
@@ -74,8 +76,8 @@
 
                             <a href="@eml" class="btn btn-light">
                                 <span class="icon is-medium">
-                                    <i class="fas fa-link"></i>
-                                </span>  <span>Reply</span>
+                                    <i class="fas fa-camera"></i>
+                                </span>  <span>Join</span>
                             </a>
                         </div>
                         <div class="content">
