@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Tuteexy.Utility;
 using Microsoft.AspNetCore.Http;
+using Stripe;
 
 namespace Tuteexy.Areas.Front.Controllers
 {
@@ -30,6 +31,12 @@ namespace Tuteexy.Areas.Front.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> TutorJobs()
+        {
+            var obj = await _unitOfWork.TutorJob.GetAllAsync();
+            return View(obj);
         }
 
         public async Task<IActionResult> Page(string name)

@@ -1,0 +1,66 @@
+﻿:root {
+    --main-radius: 10px;
+    --main-padding: 10px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    /*    height: 100%;
+    overflow: hidden;*/
+    background-image: url('/images/core/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /*    font-family: 'Poppins', sans-serif;
+    font-size: 20px;*/
+}
+
+.containergrid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "." "main" "footer";
+    grid-gap: 1em;
+}
+
+
+.main {
+    text-align: center;
+    grid-area: main;
+    border-radius: var(--main-radius);
+    padding: 0;
+}
+
+footer {
+
+    text-align: center;
+    background: white;
+    grid-area: footer;
+    border-radius: var(--main-radius);
+    padding: var(--main-padding);
+}
+
+
+.inplgnin input {
+    border: 2px solid #14b1ab;
+    border-radius: 200px;
+}
+
+.inpsgnup input {
+    border-radius: 200px;
+    border: 2px solid #5cb85c;
+}
+
+.btn {
+    border-radius: 200px;
+}
+
+@media only screen and (max-width: 550px) {
+    .containergrid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr ;
+        grid-template-areas: "." "main" "footer";
+    }
+}

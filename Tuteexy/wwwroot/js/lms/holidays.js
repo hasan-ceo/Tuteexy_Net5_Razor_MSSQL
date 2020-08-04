@@ -22,11 +22,6 @@ function loadDataTable() {
             "url": "/Lms/Holidays/GetAll"
         },
         "columns": [
-            { "data": "schoolname" },
-            { "data": "datestart" },
-            { "data": "dateend" },
-            { "data": "holidayname" },
-            { "data": "duration" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -38,7 +33,12 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "schoolname" },
+            { "data": "datestart" },
+            { "data": "dateend" },
+            { "data": "holidayname" },
+            { "data": "duration" }
         ]
     });
 }

@@ -1,0 +1,42 @@
+﻿<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Tutor Job's List</h5>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="User" asp-controller="TutorJobs" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th></th>
+                                    <th><abbr title="T:">Title</abbr></th>
+                                    <th><abbr title="C:">Course</abbr></th>
+                                    <th><abbr title="S:">Subject</abbr></th>
+                                    <th><abbr title="A:">Salary</abbr></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/user/tutorjobs.js"></script>
+    @* <partial name="_DeleteScriptsPartial" />*@
+}

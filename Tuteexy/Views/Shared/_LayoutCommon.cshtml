@@ -19,7 +19,7 @@
     <link rel="icon" href="/Images/core/icon.png" sizes="any" type="image/svg+xml">
 
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/sitefront.css" />
+    <link rel="stylesheet" href="~/css/layoutcommon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 </head>
 <body>
@@ -35,6 +35,12 @@
                 </ul>
 
                 <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Front" asp-controller="Home" asp-action="TutorJobs">
+                            <span class="fas fa-chalkboard-teacher fa-1x"></span>
+                            <span class="d-sm-inline mt-1">Tutor Job</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link d-flex flex-column text-success" asp-area="Identity" asp-page="/Account/Login">
                             <span class="fas fa-sign-in-alt fa-1x"></span>

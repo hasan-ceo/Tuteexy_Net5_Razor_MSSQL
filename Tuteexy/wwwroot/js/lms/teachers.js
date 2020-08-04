@@ -22,10 +22,6 @@ function loadDataTable() {
             "url": "/Lms/SchoolTeachers/GetAll"
         },
         "columns": [
-            { "data": "schoolName" },
-            { "data": "name" },
-            { "data": "approvedBy" },
-            { "data": "isApproved" },
             {
                 "data": "schoolTeacherID",
                 "render": function (data) {
@@ -37,7 +33,11 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "schoolName" },
+            { "data": "name" },
+            { "data": "approvedBy" },
+            { "data": "isApproved" }
         ]
     });
 }

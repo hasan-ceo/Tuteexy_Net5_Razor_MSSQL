@@ -1,6 +1,6 @@
 ﻿@model Tuteexy.Models.ViewModels.UserHomeVM
 
-<div class="notification is-dark is-rounded has-text-centered has-text-black px-0 pt-0 pb-2">
+<div class="notification is-dark is-rounded has-text-centered px-0 pt-0 pb-2">
     <img src="~/images/ads/dashboardbanner.jpg" style="width:100%">
 </div>
 
@@ -51,11 +51,11 @@
                                     <div class="col-12">
                                         <div class="card bg-warning">
                                             <div class="card-body">
-                                                <p class="title is-6 py-0 my-0 has-text-black">@item.Title</p>
-                                                <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> @item.Teacher.Name</p>
-                                                <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-                                                <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                                                <p class="subtitle is-6"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                                <p class="title py-0 my-0">@item.Title</p>
+                                                <p class="subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
+                                                <p class="subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                                                <p class="subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                                                <p class="subtitle"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
 
                                                 <div class="btn-group">
                                                     @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))

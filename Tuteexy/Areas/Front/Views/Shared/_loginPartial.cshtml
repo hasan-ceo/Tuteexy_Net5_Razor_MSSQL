@@ -1,40 +1,18 @@
-﻿    <h3 class="subtitle is-5 has-text-black py-1 my-1">
-        Already Have an account?
-    </h3>
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Login" >
-        <div class="field is-horizontal">
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input id="UserName" name="UserName" class="input" type="text" placeholder="User ID" required>
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </p>
-                </div>
-                <div class="field">
-                    <p class="control is-expanded has-icons-left has-icons-right">
-                        <input id="Password" name ="Password" class="input is-success" type="password" placeholder="Password" required>
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-
-                    </p>
-                </div>
-                <div class="field">
-                    <button type="submit" class="button is-success is-fullwidth has-text-weight-bold">Log in</button>
-                </div>
-            </div>
-
+﻿
+    <form id="account" method="post" class="inplgnin" asp-area="Identity" asp-page="/Account/Login">
+        <p class="lead">Already Have an account?</p>
+        <div class="form-group my-1">
+            <input id="UserName" name="UserName" type="text" class="form-control form-control-sm" aria-describedby="emailHelp"
+                   placeholder="Enter your User ID..." required>
         </div>
-        <div id="d" class="rightcolumn">
-            <p class="subtitle is-7 has-text-centered has-text-black">
-                <a id="forgot-password" href="/Identity/Account/ForgotPassword">   Forgot your password?</a><br>
-            </p>
+        <div class="form-group my-1">
+            <input id="password" name="password" type="password" class="form-control form-control-sm"
+                   placeholder="Enter your Password..." required>
         </div>
-
+        <div class="form-group my-1">
+            <button type="submit" class="btn btn-success btn-sm btn-block">Log in</button>
+            <a id="forgot-password" class="btn btn-link btn-sm w-100" href="/Identity/Account/ForgotPassword">Forgot your password?</a>
+        </div>
     </form>
-
 
 

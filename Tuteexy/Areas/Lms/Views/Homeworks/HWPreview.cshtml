@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <div class=" col-7">
-                            <h5 class="card-title">Homework's List</h5>
+                            <h5 class="card-title">Homework Details</h5>
                         </div>
                         <div class="col-3">
                             <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Homeworks" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
@@ -26,16 +26,16 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <p class="title is-6 py-0 my-0 has-text-black">Model.Title</p>
-                        <p class="subtitle is-6 py-0 my-0 has-text-black"><strong>Post By:</strong> Model.Teacher.Name</p>
-                        <p class="subtitle is-6 py-0 my-0"><strong>Subject:</strong> Model.Subject </p>
-                        <p class="subtitle is-6 py-0 my-0"><strong>Date Assigned:</strong> @Model.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                        <p class="subtitle is-6"><strong>Date Due:</strong> @Model.DateDue.ToString("dd/MMM/yyyy") </p>
+                        <p class="title py-0 my-0">@Model.Title</p>
+                        <p class="subtitle py-0 my-0"><strong>Post By:</strong> @Model.Teacher.Name</p>
+                        <p class="subtitle py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
+                        <p class="subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                        <p class="subtitle"><strong>Date Due:</strong> @Model.DateDue.ToString("dd/MMM/yyyy") </p>
 
                         <div class="btn-group">
                             @if (string.IsNullOrWhiteSpace(Model.RefLink1) == false && (string.IsNullOrEmpty(Model.RefLink1) == false))
                             {
-                                <a href="Model.RefLink1" class="btn btn-light">
+                                <a href="@Model.RefLink1" class="btn btn-light">
                                     <span class="icon is-medium">
                                         <i class="fas fa-link"></i>
                                     </span>  <span>Attachment - 1</span>
@@ -44,7 +44,7 @@
 
                             @if (string.IsNullOrWhiteSpace(Model.RefLink2) == false && (string.IsNullOrEmpty(Model.RefLink2) == false))
                             {
-                                <a href="Model.RefLink2" class="btn btn-light">
+                                <a href="@Model.RefLink2" class="btn btn-light">
                                     <span class="icon is-medium">
                                         <i class="fas fa-link"></i>
                                     </span>  <span>Attachment - 2</span>
@@ -53,7 +53,7 @@
 
                             @if (string.IsNullOrWhiteSpace(Model.RefLink3) == false && (string.IsNullOrEmpty(Model.RefLink3) == false))
                             {
-                                <a href="Model.RefLink3" class="btn btn-light">
+                                <a href="@Model.RefLink3" class="btn btn-light">
                                     <span class="icon is-medium">
                                         <i class="fas fa-link"></i>
                                     </span>  <span>Attachment - 3</span>
@@ -62,7 +62,7 @@
 
                             @if (string.IsNullOrWhiteSpace(Model.RefLink4) == false && (string.IsNullOrEmpty(Model.RefLink4) == false))
                             {
-                                <a href="Model.RefLink4" class="btn btn-light">
+                                <a href="@Model.RefLink4" class="btn btn-light">
                                     <span class="icon is-medium">
                                         <i class="fas fa-link"></i>
                                     </span>  <span>Attachment - 4</span>
@@ -71,7 +71,7 @@
 
                             @if (string.IsNullOrWhiteSpace(Model.RefLink5) == false && (string.IsNullOrEmpty(Model.RefLink5) == false))
                             {
-                                <a href="Model.RefLink5" class="btn btn-light">
+                                <a href="@Model.RefLink5" class="btn btn-light">
                                     <span class="icon is-medium">
                                         <i class="fas fa-link"></i>
                                     </span>  <span>Attachment - 5</span>

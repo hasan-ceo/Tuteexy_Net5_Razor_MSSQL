@@ -25,7 +25,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.State = school.State;
                 objFromDb.PostalCode = school.PostalCode;
                 objFromDb.PhoneNumber = school.PhoneNumber;
-
+                objFromDb.Country = school.Country;
                 objFromDb.UpdatedBy = school.UpdatedBy;
                 objFromDb.UpdatedDate = school.UpdatedDate;
 

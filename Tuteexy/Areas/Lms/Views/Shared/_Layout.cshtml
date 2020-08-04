@@ -24,7 +24,7 @@
           type="image/svg+xml" />
 
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/layoutdashboard.css" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
@@ -34,6 +34,15 @@
 </head>
 
 <body class="body">
+    <div class="wl">
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                @await Component.InvokeAsync("LmsMenu")
+                @await Component.InvokeAsync("HWMenu")
+            </ul>
+        </nav>
+    </div>
+
     <header>
         <nav class="navbar navbar-expand bg-Alabaster justify-content-center fixed-top p-0 shadow-sm">
             <div class="container-fluid">
@@ -46,12 +55,12 @@
                 </ul>
 
                 <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
-                    @*<li class="nav-item .d-block d-md-none d-lg-none d-xl-none">
-                        <a class="nav-link d-flex flex-column text-success" onclick="myopen()" href="#">
+                    <li class="nav-item d-block d-md-none d-lg-none d-xl-none">
+                        <a class="nav-link d-flex flex-column text-success" id="menu-toggle" href="#">
                             <span class="fas fa-bars"></span>
                             <span class="d-sm-inline mt-1">Menu</span>
                         </a>
-                    </li>*@
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link d-flex flex-column text-success" asp-area="User" asp-controller="Dashboard" asp-action="index">
                             <span class="fas fa-home fa-1x"></span>
@@ -133,19 +142,16 @@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
     <partial name="_NavBurgerScriptsPartial" />
-
+    <script src="~/js/site.js"></script>
 </body>
 </html>
 

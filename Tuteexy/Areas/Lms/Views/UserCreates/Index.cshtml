@@ -40,15 +40,15 @@
             <div class="column is-half">
 
                 <div class="notification is-white-bis px-4">
-                    <p class="title is-4 px-1 py-1 my-0 has-text-black"><strong>Name:</strong> @item.SchoolName</p>
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>ID:</strong> @item.SchoolID</p>
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-text-black"><strong>Phone:</strong> @item.PhoneNumber</p>
+                    <p class="title is-4 px-1 py-1 my-0"><strong>Name:</strong> @item.SchoolName</p>
+                    <p class="subtitle px-1 py-1 my-0"><strong>ID:</strong> @item.SchoolID</p>
+                    <p class="subtitle px-1 py-1 my-0"><strong>Phone:</strong> @item.PhoneNumber</p>
 
-                    <p class="subtitle is-6 px-1 py-1 my-0 has-background-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
+                    <p class="subtitle px-1 py-1 my-0 has-background-@(item.isauthorize=="Authorized" ? "success": "danger")"><strong>Status:</strong> @item.isauthorize</p>
 
                     @if (item.isauthorize != "Authorized")
                     {
-                        <p class="subtitle is-6 px-1 pt-3 pb-1 mb-0 mt-3 has-text-black">
+                        <p class="subtitle px-1 pt-3 pb-1 mb-0 mt-3">
                             We are reviewing your open school request. We will contact with you for verification. Once your request approve you can enjoy our school service.
                         </p>
                     }

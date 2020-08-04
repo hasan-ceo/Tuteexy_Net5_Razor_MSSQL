@@ -61,6 +61,15 @@
 
 
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Country">Country</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Country" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetCountry(),"CountryID","CountryName"))">
+                        <option value="">-Select a Country</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label" asp-for="PhoneNumber">Phone Number</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" asp-for="PhoneNumber">
@@ -68,20 +77,14 @@
             </div>
 
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="City">City</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="text" asp-for="City">
-                </div>
-            </div>
 
             <div class="btn-group" role="group" aria-label="Basic example">
                 @if (Model.SchoolID != 0)
                 {
-    <button type="submit" class="btn btn-success" asp-route-id="@Model.SchoolID">Update</button> }
-else
-{
-    <button type="submit" class="btn btn-success">Create</button>}
+        <button type="submit" class="btn btn-success" asp-route-id="@Model.SchoolID">Update</button> }
+    else
+    {
+        <button type="submit" class="btn btn-success">Create</button>}
                 <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">Cancel</a>
             </div>
 

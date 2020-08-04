@@ -30,6 +30,18 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.Period8 = classroutine.Period8;
                 objFromDb.Period9 = classroutine.Period9;
                 objFromDb.Period10 = classroutine.Period10;
+
+                objFromDb.PeriodTime1 = classroutine.PeriodTime1;
+                objFromDb.PeriodTime2 = classroutine.PeriodTime2;
+                objFromDb.PeriodTime3 = classroutine.PeriodTime3;
+                objFromDb.PeriodTime4 = classroutine.PeriodTime4;
+                objFromDb.PeriodTime5 = classroutine.PeriodTime5;
+                objFromDb.PeriodTime6 = classroutine.PeriodTime6;
+                objFromDb.PeriodTime7 = classroutine.PeriodTime7;
+                objFromDb.PeriodTime8 = classroutine.PeriodTime8;
+                objFromDb.PeriodTime9 = classroutine.PeriodTime9;
+                objFromDb.PeriodTime10 = classroutine.PeriodTime10;
+
                 objFromDb.UpdatedBy = classroutine.UpdatedBy;
                 objFromDb.UpdatedDate = classroutine.UpdatedDate;
             }

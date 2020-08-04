@@ -14,7 +14,6 @@ namespace Tuteexy.Models
 
 
         public long ClassRoomID { get; set; }
-        [Required(ErrorMessage = "Select Class Room")]
         public virtual ClassRoom ClassRoom {get; set;}
 
         [Required(ErrorMessage = "Select Day")]

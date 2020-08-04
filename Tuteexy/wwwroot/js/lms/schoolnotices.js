@@ -22,10 +22,6 @@ function loadDataTable() {
             "url": "/Lms/SchoolNotices/GetAll"
         },
         "columns": [
-            { "data": "schoolname" },
-            { "data": "title" },
-            { "data": "scheduledate" },
-            { "data": "pin" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -37,7 +33,11 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "schoolname" },
+            { "data": "title" },
+            { "data": "scheduledate" },
+            { "data": "pin" }
         ]
     });
 }

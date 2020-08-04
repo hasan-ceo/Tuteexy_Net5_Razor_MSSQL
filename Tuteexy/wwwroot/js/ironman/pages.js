@@ -22,7 +22,7 @@ function loadDataTable() {
             "url": "/Ironman/Pages/GetAll"
         },
         "columns": [
-            { "data": "pageName" },
+           
             {
                 "data": "pageID",
                 "render": function (data) {
@@ -37,7 +37,8 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "pageName" }
         ]
     });
 }

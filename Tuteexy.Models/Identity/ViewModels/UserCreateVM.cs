@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,9 +30,12 @@ namespace Tuteexy.Models.ViewModels
 
         public string PhoneNumber { get; set; }
 
-        public long TmpID { get; set; }
+        public long SchoolID { get; set; }
+        public long ClassRoomID { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        public IEnumerable<SelectListItem> ClassRoomList { get; set; }
     }
 }

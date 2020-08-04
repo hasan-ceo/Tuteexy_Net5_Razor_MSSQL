@@ -1,67 +1,35 @@
-﻿
+﻿<form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Register" class="inplgnin">
+    <p class="lead">Create an account</p>
+    <div class="form-group my-1">
+        <input id="Name" name="Name" type="text" class="form-control form-control-sm" aria-describedby="emailHelp"
+               placeholder="Enter your name..." required>
+    </div>
+    <div class="form-group my-1">
+        <input id="Email" name="Email" type="email" class="form-control form-control-sm" aria-describedby="emailHelp"
+               placeholder="Enter your email..." required>
+    </div>
+    <div class="form-group my-1">
+        <input id="PhoneNumber" name="PhoneNumber" type="text" class="form-control form-control-sm" aria-describedby="emailHelp"
+               placeholder="Enter your phone number..." required>
+    </div>
+    <div class="form-group row my-1">
+        <div class="col-6">
+            <input id="Password" name="Password" type="password" class="form-control form-control-sm" 
+                   placeholder="Enter password..." required>
+        </div>
+        <div class="col-6">
+            <input id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control form-control-sm" 
+                   placeholder="Enter confirm password..." required>
+        </div>
+    </div>
 
-                    <h3 class="subtitle is-5 has-text-black py-1 my-1">
-                        Create a free account
-                    </h3>
-
-                    <form method="post" autocomplete="off" asp-area="Identity" asp-page="/Account/Register" >
-                        <div class="field">
-                              <div class="control has-icons-left">
-                                <input id="Name" name="Name" class="input is-rounded" type="text" placeholder="Enter your name." required>
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field">
-                               <div class="control has-icons-left">
-                                <input id="Email" name="Email" class="input is-rounded" type="email" placeholder="Enter your email." required>
-                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
-                            </div>
-                           
-                        </div>
-
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input id="PhoneNumber" name="PhoneNumber" class="input is-rounded" type="text" placeholder="Enter your phone." required>
-                                <span class="icon is-small is-left"><i class="fa fa-phone"></i></span>
-                            </div>
-                            
-                        </div>
-
-                        <div class="field">
-                                <div class="control has-icons-left">
-                                <input id="Password" name="Password" class="input is-rounded" type="password" placeholder="Password" required>
-                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                            </div>
-                            
-                        </div>
-
-                        <div class="field">
-                                <div class="control has-icons-left">
-                                <input id="ConfirmPassword" name="ConfirmPassword" class="input is-rounded" type="password" placeholder="Confirm Password" required>
-                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                            </div>
-                            
-                        </div>
-
-                        <h5 class="subtitle is-6 has-text-black">
-                            By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
-                        </h5>
-
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="button is-success is-fullwidth has-text-weight-bold">Sign Up</button>
-                            </div>
-                        </div>
-                    </form>
-
-
-
-
-
-
-
+    <div class="form-group my-1">
+        <h6 class="subtitle is-5">
+            By clicking <em>Sign Up</em> you agree to our <a asp-area="Front" asp-controller="Home" asp-action="Page" asp-route-name="terms"><strong> terms of service </strong></a>
+        </h6>
+        <button type="submit" class="btn btn-success btn-sm btn-block">Sign Up</button>
+    </div>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -28,6 +28,7 @@ namespace Tuteexy.DataAccess.Repository
             ClassRoomNotice = new ClassRoomNoticeRepository(_db);
             ClassRoutine = new ClassRoutineRepository(_db);
             Holiday = new HolidayRepository(_db);
+            TutorJob = new TutorJobRepository(_db);
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
@@ -47,6 +48,7 @@ namespace Tuteexy.DataAccess.Repository
         public IClassRoomNoticeRepository ClassRoomNotice { get; private set; }
         public IClassRoutineRepository ClassRoutine { get; private set; }
         public IHolidayRepository Holiday { get; private set; }
+        public ITutorJobRepository TutorJob { get; private set; }
 
         public void Dispose()
         {

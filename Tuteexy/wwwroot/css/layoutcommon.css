@@ -6,10 +6,14 @@
 body {
     padding: 0px;
     margin: 0px;
-    background: url('/images/core/back.jpg') no-repeat center center fixed;
+    /*    height: 100%;
+    overflow: hidden;*/
+    background-image: url('/images/core/bg.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
-    overflow: hidden;
+    background-attachment: fixed;
+    /*    font-family: 'Poppins', sans-serif;
+    font-size: 20px;*/
 }
 
 .containergrid {
@@ -17,7 +21,7 @@ body {
     height: 100vh;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 0.5fr;
-    grid-template-areas: ". . . " ". main ."  ". footer .";
+    grid-template-areas: ". . . " ". main ."  ". footer ." ". . .";
     grid-gap: 1em;
 }
 

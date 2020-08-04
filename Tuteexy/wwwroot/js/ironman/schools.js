@@ -22,10 +22,6 @@ function loadDataTable() {
             "url": "/Ironman/Schools/GetAll"
         },
         "columns": [
-            { "data": "id" },
-            { "data": "schoolname" },
-            { "data": "phonenumber" },
-            { "data": "isauthorize" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -40,7 +36,11 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "id" },
+            { "data": "schoolname" },
+            { "data": "phonenumber" },
+            { "data": "isauthorize" }
         ]
     });
 }

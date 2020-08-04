@@ -37,7 +37,6 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public async Task<IActionResult> Upsert(long? Id)
         {
-
             School school = new School();
             if (Id == null)
             {

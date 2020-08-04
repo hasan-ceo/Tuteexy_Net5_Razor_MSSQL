@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Tuteexy.Models.TutorJob>
+
+@{ Layout = "~/Views/Shared/_LayoutPage.cshtml"; }
+
+@if (Model != null)
+{
+   
+        @*<div class="row justify-content-center align-content-center">
+            <div class="col-12">
+                <h2>Tutor Job Bank</h2>
+            </div>
+        </div>*@
+
+        <div class="row row-cols-2">
+
+            @foreach (TutorJob item in Model)
+            {
+                <div class="col-12 col-sm-12 col-md-6 mb-4">
+
+                    <div class="card border-0">
+                        <div class="card-header text-left">
+                            <div class="row row-cols-3">
+                                <div class="col-12">
+                                    <h3 class="card-title py-2 my-0"><strong>Job Title :</strong> @item.JobTitle</h3>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Post By:</strong> @item.CreatedBy</p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Post Date:</strong> @item.CreatedDate.ToString("dd/MMM/yyyy") </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Salary:</strong> @item.Salary </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Subject:</strong> @item.Subject </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Class / Course:</strong> @item.Course </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Student(s):</strong> @item.NumberofStudents </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Gender preference:</strong> @item.Genderpreference </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-subtitle py-2 my-0"><strong>Location :</strong> @item.City, @item.Country </p>
+                                </div>
+                                <div class="col-12 text-left">
+                                    <p class="card-subtitle py-2 my-0"><strong>Requirements:</strong> @item.Requirements </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+ 
+}
+else
+{
+    <div class="container-fluid p-0">
+        <div class="row row-cols-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title py-0 my-0">No Tutor job available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -27,6 +27,8 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IClassRoutineRepository ClassRoutine { get; }
 
         IHolidayRepository Holiday { get; }
+
+        ITutorJobRepository TutorJob { get; }
         //Lms End
 
 

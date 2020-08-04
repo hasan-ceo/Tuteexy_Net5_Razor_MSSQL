@@ -1,0 +1,111 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6PGPD8LSJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N6PGPD8LSJ');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuteely - For Student, Develop by Student</title>
+    <link rel="icon" href="/Images/core/icon.png" sizes="any" type="image/svg+xml">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layoutpage.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand bg-white justify-content-center fixed-top p-0 shadow-sm">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column" asp-area="Front" asp-controller="Home" asp-action="index">
+                            <img src="~/images/core/logo.png" alt="" style="height: 30px;">
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Front" asp-controller="Home" asp-action="TutorJobs">
+                            <span class="fas fa-chalkboard-teacher fa-1x"></span>
+                            <span class="d-sm-inline mt-1">Tutor Job</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Identity" asp-page="/Account/Login">
+                            <span class="fas fa-sign-in-alt fa-1x"></span>
+                            <span class="d-sm-inline mt-1">Log in</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Identity" asp-page="/Account/Register">
+                            <span class="fas fa-user fa-1x"></span>
+                            <span class="d-sm-inline mt-1">Start Free</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="containergrid" style="margin-top:80px">
+        <div class="container px-0">
+            <div class="main shadow border">
+                @RenderBody()
+            </div>
+        </div>
+        <footer class="container shadow border">
+            <div class="row">
+                <div class="col-12">
+                    <p class="center">
+                        Work together as a team, with:
+                    </p>
+                </div>
+                <div class="col-12">
+                    <a class="center" asp-area="Front" asp-controller="Home" asp-action="index">
+                        <img src="~/images/core/logo.png" class="image" style="width:150px">
+                    </a>
+                </div>
+                <hr class="w-100">
+                <div class="col-12">
+                    <p class="center text-center">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>, Built with your best interests at heart <i class="fa fa-heart heart"></i> by Tuteexy
+
+                    </p>
+                </div>
+            </div>
+
+        </footer>
+    </div>
+
+
+
+    
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+    <partial name="_NavBurgerScriptsPartial" />
+
+
+</body>
+</html>

@@ -22,8 +22,6 @@ function loadDataTable() {
             "url": "/Lms/ClassRooms/GetAll"
         },
         "columns": [
-            { "data": "school.schoolName" },
-            { "data": "classRoomName" },
             {
                 "data": "classRoomID",
                 "render": function (data) {
@@ -41,7 +39,9 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "school.schoolName" },
+            { "data": "classRoomName" }
         ]
     });
 }

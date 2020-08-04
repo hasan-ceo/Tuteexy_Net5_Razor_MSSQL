@@ -22,8 +22,6 @@ function loadDataTable() {
             "url": "/Lms/Subjects/GetAll"
         },
         "columns": [
-            { "data": "school.schoolName" },
-            { "data": "subjectName" },
             {
                 "data": "subjectID",
                 "render": function (data) {
@@ -35,7 +33,9 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "school.schoolName" },
+            { "data": "subjectName" }
         ]
     });
 }

@@ -22,9 +22,6 @@ function loadDataTable() {
             "url": "/Lms/ClassRoomNotices/GetAll"
         },
         "columns": [
-            { "data": "classroomname" },
-            { "data": "title" },
-            { "data": "scheduledate"},
             {
                 "data": "id",
                 "render": function (data) {
@@ -36,7 +33,10 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "classroomname" },
+            { "data": "title" },
+            { "data": "scheduledate" }
         ]
     });
 }

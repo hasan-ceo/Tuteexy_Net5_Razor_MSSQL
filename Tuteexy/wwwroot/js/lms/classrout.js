@@ -22,18 +22,6 @@ function loadDataTable() {
             "url": "/Lms/ClassRout/GetAll"
         },
         "columns": [
-            { "data": "classname" },
-            { "data": "day" },
-            { "data": "p1" },
-            { "data": "p2" },
-            { "data": "p3" },
-            { "data": "p4" },
-            { "data": "p5" },
-            { "data": "p6" },
-            { "data": "p7" },
-            { "data": "p8" },
-            { "data": "p9" },
-            { "data": "p10" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -48,7 +36,19 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "classname" },
+            { "data": "day" },
+            { "data": "p1" },
+            { "data": "p2" },
+            { "data": "p3" },
+            { "data": "p4" },
+            { "data": "p5" },
+            { "data": "p6" },
+            { "data": "p7" },
+            { "data": "p8" },
+            { "data": "p9" },
+            { "data": "p10" }
         ]
     });
 }

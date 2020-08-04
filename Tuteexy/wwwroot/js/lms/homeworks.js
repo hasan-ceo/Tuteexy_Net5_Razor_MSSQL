@@ -22,12 +22,6 @@ function loadDataTable() {
             "url": "/Lms/Homeworks/GetAll"
         },
         "columns": [
-            { "data": "teachername" },
-            { "data": "classroomname" },
-            { "data": "subject" },
-            { "data": "title" },
-            { "data": "schdate" },
-            { "data": "datedue" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -45,7 +39,13 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "teachername" },
+            { "data": "classroomname" },
+            { "data": "subject" },
+            { "data": "title" },
+            { "data": "schdate" },
+            { "data": "datedue" }
         ]
     });
 }

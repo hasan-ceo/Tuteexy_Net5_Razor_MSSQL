@@ -22,10 +22,6 @@ function loadDataTable() {
             "url": "/Lms/ClassRoomStudents/GetAll"
         },
         "columns": [
-            { "data": "classRoomName" },
-            { "data": "name" },
-            { "data": "authorizedBy" },
-            { "data": "isAuthorizedTeacher" },
             {
                 "data": "classRoomStudentID",
                 "render": function (data) {
@@ -37,7 +33,11 @@ function loadDataTable() {
                             </div>
                            `;
                 },
-            }
+            },
+            { "data": "classRoomName" },
+            { "data": "name" },
+            { "data": "authorizedBy" },
+            { "data": "isAuthorizedTeacher" }
         ]
     });
 }
