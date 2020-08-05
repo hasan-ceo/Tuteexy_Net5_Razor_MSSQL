@@ -60,7 +60,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" asp-for="Genderpreference">Gender preference</label>
                 <div class="col-sm-10">
-                    <select class="form-control" asp-for="Genderpreference" asp-items="@(new SelectList(new List<string>{"Female","Male", "Not applicable"}))">
+                    <select class="form-control" asp-for="Genderpreference" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetGender()))">
                         <option value="">-Select a preference</option>
                     </select>
                 </div>
@@ -105,7 +105,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" asp-for="Country">Country</label>
                 <div class="col-sm-10">
-                    <select class="form-control" asp-for="Country" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetCountry(),"CountryID","CountryName"))">
+                    <select class="form-control" asp-for="Country" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetCountry()))">
                         <option value="">-Select a Country</option>
                     </select>
                 </div>

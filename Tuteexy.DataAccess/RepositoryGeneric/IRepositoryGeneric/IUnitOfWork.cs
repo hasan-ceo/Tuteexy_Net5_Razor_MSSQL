@@ -30,6 +30,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IHolidayRepository Holiday { get; }
 
         ITutorJobRepository TutorJob { get; }
+        IUserProfileRepository UserProfile { get; }
         //Lms End
 
 

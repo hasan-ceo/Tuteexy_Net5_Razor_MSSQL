@@ -3,11 +3,14 @@
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="alert alert-success" role="alert">
+                In this 'Classwork' section, you get to view all classwork notices that contain <b>your</b> classwork material that will be discussed at a fixed date and time. The date, time, online meeting links, etc. are also expected to be found here.
+            </div>
+            @*<div class="card">
                 <div class="card-header">
                     <h5 class="card-title">My Classworks</h5>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>
@@ -19,10 +22,10 @@
             {
                 <div class="card">
                     <div class="card-body">
-                        <p class="title py-0 my-0">@item.Title</p>
-                        <p class="subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
-                        <p class="subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-                        <p class="subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                        <p class="card-title py-0 my-0">@item.Title</p>
+                        <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
+                        <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                        <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
                         <p class="card-subtitle"><strong>Class Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
                         <p class="card-subtitle"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
                         <p class="card-subtitle"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
@@ -31,17 +34,15 @@
                             @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
                             {
                                 <a href="@item.RefLink1" class="btn btn-light">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-link"></i>
-                                    </span>  <span>Attachment - 1</span>
+                                    <span class="fas fa-camera">                              
+                                    </span>  <span>Join</span>
                                 </a>
                             }
 
                             @if (string.IsNullOrWhiteSpace(@item.RefLink2) == false && (string.IsNullOrEmpty(item.RefLink2) == false))
                             {
                                 <a href="@item.RefLink2" class="btn btn-light">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-link"></i>
+                                    <span class="fas fa-link">
                                     </span>  <span>Attachment - 2</span>
                                 </a>
                             }
@@ -49,8 +50,7 @@
                             @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
                             {
                                 <a href="@item.RefLink3" class="btn btn-light">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-link"></i>
+                                    <span class="fas fa-link">
                                     </span>  <span>Attachment - 3</span>
                                 </a>
                             }
@@ -58,8 +58,7 @@
                             @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
                             {
                                 <a href="@item.RefLink4" class="btn btn-light">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-link"></i>
+                                    <span class="fas fa-link">
                                     </span>  <span>Attachment - 4</span>
                                 </a>
                             }
@@ -67,17 +66,15 @@
                             @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
                             {
                                 <a href="@item.RefLink5" class="btn btn-light">
-                                    <span class="icon is-medium">
-                                        <i class="fas fa-link"></i>
+                                    <span class="fas fa-link">
                                     </span>  <span>Attachment - 5</span>
                                 </a>
                             }
                             @{ var eml = "mailto:" + @item.Teacher.Email; }
 
                             <a href="@eml" class="btn btn-light">
-                                <span class="icon is-medium">
-                                    <i class="fas fa-camera"></i>
-                                </span>  <span>Join</span>
+                                <span class="fas fa-link">
+                                </span>  <span>Reply</span>
                             </a>
                         </div>
                         <div class="content">

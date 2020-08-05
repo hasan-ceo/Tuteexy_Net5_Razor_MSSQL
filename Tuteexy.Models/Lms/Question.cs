@@ -16,5 +16,7 @@ namespace Tuteexy.Models
         public string Description { get; set; }
 
         public bool IsReplyClose { get; set; }
+
+        public bool IsOffensive { get; set; }
     }
 }

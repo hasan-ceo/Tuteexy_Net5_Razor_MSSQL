@@ -193,25 +193,7 @@
                         <div class="row p-0 m-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="card card-stats">
-                                    <div class="card-body ">
-                                        <div class="row align-items-center">
-                                            <div class="col-3">
-                                                <div class="icon-big text-center icon-warning">
-                                                    <i class="fas fa-user-circle text-warning"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <p class="card-title">@await Component.InvokeAsync("UserName")</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer ">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-refresh"></i>
-                                            Profile
-                                        </div>
-                                    </div>
+                                    @await Component.InvokeAsync("UserName")
                                 </div>
                             </div>
 

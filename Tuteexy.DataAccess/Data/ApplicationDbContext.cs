@@ -46,6 +46,7 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<Question> Question { get; set; }
 
         public DbSet<TutorJob> TutorJob { get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
     }
 }
 

@@ -137,6 +137,8 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                     await _userManager.AddClaimAsync(user, new Claim("InstituteID", Guid.NewGuid().ToString()));
                     _logger.LogInformation("Create a InstituteName");
 
+                    
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

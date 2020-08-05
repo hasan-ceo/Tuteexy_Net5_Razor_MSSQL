@@ -1,3 +1,33 @@
-﻿@model Tuteexy.Models.ApplicationUser
+﻿@model Tuteexy.Models.UserProfile
 
-@Model.Name @*<i class="far fa-user"></i>*@
+@if (Model!=null)
+{
+<div class="card-body ">
+    <div class="row row-col-1 text-center">
+        <div class="col-12">
+            <div class="bg-white">
+                @if (Model.ImageUrl == "")
+                { 
+                    <span class="fas fa-user-circle fa-5x"></span>
+                }
+                else
+                {
+                    <img src="~/images/students/@Model.ImageUrl" style="width:150px;" class="rounded" />
+                }
+
+            </div>
+        </div>
+        <div class="col-12 mt-2">
+            <p class="card-title">@Model.User.Name</p>
+        </div>
+    </div>
+</div>
+<div class="card-footer text-center">
+    <div class="stats">
+        <a class="btn btn-success" asp-area="User" asp-controller="UserProfiles" asp-action="Upsert" asp-route-id="@Model.UserProfileID">
+            <span class="fas fa-user"></span>
+            Edit Profile
+        </a>
+    </div>
+</div>
+}
