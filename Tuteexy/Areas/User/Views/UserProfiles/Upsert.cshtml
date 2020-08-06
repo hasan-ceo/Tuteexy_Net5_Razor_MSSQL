@@ -1,21 +1,45 @@
 ﻿@model Tuteexy.Models.UserProfile
 
-@{ var title = "Edit Profile"; }
-
-@section Scripts {
-    <partial name="_tinymceScriptPartial" />
-}
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
 
 <div class="card">
     <div class="card-header">
         <div class="card-title">
-            @title
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    Edit Profile
+                </div>
+                <div class="col-12 col-md-6 text-right">
+                    <a asp-area="User" asp-controller="UserProfiles" asp-action="ChangeEmail" asp-route-id="@Model.UserProfileID" class="btn btn-success">
+                        <span class="fas fa-at"></span>
+                        Change Email
+                    </a>
+                    <a asp-area="User" asp-controller="UserProfiles" asp-action="ChangePassword" asp-route-id="@Model.UserProfileID" class="btn btn-success">
+                        <span class="fas fa-key"></span>
+                        Change Password
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="card-body">
         <div asp-validation-summary="All" class="text-danger"></div>
         <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
             <input type="hidden" asp-for="UserProfileID" />
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">User Name</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.User.Name</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.User.Email</label>
+                </div>
+            </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" asp-for="FatherName">Father Name</label>
@@ -142,22 +166,21 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 @if (Model.UserProfileID != 0)
                 {
-        <button type="submit" onclick="return validateInput()" class="btn btn-success" asp-route-id="@Model.UserProfileID">Update</button> }
-    else
-    {
-        <button type="submit" class="btn btn-success">Create</button>}
-                <button class="btn btn-light" asp-area="User" asp-controller="Dashboard" asp-action="Index">Cancel</button>
+                    <button type="submit" onclick="return validateInput()" class="btn btn-success" asp-route-id="@Model.UserProfileID">
+                        <span class="fas fa-save"></span>
+                        Update
+                    </button> }
+                else
+                {
+                    <button type="submit" class="btn btn-success">
+                        <span class="fas fa-save"></span>
+                        Create
+                    </button>}
+                <button class="btn btn-light" asp-area="User" asp-controller="Dashboard" asp-action="Index">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </button>
             </div>
         </form>
     </div>
 </div>
-
-@*<script>
-    function validateInput() {
-        if (document.getElementById("uploadBox").value == "") {
-            swal("Error", "Please select an image", "error");
-            return false;
-        }
-        return true;
-    };
-</script>*@

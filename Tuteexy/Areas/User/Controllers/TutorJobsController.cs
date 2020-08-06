@@ -81,46 +81,46 @@ namespace Tuteexy.Areas.User.Controllers
             return View(tutorJob);
         }
 
-        public IActionResult Create()
-        {
-           return View();
+        //public IActionResult Create()
+        //{
+        //   return View();
            
-        }
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(TutorJob tutorjob)
-        {
-            if (ModelState.IsValid)
-            {
-                var workdate = DateTime.Now;
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create(TutorJob tutorjob)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var workdate = DateTime.Now;
 
 
-                if (tutorjob.TutorJobID == 0)
-                {
-                    _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //        if (tutorjob.TutorJobID == 0)
+        //        {
+        //            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                    tutorjob.CreatedBy = User.Identity.Name;
-                    tutorjob.CreatedDate = workdate;
-                    tutorjob.UpdatedBy = User.Identity.Name;
-                    tutorjob.UpdatedDate = workdate;
-                    _unitOfWork.TutorJob.AddAsync(tutorjob);
+        //            tutorjob.CreatedBy = User.Identity.Name;
+        //            tutorjob.CreatedDate = workdate;
+        //            tutorjob.UpdatedBy = User.Identity.Name;
+        //            tutorjob.UpdatedDate = workdate;
+        //            _unitOfWork.TutorJob.AddAsync(tutorjob);
 
-                }
-                else
-                {
+        //        }
+        //        else
+        //        {
 
-                    tutorjob.UpdatedBy = User.Identity.Name;
-                    tutorjob.UpdatedDate = workdate;
+        //            tutorjob.UpdatedBy = User.Identity.Name;
+        //            tutorjob.UpdatedDate = workdate;
 
-                    _unitOfWork.TutorJob.Update(tutorjob);
-                }
+        //            _unitOfWork.TutorJob.Update(tutorjob);
+        //        }
 
-                _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tutorjob);
-        }
+        //        _unitOfWork.Save();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(tutorjob);
+        //}
 
         public async Task<IActionResult> Preview(long id)
         {

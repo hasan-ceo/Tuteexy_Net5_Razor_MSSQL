@@ -35,7 +35,7 @@ namespace Tuteexy.ViewComponents
                     Religion = "N/A",
                     BloodGroup = "N/A",
                     StreetAddress = "",
-                    City = "4368",
+                    City = "",
                     State = "",
                     PostalCode = "",
                     Country = "Bangladesh",
@@ -47,7 +47,9 @@ namespace Tuteexy.ViewComponents
                 await _unitOfWork.UserProfile.AddAsync(userprofile);
                 _unitOfWork.Save();
 
-                return View(userprofile);
+                var newprofile = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(u => u.UserID == userprofile.UserID, includeProperties: "User");
+
+                return View(newprofile);
             }
             return View(userFromDb);
         }
