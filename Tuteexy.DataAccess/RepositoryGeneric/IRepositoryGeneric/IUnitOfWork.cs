@@ -21,6 +21,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IClassRoomStudentRepository ClassRoomStudent { get; }
         ISchoolTeacherRepository SchoolTeacher { get; }
         IHomeworkRepository Homework { get; }
+        IHomeworkSheetRepository HomeworkSheet { get; }
         IClassworkRepository Classwork { get; }
         ISubjectRepository Subject { get; }
         ISchoolNoticeRepository SchoolNotice { get; }

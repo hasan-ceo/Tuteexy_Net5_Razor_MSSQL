@@ -10,7 +10,9 @@ namespace Tuteexy.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        public string Name { get; set; }
+        [Display(Name = "Full Name")]
+        [MaxLength(150)]
+        public string FullName { get; set; }
         
         [NotMapped]
         public string Role { get; set; }

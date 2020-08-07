@@ -22,6 +22,7 @@ namespace Tuteexy.DataAccess.Repository
             {
                 objFromDb.Subject = homework.Subject;
                 objFromDb.Title = homework.Title;
+                objFromDb.HwMarks = homework.HwMarks;
                 objFromDb.Description = homework.Description;
                 objFromDb.DateDue = homework.DateDue;
                 objFromDb.ScheduleDateTime = homework.ScheduleDateTime;

@@ -64,7 +64,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    Name = Input.Name,
+                    FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
                     Role = SD.Role_User
                 };
@@ -123,7 +123,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     string messageBody = string.Format(HtmlBody,
                         subject,
                         String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now),
-                        user.Name,
+                        user.FullName,
                         user.Email,
                         Message,
                         callbackUrl
@@ -186,7 +186,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    Name = Input.Name,
+                    FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
                     Role = SD.Role_User
                 };
@@ -245,7 +245,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     string messageBody = string.Format(HtmlBody,
                         subject,
                         String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now),
-                        user.Name,
+                        user.FullName,
                         user.Email,
                         Message,
                         callbackUrl

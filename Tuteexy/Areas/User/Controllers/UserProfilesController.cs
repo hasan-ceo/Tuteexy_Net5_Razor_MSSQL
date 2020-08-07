@@ -23,8 +23,6 @@ namespace Tuteexy.Areas.User.Controllers
         private readonly ILogger<UserProfilesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        private string _userId;
-
 
         public UserProfilesController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<UserProfilesController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {

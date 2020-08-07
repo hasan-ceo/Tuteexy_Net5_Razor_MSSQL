@@ -102,7 +102,9 @@ namespace Tuteexy.Areas.Lms.Controllers
                 if (homeworkVM.Homework.HomeworkID == 0)
                 {
                     _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    var userFromDb = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.Id == _userId);
                     homeworkVM.Homework.TeacherID = _userId;
+                    homeworkVM.Homework.TeacherName = userFromDb.FullName;
                     homeworkVM.Homework.DateAssigned = DateTime.Now;
                     homeworkVM.Homework.ScheduleDateTime = homeworkVM.Homework.ScheduleDateTime.Add(homeworkVM.ScheduleTime.TimeOfDay);
                     await _unitOfWork.Homework.AddAsync(homeworkVM.Homework);
@@ -158,12 +160,12 @@ namespace Tuteexy.Areas.Lms.Controllers
             if (school !=null)
             {
                 var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
-                return Json(new { data = allObj.Select(a => new { id=a.HomeworkID, teachername=a.Teacher.Name , classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
+                return Json(new { data = allObj.Select(a => new { id=a.HomeworkID, teachername=a.Teacher.FullName , classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
             }
             else
             {
                 var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
-                return Json(new { data = allObj.Select(a => new { id = a.HomeworkID, teachername = a.Teacher.Name, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
+                return Json(new { data = allObj.Select(a => new { id = a.HomeworkID, teachername = a.Teacher.FullName, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
             }
         }
 

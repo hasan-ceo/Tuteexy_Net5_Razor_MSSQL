@@ -123,7 +123,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    Name = Input.Name,
+                    FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -171,7 +171,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                     string messageBody = string.Format(HtmlBody,
                         subject,
                         String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now),
-                        user.Name,
+                        user.FullName,
                         user.Email,
                         Message,
                         callbackUrl

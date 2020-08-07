@@ -55,62 +55,30 @@
                     <div class="col-12">
                         <div class="card bg-warning">
                             <div class="card-body">
-                                <p class="card-title py-0 my-0">@item.Title</p>
-                                <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
-                                <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-                                <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                                <p class="card-subtitle"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="card-title py-0 my-0">@item.Title</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="card-title py-0 my-0"><strong>Homework #:</strong>@item.HomeworkID</p>
+                                            <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                                            <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="card-title py-0 my-0"><strong>Marks:</strong>@item.HwMarks</p>
+                                            <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                                            <p class="card-subtitle"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                        </div>
 
-                                <div class="btn-group">
-                                    @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
-                                    {
-                <a href="@item.RefLink1" class="btn btn-light">
-                    <span class="fas fa-link">
-                       
-                    </span>  <span>Attachment - 1</span>
-                </a>}
 
-                                    @if (string.IsNullOrWhiteSpace(@item.RefLink2) == false && (string.IsNullOrEmpty(item.RefLink2) == false))
-                                    {
-                <a href="@item.RefLink2" class="btn btn-light">
-                    <span class="fas fa-link">
-                      
-                    </span>  <span>Attachment - 2</span>
-                </a>}
-
-                                    @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
-                                    {
-                <a href="@item.RefLink3" class="btn btn-light">
-                    <span class="fas fa-link">
-                       
-                    </span>  <span>Attachment - 3</span>
-                </a>}
-
-                                    @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
-                                    {
-                <a href="@item.RefLink4" class="btn btn-light">
-                    <span class="fas fa-link">
-                       
-                    </span>  <span>Attachment - 4</span>
-                </a>}
-
-                                    @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
-                                    {
-                <a href="@item.RefLink5" class="btn btn-light">
-                    <span class="fas fa-link">
-                       
-                    </span>  <span>Attachment - 5</span>
-                </a>}
-                                    @{ var eml = "mailto:" + @item.Teacher.Email; }
-
-                                    <a href="@eml" class="btn btn-light">
-                                        <span class="fas fa-link">
-                                            
-                                        </span>  <span>Reply</span>
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    @Html.Raw(item.Description)
+                                        <div class="col-md-12 text-center mt-2">
+                                            <a class="btn btn-danger w-50" asp-area="User" asp-controller="HomeworkSheets" asp-action="Reply" asp-route-id="@item.HomeworkID">
+                                                <span class="fas fa-click"></span>
+                                                Details!
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +98,7 @@
                                         <div class="card bg-success">
                                             <div class="card-body">
                                                 <p class="card-title py-0 my-0">@item.Title</p>
-                                                <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.Name</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
                                                 <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
                                                 <p class="card-subtitle"><strong>Class Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
                                                 <p class="card-subtitle"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
@@ -187,3 +155,51 @@
 
                                     </div>}
                                                 </div>}
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>

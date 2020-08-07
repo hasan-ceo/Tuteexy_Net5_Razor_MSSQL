@@ -164,12 +164,12 @@ namespace Tuteexy.Areas.Lms.Controllers
             if (school != null)
             {
                 var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
-                return Json(new { data = allObj.Select(a => new { id = a.ClassworkID, teachername = a.Teacher.Name, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, timestart = a.TimeStart.ToString("dd/MMM/yyyy hh:mm tt"), timeend = a.TimeEnd.ToString("dd/MMM/yyyy hh:mm tt") }) });
+                return Json(new { data = allObj.Select(a => new { id = a.ClassworkID, teachername = a.Teacher.FullName, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, timestart = a.TimeStart.ToString("dd/MMM/yyyy hh:mm tt"), timeend = a.TimeEnd.ToString("dd/MMM/yyyy hh:mm tt") }) });
             }
             else
             {
                 var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.TeacherID == _userId, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
-                return Json(new { data = allObj.Select(a => new { id = a.ClassworkID, teachername = a.Teacher.Name, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, timestart = a.TimeStart.ToString("dd/MMM/yyyy hh:mm tt"), timeend = a.TimeEnd.ToString("dd/MMM/yyyy hh:mm tt") }) });
+                return Json(new { data = allObj.Select(a => new { id = a.ClassworkID, teachername = a.Teacher.FullName, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, timestart = a.TimeStart.ToString("dd/MMM/yyyy hh:mm tt"), timeend = a.TimeEnd.ToString("dd/MMM/yyyy hh:mm tt") }) });
             }
         }
 

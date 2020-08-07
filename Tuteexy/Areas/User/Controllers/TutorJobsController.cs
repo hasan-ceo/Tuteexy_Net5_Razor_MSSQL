@@ -19,8 +19,6 @@ namespace Tuteexy.Areas.User.Controllers
     {
         private readonly ILogger<TutorJobsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        private string _userId;
-
 
         public TutorJobsController(ILogger<TutorJobsController> logger, IUnitOfWork unitOfWork)
         {

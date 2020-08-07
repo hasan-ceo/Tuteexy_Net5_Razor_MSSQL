@@ -92,7 +92,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
             var allObj = await _unitOfWork.ClassRoomStudent.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom,Student");
-            return Json(new { data = allObj.Select(o=> new {o.ClassRoomStudentID, o.ClassRoom.ClassRoomName, o.Student.Name, o.ApprovedBy,o.IsApproved}) });
+            return Json(new { data = allObj.Select(o=> new {o.ClassRoomStudentID, o.ClassRoom.ClassRoomName, o.Student.FullName, o.ApprovedBy,o.IsApproved}) });
         }
 
         [HttpDelete]

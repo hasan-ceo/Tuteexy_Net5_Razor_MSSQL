@@ -49,7 +49,7 @@ namespace Tuteexy.DataAccess.Initializer
                 UserName = "admin@titan.com",
                 Email = "admin@titan.com",
                 EmailConfirmed = true,
-                Name = "Hasan Habib",
+                FullName = "Hasan Habib",
                 PhoneNumber = "+8801765263343"
             }, "Admin123!").GetAwaiter().GetResult();
 
@@ -62,7 +62,7 @@ namespace Tuteexy.DataAccess.Initializer
                 UserName = "azmainfiaz@gmail.com",
                 Email = "azmainfiaz@gmail.com",
                 EmailConfirmed = true,
-                Name = "Azmain Fiaz",
+                FullName = "Azmain Fiaz",
                 PhoneNumber = "+8801765263343"
             }, "Admin123!").GetAwaiter().GetResult();
 
@@ -75,7 +75,7 @@ namespace Tuteexy.DataAccess.Initializer
                 UserName = "bmgigs1@gmail.com",
                 Email = "bmgigs1@gmail.com",
                 EmailConfirmed = true,
-                Name = "GIMSC Online",
+                FullName = "GIMSC Online",
                 PhoneNumber = "+8801407483604"
             }, "Bmgigs1@").GetAwaiter().GetResult();
 
