@@ -27,6 +27,8 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.AttachLink3 = homeworkreply.AttachLink3;
                 objFromDb.AttachLink4 = homeworkreply.AttachLink4;
                 objFromDb.AttachLink5 = homeworkreply.AttachLink5;
+                objFromDb.HwMarks = homeworkreply.HwMarks;
+                objFromDb.HWStatus = homeworkreply.HWStatus;
             }
         }
 

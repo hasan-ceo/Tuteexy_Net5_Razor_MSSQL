@@ -50,7 +50,7 @@ namespace Tuteexy.Areas.User.Controllers
                 hwreply.AttachLink4 = "";
                 hwreply.AttachLink5 = "";
                 hwreply.HwMarks = 0;
-                hwreply.HWStatus = "Pendin";
+                hwreply.HWStatus = "Pending";
 
                 await _unitOfWork.HomeworkSheet.AddAsync(hwreply);
                 _unitOfWork.Save();
@@ -68,151 +68,160 @@ namespace Tuteexy.Areas.User.Controllers
         public async Task<IActionResult> Reply(HomeworkSheet hwreply)
         {
             string webRootPath = _hostEnvironment.WebRootPath;
-            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkID == hwreply.HomeworkID && i.StudentID == _userId);
-            if (hwr != null)
+            var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkSheetID == hwreply.HomeworkSheetID);
+            if (hwr == null)
             {
-                hwreply.AttachLink1 = string.IsNullOrEmpty(hwr.AttachLink1) == true ? "" : hwr.AttachLink1;
-                hwreply.AttachLink2 = string.IsNullOrEmpty(hwr.AttachLink2) == true ? "" : hwr.AttachLink2;
-                hwreply.AttachLink3 = string.IsNullOrEmpty(hwr.AttachLink3) == true ? "" : hwr.AttachLink3;
-                hwreply.AttachLink4 = string.IsNullOrEmpty(hwr.AttachLink4) == true ? "" : hwr.AttachLink4;
-                hwreply.AttachLink5 = string.IsNullOrEmpty(hwr.AttachLink5) == true ? "" : hwr.AttachLink5;
-                hwreply.HomeworkSheetID = hwr.HomeworkSheetID;
-
+                TempData["StatusMessage"] = $"Error : Please check homework";
+                return LocalRedirect("/User/Dashboard/Homework");
             }
-            else
+
+            hwr.Description = hwreply.Description;
+            hwr.DateSubmitted = DateTime.Now;
+            hwr.HWStatus = "Submitted";
+
+            var uploads = Path.Combine(webRootPath, @"images\homeworks");
+
+            if (hwr.AttachLink1 != null)
             {
-                hwreply.AttachLink1 = "";
-                hwreply.AttachLink2 = "";
-                hwreply.AttachLink3 = "";
-                hwreply.AttachLink4 = "";
-                hwreply.AttachLink5 = "";
+                //this is an edit and we need to remove old image
+                var imagePath = Path.Combine(uploads, hwr.AttachLink1.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
             }
-            hwreply.StudentID = _userId;
-            hwreply.DateSubmitted = DateTime.Now;
-            hwreply.Description = string.IsNullOrEmpty(hwreply.Description) == true ? "" : hwreply.Description;
 
+            if (hwr.AttachLink2 != null)
+            {
+                //this is an edit and we need to remove old image
+                var imagePath = Path.Combine(uploads, hwr.AttachLink2.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            if (hwr.AttachLink3 != null)
+            {
+                //this is an edit and we need to remove old image
+                var imagePath = Path.Combine(uploads, hwr.AttachLink3.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            if (hwr.AttachLink4 != null)
+            {
+                //this is an edit and we need to remove old image
+                var imagePath = Path.Combine(uploads, hwr.AttachLink4.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            if (hwr.AttachLink5 != null)
+            {
+                //this is an edit and we need to remove old image
+                var imagePath = Path.Combine(uploads, hwr.AttachLink5.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            hwr.AttachLink1 = "";
+            hwr.AttachLink2 = "";
+            hwr.AttachLink3 = "";
+            hwr.AttachLink4 = "";
+            hwr.AttachLink5 = "";
 
             var files = HttpContext.Request.Form.Files;
-
+            var i = files.Count;
+            var j = 1;
             if (files.Count > 0)
             {
                 
-                var uploads = Path.Combine(webRootPath, @"images\homeworks");
-
-                if (files.Count ==1)
+                if (j <= i)
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var extenstion = Path.GetExtension(files[0].FileName);
-                    if (hwreply.AttachLink1 != "")
-                    {
-                        //this is an edit and we need to remove old image
-                        var imagePath = Path.Combine(uploads, hwreply.AttachLink1.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
-                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create);
+                    using (filesStreams)
                     {
                         files[0].CopyTo(filesStreams);
                     }
-                    hwreply.AttachLink1 = fileName + extenstion;
+                    hwr.AttachLink1 = fileName + extenstion;
+                    j++;
                 }
 
-                if (files.Count == 2)
+                if (j <= i)
                 {
+
                     string fileName = Guid.NewGuid().ToString();
                     var extenstion = Path.GetExtension(files[1].FileName);
-                    if (hwreply.AttachLink2 != "")
-                    {
-                        //this is an edit and we need to remove old image
-                        var imagePath = Path.Combine(uploads, hwreply.AttachLink2.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
-                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create);
+                    using (filesStreams)
                     {
                         files[1].CopyTo(filesStreams);
                     }
-                    hwreply.AttachLink2 = fileName + extenstion;
+                    hwr.AttachLink2 = fileName + extenstion;
+                    j++;
                 }
 
-                if (files.Count == 3)
+                if (j <= i)
                 {
+
                     string fileName = Guid.NewGuid().ToString();
                     var extenstion = Path.GetExtension(files[2].FileName);
-                    if (hwreply.AttachLink3 != "")
-                    {
-                        //this is an edit and we need to remove old image
-                        var imagePath = Path.Combine(uploads, hwreply.AttachLink3.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
-                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create);
+                    using (filesStreams)
                     {
                         files[2].CopyTo(filesStreams);
                     }
-                    hwreply.AttachLink3 = fileName + extenstion;
+                    hwr.AttachLink3 = fileName + extenstion;
+                    j++;
                 }
 
-                if (files.Count == 4)
+                if (j <= i)
                 {
+
                     string fileName = Guid.NewGuid().ToString();
                     var extenstion = Path.GetExtension(files[3].FileName);
-                    if (hwreply.AttachLink4 != "")
-                    {
-                        //this is an edit and we need to remove old image
-                        var imagePath = Path.Combine(uploads, hwreply.AttachLink4.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
-                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create);
+                    using (filesStreams)
                     {
                         files[3].CopyTo(filesStreams);
                     }
-                    hwreply.AttachLink4 = fileName + extenstion;
+                    hwr.AttachLink4 = fileName + extenstion;
+                    j++;
                 }
 
-                if (files.Count == 5)
+                if (j <= i)
                 {
+
                     string fileName = Guid.NewGuid().ToString();
                     var extenstion = Path.GetExtension(files[4].FileName);
-                    if (hwreply.AttachLink5 != "")
-                    {
-                        //this is an edit and we need to remove old image
-                        var imagePath = Path.Combine(uploads, hwreply.AttachLink5.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
-                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create);
+                    using (filesStreams)
                     {
                         files[4].CopyTo(filesStreams);
                     }
-                    hwreply.AttachLink5 = fileName + extenstion;
+                    hwr.AttachLink5 = fileName + extenstion;
+                    j++;
                 }
+
             }
 
 
-            if (hwreply.HomeworkSheetID == 0)
+            if (hwr.HomeworkSheetID != 0)
             {
-                await _unitOfWork.HomeworkSheet.AddAsync(hwreply);
-            }
-            else
-            {
-                _unitOfWork.HomeworkSheet.Update(hwreply);
+                _unitOfWork.HomeworkSheet.Update(hwr);
             }
 
             _unitOfWork.Save();
-            return LocalRedirect("/User/Dashboard/Index");
+            return RedirectToAction("Reply", new { Id=hwr.HomeworkID});
         }
 
     }

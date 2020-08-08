@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Tuteexy.Models.Homework>
 
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
@@ -30,7 +32,7 @@
                                     <p class="card-title py-0 my-0">@item.Title</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="card-title py-0 my-0"><strong>Homework #:</strong>@item.HomeworkID</p>
+                                    <p class="card-title py-0 my-0"><strong>Homework No:</strong>@item.HomeworkID</p>
                                     <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
                                     <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
                                 </div>

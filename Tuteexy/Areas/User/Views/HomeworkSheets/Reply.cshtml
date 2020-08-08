@@ -4,152 +4,209 @@
 
 <div class="card">
     <div class="card-header pb-0">
-                    <div class="card bg-warning">
-                        <div class="card-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="card-title py-0 my-0">@Model.Homework.Title</p>
-                                    </div>
-                                    <div class="col-md-6 text-center bg-white rounded">
-                                        <p class="card-title py-0 my-0 text-danger">@Model.HWStatus</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="card-title py-0 my-0"><strong>Homework #:</strong>@Model.HomeworkID</p>
-                                        <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.Homework.TeacherName</p>
-                                        <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Homework.Subject </p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="card-title py-0 my-0"><strong>Marks:</strong>@Model.Homework.HwMarks</p>
-                                        <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.Homework.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                                        <p class="card-subtitle"><strong>Date Due:</strong> @Model.Homework.DateDue.ToString("dd/MMM/yyyy") </p>
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                                        @Html.Raw(Model.Homework.Description)
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="btn-group">
-                                            @if (string.IsNullOrWhiteSpace(Model.Homework.RefLink1) == false && (string.IsNullOrEmpty(Model.Homework.RefLink1) == false))
-                                            {
-                                                <a href="@Model.Homework.RefLink1" class="btn btn-light">
-                                                    <span class="fas fa-link">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0">@Model.Homework.Title</p>
+                        </div>
+                        <div class="col-md-6 text-center bg-white rounded">
+                            <p class="card-title py-0 my-0 text-danger">@Model.HWStatus</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Homework #:</strong> @Model.HomeworkID</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.Homework.TeacherName</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Homework.Subject </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Marks:</strong> @Model.Homework.HwMarks</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.Homework.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                            <p class="card-subtitle"><strong>Date Due:</strong> @Model.Homework.DateDue.ToString("dd/MMM/yyyy") </p>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            @Html.Raw(Model.Homework.Description)
+                        </div>
+                        <div class="col-md-12">
+                            <div class="btn-group">
+                                @if (string.IsNullOrWhiteSpace(Model.Homework.RefLink1) == false && (string.IsNullOrEmpty(Model.Homework.RefLink1) == false))
+                                {
+                                    <a href="@Model.Homework.RefLink1" class="btn btn-light">
+                                        <span class="fas fa-link">
 
-                                                    </span>  <span>Attachment - 1</span>
-                                                </a>}
+                                        </span>  <span>Attachment - 1</span>
+                                    </a>}
 
-                                            @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink2) == false && (string.IsNullOrEmpty(Model.Homework.RefLink2) == false))
-                                            {
-                                                <a href="@Model.Homework.RefLink2" class="btn btn-light">
-                                                    <span class="fas fa-link">
+                                @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink2) == false && (string.IsNullOrEmpty(Model.Homework.RefLink2) == false))
+                                {
+                                    <a href="@Model.Homework.RefLink2" class="btn btn-light">
+                                        <span class="fas fa-link">
 
-                                                    </span>  <span>Attachment - 2</span>
-                                                </a>}
+                                        </span>  <span>Attachment - 2</span>
+                                    </a>}
 
-                                            @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink3) == false && (string.IsNullOrEmpty(Model.Homework.RefLink3) == false))
-                                            {
-                                                <a href="@Model.Homework.RefLink3" class="btn btn-light">
-                                                    <span class="fas fa-link">
+                                @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink3) == false && (string.IsNullOrEmpty(Model.Homework.RefLink3) == false))
+                                {
+                                    <a href="@Model.Homework.RefLink3" class="btn btn-light">
+                                        <span class="fas fa-link">
 
-                                                    </span>  <span>Attachment - 3</span>
-                                                </a>}
+                                        </span>  <span>Attachment - 3</span>
+                                    </a>}
 
-                                            @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink4) == false && (string.IsNullOrEmpty(Model.Homework.RefLink4) == false))
-                                            {
-                                                <a href="@Model.Homework.RefLink4" class="btn btn-light">
-                                                    <span class="fas fa-link">
+                                @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink4) == false && (string.IsNullOrEmpty(Model.Homework.RefLink4) == false))
+                                {
+                                    <a href="@Model.Homework.RefLink4" class="btn btn-light">
+                                        <span class="fas fa-link">
 
-                                                    </span>  <span>Attachment - 4</span>
-                                                </a>}
+                                        </span>  <span>Attachment - 4</span>
+                                    </a>}
 
-                                            @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink5) == false && (string.IsNullOrEmpty(Model.Homework.RefLink5) == false))
-                                            {
-                                                <a href="@Model.Homework.RefLink5" class="btn btn-light">
-                                                    <span class="fas fa-link">
+                                @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink5) == false && (string.IsNullOrEmpty(Model.Homework.RefLink5) == false))
+                                {
+                                    <a href="@Model.Homework.RefLink5" class="btn btn-light">
+                                        <span class="fas fa-link">
 
-                                                    </span>  <span>Attachment - 5</span>
-                                                </a>}
+                                        </span>  <span>Attachment - 5</span>
+                                    </a>}
 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-
-
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="card-body pt-0">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
-            <input type="hidden" asp-for="HomeworkID" />
-            @*<input type="hidden" asp-for="AttachLink1" />
+        <div class="container">
+            <div class="row">
+                @if (Model.HWStatus!="Pending")
+                {
+                <div class="col-12 px-0">
+                    <p class="card-title py-0 my-0"><strong>Submitted time: </strong>  @Model.DateSubmitted.ToString("dd/MMM/yyyy hh:mm tt")</p>
+                   
+                </div>
+                }
+                    <div class="col-12 px-0">
+                        <div class="btn-group">
+                            @if (Model.AttachLink1 != "")
+                            {
+                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink1">
+                                    <span class="fas fa-link"></span>
+                                    At - 1
+                                </a>
+                            }
+
+                            @if (Model.AttachLink2 != "")
+                            {
+                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink2">
+                                    <span class="fas fa-link"></span>
+                                    At - 2
+                                </a>
+                            }
+
+                            @if (Model.AttachLink3 != "")
+                            {
+                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink3">
+                                    <span class="fas fa-link"></span>
+                                    At- 3
+                                </a>
+                            }
+
+                            @if (Model.AttachLink4 != "")
+                            {
+                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink4">
+                                    <span class="fas fa-link"></span>
+                                    At - 4
+                                </a>
+                            }
+
+                            @if (Model.AttachLink5 != "")
+                            {
+                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink5">
+                                    <span class="fas fa-link"></span>
+                                    At - 5
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @if (Model.HWStatus != "Accepted")
+        {
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
+                <input type="hidden" asp-for="HomeworkSheetID" />
+                @*<input type="hidden" asp-for="AttachLink1" />
                 <input type="hidden" asp-for="AttachLink2" />
                 <input type="hidden" asp-for="AttachLink3" />
                 <input type="hidden" asp-for="AttachLink4" />
                 <input type="hidden" asp-for="AttachLink5" />*@
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="Description">Description</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" asp-for="Description">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="Description">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Description">
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="AttachLink1">Attachment 1</label>
-                <div class="col-sm-10">
-                    <input type="file" name="files" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="AttachLink1">Attachment 1</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="files" class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="AttachLink2">Attachment 2</label>
-                <div class="col-sm-10">
-                    <input type="file" name="files" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="AttachLink2">Attachment 2</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="files" class="form-control" />
+                    </div>
                 </div>
-            </div>
 
 
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="AttachLink3">Attachment 3</label>
-                <div class="col-sm-10">
-                    <input type="file" name="files" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="AttachLink3">Attachment 3</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="files" class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="AttachLink4">Attachment 4</label>
-                <div class="col-sm-10">
-                    <input type="file" name="files" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="AttachLink4">Attachment 4</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="files" class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="AttachLink5">Attachment 5</label>
-                <div class="col-sm-10">
-                    <input type="file" name="files" class="form-control" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="AttachLink5">Attachment 5</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="files" class="form-control" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="btn-group" role="group" aria-label="Basic example">
-                @if (Model.HomeworkSheetID != 0)
-                {
-                    <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
-                        <span class="fas fa-save"></span>
-                        Reply
-                    </button> }
-                else
-                {
-            <button type="submit" class="btn btn-success">
-                <span class="fas fa-save"></span>
-                Reply
-            </button>}
-                <button class="btn btn-light" asp-area="User" asp-controller="Dashboard" asp-action="Index">
-                    <span class="fas fa-undo"></span>
-                    Cancel
-                </button>
-            </div>
-        </form>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    @if (Model.HomeworkSheetID != 0)
+                    {
+                        <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
+                            <span class="fas fa-save"></span>
+                            Reply
+                        </button> }
+                    else
+                    {
+                        <button type="submit" class="btn btn-success">
+                            <span class="fas fa-save"></span>
+                            Reply
+                        </button>}
+                    <button class="btn btn-light" asp-area="User" asp-controller="Dashboard" asp-action="Index">
+                        <span class="fas fa-undo"></span>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        }
     </div>
 </div>
