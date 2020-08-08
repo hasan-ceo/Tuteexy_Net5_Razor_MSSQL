@@ -13,9 +13,11 @@ namespace Tuteexy.Models
         public long ClassworkID { get; set; }
 
         public long ClassRoomID { get; set; }
+        [ForeignKey("ClassRoomID")]
         public virtual ClassRoom ClassRoom { get; set; }
 
         public string TeacherID { get; set; }
+        [ForeignKey("TeacherID")]
         public virtual ApplicationUser Teacher { get; set; }
 
         [Required(ErrorMessage = "Select Subject")]

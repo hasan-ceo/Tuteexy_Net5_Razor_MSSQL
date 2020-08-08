@@ -12,6 +12,7 @@ namespace Tuteexy.Models
     [Key]
         public long SchoolNoticeID { get; set; }
         public long SchoolID { get; set; }
+        [ForeignKey("SchoolID")]
         public virtual School School { get; set; }
 
         [Required]

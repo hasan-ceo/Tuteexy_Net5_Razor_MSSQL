@@ -129,6 +129,7 @@ namespace Tuteexy.Areas.User.Controllers
                 classroomID = classroom.ClassRoomID;
             }
             var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classroomID && h.ScheduleDateTime <= DateTime.Now, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
+           // return View(allObj.Select(a => new { Title=a.Title, HomeworkID=a.HomeworkID, TeacherName = a.TeacherName, Subject= a.Subject }));
             return View(allObj);
 
         }

@@ -12,6 +12,7 @@ namespace Tuteexy.Models
     [Key]
         public long ClassRoomNoticeID { get; set; }
         public long ClassRoomID { get; set; }
+        [ForeignKey("ClassRoomID")]
         public virtual ClassRoom ClassRoom { get; set; }
 
         [Required]

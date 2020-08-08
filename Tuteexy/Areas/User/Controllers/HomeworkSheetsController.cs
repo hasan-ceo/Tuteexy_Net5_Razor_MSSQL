@@ -24,6 +24,8 @@ namespace Tuteexy.Areas.User.Controllers
         private readonly IWebHostEnvironment _hostEnvironment;
         private string _userId;
 
+        [BindProperty]
+        public HomeworkSheet hwreply { get; set; }
 
         public HomeworkSheetsController(ILogger<HomeworkSheetsController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
@@ -50,7 +52,7 @@ namespace Tuteexy.Areas.User.Controllers
                 hwreply.AttachLink4 = "";
                 hwreply.AttachLink5 = "";
                 hwreply.HwMarks = 0;
-                hwreply.HWStatus = "Pending";
+                hwreply.HWStatus = SD.StatusPending;
 
                 await _unitOfWork.HomeworkSheet.AddAsync(hwreply);
                 _unitOfWork.Save();
@@ -65,7 +67,7 @@ namespace Tuteexy.Areas.User.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Reply(HomeworkSheet hwreply)
+        public async Task<IActionResult> Reply()
         {
             string webRootPath = _hostEnvironment.WebRootPath;
             var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkSheetID == hwreply.HomeworkSheetID);
@@ -77,7 +79,7 @@ namespace Tuteexy.Areas.User.Controllers
 
             hwr.Description = hwreply.Description;
             hwr.DateSubmitted = DateTime.Now;
-            hwr.HWStatus = "Submitted";
+            hwr.HWStatus =SD.StatusSubmitted;
 
             var uploads = Path.Combine(webRootPath, @"images\homeworks");
 

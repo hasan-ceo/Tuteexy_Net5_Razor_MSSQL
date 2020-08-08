@@ -13,6 +13,7 @@ namespace Tuteexy.Models
         [Key]
         public long SubjectID { get; set; }
         public long SchoolID { get; set; }
+        [ForeignKey("SchoolID")]
         public virtual School School { get; set; }
 
         [Display(Name = "Subject")]

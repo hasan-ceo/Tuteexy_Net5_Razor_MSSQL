@@ -22,6 +22,8 @@ namespace Tuteexy.Utility
         public const string ssShoppingCart = "Shoping Cart Session";
 
         public const string StatusPending = "Pending";
+        public const string StatusSubmitted = "Submitted";
+        public const string StatusAccepted = "Accepted";
         public const string StatusApproved = "Approved";
         public const string StatusInProcess = "Processing";
         public const string StatusShipped = "Shipped";

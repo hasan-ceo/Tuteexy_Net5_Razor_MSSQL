@@ -149,6 +149,19 @@ namespace Tuteexy.Areas.Lms.Controllers
             return View(t);
         }
 
+        public async Task<IActionResult> ReplyList()
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
+            var HomeworkSheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
+
+            var allObj = from h in homework
+                         join s in HomeworkSheet on h.HomeworkID equals s.HomeworkID
+                         select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime=h.ScheduleDateTime,DateDue=h.DateDue, StudentName = s.Student.FullName, HwMarks=h.HwMarks, HWStatus=s.HWStatus};
+
+            return View(allObj.OrderBy(a=>a.ClassRoomName).OrderBy(a=>a.Subject));
+        }
+
 
         #region API CALLS
 

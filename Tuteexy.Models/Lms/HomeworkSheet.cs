@@ -11,8 +11,10 @@ namespace Tuteexy.Models
         [Key]
         public long HomeworkSheetID { get; set; }
         public long HomeworkID { get; set; }
+        [ForeignKey("HomeworkID")]
         public virtual Homework Homework { get; set; }
         public string StudentID { get; set; }
+        [ForeignKey("StudentID")]
         public virtual ApplicationUser Student { get; set; }
 
         [Required]

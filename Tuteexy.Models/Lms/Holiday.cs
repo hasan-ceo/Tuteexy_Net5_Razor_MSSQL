@@ -12,6 +12,7 @@ namespace Tuteexy.Models
         [Key]
         public long HolidayID { get; set; }
         public long SchoolID { get; set; }
+        [ForeignKey("SchoolID")]
         public School School { get; set; }
 
         [Column(TypeName = "datetime")]

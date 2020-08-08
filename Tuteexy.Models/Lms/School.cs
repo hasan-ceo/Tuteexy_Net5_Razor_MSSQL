@@ -42,6 +42,7 @@ namespace Tuteexy.Models
         public bool IsAuthorizedSchool { get; set; }
         
         public string OwnerId { get; set; }
+        [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }
 
     }

@@ -105,7 +105,7 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex flex-column text-success" asp-area="User" asp-controller="Dashboard" asp-action="index">
                             <span class="fas fa-home fa-1x"></span>
-                            <span class="d-sm-inline mt-1">Dashboard</span>
+                            <span class="d-sm-inline mt-1">Home</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -196,7 +196,7 @@
                         <div class="row p-0 m-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="card card-stats">
-                                    @await Component.InvokeAsync("UserName")
+                                    @await Component.InvokeAsync("UserProfile")
                                 </div>
                             </div>
 

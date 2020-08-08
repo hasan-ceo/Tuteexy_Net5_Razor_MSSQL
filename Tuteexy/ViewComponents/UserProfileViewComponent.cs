@@ -9,11 +9,11 @@ using Tuteexy.Models;
 
 namespace Tuteexy.ViewComponents
 {
-    public class UserNameViewComponent : ViewComponent
+    public class UserProfileViewComponent : ViewComponent
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserNameViewComponent(IUnitOfWork unitOfWork)
+        public UserProfileViewComponent(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

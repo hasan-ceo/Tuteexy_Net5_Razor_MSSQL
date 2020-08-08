@@ -14,9 +14,11 @@ namespace Tuteexy.Models
         public long ClassRoomStudentID { get; set; }
 
         public long ClassRoomID { get; set; }
+        [ForeignKey("ClassRoomID")]
         public virtual ClassRoom ClassRoom { get; set; }
 
         public string StudentID { get; set; }
+        [ForeignKey("StudentID")]
         public virtual ApplicationUser Student { get; set; }
 
         [MaxLength(50)]

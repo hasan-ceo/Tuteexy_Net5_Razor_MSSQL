@@ -14,10 +14,12 @@ namespace Tuteexy.Models
         public long SchoolTeacherID { get; set; }
 
         public long SchoolID { get; set; }
+        [ForeignKey("SchoolID")]
         public virtual School School { get; set; }
 
         
         public string TeacherID { get; set; }
+        [ForeignKey("TeacherID")]
         public virtual ApplicationUser Teacher { get; set; }
 
         [MaxLength(50)]
