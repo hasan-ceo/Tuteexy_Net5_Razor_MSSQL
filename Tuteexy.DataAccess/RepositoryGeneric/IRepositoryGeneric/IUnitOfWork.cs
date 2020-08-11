@@ -23,13 +23,15 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IHomeworkRepository Homework { get; }
         IHomeworkSheetRepository HomeworkSheet { get; }
         IClassworkRepository Classwork { get; }
+        IClassworkSheetRepository ClassworkSheet { get; }
         ISubjectRepository Subject { get; }
         ISchoolNoticeRepository SchoolNotice { get; }
         IClassRoomNoticeRepository ClassRoomNotice { get; }
         IClassRoutineRepository ClassRoutine { get; }
 
         IHolidayRepository Holiday { get; }
-
+        IQuestionRepository Question { get; }
+        IQuestionThreadRepository QuestionThread { get; }
         ITutorJobRepository TutorJob { get; }
         IUserProfileRepository UserProfile { get; }
         //Lms End

@@ -1,0 +1,124 @@
+﻿@model Tuteexy.Models.HomeworkSheet 
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="card">
+    <div class="card-header pb-0">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0">@Model.Homework.Title</p>
+                        </div>
+                        <div class="col-md-6 text-center bg-white rounded">
+                            <p class="card-title py-0 my-0 text-danger">@Model.HWStatus</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Homework #:</strong> @Model.HomeworkID</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.Homework.TeacherName</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Homework.Subject </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Marks:</strong> @Model.Homework.HwMarks</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.Homework.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                            <p class="card-subtitle"><strong>Date Due:</strong> @Model.Homework.DateDue.ToString("dd/MMM/yyyy") </p>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            @Html.Raw(Model.Homework.Description)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body pt-0">
+        <div class="container">
+            <div class="row">
+                @if (Model.HWStatus != Tuteexy.Utility.SD.StatusPending)
+                {
+                <div class="col-12 px-0">
+                    <p class="card-title py-0 my-0"><strong>Submitted time: </strong>  @Model.DateSubmitted.ToString("dd/MMM/yyyy hh:mm tt")</p>
+                    @if (Model.HWStatus == Tuteexy.Utility.SD.StatusAccepted)
+                    {
+                        <p class="card-title py-1 my-0"><strong>Obtain Marks: </strong>  @Model.HwMarks</p>
+                    }
+                </div>
+                }
+                <div class="col-12 px-0">
+                    <div class="btn-group">
+                        @if (Model.AttachLink1 != "")
+                        {
+                            <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink1">
+                                <span class="fas fa-link"></span>
+                                At - 1
+                            </a>
+                        }
+
+                        @if (Model.AttachLink2 != "")
+                        {
+                            <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink2">
+                                <span class="fas fa-link"></span>
+                                At - 2
+                            </a>
+                        }
+
+                        @if (Model.AttachLink3 != "")
+                        {
+                            <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink3">
+                                <span class="fas fa-link"></span>
+                                At- 3
+                            </a>
+                        }
+
+                        @if (Model.AttachLink4 != "")
+                        {
+                            <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink4">
+                                <span class="fas fa-link"></span>
+                                At - 4
+                            </a>
+                        }
+
+                        @if (Model.AttachLink5 != "")
+                        {
+                            <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink5">
+                                <span class="fas fa-link"></span>
+                                At - 5
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.HWStatus != "Accepted")
+        {
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
+                <input type="hidden" asp-for="HomeworkSheetID" />
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" asp-for="HwMarks">Marks</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="HwMarks">
+                    </div>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+                    <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
+                        <span class="fas fa-check"></span>
+                        Accepted
+                    </button>
+
+                    <button class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Replylist">
+                        <span class="fas fa-undo"></span>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        }
+    </div>
+</div>

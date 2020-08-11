@@ -157,11 +157,54 @@ namespace Tuteexy.Areas.Lms.Controllers
 
             var allObj = from h in homework
                          join s in HomeworkSheet on h.HomeworkID equals s.HomeworkID
-                         select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime=h.ScheduleDateTime,DateDue=h.DateDue, StudentName = s.Student.FullName, HwMarks=h.HwMarks, HWStatus=s.HWStatus};
+                         select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime=h.ScheduleDateTime,DateDue=h.DateDue, StudentName = s.Student.FullName, HwMarks=h.HwMarks, HWStatus=s.HWStatus,AttachLink1=s.AttachLink1};
 
             return View(allObj.OrderBy(a=>a.ClassRoomName).OrderBy(a=>a.Subject));
         }
 
+        public async Task<IActionResult> MarkUpdate(long Id)
+        {
+            var HomeworkSheet = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(h => h.HomeworkSheetID == Id, includeProperties: "Homework,Student");
+            return View(HomeworkSheet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MarkUpdate(HomeworkSheet hws)
+        {
+            var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkSheetID == hws.HomeworkSheetID, includeProperties: "Homework,Student");
+            if (hwr == null)
+            {
+                TempData["StatusMessage"] = $"Error : Please check homework";
+                return LocalRedirect("/Lms/Homeworks/ReplyList");
+            }
+
+            //if (hws.HwMarks ==0)
+            //{
+            //    TempData["StatusMessage"] = $"Error : Marks can not be zero";
+            //    return RedirectToAction("MarkUpdate", new { Id=hws.HwMarks });
+
+            //}
+
+            if (hws.HwMarks > hwr.Homework.HwMarks)
+            {
+                TempData["StatusMessage"] = $"Error : Given marks can not be more than Homework marks.";
+                return RedirectToAction("MarkUpdate", new { Id = hws.HomeworkSheetID });
+
+            }
+
+            hwr.HwMarks = hws.HwMarks;
+            hwr.DateSubmitted = DateTime.Now;
+            hwr.HWStatus = SD.StatusAccepted;
+
+            if (hwr.HomeworkSheetID != 0)
+            {
+                _unitOfWork.HomeworkSheet.Update(hwr);
+                _unitOfWork.Save();
+            }
+
+            return RedirectToAction("ReplyList");
+        }
 
         #region API CALLS
 

@@ -23,6 +23,7 @@ namespace Tuteexy.Areas.User.Controllers
         private readonly ILogger<UserProfilesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private string _userId;
 
         public UserProfilesController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<UserProfilesController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
@@ -33,16 +34,11 @@ namespace Tuteexy.Areas.User.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public async Task<IActionResult> Upsert(long? Id)
+        public async Task<IActionResult> Upsert()
         {
-            UserProfile userprofile = new UserProfile();
-            if (Id == null)
-            {
-                //this is for create
-                return View(userprofile);
-            }
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //this is for edit
-            userprofile = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(t=>t.UserProfileID==Id.GetValueOrDefault(),includeProperties:"User");
+            var userprofile = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(t=>t.User.Id == _userId,includeProperties:"User");
             if (userprofile == null)
             {
                 return NotFound();
@@ -103,6 +99,9 @@ namespace Tuteexy.Areas.User.Controllers
                 _unitOfWork.Save();
                 return LocalRedirect("/User/Dashboard/Index");
             }
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(t => t.Id == _userId);
+            userprofile.User = user;
             return View(userprofile);
         }
 

@@ -44,8 +44,9 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<ClassRoutine> ClassRoutine { get; set; }
         public DbSet<Holiday> Holiday { get; set; }
         public DbSet<Classwork> Classwork { get; set; }
+        public DbSet<ClassworkSheet> ClassworkSheet { get; set; }
         public DbSet<Question> Question { get; set; }
-
+        public DbSet<QuestionThread> QuestionThread { get; set; }
         public DbSet<TutorJob> TutorJob { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
     }

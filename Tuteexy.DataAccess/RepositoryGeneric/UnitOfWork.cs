@@ -32,6 +32,9 @@ namespace Tuteexy.DataAccess.Repository
             Holiday = new HolidayRepository(_db);
             TutorJob = new TutorJobRepository(_db);
             UserProfile = new UserProfileRepository(_db);
+            Question = new QuestionRepository(_db);
+            QuestionThread = new QuestionThreadRepository(_db);
+            ClassworkSheet = new ClassworkSheetRepository(_db);
         }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
@@ -48,6 +51,7 @@ namespace Tuteexy.DataAccess.Repository
         public IHomeworkRepository Homework { get; private set; }
         public IHomeworkSheetRepository HomeworkSheet { get; private set; }
         public IClassworkRepository Classwork { get; private set; }
+        public IClassworkSheetRepository ClassworkSheet { get; private set; }
         public ISubjectRepository Subject { get; private set; }
         public ISchoolNoticeRepository SchoolNotice { get; private set; }
         public IClassRoomNoticeRepository ClassRoomNotice { get; private set; }
@@ -55,6 +59,8 @@ namespace Tuteexy.DataAccess.Repository
         public IHolidayRepository Holiday { get; private set; }
         public ITutorJobRepository TutorJob { get; private set; }
         public IUserProfileRepository UserProfile { get; private set; }
+        public IQuestionRepository Question { get; private set; }
+        public IQuestionThreadRepository QuestionThread { get; private set; }
 
         public void Dispose()
         {

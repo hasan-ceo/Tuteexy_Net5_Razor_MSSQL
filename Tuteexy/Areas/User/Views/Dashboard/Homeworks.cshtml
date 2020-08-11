@@ -24,29 +24,29 @@
         <div class="col-12">
             @foreach (Homework item in Model)
             {
-                            <div class="card bg-warning">
+                            <div class="card bg-secondary">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="card-title py-0 my-0">@item.Title</p>
+                                    <p class="card-title text-white py-0 my-0">@item.Title</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="card-title py-0 my-0"><strong>Homework No:</strong>@item.HomeworkID</p>
-                                    <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
-                                    <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                                    <p class="card-title text-white py-0 my-0"><strong>Homework No:</strong>@item.HomeworkID</p>
+                                    <p class="card-subtitle text-white py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                                    <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="card-title py-0 my-0"><strong>Marks:</strong>@item.HwMarks</p>
-                                    <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                                    <p class="card-subtitle"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                    <p class="card-title text-white py-0 my-0"><strong>Marks:</strong>@item.HwMarks</p>
+                                    <p class="card-subtitle text-white py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                                    <p class="card-subtitle text-white"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
                                 </div>
 
 
                                 <div class="col-md-12 text-center mt-2">
-                                    <a class="btn btn-danger w-50" asp-area="User" asp-controller="HomeworkSheets" asp-action="Reply" asp-route-id="@item.HomeworkID">
+                                    <a class="btn btn-dark w-50" asp-area="User" asp-controller="HomeworkSheets" asp-action="Reply" asp-route-id="@item.HomeworkID">
                                         <span class="fas fa-click"></span>
-                                        Details!
+                                        H.W. Details!
                                     </a>
                                 </div>
                             </div>

@@ -47,13 +47,18 @@ namespace Tuteexy.Areas.User.Controllers
             var homework = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
             var schoolnotice = await _unitOfWork.SchoolNotice.GetAllAsync(h => h.SchoolID == schoolid && h.ScheduleDateTime <= DateTime.Now && h.isPined == true, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "School");
             var classroomnotice = await _unitOfWork.ClassRoomNotice.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "ClassRoom");
+            
+            
+            var question = await _unitOfWork.Question.GetAllAsync(h =>h.IsApproved==true && h.IsOffensive==false &&  h.SubmittedDate.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.SubmittedDate), includeProperties: "User");
+
 
             UserHomeVM userhome = new UserHomeVM()
             {
                 Classwork=classwork,
                 Homework = homework,
                 SchoolNotice = schoolnotice,
-                ClassRoomNotice = classroomnotice
+                ClassRoomNotice = classroomnotice,
+                Question=question
             };
 
 

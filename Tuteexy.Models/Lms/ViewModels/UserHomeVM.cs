@@ -9,5 +9,6 @@ namespace Tuteexy.Models.ViewModels
         public IEnumerable<Classwork> Classwork { get; set; }
         public IEnumerable<SchoolNotice> SchoolNotice { get; set; }
         public IEnumerable<ClassRoomNotice> ClassRoomNotice { get; set; }
+        public IEnumerable<Question> Question { get; set; }
     }
 }

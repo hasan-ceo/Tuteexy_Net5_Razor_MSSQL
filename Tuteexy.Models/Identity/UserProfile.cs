@@ -10,6 +10,7 @@ namespace Tuteexy.Models
         [Key]
         public long UserProfileID { get; set; }
         public string UserID { get; set; }
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; }
 
         [Required]

@@ -2,10 +2,20 @@
 
 <partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
 
-<div class="card">
-    <div class="card-header pb-0">
-        <div class="card bg-warning">
-            <div class="card-body">
+<div class="row row-cols-1">
+    <div class="col-12">
+        <div class="card bg-Alabaster mb-2">
+            <div class="card-body text-black-50">
+                <h3 class="card-title">Homework Reply</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1">
+    <div class="col-12">
+        <div class="card bg-secondary mb-2">
+            <div class="card-body text-white">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -76,15 +86,24 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="card">
+    <div class="card-header pb-0">
+
+    </div>
 
     <div class="card-body pt-0">
         <div class="container">
             <div class="row">
-                @if (Model.HWStatus!="Pending")
+                @if (Model.HWStatus!= Tuteexy.Utility.SD.StatusPending)
                 {
                 <div class="col-12 px-0">
                     <p class="card-title py-0 my-0"><strong>Submitted time: </strong>  @Model.DateSubmitted.ToString("dd/MMM/yyyy hh:mm tt")</p>
-                   
+                    @if (Model.HWStatus == Tuteexy.Utility.SD.StatusAccepted)
+                    {
+                        <p class="card-title py-1 my-0"><strong>Obtain Marks: </strong>  @Model.HwMarks</p>
+                    }
                 </div>
                 }
                     <div class="col-12 px-0">
@@ -138,11 +157,6 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
                 <input type="hidden" asp-for="HomeworkSheetID" />
-                @*<input type="hidden" asp-for="AttachLink1" />
-                <input type="hidden" asp-for="AttachLink2" />
-                <input type="hidden" asp-for="AttachLink3" />
-                <input type="hidden" asp-for="AttachLink4" />
-                <input type="hidden" asp-for="AttachLink5" />*@
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" asp-for="Description">Comments</label>
@@ -191,15 +205,15 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     @if (Model.HomeworkSheetID != 0)
                     {
-                        <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
-                            <span class="fas fa-save"></span>
-                            Reply
-                        </button> }
+                    <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
+                        <span class="fas fa-save"></span>
+                        Submit
+                    </button> }
                     else
                     {
                         <button type="submit" class="btn btn-success">
                             <span class="fas fa-save"></span>
-                            Reply
+                            Submit
                         </button>}
                     <button class="btn btn-light" asp-area="User" asp-controller="Dashboard" asp-action="Index">
                         <span class="fas fa-undo"></span>

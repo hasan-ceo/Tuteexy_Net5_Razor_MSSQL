@@ -73,11 +73,18 @@
                     </a>
                 </li>
                 <li>
+                    <a asp-area="User" asp-controller="Questions" asp-action="Index">
+                        <span class="fas fa-question-circle"></span>
+                        My Question
+                    </a>
+                </li>
+                <li>
                     <a asp-area="User" asp-controller="TutorJobs" asp-action="Index">
                         <span class="fas fa-address-card"></span>
                         Tutor Job
                     </a>
                 </li>
+
             </ul>
 
 
@@ -136,7 +143,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Classworks">
+                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Classworks">
                             <span class="fas fa-atom"></span>
                             My Classworks
                         </a>
@@ -165,7 +172,12 @@
                             My School Holiday
                         </a>
                     </li>
-
+                    <li>
+                        <a class="nav-link" asp-area="User" asp-controller="Questions" asp-action="Index">
+                            <span class="fas fa-question-circle"></span>
+                            My Question
+                        </a>
+                    </li>
                 </ul>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Other Activities</span>
