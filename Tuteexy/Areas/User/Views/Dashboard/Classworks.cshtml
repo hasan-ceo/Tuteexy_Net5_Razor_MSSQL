@@ -20,7 +20,7 @@
         <div class="col-12">
             @foreach (Classwork item in Model)
             {
-                <div class="card bg-secondary">
+                <div class="card bg-classwork card-pointer">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
@@ -80,7 +80,7 @@
 
                             </div>
                             <div class="col-md-12 text-center mt-2">
-                                <a class="btn btn-dark w-50" asp-area="User" asp-controller="ClassworkSheets" asp-action="Answer" asp-route-id="@item.ClassworkID">
+                                <a class="btn bg-classwork-light txtwhite w-50" asp-area="User" asp-controller="ClassworkSheets" asp-action="Answer" asp-route-id="@item.ClassworkID">
                                     <span class="fas fa-click"></span>
                                     C.W. Details!
                                 </a>

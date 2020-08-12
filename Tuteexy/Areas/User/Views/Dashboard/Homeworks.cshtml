@@ -24,7 +24,7 @@
         <div class="col-12">
             @foreach (Homework item in Model)
             {
-                            <div class="card bg-secondary">
+                            <div class="card bg-homework card-pointer">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
@@ -44,7 +44,7 @@
 
 
                                 <div class="col-md-12 text-center mt-2">
-                                    <a class="btn btn-dark w-50" asp-area="User" asp-controller="HomeworkSheets" asp-action="Reply" asp-route-id="@item.HomeworkID">
+                                    <a class="btn bg-homework-light txtwhite w-50" asp-area="User" asp-controller="HomeworkSheets" asp-action="Reply" asp-route-id="@item.HomeworkID">
                                         <span class="fas fa-click"></span>
                                         H.W. Details!
                                     </a>

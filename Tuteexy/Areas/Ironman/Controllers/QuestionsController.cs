@@ -125,7 +125,7 @@ namespace Tuteexy.Areas.Ironman.Controllers
         {
             _userId=User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.Question.GetAllAsync(includeProperties:"User");
-            return Json(new { data = allObj.Select(a => new { id = a.QuestionID, description = a.Description, isreplyclose = a.IsReplyClose, isapproved = a.IsApproved, isoffensive=a.IsOffensive, submitteddate = a.SubmittedDate.ToString("dd/MMM/yyyy") }) });
+            return Json(new { data = allObj.Select(a => new { id = a.QuestionID, description = a.Description, isreplyclose = a.IsReplyClose, isapproved = a.IsApproved, isoffensive=a.IsOffensive, submitteddate = a.SubmittedDate.ToString("dd/MMM/yyyy") }).OrderByDescending(a=>a.id) });
 
         }
 

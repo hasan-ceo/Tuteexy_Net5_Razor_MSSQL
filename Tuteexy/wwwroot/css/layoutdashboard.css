@@ -10,6 +10,11 @@ body {
     background-color: var(--main-bg-theme);
 }
 
+.navlogo {
+    width: 100px;
+    height: auto;
+}
+
 .bg-Alabaster {
     background-color: var(--main-bg-theme);
 }
@@ -91,10 +96,65 @@ body {
         content: " "
     }
 
+.bg-homework {
+    background-color: #2b102d !important;
+}
+
+.bg-homework-light {
+    background-color: #95389e !important;
+    color: #fff;
+}
+    .bg-homework-light.txtwhite {
+        color: #fff;
+    }
+
+.bg-classwork {
+    background-color: #15202B !important;
+}
+.bg-classwork-light {
+    background-color: #1DA1F2 !important;
+}
+.bg-homework-light {
+    background-color: #95389e !important;
+    color: #fff;
+}
+
+.bg-classwork-light.txtwhite {
+        color: #fff;
+}
+
+.bg-ask {
+    background-color: #006400 !important;
+}
+.bg-ask-light {
+    background-color: #ADFF2F !important;
+}
+.btn-outline-ask {
+    border: 1px solid #ADFF2F !important;
+}
+    .btn-outline-ask.txtask {
+        color: #ADFF2F !important;
+    }
+.text-ask {
+    color: #006400;
+}
+.text-ask-light {
+    color: #ADFF2F;
+}
+.btn-ask:hover,
+.btn-ask:active {
+    color: #006400 !important;
+    background-color: #ADFF2F !important;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.card-pointer {
+    cursor: pointer;
+}
+
 
 
 /*Card*/
-
 .card {
     border-radius: 12px;
     box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
@@ -397,11 +457,11 @@ text-decoration:none;
     height: 100%;
     transform: translateX(250px);
     overflow-y: auto;
-    background: #3e4f5c;
-    -webkit-transition: all 0.4s ease 0s;
+    background: transparent;
+/*    -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;*/
     transition: all 0.4s ease 0s;
 }
 
@@ -409,9 +469,12 @@ text-decoration:none;
     position: absolute;
     top: 0;
     width: 250px;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     list-style: none;
+    background-color: #fff;
+    z-index: 2000;
 }
 
     .sidebar-nav li {
@@ -422,7 +485,7 @@ text-decoration:none;
         .sidebar-nav li a {
             display: block;
             text-decoration: none;
-            color: #999;
+            color: #28A745;
         }
 
             .sidebar-nav li a:hover {
@@ -433,7 +496,7 @@ text-decoration:none;
 
 #sidebar-wrapper.active {
     right: 250px;
-    width: 250px;
+    width: 100vw;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -448,4 +511,21 @@ text-decoration:none;
 
 .wl a {
     color: #91a9cf;
+}
+
+.menu-overlay {
+    height:100vh;
+    width:100vw;
+    background:rgba(0,0,0,0.6);
+}
+
+.faface:hover,
+.faface:active {
+    color: #3b5998;
+    transition: color 0.15s;
+}
+.fa-youtube:hover,
+.fa-facebook:active {
+    color: #FF0000;
+    transition: color 0.15s;
 }
