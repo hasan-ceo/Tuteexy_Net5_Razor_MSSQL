@@ -19,3 +19,8 @@ $(".menu-overlay").click(function (e) {
     e.preventDefault();
     $("#sidebar-wrapper").toggleClass("active");
 });
+
+
+$(".makecircleava").addEventListener('mouseover', () => {
+    $("#imgeditprof").classList.add = 'active';
+})

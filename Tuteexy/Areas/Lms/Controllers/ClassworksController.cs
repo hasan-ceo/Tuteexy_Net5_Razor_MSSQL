@@ -147,12 +147,44 @@ namespace Tuteexy.Areas.Lms.Controllers
         }
 
 
-        public async Task<IActionResult> CWPreview(long id)
+        public async Task<IActionResult> Answer(long Id)
         {
-            var t = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(h => h.ClassworkID == id, includeProperties: "ClassRoom,Teacher");
-            return View(t);
+            var classwork = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(q => q.ClassworkID == Id, includeProperties: "Teacher");
+            var classworksheet = await _unitOfWork.ClassworkSheet.GetAllAsync(q => q.ClassworkID == Id, includeProperties: "User");
+            ClassworkSheetVM questionVM = new ClassworkSheetVM
+            {
+                Classwork = classwork,
+                ClassworkSheet = classworksheet
+            };
+            //var allObj = await _unitOfWork.ClassworkSheet.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
+            return View(questionVM);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Answer(ClassworkSheet questionthread)
+        {
+            if (ModelState.IsValid)
+            {
+                if (questionthread.ClassworkSheetID == 0)
+                {
+                    questionthread.SubmittedDate = DateTime.Now;
+                    questionthread.UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    await _unitOfWork.ClassworkSheet.AddAsync(questionthread);
+                }
+                else
+                {
+                    var tmpQ = await _unitOfWork.ClassworkSheet.GetAsync(questionthread.ClassworkSheetID);
+                    tmpQ.SubmittedDate = DateTime.Now;
+                    tmpQ.Description = questionthread.Description;
+                    _unitOfWork.ClassworkSheet.Update(questionthread);
+                }
+
+                _unitOfWork.Save();
+                //return RedirectToAction("Answer", questionthread.ClassworkSheetID);
+            }
+            return RedirectToAction("Answer", questionthread.ClassworkSheetID);
+        }
 
         #region API CALLS
 

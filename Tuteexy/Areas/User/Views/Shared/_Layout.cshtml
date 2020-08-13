@@ -33,63 +33,7 @@
 
 <body class="body">
     <div class="wl">
-        <nav id="sidebar-wrapper">
-            <div class="menu-overlay active"></div>
-            <ul class="sidebar-nav">
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="Homeworks">
-                        <span class="fas fa-envelope-open-text"></span>
-                        My Homeworks
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="Classworks">
-                        <span class="fas fa-atom"></span>
-                        My Classworks
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="ClassNotices">
-                        <span class="fas fa-clipboard-list"></span>
-                        My Class Notices
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="GeneralNotices">
-                        <span class="fas fa-layer-group"></span>
-                        My School Notices
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="ClassRoutines">
-                        <span class="fas fa-calendar-alt"></span>
-                        My Class Routine
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Dashboard" asp-action="Holidays">
-                        <span class="fas fa-fan"></span>
-                        My School Holidays
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="Questions" asp-action="Index">
-                        <span class="fas fa-question-circle"></span>
-                        My Questions
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="User" asp-controller="TutorJobs" asp-action="Index">
-                        <span class="fas fa-address-card"></span>
-                        Tutor Job
-                    </a>
-                </li>
-
-            </ul>
-
-
-
-        </nav>
+        <partial name="_UserSideWrapPartial" />
     </div>
     <header>
         <nav class="navbar navbar-expand bg-Alabaster justify-content-center fixed-top p-0 shadow-sm">
@@ -131,75 +75,7 @@
 
     <div class="container-fluid fixed-top-margin">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar p-0">
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Dashboards</span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Homeworks">
-                            <span class="fas fa-envelope-open-text"></span>
-                            My Homeworks
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Classworks">
-                            <span class="fas fa-atom"></span>
-                            My Classworks
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="ClassNotices">
-                            <span class="fas fa-clipboard-list"></span>
-                            My Class Notices
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="GeneralNotices">
-                            <span class="fas fa-layer-group"></span>
-                            My School Notices
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="ClassRoutines">
-                            <span class="fas fa-calendar-alt"></span>
-                            My Class Routine
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Holidays">
-                            <span class="fas fa-fan"></span>
-                            My School Holidays
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="Questions" asp-action="Index">
-                            <span class="fas fa-question-circle"></span>
-                            My Questions
-                        </a>
-                    </li>
-                </ul>
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Other Activities</span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li>
-                        <a class="nav-link" asp-area="User" asp-controller="TutorJobs" asp-action="Index">
-                            <span class="fas fa-address-card"></span>
-                            Tutor Job
-                        </a>
-                    </li>
-                </ul>
-                <div class="row">
-                    <partial name="_LeftAdsPartial" />
-                </div>
-            </nav>
-
-
-
-
-
+            <partial name="_MainSideWrapPartial" />
             <main role="main" class="col-md-10 ml-sm-auto px-4">
                 <div class="row">
                     <div class="col-md-9">
@@ -207,12 +83,8 @@
                     </div>
                     <div class="col-md-3 pr-0">
                         <div class="row p-0 m-0">
-                            <div class="col-12 p-0 m-0">
-                                <div class="card card-stats">
-                                    @await Component.InvokeAsync("UserProfile")
-                                </div>
-                            </div>
 
+                            <partial name="_LeftAdsPartial" />
                             <partial name="_RightAdsPartial" />
                         </div>
                     </div>
@@ -222,52 +94,6 @@
 
 
         </div>
-    </div>
-
-    <div class="row" style="display:none" id="sidemenubar">
-        <nav class="col-md-2 d-none d-md-block sidebar p-0">
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Dashboards</span>
-                <a class="d-flex align-items-center text-muted" href="#">
-                    <span data-feather="plus-circle"></span>
-                </a>
-            </h6>
-            <ul class="nav flex-column">
-                <li>
-                    <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Homeworks">
-                        <span class="fas fa-briefcase"></span>
-                        My Homeworks
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="ClassRoutines">
-                        <span class="fas fa-briefcase"></span>
-                        My Class Routines
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="GeneralNotices">
-                        <span class="fas fa-briefcase"></span>
-                        My School Notice
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="ClassNotices">
-                        <span class="fas fa-briefcase"></span>
-                        My Class Notice
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="User" asp-controller="Dashboard" asp-action="Holidays">
-                        <span class="fas fa-briefcase"></span>
-                        My School Holiday
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
     </div>
 
 

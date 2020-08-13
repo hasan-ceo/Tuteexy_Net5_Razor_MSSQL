@@ -1,17 +1,82 @@
 ﻿@model Tuteexy.Models.Homework
 
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
 
-<div class="container-fluid p-0">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row justify-content-between">
-                        <div class=" col-7">
-                            <h5 class="card-title">Homework Details</h5>
+<div class="row row-cols-1">
+    <div class="col-12">
+        <div class="card bg-homework mb-2">
+            <div class="card-body text-white">
+                <h3 class="card-title">Homework</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1">
+    <div class="col-12">
+        <div class="card bg-homework mb-2">
+            <div class="card-body text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="card-title py-0 my-0">@Model.Title</p>
                         </div>
-                        <div class="col-3">
-                            <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Homeworks" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Homework #:</strong> @Model.HomeworkID</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.TeacherName</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Marks:</strong> @Model.HwMarks</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                            <p class="card-subtitle"><strong>Date Due:</strong> @Model.DateDue.ToString("dd/MMM/yyyy") </p>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            @Html.Raw(Model.Description)
+                        </div>
+                        <div class="col-md-12">
+                            <div class="btn-group">
+                                @if (string.IsNullOrWhiteSpace(Model.RefLink1) == false && (string.IsNullOrEmpty(Model.RefLink1) == false))
+                                {
+                    <a href="@Model.RefLink1" class="btn bg-homework-light">
+                        <span class="fas fa-link">
+
+                        </span>  <span>Attachment - 1</span>
+                    </a>}
+
+                                @if (string.IsNullOrWhiteSpace(@Model.RefLink2) == false && (string.IsNullOrEmpty(Model.RefLink2) == false))
+                                {
+                    <a href="@Model.RefLink2" class="btn bg-homework-light">
+                        <span class="fas fa-link">
+
+                        </span>  <span>Attachment - 2</span>
+                    </a>}
+
+                                @if (string.IsNullOrWhiteSpace(@Model.RefLink3) == false && (string.IsNullOrEmpty(Model.RefLink3) == false))
+                                {
+                    <a href="@Model.RefLink3" class="btn bg-homework-light">
+                        <span class="fas fa-link">
+
+                        </span>  <span>Attachment - 3</span>
+                    </a>}
+
+                                @if (string.IsNullOrWhiteSpace(@Model.RefLink4) == false && (string.IsNullOrEmpty(Model.RefLink4) == false))
+                                {
+                    <a href="@Model.RefLink4" class="btn bg-homework-light">
+                        <span class="fas fa-link">
+
+                        </span>  <span>Attachment - 4</span>
+                    </a>}
+
+                                @if (string.IsNullOrWhiteSpace(@Model.RefLink5) == false && (string.IsNullOrEmpty(Model.RefLink5) == false))
+                                {
+                    <a href="@Model.RefLink5" class="btn bg-homework-light">
+                        <span class="fas fa-link">
+
+                        </span>  <span>Attachment - 5</span>
+                    </a>}
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -20,71 +85,4 @@
     </div>
 </div>
 
-<div class="container-fluid p-0">
-    <div class="row">
-        <div class="col-12">
 
-                <div class="card">
-                    <div class="card-body">
-                        <p class="title py-0 my-0">@Model.Title</p>
-                        <p class="subtitle py-0 my-0"><strong>Post By:</strong> @Model.Teacher.FullName</p>
-                        <p class="subtitle py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
-                        <p class="subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                        <p class="subtitle"><strong>Date Due:</strong> @Model.DateDue.ToString("dd/MMM/yyyy") </p>
-
-                        <div class="btn-group">
-                            @if (string.IsNullOrWhiteSpace(Model.RefLink1) == false && (string.IsNullOrEmpty(Model.RefLink1) == false))
-                            {
-                                <a href="@Model.RefLink1" class="btn btn-light">
-                                    <span class="fas fa-link">
-                                 
-                                    </span>  <span>Attachment - 1</span>
-                                </a>
-                            }
-
-                            @if (string.IsNullOrWhiteSpace(Model.RefLink2) == false && (string.IsNullOrEmpty(Model.RefLink2) == false))
-                            {
-                                <a href="@Model.RefLink2" class="btn btn-light">
-                                    <span class="fas fa-link">
-                                   
-                                    </span>  <span>Attachment - 2</span>
-                                </a>
-                            }
-
-                            @if (string.IsNullOrWhiteSpace(Model.RefLink3) == false && (string.IsNullOrEmpty(Model.RefLink3) == false))
-                            {
-                                <a href="@Model.RefLink3" class="btn btn-light">
-                                    <span class="fas fa-link">
-                  
-                                    </span>  <span>Attachment - 3</span>
-                                </a>
-                            }
-
-                            @if (string.IsNullOrWhiteSpace(Model.RefLink4) == false && (string.IsNullOrEmpty(Model.RefLink4) == false))
-                            {
-                                <a href="@Model.RefLink4" class="btn btn-light">
-                                    <span class="fas fa-link">
-                                   
-                                    </span>  <span>Attachment - 4</span>
-                                </a>
-                            }
-
-                            @if (string.IsNullOrWhiteSpace(Model.RefLink5) == false && (string.IsNullOrEmpty(Model.RefLink5) == false))
-                            {
-                                <a href="@Model.RefLink5" class="btn btn-light">
-                                    <span class="fas fa-link">
-                                      
-                                    </span>  <span>Attachment - 5</span>
-                                </a>
-                            }
-                           
-                        </div>
-                        <div class="content">
-                            @Html.Raw(Model.Description)
-                        </div>
-                    </div>
-                </div>
-            
-        </div>
-    </div>
-</div>

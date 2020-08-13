@@ -30,6 +30,10 @@ namespace Tuteexy.Areas.User.Controllers
         {
             return View();
         }
+        public IActionResult UnderConstruction()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -49,7 +53,7 @@ namespace Tuteexy.Areas.User.Controllers
             var classroomnotice = await _unitOfWork.ClassRoomNotice.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "ClassRoom");
             
             
-            var question = await _unitOfWork.Question.GetAllAsync(h =>h.IsApproved==true && h.IsOffensive==false &&  h.SubmittedDate.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.SubmittedDate), includeProperties: "User");
+            var question = await _unitOfWork.Question.GetAllAsync(h =>h.IsApproved==true && h.IsOffensive==false &&  h.SubmittedDate.Date >= DateTime.Now.AddDays(-2) && h.SubmittedDate.Date<=DateTime.Now, h => h.OrderByDescending(p => p.SubmittedDate), includeProperties: "User");
 
 
             UserHomeVM userhome = new UserHomeVM()
@@ -171,7 +175,7 @@ namespace Tuteexy.Areas.User.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GeneralNotices()
+        public async Task<IActionResult> SchoolNotices()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var classroom = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c => c.StudentID == _userId, includeProperties: "ClassRoom");

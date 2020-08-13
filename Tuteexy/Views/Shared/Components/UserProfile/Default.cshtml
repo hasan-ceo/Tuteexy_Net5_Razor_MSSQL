@@ -2,7 +2,7 @@
 
 @if (Model!=null)
 {
-<div class="card-body ">
+<div class="dropdown-item">
     <div class="row row-col-1 text-center">
         <div class="col-12">
             <div class="bg-white">
@@ -22,12 +22,8 @@
         </div>
     </div>
 </div>
-<div class="card-footer text-center">
-    <div class="stats">
-        <a class="btn btn-success" asp-area="User" asp-controller="UserProfiles" asp-action="Upsert">
+        <a class="dropdown-item txt-tuteegreen" asp-area="User" asp-controller="UserProfiles" asp-action="Upsert">
             <span class="fas fa-user"></span>
             Edit Profile
         </a>
-    </div>
-</div>
 }

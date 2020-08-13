@@ -13,15 +13,16 @@
         <span class="d-sm-inline px-1 mt-1">User</span>
     </a>
     <div class="dropdown-menu dropdown-menu-right shadow-lg" aria-labelledby="navbarDropdown">
+        @await Component.InvokeAsync("UserProfile")
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Front" })">
-            <button type="submit" class="dropdown-item">
+            <button type="submit" class="dropdown-item txt-tuteegreen">
                 <span class="fas fa-sign-out-alt fa-1x"></span>
                 <span>Logout</span>
             </button>
         </form>
         @*<a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>*@
+        <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>*@
     </div>
 </li>}

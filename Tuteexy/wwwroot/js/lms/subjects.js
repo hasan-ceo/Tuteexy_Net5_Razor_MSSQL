@@ -23,7 +23,7 @@ function loadDataTable() {
         },
         "columns": [
             {
-                "data": "subjectID",
+                "data": "id",
                 "render": function (data) {
                     return `
                             <div>
@@ -34,8 +34,8 @@ function loadDataTable() {
                            `;
                 },
             },
-            { "data": "school.schoolName" },
-            { "data": "subjectName" }
+            { "data": "schoolname" },
+            { "data": "subjectname" }
         ]
     });
 }

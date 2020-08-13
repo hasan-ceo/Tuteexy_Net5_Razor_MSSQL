@@ -34,6 +34,8 @@ namespace Tuteexy.DataAccess.Repository
             UserProfile = new UserProfileRepository(_db);
             Question = new QuestionRepository(_db);
             QuestionThread = new QuestionThreadRepository(_db);
+            ShortStory = new ShortStoryRepository(_db);
+            ShortStoryThread = new ShortStoryThreadRepository(_db);
             ClassworkSheet = new ClassworkSheetRepository(_db);
         }
 
@@ -61,7 +63,8 @@ namespace Tuteexy.DataAccess.Repository
         public IUserProfileRepository UserProfile { get; private set; }
         public IQuestionRepository Question { get; private set; }
         public IQuestionThreadRepository QuestionThread { get; private set; }
-
+        public IShortStoryRepository ShortStory { get; private set; }
+        public IShortStoryThreadRepository ShortStoryThread { get; private set; }
         public void Dispose()
         {
             _db.Dispose();

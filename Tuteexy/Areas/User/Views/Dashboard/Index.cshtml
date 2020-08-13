@@ -24,6 +24,27 @@
     </div>
 </div>
 
+
+<div class="row row-cols-1">
+    @foreach (SchoolNotice item in Model.SchoolNotice)
+    {
+    <div class="col-12">
+        <div class="card bg-warning">
+            <div class="card-header">
+                School Notice
+            </div>
+            <div class="card-body">
+                <p class="card-title">@item.Title</p>
+
+                <div class="content">
+                    @Html.Raw(item.Description)
+                </div>
+            </div>
+        </div>
+    </div>}
+</div>
+
+
 @if (Model != null)
 {
 <div class="row row-cols-1">
@@ -35,7 +56,7 @@
                     <p class="card-subtitle" style="font-size:smaller"> @item.User.FullName, @item.SubmittedDate</p>
                 </div>
                 <div class="card-body text-white pt-0">
-                    <p class="card-title">@item.Description</p>
+                    <p class="card-title my-0">@item.Description</p>
                     <p class="text-right my-0">
                         <a class="btn btn-ask btn-outline-ask txtask" asp-area="User" asp-controller="Questions" asp-action="Answer" asp-route-id="@item.QuestionID">Check Answer</a>
                     </p>
@@ -44,24 +65,7 @@
         </div>}
 </div>
 
-<div class="row row-cols-1">
-    @foreach (SchoolNotice item in Model.SchoolNotice)
-    {
-<div class="col-12">
-    <div class="card bg-warning">
-        <div class="card-header">
-            School Notice
-        </div>
-        <div class="card-body">
-            <p class="card-title">@item.Title</p>
 
-            <div class="content">
-                @Html.Raw(item.Description)
-            </div>
-        </div>
-    </div>
-</div>}
-</div>
 
 
                 <div class="row row-cols-1">
@@ -88,7 +92,7 @@
                                     {
                     <div class="col-12">
                         <div class="card bg-homework card-pointer">
-                            <div class="card-body">
+                            <div class="card-body text-white">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">

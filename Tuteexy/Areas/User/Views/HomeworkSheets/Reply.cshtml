@@ -41,7 +41,7 @@
                             <div class="btn-group">
                                 @if (string.IsNullOrWhiteSpace(Model.Homework.RefLink1) == false && (string.IsNullOrEmpty(Model.Homework.RefLink1) == false))
                                 {
-                                    <a href="@Model.Homework.RefLink1" class="btn btn-light">
+                                    <a href="@Model.Homework.RefLink1" class="btn bg-homework-light">
                                         <span class="fas fa-link">
 
                                         </span>  <span>Attachment - 1</span>
@@ -49,7 +49,7 @@
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink2) == false && (string.IsNullOrEmpty(Model.Homework.RefLink2) == false))
                                 {
-                                    <a href="@Model.Homework.RefLink2" class="btn btn-light">
+                                    <a href="@Model.Homework.RefLink2" class="btn bg-homework-light">
                                         <span class="fas fa-link">
 
                                         </span>  <span>Attachment - 2</span>
@@ -57,7 +57,7 @@
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink3) == false && (string.IsNullOrEmpty(Model.Homework.RefLink3) == false))
                                 {
-                                    <a href="@Model.Homework.RefLink3" class="btn btn-light">
+                                    <a href="@Model.Homework.RefLink3" class="btn bg-homework-light">
                                         <span class="fas fa-link">
 
                                         </span>  <span>Attachment - 3</span>
@@ -65,7 +65,7 @@
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink4) == false && (string.IsNullOrEmpty(Model.Homework.RefLink4) == false))
                                 {
-                                    <a href="@Model.Homework.RefLink4" class="btn btn-light">
+                                    <a href="@Model.Homework.RefLink4" class="btn bg-homework-light">
                                         <span class="fas fa-link">
 
                                         </span>  <span>Attachment - 4</span>
@@ -73,7 +73,7 @@
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Homework.RefLink5) == false && (string.IsNullOrEmpty(Model.Homework.RefLink5) == false))
                                 {
-                                    <a href="@Model.Homework.RefLink5" class="btn btn-light">
+                                    <a href="@Model.Homework.RefLink5" class="btn bg-homework-light">
                                         <span class="fas fa-link">
 
                                         </span>  <span>Attachment - 5</span>
@@ -106,7 +106,7 @@
                         <div class="btn-group">
                             @if (Model.AttachLink1 != "")
                             {
-                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink1">
+                                <a type="button" class="btn bg-homework-light" href="~/images/homeworks/@Model.AttachLink1">
                                     <span class="fas fa-link"></span>
                                     At - 1
                                 </a>
@@ -114,7 +114,7 @@
 
                             @if (Model.AttachLink2 != "")
                             {
-                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink2">
+                                <a type="button" class="btn bg-homework-light" href="~/images/homeworks/@Model.AttachLink2">
                                     <span class="fas fa-link"></span>
                                     At - 2
                                 </a>
@@ -122,7 +122,7 @@
 
                             @if (Model.AttachLink3 != "")
                             {
-                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink3">
+                                <a type="button" class="btn bg-homework-light" href="~/images/homeworks/@Model.AttachLink3">
                                     <span class="fas fa-link"></span>
                                     At- 3
                                 </a>
@@ -130,7 +130,7 @@
 
                             @if (Model.AttachLink4 != "")
                             {
-                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink4">
+                                <a type="button" class="btn bg-homework-light" href="~/images/homeworks/@Model.AttachLink4">
                                     <span class="fas fa-link"></span>
                                     At - 4
                                 </a>
@@ -138,7 +138,7 @@
 
                             @if (Model.AttachLink5 != "")
                             {
-                                <a type="button" class="btn btn-secondary" href="~/images/homeworks/@Model.AttachLink5">
+                                <a type="button" class="btn bg-homework-light" href="~/images/homeworks/@Model.AttachLink5">
                                     <span class="fas fa-link"></span>
                                     At - 5
                                 </a>

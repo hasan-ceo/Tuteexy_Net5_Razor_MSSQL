@@ -23,7 +23,7 @@ function loadDataTable() {
         },
         "columns": [
             {
-                "data": "classRoomStudentID",
+                "data": "id",
                 "render": function (data) {
                     return `
                            <div>
@@ -34,10 +34,10 @@ function loadDataTable() {
                            `;
                 },
             },
-            { "data": "classRoomName" },
-            { "data": "name" },
-            { "data": "authorizedBy" },
-            { "data": "isAuthorizedTeacher" }
+            { "data": "classroomname" },
+            { "data": "fullname" },
+            { "data": "authorizedby" },
+            { "data": "isauthorizedteacher" }
         ]
     });
 }

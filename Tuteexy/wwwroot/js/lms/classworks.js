@@ -27,7 +27,7 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div>
-                                <a class="a-pointer" href="/Lms/Classworks/CWPreview/${data}" data-toggle="tooltip" data-placement="top" title="Preview">
+                                <a class="a-pointer" href="/Lms/Classworks/Answer/${data}" data-toggle="tooltip" data-placement="top" title="Preview">
                                     <i class="fas fa-print"></i> 
                                 </a>
                                 <a class="a-pointer" href="/Lms/Classworks/Upsert/${data}" data-toggle="tooltip" data-placement="top" title="Edit">

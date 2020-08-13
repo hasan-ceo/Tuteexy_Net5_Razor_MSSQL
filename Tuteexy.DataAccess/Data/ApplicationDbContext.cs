@@ -47,6 +47,10 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<ClassworkSheet> ClassworkSheet { get; set; }
         public DbSet<Question> Question { get; set; }
         public DbSet<QuestionThread> QuestionThread { get; set; }
+
+        public DbSet<ShortStory> ShortStory { get; set; }
+        public DbSet<ShortStoryThread> ShortStoryThread { get; set; }
+
         public DbSet<TutorJob> TutorJob { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
     }

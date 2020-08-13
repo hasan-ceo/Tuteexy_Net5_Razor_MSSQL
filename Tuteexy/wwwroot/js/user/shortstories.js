@@ -19,7 +19,7 @@ function loadDataTable() {
         "ordering": false,
         "scrollX": true,
         "ajax": {
-            "url": "/Lms/SchoolTeachers/GetAll"
+            "url": "/User/ShortStories/GetAll"
         },
         "columns": [
             {
@@ -27,24 +27,32 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div>
-                                <a class="a-pointer" onclick=Delete("/Lms/SchoolTeachers/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Separate">
-                                    <i class="fas fa-sign-out-alt"></i> 
+                                <a class="a-pointer" href="/User/ShortStories/Details/${data}" data-toggle="tooltip" data-placement="top" title="Answer">
+                                    <i class="fas fa-check-square"></i> 
+                                </a>
+                                <a class="a-pointer" href="/User/ShortStories/Upsert/${data}" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="fas fa-edit"></i> 
+                                </a>
+                                <a class="a-pointer" onclick=Delete("/User/ShortStories/Delete/${data}") data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="fas fa-trash-alt"></i> 
                                 </a>
                             </div>
                            `;
                 },
             },
-            { "data": "schoolname" },
-            { "data": "fullname" },
-            { "data": "approvedby" },
-            { "data": "isapproved" }
+            { "data": "title" },
+            { "data": "isreplyclose" },
+            { "data": "isoffensive" },
+            { "data": "isapproved" },
+            { "data": "submitteddate" }
+           
         ]
     });
 }
 
 function Delete(url) {
     swal({
-        title: "Are you sure you want to Separate?",
+        title: "Are you sure you want to Delete?",
         text: "You will not be able to restore the data!",
         icon: "warning",
         buttons: true,

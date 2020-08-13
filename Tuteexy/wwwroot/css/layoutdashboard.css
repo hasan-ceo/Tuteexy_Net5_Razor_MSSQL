@@ -519,13 +519,61 @@ text-decoration:none;
     background:rgba(0,0,0,0.6);
 }
 
-.faface:hover,
-.faface:active {
+.fa-facebook:hover,
+.fa-facebook:active,
+.fa-facebook-f:hover,
+.fa-facebook-f:active {
     color: #3b5998;
     transition: color 0.15s;
 }
 .fa-youtube:hover,
-.fa-facebook:active {
+.fa-youtube:active {
     color: #FF0000;
     transition: color 0.15s;
+}
+
+.hahalol {
+    color: #1DA1F2;
+}
+
+.bg-tuteegreen-dark {
+    color: #007b4b !important;
+}
+.bg-tuteegreen {
+    color: #007b4b !important;
+}
+
+.txt-tuteegreen-dark {
+    color: #007b4b !important;
+}
+.txt-tuteegreen {
+    color: #00d07e !important;
+}
+
+.nav-link.txt-tuteegreen:hover,
+.nav-link.txt-tuteegreen:active {
+    color: #007b4b !important;
+    transition: color 0.1s;
+}
+
+.sidebar-title {
+    color: grey ;
+    font-size: 110%;
+}
+
+.makecircleava {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border: 0;
+    border-radius:50%;
+    position:relative;
+}
+
+.imgeditprof.active {
+    position: absolute;
+    bottom: 30%;
+    height: 30%;
+    width: auto;
+    color: #fff;
 }

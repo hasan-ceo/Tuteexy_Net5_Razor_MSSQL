@@ -36,6 +36,7 @@
 <body class="body">
     <div class="wl">
         <nav id="sidebar-wrapper">
+            <div class="menu-overlay active"></div>
             <ul class="sidebar-nav">
                 @await Component.InvokeAsync("LmsMenu")
                 @await Component.InvokeAsync("HWMenu")
@@ -55,12 +56,7 @@
                 </ul>
 
                 <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
-                    <li class="nav-item d-block d-md-none d-lg-none d-xl-none">
-                        <a class="nav-link d-flex flex-column text-success" id="menu-toggle" href="#">
-                            <span class="fas fa-bars"></span>
-                            <span class="d-sm-inline mt-1">Menu</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link d-flex flex-column text-success" asp-area="User" asp-controller="Dashboard" asp-action="index">
                             <span class="fas fa-home fa-1x"></span>
@@ -74,6 +70,12 @@
                         </a>
                     </li>
                     <partial name="_LoginPartial" />
+                    <li class="nav-item d-block d-md-none d-lg-none d-xl-none">
+                        <a class="nav-link d-flex flex-column text-success" id="menu-toggle" href="#">
+                            <span class="fas fa-bars"></span>
+                            <span class="d-sm-inline mt-1">Menu</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -102,12 +104,8 @@
                     </div>
                     <div class="col-md-3 pl-2 pr-0">
                         <div class="row p-0 m-0">
-                            <div class="col-12 p-0 m-0">
-                                <div class="card card-stats">
-                                    @await Component.InvokeAsync("UserProfile")
-                                </div>
-                            </div>
 
+                            <partial name="_LeftAdsPartial" />
                             <partial name="_RightAdsPartial" />
                         </div>
                     </div>
