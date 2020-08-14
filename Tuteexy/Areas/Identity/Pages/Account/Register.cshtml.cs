@@ -181,7 +181,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email", messageBody);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect("/User/Dashboard/index");
+                    return LocalRedirect("/Hub/Dashboard/index");
 
 
                 }

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Tuteexy.Models.ShortStory>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <blockquote class="blockquote">
+                                <p class="mb-0">If you want to be a writer, you must do two things above all others: read a lot and write a lot.</p>
+                                <footer class="blockquote-footer"><cite title="Source Title">Stephen King</cite></footer>
+                            </blockquote>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Hub" asp-controller="ShortStories" asp-action="MyStories"><span class="fas fa-plus-circle"></span> My Stories</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-columns">
+    @if (Model != null)
+    {
+        foreach (ShortStory item in Model)
+        {
+
+    <div class="card bg-Alabaster">
+        <img src="/images/stories/@item.ImageUrl" class="card-img-top" alt="Storydrop">
+        <div class="card-body">
+            <p class="card-text">@item.Title</p>
+            @*<p class="card-text">
+            @Html.Raw(item.Description)
+        </p>*@
+            <p class="card-text">
+                <small class="text-muted">@item.User.FullName</small>
+                <small class="text-muted"> Last updated at @item.SubmittedDate</small>
+            </p>
+            <a class="btn btn-success w-100" href="/Hub/ShortStories/Details/@item.ShortStoryID" data-toggle="tooltip" data-placement="top" title="Details">
+                <i class="fas fa-check-square"></i>
+                Read..
+            </a>
+        </div>
+    </div>}
+}
+</div>

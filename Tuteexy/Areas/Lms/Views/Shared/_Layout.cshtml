@@ -37,9 +37,8 @@
     <div class="wl">
         <nav id="sidebar-wrapper">
             <div class="menu-overlay active"></div>
-            <ul class="sidebar-nav">
-                @await Component.InvokeAsync("LmsMenu")
-                @await Component.InvokeAsync("HWMenu")
+            <ul class="nav flex-column sidebar-nav">
+                <partial name="_SchoolSideMenuPartial" />
             </ul>
         </nav>
     </div>
@@ -49,7 +48,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column" asp-area="User" asp-controller="Dashboard" asp-action="Index">
+                        <a class="nav-link d-flex flex-column" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
                             <img src="~/images/core/logo.png" alt="" style="height: 30px;">
                         </a>
                     </li>
@@ -58,13 +57,13 @@
                 <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
 
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-success" asp-area="User" asp-controller="Dashboard" asp-action="index">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
                             <span class="fas fa-home fa-1x"></span>
                             <span class="d-sm-inline mt-1">Home</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-success" asp-area="Lms" asp-controller="Schools" asp-action="index">
+                        <a class="nav-link d-flex flex-column text-success" asp-area="Lms" asp-controller="Dashboard" asp-action="Index">
                             <span class="fas fa-school fa-1x"></span>
                             <span class="d-sm-inline mt-1">Schools</span>
                         </a>
@@ -83,19 +82,11 @@
 
     <div class="container-fluid fixed-top-margin">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar p-0">
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Dashboards</span>
-                    <a class="d-flex align-items-center text-muted" href="#">
-                        <span data-feather="plus-circle"></span>
-                    </a>
-                </h6>
+            <div class="col-md-2 d-none d-md-block sidebar px-0">
                 <ul class="nav flex-column">
-                    @await Component.InvokeAsync("LmsMenu")
-                    @await Component.InvokeAsync("HWMenu")
+                    <partial name="_SchoolSideMenuPartial" />
                 </ul>
-            </nav>
+            </div>
 
             <main role="main" class="col-md-10 ml-sm-auto px-4">
                 <div class="row">
@@ -130,7 +121,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
-    <partial name="_NavBurgerScriptsPartial" />
+
     <script src="~/js/site.js"></script>
 </body>
 </html>

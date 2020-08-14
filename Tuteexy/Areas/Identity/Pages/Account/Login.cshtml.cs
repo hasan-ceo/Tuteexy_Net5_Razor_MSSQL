@@ -100,7 +100,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                         case SD.Role_Ironman:
                             return LocalRedirect("/Ironman/Dashboard/Index");
                         case SD.Role_User:
-                            return LocalRedirect("/User/Dashboard/Index");
+                            return LocalRedirect("/Hub/Dashboard/Index");
                         default:
                             break;
                     }

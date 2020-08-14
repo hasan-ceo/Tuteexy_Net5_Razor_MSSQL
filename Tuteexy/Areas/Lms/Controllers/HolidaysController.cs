@@ -35,7 +35,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             if (allObj != null)
                 return View();
             else
-                return LocalRedirect("/User/Dashboard/index");
+                return LocalRedirect("/Hub/Dashboard/index");
         }
 
         public IActionResult Create(long Id)

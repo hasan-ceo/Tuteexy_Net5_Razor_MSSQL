@@ -1,0 +1,94 @@
+﻿@model Tuteexy.Models.ViewModels.UserHomeVM
+@{ var tmp = "Go ahead and ask your crazy question 🤯"; }
+
+<div class="row px-0 pt-0 pb-0">
+    <div class="col-12">
+        <div class="card card-pointer bg-ask mb-2" data-toggle="modal" data-target="#exampleModal">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-2 col-md-1 pr-0"><span class="fas fa-question-circle text-ask-light fa-3x"></span></div>
+                    <div class="col-10 col-md-11 pl-3 pr-3">
+                        <button class="btn bg-ask-light text-ask w-100 rounded-pill">@tmp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Model != null)
+{
+<div class="row row-cols-1">
+    @foreach (Question item in Model.Question)
+    {
+<div class="col-12">
+    <div class="card bg-ask mb-2" data-toggle="modal" data-target="#QuestionModal" data-pid="@item.QuestionID">
+        <div class="card-header text-white-50">
+            <p class="card-subtitle" style="font-size:smaller"> @item.User.FullName, @item.SubmittedDate</p>
+        </div>
+        <div class="card-body text-white pt-0">
+            <p class="card-title my-0">@item.Description</p>
+            <p class="text-right my-0">
+                <a class="btn btn-ask btn-outline-ask txtask" asp-area="Hub" asp-controller="Questions" asp-action="Answer" asp-route-id="@item.QuestionID">Check Answer</a>
+            </p>
+        </div>
+    </div>
+</div>}
+</div>}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content  bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="exampleModalLabel">@tmp</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-area="Hub" asp-controller="Questions" asp-action="Upsert">
+                    <div class="form-group p-0">
+                        <textarea class="form-control" id="Description" name="Description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <span class="fas fa-undo"></span>
+                        Post
+                    </button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">
+                        <span class="fas fa-undo"></span>
+                        Close
+                    </button>
+
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="QuestionModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered w-100">
+        <div class="modal-content  bg-white">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-black" id="QuestionModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*@await Component.InvokeAsync("QuestionA", new { Id = 1 })*@
+                <vc:QuestionA pid="1"></vc:QuestionA>
+            </div>
+            <div class="modal-footer border-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+

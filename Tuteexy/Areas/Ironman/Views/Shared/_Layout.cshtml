@@ -84,6 +84,12 @@
                                 Questions
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Ironman" asp-controller="ShortStories" asp-action="Index">
+                                <span class="fas fa-question-circle"></span>
+                                Short Stories
+                            </a>
+                        </li>
                     </ul>
 
             </nav>
@@ -114,7 +120,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e6e889a173.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
-    <partial name="_NavBurgerScriptsPartial" />
+
 
 </body>
 </html>

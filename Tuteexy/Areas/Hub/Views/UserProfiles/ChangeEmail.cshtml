@@ -1,0 +1,33 @@
+﻿@model Tuteexy.Models.ViewModels.ChangeEmailVM
+
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            Change Email
+        </div>
+    </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label for="ConfirmPassword" class="col-form-label">New Email:</label>
+                <input type="email" class="form-control" id="NewEmail" name="NewEmail">
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-success">
+                    <span class="fas fa-save"></span>
+                    Update
+                </button>
+                <a class="btn btn-light" asp-area="Hub" asp-controller="UserProfiles" asp-action="Upsert" asp-route-id="@Model.Id">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </a>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -34,6 +34,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.PostalCode = userprofile.PostalCode;
                 objFromDb.Country = userprofile.Country;
                 objFromDb.ECPersonName = userprofile.ECPersonName;
+                objFromDb.ECPersonEmail= userprofile.ECPersonEmail;
                 objFromDb.ECPersonRelation = userprofile.ECPersonRelation;
                 objFromDb.ECPersonPhoneNumber = userprofile.ECPersonPhoneNumber;
                 objFromDb.ImageUrl = userprofile.ImageUrl;

@@ -1,0 +1,29 @@
+﻿@model Tuteexy.Models.SchoolTeacher
+
+@if (Model != null)
+{
+
+<li class="nav-item">
+    <a class="nav-link txt-tuteegreen" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">
+        <span class="fas fa-envelope-open-text"></span>
+        Homeworks
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link txt-tuteegreen" asp-area="Lms" asp-controller="Homeworks" asp-action="ReplyList">
+        <span class="fas fa-list"></span>
+        HW Reply List
+    </a>
+</li>
+
+    <li class="nav-item">
+        <a class="nav-link txt-tuteegreen" asp-area="Lms" asp-controller="Classworks" asp-action="Index">
+            <span class="fas fa-atom"></span>
+            Classworks
+        </a>
+    </li>
+
+
+
+}
+

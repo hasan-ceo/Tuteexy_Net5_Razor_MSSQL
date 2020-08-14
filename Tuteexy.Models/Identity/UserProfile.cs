@@ -64,6 +64,10 @@ namespace Tuteexy.Models
 
         [Required]
         [MaxLength(150)]
+        public string ECPersonEmail { get; set; }
+
+        [Required]
+        [MaxLength(150)]
         public string ECPersonRelation { get; set; }
 
         [Required]

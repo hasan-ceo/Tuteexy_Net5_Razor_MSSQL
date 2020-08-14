@@ -35,6 +35,9 @@ namespace Tuteexy.Areas.Lms.Controllers
         }
 
 
+
+
+
         public async Task<IActionResult> Upsert(long? Id)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -204,6 +207,11 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
 
             return RedirectToAction("ReplyList");
+        }
+
+        public IActionResult Hwd(long Id)
+        {
+            return ViewComponent("QuestionA", new { id=Id});
         }
 
         #region API CALLS

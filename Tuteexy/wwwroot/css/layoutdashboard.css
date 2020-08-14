@@ -468,16 +468,14 @@ text-decoration:none;
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    padding-left: 15px;
+    padding-top: 10px;
     background-color: #fff;
     z-index: 2000;
 }
 
-    .sidebar-nav li {
+    /*.sidebar-nav li {
         text-indent: 20px;
         line-height: 40px;
     }
@@ -492,7 +490,7 @@ text-decoration:none;
                 text-decoration: none;
                 color: #fff;
                 background: rgba(255,255,255,0.2);
-            }
+            }*/
 
 #sidebar-wrapper.active {
     right: 250px;
@@ -532,7 +530,7 @@ text-decoration:none;
     transition: color 0.15s;
 }
 
-.hahalol {
+.txt-twit {
     color: #1DA1F2;
 }
 
@@ -576,4 +574,16 @@ text-decoration:none;
     height: 30%;
     width: auto;
     color: #fff;
+}
+
+.marg-auto {
+    margin:0 auto;
+}
+
+.titlefont {
+    font-size: 125%;
+}
+
+.padding-zero{
+    padding:0px;
 }

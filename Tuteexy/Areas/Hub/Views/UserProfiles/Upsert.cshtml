@@ -1,0 +1,205 @@
+﻿@model Tuteexy.Models.UserProfile
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <div class="row">
+                <div class="col-12 txt-tuteegreen col-md-6 mb-2">
+                    Edit Profile
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 marg-auto text-center col-md-6">
+                    <a asp-area="Hub" asp-controller="UserProfiles" asp-action="ChangeEmail" asp-route-id="@Model.UserProfileID" class="btn btn-success">
+                        <span class="fas fa-at"></span>
+                        Change Email
+                    </a>
+                </div>
+                <div class="col-6 marg-auto text-center col-md-6">
+                    <a asp-area="Hub" asp-controller="UserProfiles" asp-action="ChangePassword" asp-route-id="@Model.UserProfileID" class="btn btn-success">
+                        <span class="fas fa-key"></span>
+                        Change Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="makecircleava marg-auto">
+                    <img class="marg-auto" style="height:100%; width:100%;" src="/images/profiles/@Model.ImageUrl">
+                    <div class="w-100 text-center imgeditprof"><i class="fas fa-camera"></i></div>
+                </div>
+                <p class="text-center">@Model.User.FullName</p>
+            </div>
+
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
+            <input type="hidden" asp-for="UserProfileID" />
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label txt-tuteegreen" asp-for="ECPersonName">Your Profile</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <label class="form-control">@Model.User.Email</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="DateOfBirth">Date Of Birth</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" asp-for="DateOfBirth">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Gender">Gender</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Gender" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetGender()))">
+                        <option value="">-Select a Gender</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Country">Country</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Country" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetCountry()))">
+                        <option value="">-Select a Country</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ImageUrl">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" name="files" id="uploadBox" class="form-control" accept="image/*"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label txt-tuteegreen" asp-for="ECPersonName">Optional</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="FatherName">Father Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="FatherName">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="MotherName">Mother Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="MotherName">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="BloodGroup">Blood Group</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="BloodGroup" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetBloodGroup()))">
+                        <option value="">-Select a Blood Group</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Religion">Religion</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Religion" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetReligion()))">
+                        <option value="">-Select a Religion</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="StreetAddress">Street Address</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="StreetAddress">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="City">City</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="City">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="State">State</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="State">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="PostalCode">Postal Code</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="PostalCode">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-form-label txt-tuteegreen" asp-for="ECPersonName">Emergency Contacts</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ECPersonName">Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ECPersonName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ECPersonEmail">Email</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="email" asp-for="ECPersonEmail">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ECPersonRelation">Relation</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ECPersonRelation">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ECPersonPhoneNumber">Phone Number</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="ECPersonPhoneNumber">
+                </div>
+            </div>
+
+
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                @if (Model.UserProfileID != 0)
+                {
+        <button type="submit" onclick="return validateInput()" class="btn btn-success" asp-route-id="@Model.UserProfileID">
+            <span class="fas fa-save"></span>
+            Update
+        </button> }
+    else
+    {
+        <button type="submit" class="btn btn-success">
+            <span class="fas fa-save"></span>
+            Create
+        </button>}
+                <button class="btn btn-light" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

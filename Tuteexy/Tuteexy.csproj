@@ -18,8 +18,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Remove="Areas\User\Controllers\Classroutines.cshtml" />
-	  <Content Remove="Areas\User\Views\Dashboard\Profile.cshtml" />
+	  <Content Remove="Areas\Hub\Controllers\Classroutines.cshtml" />
+	  <Content Remove="Areas\Hub\Views\Dashboard\Profile.cshtml" />
 	  <Content Remove="Views\Shared\Error.cshtml" />
 	  <Content Remove="Views\Shared\_CreateAndBackToListButton.cshtml" />
 	  <Content Remove="Views\Shared\_DeleteScriptsPartial.cshtml" />
@@ -58,7 +58,7 @@
 
 
 	<ItemGroup>
-	  <None Include="Areas\User\Views\Dashboard\Classroutines.cshtml" />
+	  <None Include="Areas\Lms\Views\MySchool\Classroutines.cshtml" />
 	</ItemGroup>
 
 </Project>

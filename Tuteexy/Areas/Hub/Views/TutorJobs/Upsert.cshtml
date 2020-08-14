@@ -1,0 +1,137 @@
+﻿@model Tuteexy.Models.TutorJob
+
+@{ var title = "Post Tutor Job"; }
+
+@section Scripts {
+    <partial name="_tinymceScriptPartial" />
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            @if (Model.TutorJobID != 0)
+            {
+                //edit
+                title = "Edit Posted Tutor Job";
+            }
+            @title
+        </div>
+    </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-route-returnUrl="">
+            <input type="hidden" asp-for="TutorJobID" />
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="JobTitle">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="JobTitle">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Course">Class / Course</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Course">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Subject">Subject</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Subject">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Salary">Salary</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Salary">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="NumberofStudents">Number of Students</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="NumberofStudents">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Genderpreference">Gender preference</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Genderpreference" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetGender()))">
+                        <option value="">-Select a preference</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Requirements">Requirements</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Requirements">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="StreetAddress">Street Address</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="StreetAddress">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="City">City</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="City">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="State">State</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="State">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="PostalCode">Postal Code</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="PostalCode">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="Country">Country</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="Country" asp-items="@(new SelectList(Tuteexy.Utility.SD.GetCountry()))">
+                        <option value="">-Select a Country</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="PhoneNumber">Phone Number</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="PhoneNumber">
+                </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                @if (Model.TutorJobID != 0)
+                {
+                <button type="submit" class="btn btn-success" asp-route-id="@Model.TutorJobID"> <span class="fas fa-save"></span>
+                Update</button> }
+    else
+    {
+            <button type="submit" class="btn btn-success"> <span class="fas fa-save"></span>
+                Create</button>}
+                <button class="btn btn-light" asp-area="Hub" asp-controller="TutorJobs" asp-action="Index">
+                <span class="fas fa-undo"></span>
+                Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+

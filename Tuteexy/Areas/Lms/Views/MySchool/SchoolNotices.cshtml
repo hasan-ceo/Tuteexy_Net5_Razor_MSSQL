@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Tuteexy.Models.SchoolNotice>
+
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                In this 'School Notice' section, you get to view all the notices declared in <u>your</u> school, such as academic or annual programmes, holiday notices, etc.
+            </div>
+            @*<div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">School Notice</h5>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            @foreach (SchoolNotice item in Model)
+            {
+                <div class="card bg-warning">
+                    <div class="card-body">
+                        <p class="card-title">@item.Title</p>
+      
+                        <div class="content">
+                            @Html.Raw(item.Description)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
