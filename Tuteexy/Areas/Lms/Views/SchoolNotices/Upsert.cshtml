@@ -1,9 +1,15 @@
 ﻿@model Tuteexy.Models.ViewModels.SchoolNoticeVM
 
-@{
-    var title = "Create School Notice";
-}
+@{ var title = "Create School Notice";
+                ViewData["Title"] = title; 
+            }
 
+@if (Model.SchoolNotice.SchoolNoticeID != 0)
+{
+    //edit
+    title = "Edit School Notice";
+    ViewData["Title"] = title;
+}
 @section Scripts {
     <partial name="_tinymceScriptPartial" />
 }
@@ -11,11 +17,7 @@
 <div class="card">
     <div class="card-header">
         <div class="card-title">
-            @if (Model.SchoolNotice.SchoolNoticeID != 0)
-            {
-                //edit
-                title = "Edit Notice";
-            }
+
             @title
         </div>
     </div>
@@ -66,17 +68,20 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 @if (Model.SchoolNotice.SchoolNoticeID != 0)
                 {
-                <button type="submit" class="btn btn-success" asp-route-id="@Model.SchoolNotice.SchoolNoticeID"> <span class="fas fa-save"></span>
-                Update</button>
-                }
+    <button type="submit" class="btn btn-success" asp-route-id="@Model.SchoolNotice.SchoolNoticeID">
+        <span class="fas fa-save"></span>
+        Update
+    </button> }
                 else
                 {
-            <button type="submit" class="btn btn-success"> <span class="fas fa-save"></span>
-                Create</button>
-                }
+    <button type="submit" class="btn btn-success">
+        <span class="fas fa-save"></span>
+        Create
+    </button>}
                 <button class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">
-                <span class="fas fa-undo"></span>
-                Cancel</button>
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </button>
             </div>
         </form>
     </div>

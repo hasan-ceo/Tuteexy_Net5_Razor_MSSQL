@@ -1,5 +1,6 @@
 ﻿@model Tuteexy.Models.TutorJob
 
+@{ ViewData["Title"] = "Tutor Job Preview"; }
 
 <div class="container-fluid p-0">
     <div class="row">
@@ -24,29 +25,29 @@
     <div class="row">
         <div class="col-12">
 
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-title py-0 my-0">@Model.JobTitle</p>
-                        <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.CreatedBy</p>
-                        <p class="card-subtitle py-0 my-0"><strong>Post Date:</strong> @Model.CreatedDate.ToString("dd/MMM/yyyy") </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Class / Course:</strong> @Model.Course </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Salary:</strong> @Model.Salary </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Number of Students:</strong> @Model.NumberofStudents </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Gender preference:</strong> @Model.Genderpreference </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Street Addrss:</strong> @Model.StreetAddress </p>
-                        <p class="card-subtitle py-0 my-0"><strong>City:</strong> @Model.City </p>
-                        <p class="card-subtitle py-0 my-0"><strong>State:</strong> @Model.State </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Postal Code:</strong> @Model.PostalCode </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Country:</strong> @Model.Country </p>
-                        <p class="card-subtitle py-0 my-0"><strong>Phone Number:</strong> @Model.PhoneNumber </p>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title py-0 my-0">@Model.JobTitle</p>
+                    <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.CreatedBy</p>
+                    <p class="card-subtitle py-0 my-0"><strong>Post Date:</strong> @Model.CreatedDate.ToString("dd/MMM/yyyy") </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Class / Course:</strong> @Model.Course </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.Subject </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Salary:</strong> @Model.Salary </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Number of Students:</strong> @Model.NumberofStudents </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Gender preference:</strong> @Model.Genderpreference </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Street Addrss:</strong> @Model.StreetAddress </p>
+                    <p class="card-subtitle py-0 my-0"><strong>City:</strong> @Model.City </p>
+                    <p class="card-subtitle py-0 my-0"><strong>State:</strong> @Model.State </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Postal Code:</strong> @Model.PostalCode </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Country:</strong> @Model.Country </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Phone Number:</strong> @Model.PhoneNumber </p>
 
-                        <div class="content">
-                            @Model.Requirements
-                        </div>
+                    <div class="content">
+                        @Model.Requirements
                     </div>
                 </div>
-            
+            </div>
+
         </div>
     </div>
 </div>

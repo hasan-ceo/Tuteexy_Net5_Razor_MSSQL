@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Tuteexy.Models.ClassRoomStudent>
-
+@{ ViewData["Title"] = "All Class Student"; }
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
@@ -24,13 +24,14 @@
                             <tbody>
                                 @foreach (ClassRoomStudent item in Model)
                                 {
-                            <tr>
-                                <td>@item.ClassRoom.ClassRoomName</td>
-                                <td>@item.Student.UserName</td>
-                                <td>@item.Student.FullName</td>
-                                <td>@item.ApprovedBy</td>
-                                <td>@item.IsApproved</td>
-                            </tr>            }
+                    <tr>
+                        <td>@item.ClassRoom.ClassRoomName</td>
+                        <td>@item.Student.UserName</td>
+                        <td>@item.Student.FullName</td>
+                        <td>@item.ApprovedBy</td>
+                        <td>@item.IsApproved</td>
+                    </tr>
+}
                             </tbody>
                         </table>
                     </div>
@@ -42,12 +43,12 @@
 
 
 @section Scripts {
-        <script>
+    <script>
 
-            $('#tblData').DataTable({
-                "pageLength": 100,
-                "ordering": false
-            });
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
 
     </script>
 }

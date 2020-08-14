@@ -1,57 +1,58 @@
 ﻿@model Tuteexy.Models.Subject
 
-@{
-    var title = "Create Subjects";
+@{ var title = "Create Subjects";
     var rd = false;
-}
+    ViewData["Title"] = title; }
 
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">
-                @if (Model.SubjectID != 0)
-                {
-                    //edit
-                    title = "Edit Subject";
-                }
-                @title
-            </div>
-        </div>
-        <div class="card-body">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <form method="post" autocomplete="off" asp-route-returnUrl="">
-                <input type="hidden" asp-for="SubjectID" />
-                <input type="hidden" asp-for="SchoolID" />
-                @if (Model.SubjectID != 0)
-                {
-                    rd = true;
-                }
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" asp-for="SubjectName">Name</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" asp-for="SubjectName" readonly="@rd">
-                    </div>
-                </div>
-
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    @if (Model.SubjectID != 0)
-                    {
-                    <button type="submit" class="btn btn-success" asp-route-id="@Model.SubjectID"> <span class="fas fa-save"></span>
-                    Update</button>
-                    }
-                    else
-                    {
-                <button type="submit" class="btn btn-success"> <span class="fas fa-save"></span>
-                    Create</button>
-                    }
-                    <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">
-                        <span class="fas fa-undo"></span>
-                    Cancel</a>
-                </div>
-
-
-            </form>
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            @if (Model.SubjectID != 0)
+            {
+                //edit
+                title = "Edit Subject";
+            }
+            @title
         </div>
     </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-route-returnUrl="">
+            <input type="hidden" asp-for="SubjectID" />
+            <input type="hidden" asp-for="SchoolID" />
+            @if (Model.SubjectID != 0)
+            {
+                rd = true;
+            }
 
-    
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="SubjectName">Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="SubjectName" readonly="@rd">
+                </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                @if (Model.SubjectID != 0)
+                {
+    <button type="submit" class="btn btn-success" asp-route-id="@Model.SubjectID">
+        <span class="fas fa-save"></span>
+        Update
+    </button> }
+                else
+                {
+    <button type="submit" class="btn btn-success">
+        <span class="fas fa-save"></span>
+        Create
+    </button>}
+                <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </a>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+

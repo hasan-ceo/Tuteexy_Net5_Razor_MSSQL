@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Tuteexy.Models.ClassRoomNotice>
 
-
+@{ ViewData["Title"] = "All My Class Notice"; }
 
 <div class="container-fluid p-0">
     <div class="row">
@@ -9,13 +9,13 @@
                 In this 'Class Notice' section, you get to view all the notices declared in <b>your</b> particular class, such as class-specific programmes, class-based projects, etc.
             </div>
             @*<div class="card">
-                <div class="card-header">
-                <h5 class="card-title">Class Notice</h5>
-            </div>
-                <div class="card-body">
-
+                    <div class="card-header">
+                    <h5 class="card-title">Class Notice</h5>
                 </div>
-            </div>*@
+                    <div class="card-body">
+
+                    </div>
+                </div>*@
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
             @Html.Raw(item.Description)
         </div>
     </div>
-</div>            }
+</div>      }
         </div>
     </div>
 </div>

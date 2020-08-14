@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Tuteexy.Models.ViewModels.HomeworkSheetVM>
-
+@{ ViewData["Title"] = "Homework Reply List"; }
 
 <div class="container-fluid p-0">
     <div class="row">
@@ -34,25 +34,22 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @{
-                                                    var tc = item.HWStatus == "Accepted" ? "success" : @item.HWStatus == "Submitted" ? "warning" : "danger";
-                                                }
-                                                <a class="btn btn-@tc" asp-area="Lms" asp-controller="Homeworks" asp-action="MarkUpdate" asp-route-id="@item.HomeworkSheetID" data-toggle="tooltip" data-placement="top" title="Marks">
-                                                    <i class="far fa-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td>@item.HWStatus</td>
-                                            <td>@item.ClassRoomName</td>
-                                            <td>@item.Subject</td>
-                                            <td>@item.Title</td>
-                                            <td>@item.ScheduleDateTime.ToString("dd/MMM/yyyy")</td>
-                                            <td>@item.DateDue.ToString("dd/MMM/yyyy")</td>
-                                            <td>@item.StudentName</td>
+                    <tr>
+                        <td>
+                            @{ var tc = item.HWStatus == "Accepted" ? "success" : @item.HWStatus == "Submitted" ? "warning" : "danger"; }
+                            <a class="btn btn-@tc" asp-area="Lms" asp-controller="Homeworks" asp-action="MarkUpdate" asp-route-id="@item.HomeworkSheetID" data-toggle="tooltip" data-placement="top" title="Marks">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>@item.HWStatus</td>
+                        <td>@item.ClassRoomName</td>
+                        <td>@item.Subject</td>
+                        <td>@item.Title</td>
+                        <td>@item.ScheduleDateTime.ToString("dd/MMM/yyyy")</td>
+                        <td>@item.DateDue.ToString("dd/MMM/yyyy")</td>
+                        <td>@item.StudentName</td>
 
-                                        </tr>
-                                    }
+                    </tr>}
                                 }
                             </tbody>
                         </table>

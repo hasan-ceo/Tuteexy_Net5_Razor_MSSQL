@@ -1,7 +1,7 @@
 ﻿@model Tuteexy.Models.ViewModels.UserCreateVM
 
-@{ var title = "Add Teacher"; }
-
+@{ var title = "Add Teacher";
+ ViewData["Title"] = title; }
 <!-- Main container -->
 
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -63,7 +63,8 @@
                 <button type="submit" class="btn btn-success">Create</button>
                 <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">
                     <span class="fas fa-undo"></span>
-                Cancel</a>
+                    Cancel
+                </a>
             </div>
 
         </form>

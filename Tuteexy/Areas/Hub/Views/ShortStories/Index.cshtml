@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Tuteexy.Models.ShortStory>
 
+@{ ViewData["Title"] = "All Stories"; }
+
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
@@ -29,22 +31,22 @@
         foreach (ShortStory item in Model)
         {
 
-    <div class="card bg-Alabaster">
-        <img src="/images/stories/@item.ImageUrl" class="card-img-top" alt="Storydrop">
-        <div class="card-body">
-            <p class="card-text">@item.Title</p>
-            @*<p class="card-text">
-            @Html.Raw(item.Description)
-        </p>*@
-            <p class="card-text">
-                <small class="text-muted">@item.User.FullName</small>
-                <small class="text-muted"> Last updated at @item.SubmittedDate</small>
-            </p>
-            <a class="btn btn-success w-100" href="/Hub/ShortStories/Details/@item.ShortStoryID" data-toggle="tooltip" data-placement="top" title="Details">
-                <i class="fas fa-check-square"></i>
-                Read..
-            </a>
-        </div>
-    </div>}
+<div class="card bg-Alabaster">
+    <img src="/images/stories/@item.ImageUrl" class="card-img-top" alt="Storydrop">
+    <div class="card-body">
+        <p class="card-text">@item.Title</p>
+        @*<p class="card-text">
+                @Html.Raw(item.Description)
+            </p>*@
+        <p class="card-text">
+            <small class="text-muted">@item.User.FullName</small>
+            <small class="text-muted"> Last updated at @item.SubmittedDate</small>
+        </p>
+        <a class="btn btn-success w-100" href="/Hub/ShortStories/Details/@item.ShortStoryID" data-toggle="tooltip" data-placement="top" title="Details">
+            <i class="fas fa-check-square"></i>
+            Read..
+        </a>
+    </div>
+</div>}
 }
 </div>

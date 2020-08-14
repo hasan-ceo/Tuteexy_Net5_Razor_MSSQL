@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Tuteexy.Models.Classwork>
+﻿@{ ViewData["Title"] = "All My Class Work"; }
+@model IEnumerable<Tuteexy.Models.Classwork>
 
 <div class="container-fluid p-0">
     <div class="row">
@@ -20,76 +21,70 @@
         <div class="col-12">
             @foreach (Classwork item in Model)
             {
-                <div class="card bg-classwork card-pointer">
-                    <div class="card-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12"> <p class="card-title text-white py-0 my-0">@item.Title</p></div>
-                                <div class="col-6">
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>Class Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
-                                    <p class="card-subtitle text-white py-0 my-0"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
-                                </div>
-                            </div>
+<div class="card bg-classwork card-pointer">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-12"> <p class="card-title text-white py-0 my-0">@item.Title</p></div>
+                <div class="col-6">
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                </div>
+                <div class="col-6">
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Class Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
+                </div>
+            </div>
 
-                            <div class="btn-group">
-                                @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
-                                {
-                                    <a href="@item.RefLink1" class="btn btn-light txt-twit">
-                                        <span class="fas fa-video">
-                                        </span>  <span>Join</span>
-                                    </a>
-                                }
+            <div class="btn-group">
+                @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
+                {
+<a href="@item.RefLink1" class="btn btn-light txt-twit">
+    <span class="fas fa-video">
+    </span>  <span>Join</span>
+</a>}
 
-                                @if (string.IsNullOrWhiteSpace(@item.RefLink2) == false && (string.IsNullOrEmpty(item.RefLink2) == false))
-                                {
-                                    <a href="@item.RefLink2" class="btn btn-light txt-twit mr-1">
-                                        <span class="fas fa-link">
-                                        </span>  <span>Attachment - 2</span>
-                                    </a>
-                                }
+                @if (string.IsNullOrWhiteSpace(@item.RefLink2) == false && (string.IsNullOrEmpty(item.RefLink2) == false))
+                {
+<a href="@item.RefLink2" class="btn btn-light txt-twit mr-1">
+    <span class="fas fa-link">
+    </span>  <span>Attachment - 2</span>
+</a>}
 
-                                @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
-                                {
-                                    <a href="@item.RefLink3" class="btn btn-light txt-twit mr-1">
-                                        <span class="fas fa-link">
-                                        </span>  <span>Attachment - 3</span>
-                                    </a>
-                                }
+                @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
+                {
+<a href="@item.RefLink3" class="btn btn-light txt-twit mr-1">
+    <span class="fas fa-link">
+    </span>  <span>Attachment - 3</span>
+</a>}
 
-                                @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
-                                {
-                                    <a href="@item.RefLink4" class="btn btn-light txt-twit mr-1">
-                                        <span class="fas fa-link">
-                                        </span>  <span>Attachment - 4</span>
-                                    </a>
-                                }
+                @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
+                {
+<a href="@item.RefLink4" class="btn btn-light txt-twit mr-1">
+    <span class="fas fa-link">
+    </span>  <span>Attachment - 4</span>
+</a>}
 
-                                @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
-                                {
-                                    <a href="@item.RefLink5" class="btn btn-light txt-twit">
-                                        <span class="fas fa-link">
-                                        </span>  <span>Attachment - 5</span>
-                                    </a>
-                                }
+                @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
+                {
+<a href="@item.RefLink5" class="btn btn-light txt-twit">
+    <span class="fas fa-link">
+    </span>  <span>Attachment - 5</span>
+</a>}
 
-                            </div>
-                            <div class="col-md-12 text-center mt-2">
-                                <a class="btn bg-classwork-light txtwhite w-50" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply" asp-route-id="@item.ClassworkID">
-                                    <span class="fas fa-click"></span>
-                                    C.W. Details...
-                                </a>
-                            </div>
+            </div>
+            <div class="col-md-12 text-center mt-2">
+                <a class="btn bg-classwork-light txtwhite w-50" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply" asp-route-id="@item.ClassworkID">
+                    <span class="fas fa-click"></span>
+                    C.W. Details...
+                </a>
+            </div>
 
-                        </div>
-                        </div>
-                    </div>
-             }
+        </div>
+    </div>
+</div>}
         </div>
     </div>
 </div>

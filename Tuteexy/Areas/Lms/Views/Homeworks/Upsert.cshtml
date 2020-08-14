@@ -1,8 +1,16 @@
 ﻿@model Tuteexy.Models.ViewModels.HomeworkVM
 
-@{
-    var title = "Create Homework";
+@{ var title = "Create Homework";
+    ViewData["Title"] = title;
+    }
+@if (Model.Homework.HomeworkID != 0)
+{
+    //edit
+    title = "Edit Homework";
+    ViewData["Title"] = title;
 }
+
+
 
 @section Scripts {
     <partial name="_tinymceScriptPartial" />
@@ -122,18 +130,16 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 @if (Model.Homework.HomeworkID != 0)
                 {
-                    <button type="submit" class="btn btn-success" asp-route-id="@Model.Homework.HomeworkID">
-                        <span class="fas fa-save"></span>
-                        Update
-                    </button>
-                }
-                else
-                {
-                    <button type="submit" class="btn btn-success">
-                        <span class="fas fa-save"></span>
-                        Create
-                    </button>
-                }
+    <button type="submit" class="btn btn-success" asp-route-id="@Model.Homework.HomeworkID">
+        <span class="fas fa-save"></span>
+        Update
+    </button> }
+else
+{
+<button type="submit" class="btn btn-success">
+    <span class="fas fa-save"></span>
+    Create
+</button>}
                 <button class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">
                     <span class="fas fa-undo"></span>
                     Cancel

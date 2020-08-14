@@ -1,5 +1,5 @@
 ﻿@model Tuteexy.Models.ViewModels.ClassworkSheetVM
-
+@{ ViewData["Title"] = "Classwork Reply"; }
 <div class="row row-cols-1">
     <div class="col-12">
         <div class="card bg-classwork mb-2">
@@ -38,43 +38,43 @@
                             <div class="btn-group">
                                 @if (string.IsNullOrWhiteSpace(Model.Classwork.RefLink1) == false && (string.IsNullOrEmpty(Model.Classwork.RefLink1) == false))
                                 {
-                                    <a href="@Model.Classwork.RefLink1" class="btn bg-classwork-light txtwhite">
-                                        <span class="fas fa-link">
+                <a href="@Model.Classwork.RefLink1" class="btn bg-classwork-light txtwhite">
+                    <span class="fas fa-link">
 
-                                        </span>  <span>Attachment - 1</span>
-                                    </a>}
+                    </span>  <span>Attachment - 1</span>
+                </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Classwork.RefLink2) == false && (string.IsNullOrEmpty(Model.Classwork.RefLink2) == false))
                                 {
-                                    <a href="@Model.Classwork.RefLink2" class="btn bg-classwork-light txtwhite">
-                                        <span class="fas fa-link">
+                <a href="@Model.Classwork.RefLink2" class="btn bg-classwork-light txtwhite">
+                    <span class="fas fa-link">
 
-                                        </span>  <span>Attachment - 2</span>
-                                    </a>}
+                    </span>  <span>Attachment - 2</span>
+                </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Classwork.RefLink3) == false && (string.IsNullOrEmpty(Model.Classwork.RefLink3) == false))
                                 {
-                                    <a href="@Model.Classwork.RefLink3" class="btn bg-classwork-light txtwhite">
-                                        <span class="fas fa-link">
+                <a href="@Model.Classwork.RefLink3" class="btn bg-classwork-light txtwhite">
+                    <span class="fas fa-link">
 
-                                        </span>  <span>Attachment - 3</span>
-                                    </a>}
+                    </span>  <span>Attachment - 3</span>
+                </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Classwork.RefLink4) == false && (string.IsNullOrEmpty(Model.Classwork.RefLink4) == false))
                                 {
-                                    <a href="@Model.Classwork.RefLink4" class="btn bg-classwork-light txtwhite">
-                                        <span class="fas fa-link">
+                <a href="@Model.Classwork.RefLink4" class="btn bg-classwork-light txtwhite">
+                    <span class="fas fa-link">
 
-                                        </span>  <span>Attachment - 4</span>
-                                    </a>}
+                    </span>  <span>Attachment - 4</span>
+                </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.Classwork.RefLink5) == false && (string.IsNullOrEmpty(Model.Classwork.RefLink5) == false))
                                 {
-                                    <a href="@Model.Classwork.RefLink5" class="btn bg-classwork-light txtwhite">
-                                        <span class="fas fa-link">
+                <a href="@Model.Classwork.RefLink5" class="btn bg-classwork-light txtwhite">
+                    <span class="fas fa-link">
 
-                                        </span>  <span>Attachment - 5</span>
-                                    </a>}
+                    </span>  <span>Attachment - 5</span>
+                </a>}
 
                             </div>
                         </div>
@@ -87,50 +87,47 @@
 
 
 
-        <div class="row row-cols-1">
-            <div class="col-12">
-                <div class="card bg-classwork mb-2">
-                    <div class="card-body text-dark">
-                        <form method="post" autocomplete="off" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply">
-                            <input type="hidden" id="ClassworkID" name="ClassworkID" value="@Model.Classwork.ClassworkID" />
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Reply</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" id="Description" name="Description" required></textarea>
-                                </div>
+                <div class="row row-cols-1">
+                    <div class="col-12">
+                        <div class="card bg-classwork mb-2">
+                            <div class="card-body text-dark">
+                                <form method="post" autocomplete="off" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply">
+                                    <input type="hidden" id="ClassworkID" name="ClassworkID" value="@Model.Classwork.ClassworkID" />
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Reply</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="Description" name="Description" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="submit" class="btn btn-success">
+                                            <span class="fas fa-save"></span>
+                                            Post
+                                        </button>
+                                        <a class="btn btn-light" asp-area="Lms" asp-controller="MyClassworks" asp-action="Classwork">
+                                            <span class="fas fa-undo"></span>
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" class="btn btn-success">
-                                    <span class="fas fa-save"></span>
-                                    Post
-                                </button>
-                                <a class="btn btn-light" asp-area="Lms" asp-controller="MyClassworks" asp-action="Classwork">
-                                    <span class="fas fa-undo"></span>
-                                    Cancel
-                                </a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    
 
-    <div class="row row-cols-1">
-        @foreach (ClassworkSheet item in Model.ClassworkSheet)
-        {
-            <div class="offset-2 col-10">
-                <div class="card bg-classwork mb-2">
-                    <div class="card-header text-white-50">
-                        <p class="card-subtitle" style="font-size:smaller">@item.User.FullName, @item.SubmittedDate</p>
-                    </div>
-                    <div class="card-body text-white">
-                        <p class="card-title">@item.Description</p>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
 
-}
+                                <div class="row row-cols-1">
+                                    @foreach (ClassworkSheet item in Model.ClassworkSheet)
+                                    {
+                    <div class="offset-2 col-10">
+                        <div class="card bg-classwork mb-2">
+                            <div class="card-header text-white-50">
+                                <p class="card-subtitle" style="font-size:smaller">@item.User.FullName, @item.SubmittedDate</p>
+                            </div>
+                            <div class="card-body text-white">
+                                <p class="card-title">@item.Description</p>
+                            </div>
+                        </div>
+                    </div>}
+                                </div>}
 
