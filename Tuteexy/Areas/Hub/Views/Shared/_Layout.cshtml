@@ -34,43 +34,7 @@
             </ul>
         </nav>
     </div>
-    <header>
-        <nav class="navbar navbar-expand bg-Alabaster justify-content-center fixed-top p-0 shadow-sm">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="pl-2 nav-item">
-                        <a class="nav-link d-flex flex-column" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
-                            <img class="navlogo" src="~/images/core/logo.png" alt="">
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-success" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
-                            <span class="fas fa-home fa-1x"></span>
-                            <span class="d-sm-inline mt-1">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-success" asp-area="Lms" asp-controller="Dashboard" asp-action="Index">
-                            <span class="fas fa-school fa-1x"></span>
-                            <span class="d-sm-inline mt-1">Schools</span>
-                        </a>
-                    </li>
-                    <partial name="_LoginPartial" />
-                    <li class="nav-item d-block d-md-none d-lg-none d-xl-none">
-                        <a class="nav-link d-flex flex-column text-success" id="menu-toggle" href="#">
-                            <span class="fas fa-bars"></span>
-                            <span class="d-sm-inline mt-1">Menu</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-    </header>
+    <partial name="_TopNavPartial" />
 
     <div class="container-fluid fixed-top-margin">
         <div class="row">
@@ -79,21 +43,21 @@
                     <partial name="_SocialSideMenuPartial" />
                 </ul>
             </div>
-                <main role="main" class="col-md-10 ml-sm-auto px-4">
-                    <div class="row">
-                        <div class="col-md-9">
-                            @RenderBody()
-                        </div>
-                        <div class="col-md-3 pr-0">
-                            <div class="row p-0 m-0">
+            <main role="main" class="col-md-10 ml-sm-auto px-4">
+                <div class="row">
+                    <div class="col-md-9">
+                        @RenderBody()
+                    </div>
+                    <div class="col-md-3 pr-0">
+                        <div class="row p-0 m-0">
 
-                                <partial name="_LeftAdsPartial" />
-                                <partial name="_RightAdsPartial" />
-                            </div>
+                            <partial name="_LeftAdsPartial" />
+                            <partial name="_RightAdsPartial" />
                         </div>
                     </div>
-                    <partial name="_FooterScriptsPartial" />
-                </main>
+                </div>
+                <partial name="_FooterScriptsPartial" />
+            </main>
 
 
         </div>

@@ -587,3 +587,10 @@ text-decoration:none;
 .padding-zero{
     padding:0px;
 }
+
+.navspry {
+    background-color: #39be61 !important;
+    color: #fff !important;
+    border-radius:5px;
+    margin: 2.5%;
+}

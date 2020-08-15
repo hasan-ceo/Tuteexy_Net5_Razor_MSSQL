@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Tuteexy.Models.Course>
+
+@{ ViewData["Title"] = "Featured Courses"; }
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <blockquote class="blockquote">
+                                <p class="mb-0">If you want to be smart, you must do one thing above all others: learn a lot.</p>
+                            </blockquote>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Hub" asp-controller="Courses" asp-action="MyCourses">
+                                <span class="fas fa-tasks"></span> My Courses
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-columns">
+    @if (Model != null)
+    {
+        foreach (Course item in Model)
+        {
+
+<div class="card bg-Alabaster">
+    <img src="/images/courses/@item.ImageUrl" class="card-img-top" alt="Storydrop">
+    <div class="card-body">
+        <p class="card-text">@item.Title</p>
+        @*<p class="card-text">
+                @Html.Raw(item.Description)
+            </p>*@
+        <p class="card-text">
+            <small class="text-muted">@item.User.FullName</small>
+            <small class="text-muted"> Last updated at @item.SubmittedDate</small>
+        </p>
+        <a class="btn btn-success w-100" href="/Hub/Courses/Details/@item.CourseID" data-toggle="tooltip" data-placement="top" title="Details">
+            <i class="fas fa-check-square"></i>
+            View Course...
+        </a>
+    </div>
+</div>}
+}
+</div>

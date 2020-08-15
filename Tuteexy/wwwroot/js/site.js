@@ -21,6 +21,20 @@ $(".menu-overlay").click(function (e) {
 });
 
 
-$(".makecircleava").addEventListener('mouseover', () => {
-    $("#imgeditprof").classList.add = 'active';
-})
+//$(".makecircleava").addEventListener('mouseover', () => {
+//    $("#imgeditprof").classList.add = 'active';
+//})
+
+
+//CURRENT ACTIVE PAGE
+
+var weburl = window.location.href;
+var curpage = weburl.toLowerCase().search('hub');
+if (curpage > 0) {
+    $('#hubnav').toggleClass("navspry");
+};
+
+var curpage = weburl.toLowerCase().search('lms');
+if (curpage > 0) {
+    $('#schoolnav').toggleClass("navspry");
+};

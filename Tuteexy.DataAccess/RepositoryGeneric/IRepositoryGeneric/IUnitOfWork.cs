@@ -34,7 +34,10 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IQuestionThreadRepository QuestionThread { get; }
         IShortStoryRepository ShortStory { get; }
         IShortStoryThreadRepository ShortStoryThread { get; }
-        
+
+        ICourseRepository Course { get; }
+        ICourseThreadRepository CourseThread { get; }
+
         ITutorJobRepository TutorJob { get; }
         IUserProfileRepository UserProfile { get; }
         //Lms End
