@@ -10,7 +10,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
     {
         public void OnGet()
         {
-
+           
         }
     }
 }

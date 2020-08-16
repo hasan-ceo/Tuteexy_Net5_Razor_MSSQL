@@ -1,18 +1,18 @@
 ﻿        <li class="nav-item pl-2">Discussions</li>
-        <li class="nav-item">
-            <a class="nav-link txt-tuteegreen" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
+        <li class="nav-item  py-0">
+            <a class="nav-link txt-tuteegreen py-1" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
                 <span class="fas fa-cubes"></span>
                 Learners' Hub
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link txt-tuteegreen" asp-area="Hub" asp-controller="ShortStories" asp-action="Index">
+        <li class="nav-item  py-0">
+            <a class="nav-link txt-tuteegreen py-1" asp-area="Hub" asp-controller="ShortStories" asp-action="Index">
                 <span class="fas fa-pencil-alt"></span>
                 Pencil Stories
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link txt-tuteegreen" asp-area="Hub" asp-controller="Dashboard" asp-action="UnderConstruction">
+        <li class="nav-item py-0">
+            <a class="nav-link txt-tuteegreen py-1" asp-area="Hub" asp-controller="Dashboard" asp-action="UnderConstruction">
                 <span class="fas fa-video"></span>
                 Live Meeting
             </a>
@@ -20,13 +20,13 @@
 
 
         <li class="nav-item pl-2">Supplementary</li>
-        <li class="nav-item">
-            <a class="nav-link txt-tuteegreen" asp-area="Hub" asp-controller="Courses" asp-action="Index">
+        <li class="nav-item  py-0">
+            <a class="nav-link txt-tuteegreen py-1" asp-area="Hub" asp-controller="Courses" asp-action="Index">
                 <span class="fas fa-chalkboard-teacher"></span>
                 Courses
             </a>
         </li>
-        <li class="nav-item pl-2">School</li>
+        <li class="nav-item pl-2 py-0">School</li>
         @await Component.InvokeAsync("StudentMenu")
         @await Component.InvokeAsync("AdminMenu")
         @await Component.InvokeAsync("TeacherMenu")

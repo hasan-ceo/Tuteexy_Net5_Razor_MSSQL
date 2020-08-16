@@ -19,6 +19,7 @@ using Tuteexy.Utility;
 using Stripe;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Tuteexy.DataAccess.Initializer;
+using Tuteexy.Hubs;
 
 namespace Tuteexy
 {
@@ -64,6 +65,7 @@ namespace Tuteexy
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddSignalR();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -130,6 +132,7 @@ namespace Tuteexy
                     name: "default",
                     pattern: "{area=Front}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }
