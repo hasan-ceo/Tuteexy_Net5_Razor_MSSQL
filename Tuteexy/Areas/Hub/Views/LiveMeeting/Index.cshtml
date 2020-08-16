@@ -1,12 +1,24 @@
-﻿<div class="container">
-    <div class="row">&nbsp;</div>
+﻿@{ ViewData["Title"] = "Live Meeting"; }
+
+
+<div class="container">
+    @*<div class="row">
+        <div class="col">
+            <select id="group">
+                <option value="All">Everyone</option>
+                <option value="Myself">Myself</option>
+                <option value="PrivateGroup">Private Group</option>
+            </select>
+            <input type="button" id="joinGroup" value="Join Tuteexy Group" />
+        </div>
+    </div>*@
     <div class="row">
         <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" value="@await Component.InvokeAsync("UserNam")" readonly/></div>
+        <div class="col-4"><input type="text" id="userInput" value="@await Component.InvokeAsync("UserNam")" readonly /></div>
     </div>
     <div class="row">
         <div class="col-2">Message</div>
-        <div class="col-4"><input class="form-control" type="text" id="messageInput" autofocus/></div>
+        <div class="col-4"><input class="form-control" type="text" id="messageInput" autofocus /></div>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
