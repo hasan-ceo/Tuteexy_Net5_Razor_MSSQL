@@ -154,15 +154,27 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public async Task<IActionResult> ReplyList()
         {
+            IEnumerable<Homework> homework;
+            IEnumerable<HomeworkSheet> homeworksheet;
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
-            var HomeworkSheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
+            var sch = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
+            if (sch!=null)
+            {
+                homework = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom");
+                homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.ClassRoom.School.OwnerId == _userId, includeProperties: "Homework,Student");
+            }
+            else
+            {
+                homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
+                homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
+
+            }
 
             var allObj = from h in homework
-                         join s in HomeworkSheet on h.HomeworkID equals s.HomeworkID
+                         join s in homeworksheet on h.HomeworkID equals s.HomeworkID
                          select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime=h.ScheduleDateTime,DateDue=h.DateDue, StudentName = s.Student.FullName, HwMarks=h.HwMarks, HWStatus=s.HWStatus,AttachLink1=s.AttachLink1};
 
-            return View(allObj.OrderBy(a=>a.ClassRoomName).OrderBy(a=>a.Subject));
+            return View(allObj.OrderBy(a=>a.ClassRoomName).OrderByDescending(a=>a.HWStatus));
         }
 
         public async Task<IActionResult> MarkUpdate(long Id)

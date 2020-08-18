@@ -69,9 +69,9 @@ namespace Tuteexy
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = $"/Identity/Account/Login";
-                options.LogoutPath = $"/Identity/Account/Logout";
-                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+                options.LoginPath = $"/Login";
+                options.LogoutPath = $"/Logout";
+                options.AccessDeniedPath = $"/AccessDenied";
             });
             services.AddAuthentication().AddFacebook(options =>
             {

@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        @if (Model.HWStatus != "Accepted")
+        @if (Model.HWStatus == "Submitted")
         {
 <div asp-validation-summary="All" class="text-danger"></div>
                 <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
@@ -101,12 +101,12 @@
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Basic example">
-
+ 
                         <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
                             <span class="fas fa-check"></span>
                             Accepted
                         </button>
-
+                        
                         <button class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Replylist">
                             <span class="fas fa-undo"></span>
                             Cancel

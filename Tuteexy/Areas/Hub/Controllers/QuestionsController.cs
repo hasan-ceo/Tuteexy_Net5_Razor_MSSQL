@@ -33,6 +33,11 @@ namespace Tuteexy.Areas.Hub.Controllers
             return View();
         }
 
+        public async Task<IActionResult> AskQuestion()
+        {
+            var question = await _unitOfWork.Question.GetAllAsync(h => h.IsApproved == true && h.IsOffensive == false && h.SubmittedDate.Date >= DateTime.Now.AddDays(-2) && h.SubmittedDate.Date <= DateTime.Now, h => h.OrderByDescending(p => p.SubmittedDate), includeProperties: "User");
+            return View(question);
+        }
 
         public async Task<IActionResult> Upsert(long? Id)
         {

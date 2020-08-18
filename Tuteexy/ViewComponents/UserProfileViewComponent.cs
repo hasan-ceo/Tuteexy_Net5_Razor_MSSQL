@@ -42,6 +42,7 @@ namespace Tuteexy.ViewComponents
                     ECPersonName = "",
                     ECPersonRelation = "",
                     ECPersonPhoneNumber = "",
+                    ECPersonEmail="",
                     ImageUrl = ""
                 };
                 await _unitOfWork.UserProfile.AddAsync(userprofile);

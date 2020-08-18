@@ -2,16 +2,35 @@
 
 
 <div class="container">
-    @*<div class="row">
+    <div class="row">
         <div class="col">
-            <select id="group">
-                <option value="All">Everyone</option>
-                <option value="Myself">Myself</option>
-                <option value="PrivateGroup">Private Group</option>
-            </select>
-            <input type="button" id="joinGroup" value="Join Tuteexy Group" />
+            <video autoplay muted controls id="videoCtr" width="480" height="100"></video>
+            <video autoplay muted controls id="remoteVideoCtr" width="480" height="100"></video>
+            <video autoplay muted controls id="videoCtrRec" width="100" height="100" style="display:none"></video>
+
+            <button id="startConnection">Start Connection</button>
+
+            <button id="btnMuteUnmute">UnMute</button>
+            <button id="btnStartStopCam">Start Camera</button>
+            <button id="btnStartStopScreenshare">Screen Share</button>
+            <button id="btnStartReco">Start Recording</button>
+            <button id="btnPauseReco" style="display:none">Pause</button>
+            <button id="btnResumeReco" style="display:none">Resume</button>
+            <button id="btnStopReco" style="display:none">Stop</button>
+
+            <a href="" id="downloadRecording" style="display:none">Download</a>
         </div>
-    </div>*@
+    </div>
+    @*<div class="row">
+            <div class="col">
+                <select id="group">
+                    <option value="All">Everyone</option>
+                    <option value="Myself">Myself</option>
+                    <option value="PrivateGroup">Private Group</option>
+                </select>
+                <input type="button" id="joinGroup" value="Join Tuteexy Group" />
+            </div>
+        </div>*@
     <div class="row">
         <div class="col-2">User</div>
         <div class="col-4"><input type="text" id="userInput" value="@await Component.InvokeAsync("UserNam")" readonly /></div>
@@ -39,3 +58,7 @@
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
+
+
+<script src="~/js/video-stream-merger.js"></script>
+<script src="~/js/demo.js"></script>

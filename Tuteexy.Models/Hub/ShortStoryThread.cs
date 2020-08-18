@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tuteexy.Models
 {
-    [Table("LmsShortStoryThread")]
+    [Table("HubShortStoryThread")]
     public class ShortStoryThread
     {
         [Key]
