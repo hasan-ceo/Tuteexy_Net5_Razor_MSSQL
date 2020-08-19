@@ -188,6 +188,7 @@ namespace Tuteexy.Areas.Hub.Controllers
             return LocalRedirect("~/Hub/UserProfiles/Upsert/"+ changePassword.Id);
         }
 
+       
 
         public IActionResult ChangeEmail(long Id)
         {

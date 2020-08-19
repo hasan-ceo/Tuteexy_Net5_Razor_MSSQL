@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Dapper;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -154,21 +155,12 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public async Task<IActionResult> ReplyList()
         {
-            IEnumerable<Homework> homework;
-            IEnumerable<HomeworkSheet> homeworksheet;
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var sch = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
-            if (sch!=null)
-            {
-                homework = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom");
-                homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.ClassRoom.School.OwnerId == _userId, includeProperties: "Homework,Student");
-            }
-            else
-            {
-                homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
-                homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
 
-            }
+             var   homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
+             var   homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
+
+            
 
             var allObj = from h in homework
                          join s in homeworksheet on h.HomeworkID equals s.HomeworkID
@@ -225,6 +217,16 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             return ViewComponent("QuestionA", new { id=Id});
         }
+
+        public IActionResult rptHomeworks()
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var parameter = new DynamicParameters();
+            parameter.Add("@AdminId", _userId);
+            var rpthomeworkVM = _unitOfWork.SP_Call.List<RptHomeworkVM>(SD.Proc_rptHomework, parameter);
+            return View(rpthomeworkVM.OrderBy(r=>r.ClassRoomName).ThenByDescending(r=>r.DateDue));
+        }
+
 
         #region API CALLS
 

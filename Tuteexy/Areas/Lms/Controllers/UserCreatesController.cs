@@ -290,5 +290,44 @@ namespace Tuteexy.Areas.Lms.Controllers
             Input.StatusMessage = "Error : Invalid input data.";
             return View(Input);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(string UserName,string UserPassword)
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = await _userManager.FindByNameAsync(UserName);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                TempData["StatusMessage"] = $"Error : Invalid Username / User ID";
+                return LocalRedirect("/Lms/Schools/Index");
+            }
+
+            var tmp = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c=>c.StudentID==user.Id && c.ClassRoom.School.OwnerId==_userId);
+            if (tmp != null)
+            {
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, code, UserPassword);
+                if (result.Succeeded)
+                {
+                    TempData["StatusMessage"] = $"Reset successful";
+                    return LocalRedirect("/Lms/Schools/Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                TempData["StatusMessage"] = $"Error : Error occurred";
+                return LocalRedirect("/Lms/Schools/Index");
+            }
+            else
+            {
+                TempData["StatusMessage"] = $"Error : You are not authorized.";
+                return LocalRedirect("/Lms/Schools/Index");
+            }
+        }
     }
 }
