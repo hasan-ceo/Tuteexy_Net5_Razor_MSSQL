@@ -1,10 +1,7 @@
-﻿using Tuteexy.DataAccess.Data;
+﻿using System.Linq;
+using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tuteexy.DataAccess.Repository
 {
@@ -24,7 +21,7 @@ namespace Tuteexy.DataAccess.Repository
             {
                 objFromDb.Title = course.Title;
                 objFromDb.Description = course.Description;
-                objFromDb.ImageUrl= course.ImageUrl;
+                objFromDb.ImageUrl = course.ImageUrl;
                 objFromDb.SubmittedDate = course.SubmittedDate;
                 objFromDb.IsApproved = course.IsApproved;
                 objFromDb.IsReplyClose = course.IsReplyClose;

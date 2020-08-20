@@ -13,7 +13,7 @@ namespace Tuteexy.Models
 
         public long CourseID { get; set; }
         [ForeignKey("CourseID")]
-        public virtual Course Course { get;set;}
+        public virtual Course Course { get; set; }
 
         public string UserID { get; set; }
         [ForeignKey("UserID")]

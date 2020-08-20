@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
-using Tuteexy.Models;
 
 namespace Tuteexy.ViewComponents
 {

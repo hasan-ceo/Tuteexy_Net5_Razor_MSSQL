@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
@@ -111,7 +110,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
 
 
-        
+
 
         [HttpGet]
         public async Task<IActionResult> ClassNotices()

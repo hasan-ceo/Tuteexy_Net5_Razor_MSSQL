@@ -99,7 +99,7 @@
         <p class="card-title py-0 my-0"><strong>Submitted time: </strong>  @Model.DateSubmitted.ToString("dd/MMM/yyyy hh:mm tt")</p>
         @if (Model.HWStatus == Tuteexy.Utility.SD.StatusAccepted)
         {
-<p class="card-title py-1 my-0"><strong>Obtain Marks: </strong>  @Model.HwMarks</p>}
+<p class="card-title py-1 my-0"><strong>Obtain Marks: </strong>  @Model.HwMarks, <strong>Comments:</strong> @Model.HWComments</p>}
     </div>}
                 <div class="col-12 px-0">
                     <div class="btn-group">

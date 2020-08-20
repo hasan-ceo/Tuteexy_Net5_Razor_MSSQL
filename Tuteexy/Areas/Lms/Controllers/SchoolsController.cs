@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -25,7 +24,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         public SchoolsController(ILogger<SchoolsController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork; 
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
@@ -59,7 +58,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             if (ModelState.IsValid)
             {
-                var workdate= DateTime.Now;
+                var workdate = DateTime.Now;
 
 
                 if (school.SchoolID == 0)

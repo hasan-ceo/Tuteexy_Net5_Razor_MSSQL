@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -44,18 +43,18 @@ namespace Tuteexy.Areas.Lms.Controllers
                 classroomID = classroom.ClassRoomID;
             }
             var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.ClassRoomID == classroomID && h.TimeStart <= DateTime.Now, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
-            return View(allObj.OrderByDescending(a=>a.ClassworkID));
+            return View(allObj.OrderByDescending(a => a.ClassworkID));
 
         }
 
         public async Task<IActionResult> ClassWorkReply(long? Id)
         {
-            var classwork = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(q=>q.ClassworkID==Id,includeProperties: "Teacher");
+            var classwork = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(q => q.ClassworkID == Id, includeProperties: "Teacher");
             var classworksheet = await _unitOfWork.ClassworkSheet.GetAllAsync(q => q.ClassworkID == Id, includeProperties: "User");
             ClassworkSheetVM questionVM = new ClassworkSheetVM
             {
                 Classwork = classwork,
-                ClassworkSheet= classworksheet
+                ClassworkSheet = classworksheet
             };
             //var allObj = await _unitOfWork.ClassworkSheet.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
             return View(questionVM);
@@ -93,7 +92,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            _userId=User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.ClassworkSheet.GetAllAsync(c => c.UserID == _userId);
             return Json(new { data = allObj.Select(a => new { id = a.ClassworkSheetID, description = a.Description, submitteddate = a.SubmittedDate.ToString("dd/MMM/yyyy") }) });
 

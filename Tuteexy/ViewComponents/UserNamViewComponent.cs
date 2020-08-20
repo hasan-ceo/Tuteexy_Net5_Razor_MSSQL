@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyBook.ViewComponents
+namespace Tuteexy.ViewComponents
 {
     public class UserNamViewComponent : ViewComponent
     {

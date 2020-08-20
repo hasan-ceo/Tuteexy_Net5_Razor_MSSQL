@@ -1,5 +1,3 @@
-using System;
-
 namespace Tuteexy.Models.ViewModels
 {
     public class ErrorViewModel

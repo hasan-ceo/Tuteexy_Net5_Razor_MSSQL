@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
-using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
 
 namespace Tuteexy.Areas.Lms.Controllers
@@ -26,7 +23,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork;
         }
 
-       
+
         public IActionResult Classroutines()
         {
             return View();
@@ -82,7 +79,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
 
 
-        
+
 
         [HttpGet]
         public async Task<IActionResult> ClassNotices()

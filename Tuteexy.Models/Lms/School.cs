@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Tuteexy.Models
 {
@@ -40,7 +37,7 @@ namespace Tuteexy.Models
         public string PhoneNumber { get; set; }
 
         public bool IsAuthorizedSchool { get; set; }
-        
+
         public string OwnerId { get; set; }
         [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }

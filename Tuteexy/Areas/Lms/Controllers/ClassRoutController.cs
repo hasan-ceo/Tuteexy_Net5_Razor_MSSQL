@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -43,7 +43,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
-            if (y==null)
+            if (y == null)
             {
                 TempData["StatusMessage"] = $"Error : Please register as teacher";
                 return LocalRedirect("/Lms/ClassRout/Index");
@@ -189,11 +189,12 @@ namespace Tuteexy.Areas.Lms.Controllers
             var allObj = await _unitOfWork.ClassRoutine.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom");
             return Json(new
             {
-                data = allObj.Select(o => new {
+                data = allObj.Select(o => new
+                {
                     id = o.ClassRoutineID,
                     classname = o.ClassRoom.ClassRoomName,
                     day = o.DayName,
-                    p1 = o.Period1 +" "+ o.PeriodTime1.ToString("hh:mm tt"),
+                    p1 = o.Period1 + " " + o.PeriodTime1.ToString("hh:mm tt"),
                     p2 = o.Period2 + " " + o.PeriodTime2.ToString("hh:mm tt"),
                     p3 = o.Period3 + " " + o.PeriodTime3.ToString("hh:mm tt"),
                     p4 = o.Period4 + " " + o.PeriodTime4.ToString("hh:mm tt"),
@@ -203,7 +204,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     p8 = o.Period8 + " " + o.PeriodTime8.ToString("hh:mm tt"),
                     p9 = o.Period9 + " " + o.PeriodTime9.ToString("hh:mm tt"),
                     p10 = o.Period10 + " " + o.PeriodTime10.ToString("hh:mm tt")
-                    
+
                 })
             });
         }

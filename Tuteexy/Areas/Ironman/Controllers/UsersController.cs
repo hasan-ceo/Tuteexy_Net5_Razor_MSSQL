@@ -37,7 +37,7 @@ namespace Tuteexy.Areas.Admin.Controllers
             {
                 var roleId = userRole.FirstOrDefault(u => u.UserId == user.Id).RoleId;
                 user.Role = roles.FirstOrDefault(u => u.Id == roleId).Name;
-               
+
             }
 
             return Json(new { data = userList });

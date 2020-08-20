@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Tuteexy.Areas.Hub.Controllers
 {
@@ -33,7 +32,7 @@ namespace Tuteexy.Areas.Hub.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allObj = await _unitOfWork.ShortStory.GetAllAsync(includeProperties:"User");
+            var allObj = await _unitOfWork.ShortStory.GetAllAsync(includeProperties: "User");
             return View(allObj);
         }
 
@@ -100,7 +99,8 @@ namespace Tuteexy.Areas.Hub.Controllers
                         ShortStory objFromDb = await _unitOfWork.ShortStory.GetAsync(shortstory.ShortStoryID);
                         shortstory.ImageUrl = objFromDb.ImageUrl;
                     }
-                    else {
+                    else
+                    {
                         shortstory.ImageUrl = "storydefaultimg.jpg";
                     }
                 }
@@ -130,12 +130,12 @@ namespace Tuteexy.Areas.Hub.Controllers
 
         public async Task<IActionResult> Details(long? Id)
         {
-            var question = await _unitOfWork.ShortStory.GetFirstOrDefaultAsync(q=>q.ShortStoryID==Id,includeProperties:"User");
+            var question = await _unitOfWork.ShortStory.GetFirstOrDefaultAsync(q => q.ShortStoryID == Id, includeProperties: "User");
             var questionthread = await _unitOfWork.ShortStoryThread.GetAllAsync(q => q.ShortStoryID == Id, includeProperties: "User");
             ShortStoryVM shortstoryVM = new ShortStoryVM
             {
                 ShortStory = question,
-                ShortStoryThread=questionthread,
+                ShortStoryThread = questionthread,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
             //var allObj = await _unitOfWork.ShortStory.GetAllAsync(c => c.CreatedBy == User.Identity.Name);

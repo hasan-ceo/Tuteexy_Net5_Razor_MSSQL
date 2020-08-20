@@ -1,10 +1,7 @@
-﻿using Tuteexy.DataAccess.Data;
+﻿using System.Linq;
+using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tuteexy.DataAccess.Repository
 {

@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Dapper;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -64,36 +64,36 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
 
             var hw = new Homework();
-                hw.ScheduleDateTime = DateTime.Now;
-                hw.DateDue = DateTime.Now;
-                HomeworkVM homeworkVM = new HomeworkVM()
+            hw.ScheduleDateTime = DateTime.Now;
+            hw.DateDue = DateTime.Now;
+            HomeworkVM homeworkVM = new HomeworkVM()
+            {
+                Homework = hw,
+                ScheduleTime = DateTime.Now,
+                ClassRoomList = clsList.Select(i => new SelectListItem
                 {
-                    Homework = hw,
-                    ScheduleTime = DateTime.Now,
-                    ClassRoomList = clsList.Select(i => new SelectListItem
-                    {
-                        Text = i.ClassRoomName,
-                        Value = i.ClassRoomID.ToString()
-                    }),
-                    SubjectList = SubList.Select(i => new SelectListItem
-                    {
-                        Text = i.SubjectName,
-                        Value = i.SubjectName
-                    })
-                };
-                if (Id == null)
+                    Text = i.ClassRoomName,
+                    Value = i.ClassRoomID.ToString()
+                }),
+                SubjectList = SubList.Select(i => new SelectListItem
                 {
-                    //this is for create
-                    return View(homeworkVM);
-                }
-                //this is for edit
-                homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
-                homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime;
-                if (homeworkVM.Homework == null)
-                {
-                    return NotFound();
-                }
+                    Text = i.SubjectName,
+                    Value = i.SubjectName
+                })
+            };
+            if (Id == null)
+            {
+                //this is for create
                 return View(homeworkVM);
+            }
+            //this is for edit
+            homeworkVM.Homework = await _unitOfWork.Homework.GetAsync(Id.GetValueOrDefault());
+            homeworkVM.ScheduleTime = homeworkVM.Homework.ScheduleDateTime;
+            if (homeworkVM.Homework == null)
+            {
+                return NotFound();
+            }
+            return View(homeworkVM);
 
         }
 
@@ -149,7 +149,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public async Task<IActionResult> HWPreview(long id)
         {
-            var t = await _unitOfWork.Homework.GetFirstOrDefaultAsync(h=>h.HomeworkID==id,  includeProperties: "ClassRoom,Teacher");
+            var t = await _unitOfWork.Homework.GetFirstOrDefaultAsync(h => h.HomeworkID == id, includeProperties: "ClassRoom,Teacher");
             return View(t);
         }
 
@@ -157,16 +157,16 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-             var   homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
-             var   homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
+            var homework = await _unitOfWork.Homework.GetAllAsync(h => h.TeacherID == _userId, includeProperties: "ClassRoom");
+            var homeworksheet = await _unitOfWork.HomeworkSheet.GetAllAsync(h => h.Homework.TeacherID == _userId, includeProperties: "Homework,Student");
 
-            
+
 
             var allObj = from h in homework
                          join s in homeworksheet on h.HomeworkID equals s.HomeworkID
-                         select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime=h.ScheduleDateTime,DateDue=h.DateDue, StudentName = s.Student.FullName, HwMarks=h.HwMarks, HWStatus=s.HWStatus,AttachLink1=s.AttachLink1};
+                         select new HomeworkSheetVM { HomeworkSheetID = s.HomeworkSheetID, ClassRoomName = h.ClassRoom.ClassRoomName, Subject = h.Subject, Title = h.Title, ScheduleDateTime = h.ScheduleDateTime, DateDue = h.DateDue, StudentName = s.Student.FullName, HwMarks = h.HwMarks, HWStatus = s.HWStatus, AttachLink1 = s.AttachLink1 };
 
-            return View(allObj.OrderBy(a=>a.ClassRoomName).OrderByDescending(a=>a.HWStatus));
+            return View(allObj.OrderBy(a => a.ClassRoomName).OrderByDescending(a => a.HWStatus));
         }
 
         public async Task<IActionResult> MarkUpdate(long Id)
@@ -215,7 +215,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public IActionResult Hwd(long Id)
         {
-            return ViewComponent("QuestionA", new { id=Id});
+            return ViewComponent("QuestionA", new { id = Id });
         }
 
         public IActionResult rptHomeworks()
@@ -224,7 +224,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             var parameter = new DynamicParameters();
             parameter.Add("@AdminId", _userId);
             var rpthomeworkVM = _unitOfWork.SP_Call.List<RptHomeworkVM>(SD.Proc_rptHomework, parameter);
-            return View(rpthomeworkVM.OrderBy(r=>r.ClassRoomName).ThenByDescending(r=>r.DateDue));
+            return View(rpthomeworkVM.OrderBy(r => r.ClassRoomName).ThenByDescending(r => r.DateDue));
         }
 
 
@@ -235,10 +235,10 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var school = await _unitOfWork.School.GetFirstOrDefaultAsync(s => s.OwnerId == _userId);
-            if (school !=null)
+            if (school != null)
             {
                 var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
-                return Json(new { data = allObj.Select(a => new { id=a.HomeworkID, teachername=a.Teacher.FullName , classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
+                return Json(new { data = allObj.Select(a => new { id = a.HomeworkID, teachername = a.Teacher.FullName, classroomname = a.ClassRoom.ClassRoomName, subject = a.Subject, title = a.Title, schdate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), datedue = a.DateDue.Date.ToString("dd/MMM/yyyy") }) });
             }
             else
             {

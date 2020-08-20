@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -46,15 +44,15 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
             var allObj = await _unitOfWork.Homework.GetAllAsync(h => h.ClassRoomID == classroomID && h.ScheduleDateTime <= DateTime.Now, h => h.OrderByDescending(p => p.DateDue), includeProperties: "ClassRoom,Teacher");
             // return View(allObj.Select(a => new { Title=a.Title, HomeworkID=a.HomeworkID, TeacherName = a.TeacherName, Subject= a.Subject }));
-            return View(allObj.OrderByDescending(a=>a.HomeworkID));
+            return View(allObj.OrderByDescending(a => a.HomeworkID));
 
         }
 
         public async Task<IActionResult> HomeworkReply(long Id)
         {
-            
+
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkID == Id && i.StudentID == _userId,includeProperties: "Homework");
+            var hwr = await _unitOfWork.HomeworkSheet.GetFirstOrDefaultAsync(i => i.HomeworkID == Id && i.StudentID == _userId, includeProperties: "Homework");
             if (hwr == null)
             {
                 HomeworkSheet hwreply = new HomeworkSheet();
@@ -68,6 +66,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 hwreply.AttachLink4 = "";
                 hwreply.AttachLink5 = "";
                 hwreply.HwMarks = 0;
+                hwreply.HWComments = "";
                 hwreply.HWStatus = SD.StatusPending;
 
                 await _unitOfWork.HomeworkSheet.AddAsync(hwreply);
@@ -95,7 +94,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
             hwr.Description = hwreply.Description;
             hwr.DateSubmitted = DateTime.Now;
-            hwr.HWStatus =SD.StatusSubmitted;
+            hwr.HWStatus = SD.StatusSubmitted;
 
             var uploads = Path.Combine(webRootPath, @"images\homeworks");
 
@@ -160,7 +159,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             var j = 1;
             if (files.Count > 0)
             {
-                
+
                 if (j <= i)
                 {
                     string fileName = Guid.NewGuid().ToString();
@@ -239,7 +238,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             }
 
             _unitOfWork.Save();
-            return RedirectToAction("HomeworkReply", new { Id=hwr.HomeworkID});
+            return RedirectToAction("HomeworkReply", new { Id = hwr.HomeworkID });
         }
 
     }

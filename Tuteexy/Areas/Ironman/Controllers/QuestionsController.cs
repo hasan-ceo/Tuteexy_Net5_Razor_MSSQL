@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Ironman.Controllers
 {
@@ -85,7 +84,7 @@ namespace Tuteexy.Areas.Ironman.Controllers
             QuestionVM questionVM = new QuestionVM
             {
                 Question = question,
-                QuestionThread = questionthread.OrderByDescending(q=>q.QuestionThreadID)
+                QuestionThread = questionthread.OrderByDescending(q => q.QuestionThreadID)
             };
             //var allObj = await _unitOfWork.Question.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
             return View(questionVM);
@@ -123,9 +122,9 @@ namespace Tuteexy.Areas.Ironman.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            _userId=User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.Question.GetAllAsync(includeProperties:"User");
-            return Json(new { data = allObj.Select(a => new { id = a.QuestionID, description = a.Description, isreplyclose = a.IsReplyClose, isapproved = a.IsApproved, isoffensive=a.IsOffensive, submitteddate = a.SubmittedDate.ToString("dd/MMM/yyyy") }).OrderByDescending(a=>a.id) });
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.Question.GetAllAsync(includeProperties: "User");
+            return Json(new { data = allObj.Select(a => new { id = a.QuestionID, description = a.Description, isreplyclose = a.IsReplyClose, isapproved = a.IsApproved, isoffensive = a.IsOffensive, submitteddate = a.SubmittedDate.ToString("dd/MMM/yyyy") }).OrderByDescending(a => a.id) });
 
         }
 
@@ -154,7 +153,7 @@ namespace Tuteexy.Areas.Ironman.Controllers
                 return Json(new { success = false, message = "Error while approve" });
             }
 
-            if (objFromDb.IsApproved== true)
+            if (objFromDb.IsApproved == true)
             {
                 objFromDb.IsApproved = false;
                 message = "Abort approve Successful";

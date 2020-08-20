@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -40,7 +39,8 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public IActionResult Create(long Id)
         {
-            var sn = new SchoolNotice {
+            var sn = new SchoolNotice
+            {
                 SchoolID = Id,
                 ScheduleDateTime = DateTime.Now
             };
@@ -52,15 +52,15 @@ namespace Tuteexy.Areas.Lms.Controllers
             };
 
             //this is for create
-            return View("Upsert",schoolnoticeVM);            
+            return View("Upsert", schoolnoticeVM);
         }
 
         public async Task<IActionResult> Edit(long Id)
         {
             var schoolnotice = await _unitOfWork.SchoolNotice.GetAsync(Id);
-            
+
             //this is for edit
-            
+
             if (schoolnotice == null)
             {
                 return NotFound();
@@ -113,8 +113,8 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> GetAll()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(c => c.School.OwnerId == _userId,includeProperties: "School");
-            return Json(new { data = allObj.Select(a => new { id=a.SchoolNoticeID, schoolname=a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"),pin=a.isPined }) });
+            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
+            return Json(new { data = allObj.Select(a => new { id = a.SchoolNoticeID, schoolname = a.School.SchoolName, a.Title, scheduledate = a.ScheduleDateTime.ToString("dd/MMM/yyyy hh:mm tt"), pin = a.isPined }) });
 
         }
 

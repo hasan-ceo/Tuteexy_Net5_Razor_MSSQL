@@ -1,10 +1,7 @@
-﻿using Tuteexy.DataAccess.Data;
+﻿using System.Linq;
+using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tuteexy.DataAccess.Repository
 {
@@ -34,7 +31,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.PostalCode = userprofile.PostalCode;
                 objFromDb.Country = userprofile.Country;
                 objFromDb.ECPersonName = userprofile.ECPersonName;
-                objFromDb.ECPersonEmail= userprofile.ECPersonEmail;
+                objFromDb.ECPersonEmail = userprofile.ECPersonEmail;
                 objFromDb.ECPersonRelation = userprofile.ECPersonRelation;
                 objFromDb.ECPersonPhoneNumber = userprofile.ECPersonPhoneNumber;
                 objFromDb.ImageUrl = userprofile.ImageUrl;

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
@@ -29,6 +28,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.AttachLink5 = homeworkreply.AttachLink5;
                 objFromDb.HwMarks = homeworkreply.HwMarks;
                 objFromDb.HWStatus = homeworkreply.HWStatus;
+                objFromDb.HWComments = homeworkreply.HWComments;
             }
         }
 

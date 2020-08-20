@@ -46,11 +46,12 @@ namespace Tuteexy.Areas.Lms.Controllers
         public IActionResult TeacherAdd(long Id)
         {
 
-            UserCreateVM usercreatevm = new UserCreateVM {
+            UserCreateVM usercreatevm = new UserCreateVM
+            {
                 SchoolID = Id
             };
 
-           return View(usercreatevm);
+            return View(usercreatevm);
         }
 
 
@@ -68,7 +69,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     PhoneNumber = Input.PhoneNumber,
                     Role = SD.Role_User
                 };
-                
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -83,10 +84,10 @@ namespace Tuteexy.Areas.Lms.Controllers
                     var st = new SchoolTeacher
                     {
                         SchoolID = Input.SchoolID,
-                        TeacherID= user.Id,
+                        TeacherID = user.Id,
                         ApprovedBy = User.Identity.Name,
-                        ApprovedDate =DateTime.Now,
-                        IsApproved=true
+                        ApprovedDate = DateTime.Now,
+                        IsApproved = true
                     };
                     await _unitOfWork.SchoolTeacher.AddAsync(st);
                     _unitOfWork.Save();
@@ -150,7 +151,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> StudentAdd(long Id)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var y = await _unitOfWork.School.GetFirstOrDefaultAsync(t => t.OwnerId == _userId && t.SchoolID==Id);
+            var y = await _unitOfWork.School.GetFirstOrDefaultAsync(t => t.OwnerId == _userId && t.SchoolID == Id);
             if (y == null)
             {
                 TempData["StatusMessage"] = $"Error : You are not authorized to add student.";
@@ -170,7 +171,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     Text = i.ClassRoomName,
                     Value = i.ClassRoomID.ToString()
                 }),
-                SchoolID=Id
+                SchoolID = Id
             };
 
             return View(usercreatevm);
@@ -286,7 +287,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 Text = i.ClassRoomName,
                 Value = i.ClassRoomID.ToString()
             });
-            
+
             Input.StatusMessage = "Error : Invalid input data.";
             return View(Input);
         }
@@ -294,7 +295,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ResetPassword(string UserName,string UserPassword)
+        public async Task<IActionResult> ResetPassword(string UserName, string UserPassword)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await _userManager.FindByNameAsync(UserName);
@@ -305,7 +306,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 return LocalRedirect("/Lms/Schools/Index");
             }
 
-            var tmp = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c=>c.StudentID==user.Id && c.ClassRoom.School.OwnerId==_userId);
+            var tmp = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c => c.StudentID == user.Id && c.ClassRoom.School.OwnerId == _userId);
             if (tmp != null)
             {
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);

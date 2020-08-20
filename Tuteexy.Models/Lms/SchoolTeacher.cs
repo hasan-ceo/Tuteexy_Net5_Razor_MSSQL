@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Tuteexy.Models
 {
@@ -17,7 +15,7 @@ namespace Tuteexy.Models
         [ForeignKey("SchoolID")]
         public virtual School School { get; set; }
 
-        
+
         public string TeacherID { get; set; }
         [ForeignKey("TeacherID")]
         public virtual ApplicationUser Teacher { get; set; }

@@ -13,7 +13,7 @@ namespace Tuteexy.Models
 
         public long QuestionID { get; set; }
         [ForeignKey("QuestionID")]
-        public virtual Question Question { get;set;}
+        public virtual Question Question { get; set; }
 
         public string UserID { get; set; }
         [ForeignKey("UserID")]

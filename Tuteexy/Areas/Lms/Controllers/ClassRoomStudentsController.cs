@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -25,7 +23,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         public ClassRoomStudentsController(ILogger<ClassRoomStudentsController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork; 
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index(long id)
@@ -60,7 +58,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             if (ModelState.IsValid)
             {
-                var workdate= DateTime.Now;
+                var workdate = DateTime.Now;
 
 
                 if (classroomstudent.ClassRoomStudentID == 0)
@@ -92,7 +90,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
             var allObj = await _unitOfWork.ClassRoomStudent.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom,Student");
-            return Json(new { data = allObj.Select(o=> new { id=o.ClassRoomStudentID, classroomname=o.ClassRoom.ClassRoomName, fullname=o.Student.FullName, approvedby=o.ApprovedBy, isapproved=o.IsApproved}) });
+            return Json(new { data = allObj.Select(o => new { id = o.ClassRoomStudentID, classroomname = o.ClassRoom.ClassRoomName, fullname = o.Student.FullName, approvedby = o.ApprovedBy, isapproved = o.IsApproved }) });
         }
 
         [HttpDelete]

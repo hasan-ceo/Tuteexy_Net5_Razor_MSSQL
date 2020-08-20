@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -36,7 +33,8 @@ namespace Tuteexy.Areas.Lms.Controllers
         public IActionResult Create(long Id)
         {
 
-            ClassRoom classRoom = new ClassRoom {
+            ClassRoom classRoom = new ClassRoom
+            {
                 SchoolID = Id
             };
 

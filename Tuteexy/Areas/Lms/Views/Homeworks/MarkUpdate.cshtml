@@ -90,28 +90,35 @@
         @if (Model.HWStatus == "Submitted")
         {
 <div asp-validation-summary="All" class="text-danger"></div>
-                <form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
-                    <input type="hidden" asp-for="HomeworkSheetID" />
+<form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
+    <input type="hidden" asp-for="HomeworkSheetID" />
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" asp-for="HwMarks">Marks</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" asp-for="HwMarks">
-                        </div>
-                    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="HwMarks">Marks</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="HwMarks">
+        </div>
+    </div>
 
-                    <div class="btn-group" role="group" aria-label="Basic example">
- 
-                        <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
-                            <span class="fas fa-check"></span>
-                            Accepted
-                        </button>
-                        
-                        <button class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Replylist">
-                            <span class="fas fa-undo"></span>
-                            Cancel
-                        </button>
-                    </div>
-                </form>}
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="HWComments">Comments</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="HWComments">
+        </div>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="submit" class="btn btn-success" asp-route-id="@Model.HomeworkSheetID">
+            <span class="fas fa-check"></span>
+            Accepted
+        </button>
+
+        <button class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Replylist">
+            <span class="fas fa-undo"></span>
+            Cancel
+        </button>
+    </div>
+</form>}
     </div>
 </div>

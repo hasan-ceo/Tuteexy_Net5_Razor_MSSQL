@@ -38,7 +38,7 @@ namespace Tuteexy.Areas.Hub.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //this is for edit
-            var userprofile = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(t=>t.User.Id == _userId,includeProperties:"User");
+            var userprofile = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(t => t.User.Id == _userId, includeProperties: "User");
             if (userprofile == null)
             {
                 return NotFound();
@@ -81,7 +81,7 @@ namespace Tuteexy.Areas.Hub.Controllers
                     //update when they do not change the image
                     if (userprofile.UserProfileID != 0)
                     {
-                        UserProfile objFromDb =await _unitOfWork.UserProfile.GetAsync(userprofile.UserProfileID);
+                        UserProfile objFromDb = await _unitOfWork.UserProfile.GetAsync(userprofile.UserProfileID);
                         userprofile.ImageUrl = objFromDb.ImageUrl;
                     }
                 }
@@ -108,7 +108,7 @@ namespace Tuteexy.Areas.Hub.Controllers
         //public IActionResult Create()
         //{
         //   return View();
-           
+
         //}
 
         //[HttpPost]
@@ -153,7 +153,7 @@ namespace Tuteexy.Areas.Hub.Controllers
             };
             return View(cp);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordVM changePassword)
@@ -185,10 +185,10 @@ namespace Tuteexy.Areas.Hub.Controllers
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
             TempData["StatusMessage"] = $"Your password has been changed.";
-            return LocalRedirect("~/Hub/UserProfiles/Upsert/"+ changePassword.Id);
+            return LocalRedirect("~/Hub/UserProfiles/Upsert/" + changePassword.Id);
         }
 
-       
+
 
         public IActionResult ChangeEmail(long Id)
         {

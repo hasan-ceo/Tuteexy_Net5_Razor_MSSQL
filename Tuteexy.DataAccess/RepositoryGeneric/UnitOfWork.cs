@@ -1,8 +1,5 @@
 ﻿using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tuteexy.DataAccess.Repository
 {

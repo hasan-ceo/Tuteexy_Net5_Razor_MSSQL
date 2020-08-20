@@ -1,5 +1,57 @@
 ﻿@{ ViewData["Title"] = "Live Meeting"; }
 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center" style="margin-top: 0; padding-top: 30px; padding-bottom: 30px;">Azure SignalR Group Chat</h2>
+
+            <div class="container" style="height: calc(100% - 110px);">
+                <div id="messages" style="background-color: whitesmoke;"></div>
+
+                <div class="input-prepend input-append" style="padding-bottom: 5px; padding-top: 5px;">
+                    <input type="text" id="message" style="width: 50%; padding: 5px 10px;"
+                           placeholder="Type message and press Enter to send...">
+                    <button class="btn-success" id="echo">Echo</button>
+                    <button class="btn-success" id="sendmessage">Broadcast</button>
+                </div>
+
+                <div class="input-prepend input-append" style="padding-bottom: 5px; padding-top: 5px;">
+                    <input type="text" id="groupoperationname" style="width: 50%; padding: 5px 10px;"
+                           placeholder="Type group name">
+                    <button class="btn-success" id="joingroup">Join Group</button>
+                    <button class="btn-success" id="leavegroup">Leave Group</button>
+                </div>
+
+                <div class="input-prepend input-append" style="padding-bottom: 5px; padding-top: 5px;">
+                    <input type="text" id="groupname" style="width: 50%; padding: 5px 10px; "
+                           placeholder="Type group name, if send to groups, separate with comma">
+                    <button class="btn-success" id="sendgroups">Send to Groups</button>
+                    <button class="btn-success" id="sendgroup">Send to Group</button>
+                    <button class="btn-success" id="sendgroupexcept">Send to Group Except</button>
+                    <input type="text" id="groupexcept" placeholder="Type connection ID excepts, separate with comma" />
+                </div>
+
+                <div class="input-prepend input-append" style="padding-bottom: 5px; padding-top: 5px;">
+                    <input type="text" id="username" style="width: 50%; padding: 5px 10px; "
+                           placeholder="Type user name, if send to users, separate with comma">
+                    <button class="btn-success" id="senduser">Send to User</button>
+                    <button class="btn-success" id="sendusers">Send to Users</button>
+                </div>
+            </div>
+
+            <div class="modal alert alert-danger fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div>Connection Error...</div>
+                            <div><strong style="font-size: 1.5em;">Hit Refresh/F5</strong> to rejoin. ;)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -57,8 +109,11 @@
     </div>
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+<script src="~/js/chatn.js"></script>
 
 
 <script src="~/js/video-stream-merger.js"></script>
 <script src="~/js/demo.js"></script>
+
+
+

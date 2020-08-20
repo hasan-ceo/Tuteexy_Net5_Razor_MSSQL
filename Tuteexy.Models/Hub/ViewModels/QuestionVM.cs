@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Tuteexy.Models.ViewModels
 {

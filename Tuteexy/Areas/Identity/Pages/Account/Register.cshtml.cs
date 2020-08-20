@@ -113,7 +113,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
         //bulk user create End
 
         //Normal user create
-          public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -137,7 +137,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                     await _userManager.AddClaimAsync(user, new Claim("InstituteID", Guid.NewGuid().ToString()));
                     _logger.LogInformation("Create a InstituteName");
 
-                    
+
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

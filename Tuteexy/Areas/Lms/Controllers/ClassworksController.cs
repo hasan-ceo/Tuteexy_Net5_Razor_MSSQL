@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Tuteexy.Areas.Lms.Controllers
 {
@@ -108,7 +108,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     classworkVM.Classwork.DateAssigned = DateTime.Now;
                     var t = classworkVM.Classwork.TimeStart;
                     classworkVM.Classwork.TimeStart = t.Add(classworkVM.TimeStart.TimeOfDay);
-                    classworkVM.Classwork.TimeEnd = t.Add(classworkVM.TimeEnd.TimeOfDay); 
+                    classworkVM.Classwork.TimeEnd = t.Add(classworkVM.TimeEnd.TimeOfDay);
                     await _unitOfWork.Classwork.AddAsync(classworkVM.Classwork);
                 }
                 else

@@ -13,7 +13,7 @@ namespace Tuteexy.Models
 
         public long ShortStoryID { get; set; }
         [ForeignKey("ShortStoryID")]
-        public virtual ShortStory ShortStory { get;set;}
+        public virtual ShortStory ShortStory { get; set; }
 
         public string UserID { get; set; }
         [ForeignKey("UserID")]

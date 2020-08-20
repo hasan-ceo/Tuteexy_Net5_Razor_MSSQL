@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Tuteexy.Models;
 
 namespace Tuteexy.ViewComponents
@@ -22,8 +20,8 @@ namespace Tuteexy.ViewComponents
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var userFromDb = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(u => u.UserID == claims.Value,includeProperties:"User");
-            if (userFromDb==null)
+            var userFromDb = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(u => u.UserID == claims.Value, includeProperties: "User");
+            if (userFromDb == null)
             {
                 UserProfile userprofile = new UserProfile
                 {
@@ -42,7 +40,7 @@ namespace Tuteexy.ViewComponents
                     ECPersonName = "",
                     ECPersonRelation = "",
                     ECPersonPhoneNumber = "",
-                    ECPersonEmail="",
+                    ECPersonEmail = "",
                     ImageUrl = ""
                 };
                 await _unitOfWork.UserProfile.AddAsync(userprofile);

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
-using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
 
 namespace Tuteexy.Areas.Ironman.Controllers
 {
@@ -96,7 +94,7 @@ namespace Tuteexy.Areas.Ironman.Controllers
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var allObj = await _unitOfWork.School.GetAllAsync();
-            return Json(new { data = allObj.Select(a=> new { id=a.SchoolID,schoolname=a.SchoolName,phonenumber=a.PhoneNumber, isauthorize= a.IsAuthorizedSchool == true ? "Authorized" : "Not Authorized" }) });
+            return Json(new { data = allObj.Select(a => new { id = a.SchoolID, schoolname = a.SchoolName, phonenumber = a.PhoneNumber, isauthorize = a.IsAuthorizedSchool == true ? "Authorized" : "Not Authorized" }) });
         }
 
         [HttpDelete]

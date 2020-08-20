@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Tuteexy.Models
 {
     [Table("LmsSchoolNotice")]
     public class SchoolNotice : EntryInfo
     {
-    [Key]
+        [Key]
         public long SchoolNoticeID { get; set; }
         public long SchoolID { get; set; }
         [ForeignKey("SchoolID")]
@@ -22,7 +20,7 @@ namespace Tuteexy.Models
 
         [DataType(DataType.Html)]
         [Required]
-        [MaxLength(4000)] 
+        [MaxLength(4000)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 

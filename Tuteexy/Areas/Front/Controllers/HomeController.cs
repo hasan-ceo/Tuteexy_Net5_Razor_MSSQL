@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Tuteexy.Models;
-using Tuteexy.Models.ViewModels;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
-using Tuteexy.Utility;
-using Microsoft.AspNetCore.Http;
-using Stripe;
+using Tuteexy.Models.ViewModels;
 
 namespace Tuteexy.Areas.Front.Controllers
 {

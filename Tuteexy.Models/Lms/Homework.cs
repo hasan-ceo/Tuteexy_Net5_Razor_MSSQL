@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Tuteexy.Models
 {
     [Table("LmsHomework")]
-    public class Homework 
+    public class Homework
     {
         [Key]
         public long HomeworkID { get; set; }

@@ -62,6 +62,11 @@ namespace Tuteexy.Models
         [Display(Name = "Status")]
         public string HWStatus { get; set; }
 
+        [DefaultValue("")]
+        [MaxLength(150)]
+        [Display(Name = "Comments")]
+        public string HWComments { get; set; }
+
 
     }
 }
