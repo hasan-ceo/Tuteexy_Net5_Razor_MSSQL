@@ -39,9 +39,13 @@
             </div>
 
             <div class="btn-group">
-                <a asp-area="Lms" asp-controller="MyClassworks" asp-action="LiveClass" asp-route-id="@item.ClassworkID" class="btn btn-light txt-twit">
-                    <span class="fas fa-video">
-                    </span>  <span>Live Discussion</span>
+                <a class="btn bg-classwork-light txtwhite" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply" asp-route-id="@item.ClassworkID" data-toggle="tooltip" data-placement="top" title="Details">
+                    <span class="fas fa-layer-group"></span>
+                    <span class="d-none d-md-block d-lg-block d-xl-block">C.W.</span>
+                </a>
+                <a asp-area="Lms" asp-controller="MyClassworks" asp-action="LiveClass" asp-route-id="@item.ClassworkID" class="btn btn-warning text-white" data-toggle="tooltip" data-placement="top" title="Live discussion">
+                    <span class="fas fa-video"></span>
+                    <span class="d-none d-md-block d-lg-block d-xl-block">Live</span>
                 </a>
                 @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
                 {
@@ -79,13 +83,6 @@
             </a>}
 
             </div>
-            <div class="col-md-12 text-center mt-2">
-                <a class="btn bg-classwork-light txtwhite w-50" asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassworkReply" asp-route-id="@item.ClassworkID">
-                    <span class="fas fa-click"></span>
-                    C.W. Details...
-                </a>
-            </div>
-
         </div>
     </div>
 </div>}

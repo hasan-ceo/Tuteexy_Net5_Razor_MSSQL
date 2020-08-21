@@ -1,6 +1,6 @@
 ﻿@{ ViewData["Title"] = "Live Meeting"; }
 
-<div class="container">
+@*<div class="container">
     <div class="row">
         <div class="col">
             <h2 class="text-center" style="margin-top: 0; padding-top: 30px; padding-bottom: 30px;">Azure SignalR Group Chat</h2>
@@ -51,9 +51,9 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
-<div class="container">
+<!--<div class="container">
     <div class="row">
         <div class="col">
             <video autoplay muted controls id="videoCtr" width="480" height="100"></video>
@@ -72,7 +72,7 @@
 
             <a href="" id="downloadRecording" style="display:none">Download</a>
         </div>
-    </div>
+    </div>-->
     @*<div class="row">
             <div class="col">
                 <select id="group">
@@ -83,7 +83,7 @@
                 <input type="button" id="joinGroup" value="Join Tuteexy Group" />
             </div>
         </div>*@
-    <div class="row">
+    <!--<div class="row">
         <div class="col-2">User</div>
         <div class="col-4"><input type="text" id="userInput" value="@await Component.InvokeAsync("UserNam")" readonly /></div>
     </div>
@@ -97,8 +97,8 @@
             <input class="btn btn-success" type="button" id="sendButton" value="Send Message" />
         </div>
     </div>
-</div>
-<div class="row">
+</div>-->
+@*<div class="row">
     <div class="col-12">
         <hr />
     </div>
@@ -107,13 +107,13 @@
     <div class="col-6">
         <ul id="messagesList"></ul>
     </div>
-</div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
+</div>*@
+@*<script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chatn.js"></script>
 
 
 <script src="~/js/video-stream-merger.js"></script>
-<script src="~/js/demo.js"></script>
+<script src="~/js/demo.js"></script>*@
 
 
 

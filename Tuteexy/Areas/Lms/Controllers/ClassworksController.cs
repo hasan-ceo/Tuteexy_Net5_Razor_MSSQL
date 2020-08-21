@@ -29,9 +29,21 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var school = await _unitOfWork.School.GetFirstOrDefaultAsync(s => s.OwnerId == _userId);
+            if (school != null)
+            {
+                var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.ClassRoom.School.OwnerId == _userId, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
+                return View(allObj);
+            }
+            else
+            {
+                var allObj = await _unitOfWork.Classwork.GetAllAsync(h => h.TeacherID == _userId, h => h.OrderByDescending(p => p.TimeStart), includeProperties: "ClassRoom,Teacher");
+                return View(allObj);
+            }
+
         }
 
 

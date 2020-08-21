@@ -7,6 +7,45 @@ namespace Tuteexy.Hubs
 {
     public class ChatHub : Hub
     {
+
+        public async Task AddToGroup(string groupName, string username)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+
+            await Clients.Group(groupName).SendAsync("ReceiveMessage",
+                $"{username} has" +
+                $" joined the group {groupName}.");
+        }
+
+        public async Task RemoveFromGroup(string groupName, string username)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+
+            await Clients.Group(groupName).SendAsync("ReceiveMessage",
+                $"{username} has" +
+                $" left the group {groupName}.");
+        }
+
+        public async Task SendMessageGroup(string groupName, string username, string message)
+        {
+            await Clients.Group(groupName).SendAsync("ReceiveMessage", username, message);
+        }
+
+        public async Task TypingGroup(string groupName, string username)
+        {
+            await Clients.Group(groupName).SendAsync("TypingMessage", username);
+        }
+
+
+        public async Task SendMessage(string username, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", username, message);
+        }
+
+        public async Task Typing(string user)
+        {
+            await Clients.All.SendAsync("TypingMessage", user);
+        }
         //public async Task SendMessage(string user, string message)
         //{
 
@@ -69,23 +108,23 @@ namespace Tuteexy.Hubs
         //    Clients.Client(Context.ConnectionId).SendAsync("echo", name, message + " (echo from server)");
         //}
 
-        public async Task JoinGroup(string name, string groupName)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-            await Clients.Group(groupName).SendAsync("echo","",$"{name} joined {groupName}");
-        }
+        //public async Task JoinGroup(string name, string groupName)
+        //{
+        //    await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+        //    await Clients.Group(groupName).SendAsync("echo","",$"{name} joined {groupName}");
+        //}
 
-        public async Task LeaveGroup(string name, string groupName)
-        {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
-            await Clients.Client(Context.ConnectionId).SendAsync("echo", "", $"{name} leaved {groupName}");
-            await Clients.Group(groupName).SendAsync("echo",  $"{name} leaved {groupName}");
-        }
+        //public async Task LeaveGroup(string name, string groupName)
+        //{
+        //    await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+        //    await Clients.Client(Context.ConnectionId).SendAsync("echo", "", $"{name} leaved {groupName}");
+        //    await Clients.Group(groupName).SendAsync("echo",  $"{name} leaved {groupName}");
+        //}
 
-        public void SendGroup(string name, string groupName, string message)
-        {
-            Clients.Group(groupName).SendAsync("echo", name, message);
-        }
+        //public void SendGroup(string name, string groupName, string message)
+        //{
+        //    Clients.Group(groupName).SendAsync("echo", name, message);
+        //}
 
         //public void SendGroups(string name, IReadOnlyList<string> groups, string message)
         //{
