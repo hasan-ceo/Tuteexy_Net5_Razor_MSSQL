@@ -1,4 +1,5 @@
-﻿@{ ViewData["Title"] = "All Class Routine"; }
+﻿@model IEnumerable<Tuteexy.Models.ClassRoutine>
+@{ ViewData["Title"] = "All Class Routine"; }
 
 <partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
 
@@ -18,27 +19,53 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th></th>
-                                    <th>Class Name</th>
-                                    <th>Day</th>
-                                    <th>Period - 1</th>
-                                    <th>Period - 2</th>
-                                    <th>Period - 3</th>
-                                    <th>Period - 4</th>
-                                    <th>Period - 5</th>
-                                    <th>Period - 6</th>
-                                    <th>Period - 7</th>
-                                    <th>Period - 8</th>
-                                    <th>Period - 9</th>
-                                    <th>Period - 10</th>
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
+                                    <tr>
+                                        <th></th>
 
 
-                                </tr>
-                            </thead>
+
+                                    </tr>
+                                </thead>
                             <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                    <tr>
+                        <td>
+                            <div class="card rounded shadow">
+                                <div class="card-body">
+                                    <p class="py-0 my-0">Name: @item.ClassRoom.ClassRoomName</p>
+                                    <p class="py-0 my-0">Day : @item.DayName</p>
+                                    <p class="py-0 my-0">Period - 1 : @item.Period1</p>
+                                    <p class="py-0 my-0">Period - 2 : @item.Period2</p>
+                                    <p class="py-0 my-0">Period - 3 : @item.Period3</p>
+                                    <p class="py-0 my-0">Period - 4 : @item.Period4</p>
+                                    <p class="py-0 my-0">Period - 5 : @item.Period5</p>
+                                    <p class="py-0 my-0">Period - 6 : @item.Period6</p>
+                                    <p class="py-0 my-0">Period - 7 : @item.Period7</p>
+                                    <p class="py-0 my-0">Period - 8 : @item.Period8</p>
+                                    <p class="py-0 my-0">Period - 9 : @item.Period9</p>
+                                    <p class="py-0 my-0">Period - 10 : @item.Period10</p>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/Lms/ClassRout/Upsert/@item.ClassRoutineID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger" onclick=Delete("/Lms/ClassRout/Delete/@item.ClassRoutineID") data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+}
+            }
                             </tbody>
                         </table>
                     </div>
@@ -50,6 +77,43 @@
 
 
 @section Scripts {
-    <script src="~/js/lms/classrout.js"></script>
-    @* <partial name="_DeleteScriptsPartial" />*@
+    <script>
+
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
+
+        function Delete(url) {
+            swal({
+                title: "Are you sure you want to Delete?",
+                text: "You will not be able to restore the data!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                location.reload(true);
+                            }
+                            else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
 }
+
+
+<!--@section Scripts {
+    <script src="~/js/lms/classrout.js"></script>-->
+<!--}-->

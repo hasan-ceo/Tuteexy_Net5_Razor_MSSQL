@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tuteexy.Models
 {
-    [Table("LmsUserProfile")]
+    [Table("HubUserProfile")]
     public class UserProfile
     {
         [Key]

@@ -1,0 +1,72 @@
+﻿@model Tuteexy.Models.ViewModels.ChatVM
+@{ ViewData["Title"] = "Live Class"; }
+
+<style>
+    div.scroll {
+        margin: 4px, 4px;
+        padding: 4px;
+        background-color: green;
+        width: 100hw;
+        height: 110px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: justify;
+    }
+</style>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Live Class ID : @Model.GroupName</h5>
+                    <input type="hidden" value="@Model.UserName" id="username" name="username" />
+                    <input type="hidden" value="@Model.GroupName" id="groupname" name="groupname" />
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-success" id="joinButton">Join Group</button>
+                    <button class="btn btn-success" id="leaveButton">Leave Group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid p-0 my-0">
+    <div class="row">
+        <div class="col-12">
+            <div id="messages" class="scroll" style="background-color: white;min-height: 50vh">
+                <ul id="messagesList"></ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="message" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+
+    </div>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

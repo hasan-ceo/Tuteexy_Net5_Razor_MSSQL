@@ -32,6 +32,20 @@ namespace Tuteexy.Areas.Lms.Controllers
             return View();
         }
 
+        public async Task<IActionResult> LiveClass(long Id)
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userFromDb = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.Id == _userId);
+
+            ChatVM chatVM = new ChatVM
+            {
+                UserName = userFromDb.FullName,
+                GroupName = "Class" + Id.ToString()
+            };
+           //var allObj = await _unitOfWork.ClassworkSheet.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
+            return View("LiveClass", chatVM);
+        }
+
         [HttpGet]
         public async Task<IActionResult> ClassWork()
         {

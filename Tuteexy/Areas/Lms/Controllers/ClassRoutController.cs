@@ -31,10 +31,11 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         public async Task<IActionResult> Index()
         {
-            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
+            var allObj = await _unitOfWork.ClassRoutine.GetAllAsync(t => t.ClassRoom.School.OwnerId == _userId, includeProperties: "ClassRoom");
+            
             if (allObj != null)
-                return View();
+                return View(allObj);
             else
                 return LocalRedirect("/Hub/Dashboard/index");
         }

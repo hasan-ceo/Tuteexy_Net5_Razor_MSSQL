@@ -3,29 +3,29 @@
         <div class="container-fluid">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-column" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
-                        <img src="~/images/core/logo.png" alt="" style="height: 30px;">
+                    <a class="nav-link d-flex flex-column px-1" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
+                        <img src="~/images/core/logo.png" alt="" style="width: 100px;">
                     </a>
                 </li>
             </ul>
 
-            <ul class="navbar-nav w-100 text-center justify-content-end mt-0">
+            <ul class="navbar-nav w-100 text-center justify-content-end mt-0 pl-1 pr-2">
 
                 <li class="nav-item">
-                    <a id="hubnav" class="nav-link d-flex flex-column text-success" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
+                    <a id="hubnav" class="nav-link d-flex flex-column text-success px-1" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
                         <span class="fas fa-meteor fa-1x"></span>
                         <span class="d-sm-inline mt-1">Home</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a id="schoolnav" class="nav-link d-flex flex-column text-success" asp-area="Lms" asp-controller="Dashboard" asp-action="Index">
+                    <a id="schoolnav" class="nav-link d-flex flex-column text-success px-1" asp-area="Lms" asp-controller="Dashboard" asp-action="Index">
                         <span class="fas fa-school fa-1x"></span>
                         <span class="d-sm-inline mt-1">Schools</span>
                     </a>
                 </li>
                 <partial name="_LoginPartial" />
                 <li class="nav-item d-block d-md-none d-lg-none d-xl-none">
-                    <a class="nav-link d-flex flex-column text-success" id="menu-toggle" href="#">
+                    <a class="nav-link d-flex flex-column text-success px-1" id="menu-toggle" href="#">
                         <span class="fas fa-bars"></span>
                         <span class="d-sm-inline mt-1">Menu</span>
                     </a>

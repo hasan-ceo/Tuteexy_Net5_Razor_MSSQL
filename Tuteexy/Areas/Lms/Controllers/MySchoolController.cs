@@ -24,9 +24,17 @@ namespace Tuteexy.Areas.Lms.Controllers
         }
 
 
-        public IActionResult Classroutines()
+        public async Task<IActionResult> Classroutines()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
+            var classroom = await _unitOfWork.ClassRoomStudent.GetFirstOrDefaultAsync(c => c.StudentID == _userId);
+            long classroomID = 0;
+            if (classroom != null)
+            {
+                classroomID = classroom.ClassRoomID;
+            }
+            var allObj = await _unitOfWork.ClassRoutine.GetAllAsync(t => t.ClassRoomID == classroomID, includeProperties: "ClassRoom");
+            return View(allObj);
         }
 
         public async Task<IActionResult> Holidays()
