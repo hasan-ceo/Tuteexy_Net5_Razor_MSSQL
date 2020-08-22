@@ -39,44 +39,48 @@
                             <div class="btn-group">
                                 @if (string.IsNullOrWhiteSpace(Model.RefLink1) == false && (string.IsNullOrEmpty(Model.RefLink1) == false))
                                 {
-                    <a href="@Model.RefLink1" class="btn bg-homework-light">
-                        <span class="fas fa-link">
+                                <a href="@Model.RefLink1" class="btn bg-homework-light mr-1" data-toggle="tooltip" data-placement="top" title="Attachment - 1">
+                                    <span class="fas fa-link">
 
-                        </span>  <span>Attachment - 1</span>
-                    </a>}
+                                    </span> <span class="d-none d-md-block d-lg-block d-xl-block">At-1</span>
+                                </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.RefLink2) == false && (string.IsNullOrEmpty(Model.RefLink2) == false))
                                 {
-                    <a href="@Model.RefLink2" class="btn bg-homework-light">
-                        <span class="fas fa-link">
+                            <a href="@Model.RefLink2" class="btn bg-homework-light mr-1" data-toggle="tooltip" data-placement="top" title="Attachment - 2">
+                                <span class="fas fa-link">
 
-                        </span>  <span>Attachment - 2</span>
-                    </a>}
+                                </span>   <span class="d-none d-md-block d-lg-block d-xl-block">At-2</span>
+                            </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.RefLink3) == false && (string.IsNullOrEmpty(Model.RefLink3) == false))
                                 {
-                    <a href="@Model.RefLink3" class="btn bg-homework-light">
-                        <span class="fas fa-link">
+                            <a href="@Model.RefLink3" class="btn bg-homework-light mr-1" data-toggle="tooltip" data-placement="top" title="Attachment - 3">
+                                <span class="fas fa-link">
 
-                        </span>  <span>Attachment - 3</span>
-                    </a>}
+                                </span>   <span class="d-none d-md-block d-lg-block d-xl-block">At-3</span>
+                            </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.RefLink4) == false && (string.IsNullOrEmpty(Model.RefLink4) == false))
                                 {
-                    <a href="@Model.RefLink4" class="btn bg-homework-light">
-                        <span class="fas fa-link">
+                            <a href="@Model.RefLink4" class="btn bg-homework-light mr-1" data-toggle="tooltip" data-placement="top" title="Attachment - 4">
+                                <span class="fas fa-link">
 
-                        </span>  <span>Attachment - 4</span>
-                    </a>}
+                                </span>   <span class="d-none d-md-block d-lg-block d-xl-block">At-4</span>
+                            </a>}
 
                                 @if (string.IsNullOrWhiteSpace(@Model.RefLink5) == false && (string.IsNullOrEmpty(Model.RefLink5) == false))
                                 {
-                    <a href="@Model.RefLink5" class="btn bg-homework-light">
-                        <span class="fas fa-link">
+                            <a href="@Model.RefLink5" class="btn bg-homework-light mr-1" data-toggle="tooltip" data-placement="top" title="Attachment - 5">
+                                <span class="fas fa-link">
 
-                        </span>  <span>Attachment - 5</span>
-                    </a>}
-
+                                </span>   <span class="d-none d-md-block d-lg-block d-xl-block">At-5</span>
+                            </a>}
+                            <a class="btn btn-light" asp-area="Lms" asp-controller="Homeworks" asp-action="Index">
+                                <span class="fas fa-undo"></span>
+                                <span class="d-none d-md-block d-lg-block d-xl-block">Cancel</span>
+                                
+                            </a>
                             </div>
                         </div>
                     </div>

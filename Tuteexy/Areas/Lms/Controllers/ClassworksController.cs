@@ -159,7 +159,7 @@ namespace Tuteexy.Areas.Lms.Controllers
         }
 
 
-        public async Task<IActionResult> Answer(long Id)
+        public async Task<IActionResult> CWPreview(long Id)
         {
             var classwork = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(q => q.ClassworkID == Id, includeProperties: "Teacher");
             var classworksheet = await _unitOfWork.ClassworkSheet.GetAllAsync(q => q.ClassworkID == Id, includeProperties: "User");
@@ -174,7 +174,7 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Answer(ClassworkSheet questionthread)
+        public async Task<IActionResult> CWPreview(ClassworkSheet questionthread)
         {
             if (ModelState.IsValid)
             {
@@ -195,7 +195,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 _unitOfWork.Save();
                 //return RedirectToAction("Answer", questionthread.ClassworkSheetID);
             }
-            return RedirectToAction("Answer", questionthread.ClassworkSheetID);
+            return RedirectToAction("CWPreview", questionthread.ClassworkSheetID);
         }
 
         #region API CALLS

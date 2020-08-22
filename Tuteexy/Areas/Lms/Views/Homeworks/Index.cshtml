@@ -1,5 +1,5 @@
 ﻿@{ ViewData["Title"] = "View All Homeworks"; }
-
+@model IEnumerable<Tuteexy.Models.Homework>
 
 <partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
 
@@ -9,36 +9,113 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row justify-content-between">
-                        <div class="col-6">
+                        <div class=" col-7">
                             <h5 class="card-title">Homework's List</h5>
                         </div>
-                        @*<div class="col-3">
-
-                                <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Homeworks" asp-action="ReplyList"><span class="fas fa-list"></span> Reply</a>
-                            </div>*@
                         <div class="col-3">
-
                             <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Homeworks" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
-                            <thead class="thead-dark">
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
                                 <tr>
                                     <th></th>
-                                    <th>Teacher Name</th>
-                                    <th>Class Name</th>
-                                    <th>Subject</th>
-                                    <th>Title</th>
-                                    <th>Schedule Date time</th>
-                                    <th>Date Due</th>
+
 
 
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (Homework item in Model)
+                                    {
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-homework rounded shadow my-1">
+                                <div class="card-body">
+
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div class="col-12"> <p class="card-title text-white py-0 my-0">@item.Title</p></div>
+                                            <div class="col-auto">
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Class Name:</strong> @item.ClassRoom.ClassRoomName</p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+
+                                            </div>
+                                            <div class="col-auto">
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Schedule Date:</strong> @item.ScheduleDateTime.ToString("dd/MMM/yyyy") </p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <a class="btn bg-classwork-light txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="Homeworks" asp-action="HWPreview" asp-route-id="@item.HomeworkID" data-toggle="tooltip" data-placement="top" title="Details">
+                                                <span class="fas fa-layer-group"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">H.W.</span>
+                                            </a>
+                                            <a class="btn btn-success txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="Homeworks" asp-action="Upsert" asp-route-id="@item.HomeworkID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <span class="fas fa-edit"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">Edit</span>
+
+                                            </a>
+                                            <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/Homeworks/Delete/@item.HomeworkID") data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <span class="fas fa-trash-alt"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">Delete</span>
+
+                                            </a>
+
+                                            @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
+                                            {
+                        <a href="@item.RefLink1" class="btn bg-homework-light mr-1 mt-1" data-toggle="tooltip" data-placement="top" title="Attachment - 1">
+                            <span class="fas fa-link"></span>
+                            <span class="d-none d-md-block d-lg-block d-xl-block">At-1</span>
+                        </a>}
+
+                                            @if (string.IsNullOrWhiteSpace(@item.RefLink2) == false && (string.IsNullOrEmpty(item.RefLink2) == false))
+                                            {
+                        <a href="@item.RefLink2" class="btn bg-homework-light mr-1 mt-1" data-toggle="tooltip" data-placement="top" title="Attachment - 2">
+                            <span class="fas fa-link">
+                            </span>
+                            <span class="d-none d-md-block d-lg-block d-xl-block">At-2</span>
+                        </a>}
+
+                                            @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
+                                            {
+                        <a href="@item.RefLink3" class="btn bg-homework-light mr-1 mt-1" data-toggle="tooltip" data-placement="top" title="Attachment - 3">
+                            <span class="fas fa-link">
+                            </span> <span class="d-none d-md-block d-lg-block d-xl-block">At-3</span>
+                        </a>}
+
+                                            @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
+                                            {
+                        <a href="@item.RefLink4" class="btn bg-homework-light mr-1 mt-1" data-toggle="tooltip" data-placement="top" title="Attachment - 4">
+                            <span class="fas fa-link">
+                            </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-4</span>
+                        </a>}
+
+                                            @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
+                                            {
+                        <a href="@item.RefLink5" class="btn bg-homework-light mt-1" data-toggle="tooltip" data-placement="top" title="Attachment - 5">
+                            <span class="fas fa-link">
+                            </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-5</span>
+                        </a>}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+}
+            }
                             </tbody>
                         </table>
                     </div>
@@ -48,7 +125,41 @@
     </div>
 </div>
 
+
+
+
+
+
 @section Scripts {
-    <script src="~/js/lms/homeworks.js"></script>
-    @* <partial name="_DeleteScriptsPartial" />*@
+    <script>
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
+        function Delete(url) {
+            swal({
+                title: "Are you sure you want to Delete?",
+                text: "You will not be able to restore the data!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                dataTable.ajax.reload();
+                            }
+                            else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 }

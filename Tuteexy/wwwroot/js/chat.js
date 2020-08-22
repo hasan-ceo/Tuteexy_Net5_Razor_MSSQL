@@ -5,7 +5,7 @@ let scroller = document.querySelector('#scroller');
 let anchor = document.querySelector('#anchor');
 
 //Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
+document.getElementById("msgdiv").hidden = true;
 
 connection.on("ReceiveMessage", function (user, message) {
     var msgtext = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -63,6 +63,7 @@ document.getElementById('joinButton').addEventListener('click', function (event)
     var gname = document.getElementById("groupname").value;
     if (groupname) {
         connection.send('AddToGroup', gname, uname);
+        document.getElementById("msgdiv").hidden = false;
     }
     event.preventDefault();
 });
@@ -72,6 +73,7 @@ document.getElementById('leaveButton').addEventListener('click', function (event
     var gname = document.getElementById("groupname").value;
     if (gname) {
         connection.send('RemoveFromGroup', gname, uname);
+        document.getElementById("msgdiv").hidden = true;
     }
     event.preventDefault();
 });

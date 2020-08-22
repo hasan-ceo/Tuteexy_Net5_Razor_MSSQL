@@ -157,7 +157,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             var files = HttpContext.Request.Form.Files;
             var i = files.Count;
             var j = 1;
-            if (files.Count > 0)
+            if (files.Count > 0 && files.Count<=5)
             {
 
                 if (j <= i)
