@@ -1,27 +1,63 @@
 ﻿@{ ViewData["Title"] = "All School Teachers List"; }
 
+@model IEnumerable<Tuteexy.Models.SchoolTeacher>
+
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Teacher's List</h5>
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Teacher's List</h5>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
-                            <thead class="thead-dark">
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
                                 <tr>
                                     <th></th>
-                                    <th>School Name</th>
-                                    <th>Teacher Name</th>
-                                    <th>Approved By</th>
-                                    <th>Is Approved</th>
-
-
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-card text-dark rounded shadow my-1">
+                                <div class="card-body">
+
+                                    <div class="container">
+                                        <div class="row justify-content-between">
+
+                                            <div class="col-12 col-md-7">
+                                                <p class="card-title py-0 my-0">@item.School.SchoolName</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Teacher Name :</strong> @item.Teacher.FullName</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Approved By :</strong> @item.ApprovedBy</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Is Approved :</strong> @item.IsApproved</p>
+
+                                            </div>
+                                            <div class="col-12 col-md-5 text-right">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/SchoolTeachers/Delete/@item.SchoolTeacherID") data-toggle="tooltip" data-placement="top" title="Separate">
+                                                        <span class="fas fa-sign-out-alt"></span>
+                                                        <span class="d-none d-md-block d-lg-block d-xl-block">Separate</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    }
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -33,6 +69,35 @@
 
 
 @section Scripts {
-    <script src="~/js/lms/teachers.js"></script>
-    @* <partial name="_DeleteScriptsPartial" />*@
-}
+    <script>
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
+        function Delete(url) {
+            swal({
+                title: "Are you sure you want to Separate?",
+                text: "You will not be able to restore the data!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                dataTable.ajax.reload();
+                            }
+                            else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+    }

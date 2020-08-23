@@ -30,11 +30,8 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> Index()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var allObj = await _unitOfWork.School.GetFirstOrDefaultAsync(c => c.OwnerId == _userId);
-            if (allObj != null)
-                return View();
-            else
-                return LocalRedirect("/Hub/Dashboard/index");
+            var allObj = await _unitOfWork.SchoolNotice.GetAllAsync(c => c.School.OwnerId == _userId, includeProperties: "School");
+            return View(allObj);
         }
 
         public IActionResult Create(long Id)

@@ -33,32 +33,40 @@
                                 {
                                     foreach (var item in Model)
                                     {
-                    <tr>
-                        <td>
-                            <div class="card rounded shadow">
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-card rounded shadow my-1">
                                 <div class="card-body">
-                                    <p class="py-0 my-0">Name: @item.ClassRoom.ClassRoomName</p>
-                                    <p class="py-0 my-0">Day : @item.DayName</p>
-                                    <p class="py-0 my-0">Period - 1 : @item.Period1</p>
-                                    <p class="py-0 my-0">Period - 2 : @item.Period2</p>
-                                    <p class="py-0 my-0">Period - 3 : @item.Period3</p>
-                                    <p class="py-0 my-0">Period - 4 : @item.Period4</p>
-                                    <p class="py-0 my-0">Period - 5 : @item.Period5</p>
-                                    <p class="py-0 my-0">Period - 6 : @item.Period6</p>
-                                    <p class="py-0 my-0">Period - 7 : @item.Period7</p>
-                                    <p class="py-0 my-0">Period - 8 : @item.Period8</p>
-                                    <p class="py-0 my-0">Period - 9 : @item.Period9</p>
-                                    <p class="py-0 my-0">Period - 10 : @item.Period10</p>
-                                    <div class="btn-group">
-                                        <a class="btn btn-warning" href="/Lms/ClassRout/Upsert/@item.ClassRoutineID" data-toggle="tooltip" data-placement="top" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger" onclick=Delete("/Lms/ClassRout/Delete/@item.ClassRoutineID") data-toggle="tooltip" data-placement="top" title="Delete">
-                                            <i class="fas fa-trash-alt"></i>
-                                            Delete
-                                        </a>
+                                    <div class="row justify-content-between">
+                                        <div class="col-12 col-md-7">
+                                            <p class="py-0 my-0">Name: @item.ClassRoom.ClassRoomName</p>
+                                            <p class="py-0 my-0">Day : @item.DayName</p>
+                                            <p class="py-0 my-0">Period - 1 : @item.Period1</p>
+                                            <p class="py-0 my-0">Period - 2 : @item.Period2</p>
+                                            <p class="py-0 my-0">Period - 3 : @item.Period3</p>
+                                            <p class="py-0 my-0">Period - 4 : @item.Period4</p>
+                                            <p class="py-0 my-0">Period - 5 : @item.Period5</p>
+                                            <p class="py-0 my-0">Period - 6 : @item.Period6</p>
+                                            <p class="py-0 my-0">Period - 7 : @item.Period7</p>
+                                            <p class="py-0 my-0">Period - 8 : @item.Period8</p>
+                                            <p class="py-0 my-0">Period - 9 : @item.Period9</p>
+                                            <p class="py-0 my-0">Period - 10 : @item.Period10</p>
+                                        </div>
+                                        <div class="col-12 col-md-5 text-right">
+                                            <div class="btn-group">
+                                                <a class="btn btn-warning" href="/Lms/ClassRout/Upsert/@item.ClassRoutineID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                    <span class="d-none d-md-block d-lg-block d-xl-block">Edit</span>
+                                                </a>
+                                                <a class="btn btn-danger" onclick=Delete("/Lms/ClassRout/Delete/@item.ClassRoutineID") data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                    <span class="d-none d-md-block d-lg-block d-xl-block">Delete</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
+                                   
+                                    
                                 </div>
                             </div>
                         </td>

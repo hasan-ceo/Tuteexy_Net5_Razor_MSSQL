@@ -34,16 +34,85 @@
     </div>
 </div>
 
-
-@*<div class="row px-0 pt-0 pb-0">
+<div class="row px-0 pt-0 pb-0">
     <div class="col-12">
-        <div class="card card-pointer bg-ask mb-2">
-            <a asp-area="Shop" asp-controller="Dashboard" asp-action="Index">
-                <img class="card-img-top" src="/images/shops/HovercelCover.jpg" />
-            </a>
+        <div class="card mb-2 bg-warning">
+            <div class="card-header">
+                <p class="card-title text-center bg-warning text-dark">
+                    Last week's top 10 Tutees. Thank you for post your questions.
+                </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm table-hover table-full-width" style="font-size:smaller">
+                        <thead>
+                            <tr><td></td><td>School Name</td><td>Class Name</td><td>Full Name</td><td> Total Questions </td></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>🍕</td><td>GIMOS</td><td>Class 09 Business Studies</td><td>Syad Mahbubul Hasan Sajir</td><td>147</td></tr>
+                            <tr><td>🍟</td><td>GIMOS</td><td>Class 06</td><td>Farjana Ahsan Lamia</td><td>98</td></tr>
+                            <tr><td>🌭</td><td>GIMOS</td><td>Class 06</td><td>Ibtasam Mubassir Taha</td><td>75</td></tr>
+                            <tr><td>🥗</td><td>GIMOS</td><td>Class 05</td><td>Afra Tasnim Soha</td><td>67</td></tr>
+                            <tr><td>🍦</td><td>GIMOS</td><td>Class 08</td><td>Yasif Ahamed </td><td>49</td></tr>
+                            <tr><td>🍬</td><td>GIMOS</td><td>Class 06</td><td>Md Faiyaz Bhuiyan</td><td>41</td></tr>
+                            <tr><td>🍭</td><td>GIMOS</td><td>Class 04</td><td>Intahaz Mukaddim Nuha</td><td>31</td></tr>
+                            <tr><td>🥧</td><td>GIMOS</td><td>Class 08</td><td>Fatema Akter Lamia </td><td>30</td></tr>
+                            <tr><td>🧀</td><td>GIMOS</td><td>Class 04</td><td>Intasam Mostakim Raha</td><td>25</td></tr>
+                            <tr><td>🌮</td><td>GIMOS</td><td>Class 06</td><td>Jubayer Ahmad Samin</td><td>19</td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>*@
+</div>
+
+<div class="row px-0 pt-0 pb-0">
+    <div class="col-12">
+        <div class="card mb-2 bg-info text-white">
+            <div class="card-header">
+                <p class="card-title text-center">
+                    Last week's top 10 Tutees. Thank you for share your Answers.
+                </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm table-hover table-full-width text-white" style="font-size:smaller">
+                        <thead>
+                            <tr><td></td><td>School Name</td><td>Class Name</td><td>Full Name</td><td> Total Questions </td></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>🍕</td><td>GIMOS</td><td>Class 06</td><td>Farjana Ahsan Lamia</td><td>500</td></tr>
+                            <tr><td>🍟</td><td>GIMOS</td><td>Class 05</td><td>Afra Tasnim Soha</td><td>253</td></tr>
+                            <tr><td>🌭</td><td>GIMOS</td><td>Class 06</td><td>Jubayer Ahmad Samin</td><td>201</td></tr>
+                            <tr><td>🥗</td><td>GIMOS</td><td>Class 06</td><td>Nafis Sadik</td><td>174</td></tr>
+                            <tr><td>🍦</td><td>GIMOS</td><td>Class 06</td><td>Jannatul Islam Moumita</td><td>159</td></tr>
+                            <tr><td>🍬</td><td>GIMOS</td><td>Class 07</td><td>Sayma Rahman Diya</td><td>157</td></tr>
+                            <tr><td>🍭</td><td>GIMOS</td><td>Class 08</td><td>Fatema Akter Lamia </td><td>127</td></tr>
+                            <tr><td>🥧</td><td>GIMOS</td><td>Class 07</td><td>Samiha Shafinaz</td><td>121</td></tr>
+                            <tr><td>🧀</td><td>GIMOS</td><td>Class 02</td><td>anas islam</td><td>115</td></tr>
+                            <tr><td>🌮</td><td>GIMOS</td><td>Class 05</td><td>samanta islam</td><td>103</td></tr>
+
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="row px-0 pt-0 pb-0">
+        <div class="col-12">
+            <div class="card card-pointer bg-ask mb-2">
+                <a asp-area="Shop" asp-controller="Dashboard" asp-action="Index">
+                    <img class="card-img-top" src="/images/shops/HovercelCover.jpg" />
+                </a>
+            </div>
+        </div>
+    </div>*@
 
 
 @if (Model != null)

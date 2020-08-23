@@ -16,7 +16,7 @@ body {
 }
 
 .bg-Alabaster {
-    background-color: var(--main-bg-theme);
+    background-color: var(--main-bg-theme) !important;
 }
 
 .fixed-top-margin {
@@ -593,4 +593,8 @@ text-decoration:none;
     color: #fff !important;
     border-radius:5px;
     margin: 2.5%;
+}
+
+.bg-card {
+    background-color: #cfe2cf !important;
 }

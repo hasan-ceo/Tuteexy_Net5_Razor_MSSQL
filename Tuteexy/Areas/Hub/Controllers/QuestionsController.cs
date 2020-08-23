@@ -26,10 +26,13 @@ namespace Tuteexy.Areas.Hub.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //var allObj = await _unitOfWork.Question.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var allObj = await _unitOfWork.Question.GetAllAsync(c => c.UserID == _userId);
+
+            return View(allObj);
         }
 
         public async Task<IActionResult> AskQuestion()

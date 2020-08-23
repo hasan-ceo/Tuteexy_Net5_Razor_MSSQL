@@ -26,9 +26,12 @@ namespace Tuteexy.Areas.Lms.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // "182596ba-2fcc-4db7-8053-395e1af1a276";//
+            var allObj = await _unitOfWork.SchoolTeacher.GetAllAsync(t => t.School.OwnerId == _userId, includeProperties: "School,Teacher");
+
+            return View(allObj);
         }
 
         public async Task<IActionResult> Upsert(long? Id)

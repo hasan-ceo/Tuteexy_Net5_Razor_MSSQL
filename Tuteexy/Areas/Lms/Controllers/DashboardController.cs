@@ -42,9 +42,17 @@ namespace Tuteexy.Areas.Lms.Controllers
             var schoolnotice = await _unitOfWork.SchoolNotice.GetAllAsync(h => h.SchoolID == schoolid && h.ScheduleDateTime <= DateTime.Now && h.isPined == true, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "School");
             var classroomnotice = await _unitOfWork.ClassRoomNotice.GetAllAsync(h => h.ClassRoomID == classrooomid && h.ScheduleDateTime <= DateTime.Now && h.ScheduleDateTime.Date == DateTime.Now.Date, h => h.OrderByDescending(p => p.ScheduleDateTime), includeProperties: "ClassRoom");
 
+            var userFromDb = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.Id == _userId);
+
+            ChatVM chatVM = new ChatVM
+            {
+                UserName = userFromDb.FullName,
+                GroupName = "GrobalSchool"
+            };
 
             SchoolHomeVM schoolhome = new SchoolHomeVM()
             {
+                ChatVM=chatVM,
                 Classwork = classwork,
                 Homework = homework,
                 SchoolNotice = schoolnotice,
