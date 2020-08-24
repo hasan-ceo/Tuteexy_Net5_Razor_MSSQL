@@ -5,16 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200713064708_sdafasdf.cs" />
-    <Compile Remove="Migrations\20200713064708_sdafasdf.Designer.cs" />
-    <Compile Remove="Migrations\20200713065106_sdafasdf.cs" />
-    <Compile Remove="Migrations\20200713065106_sdafasdf.Designer.cs" />
-    <Compile Remove="Migrations\20200713065625_sdafasdf.cs" />
-    <Compile Remove="Migrations\20200713065625_sdafasdf.Designer.cs" />
-    <Compile Remove="Migrations\20200725101158_hhkkkk.cs" />
-    <Compile Remove="Migrations\20200725101158_hhkkkk.Designer.cs" />
-    <Compile Remove="Migrations\20200806182159_afsfdsx.cs" />
-    <Compile Remove="Migrations\20200806182159_afsfdsx.Designer.cs" />
     <Compile Remove="RepositoryIronman\CoverTypeRepository.cs" />
     <Compile Remove="RepositoryIronman\IRepositoryIronman\ICoverTypeRepository.cs" />
   </ItemGroup>

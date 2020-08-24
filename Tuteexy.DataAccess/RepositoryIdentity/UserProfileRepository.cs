@@ -35,6 +35,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.ECPersonRelation = userprofile.ECPersonRelation;
                 objFromDb.ECPersonPhoneNumber = userprofile.ECPersonPhoneNumber;
                 objFromDb.ImageUrl = userprofile.ImageUrl;
+                objFromDb.FullName = userprofile.FullName;
             }
         }
     }

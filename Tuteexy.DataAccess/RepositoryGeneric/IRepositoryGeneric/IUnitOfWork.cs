@@ -21,6 +21,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IHomeworkRepository Homework { get; }
         IHomeworkSheetRepository HomeworkSheet { get; }
         IClassworkRepository Classwork { get; }
+        IClassworkAttendanceRepository ClassworkAttendance { get; }
         IClassworkSheetRepository ClassworkSheet { get; }
         ISubjectRepository Subject { get; }
         ISchoolNoticeRepository SchoolNotice { get; }

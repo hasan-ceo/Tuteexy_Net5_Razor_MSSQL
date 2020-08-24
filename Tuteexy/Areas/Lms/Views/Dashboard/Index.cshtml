@@ -62,48 +62,48 @@
 
 <div id="globalschoolcaht">
     <div class="container-fluid p-0 my-0">
-                <div class="card bg-dark rounded-0 pb-3 my-1">
-                    <input type="hidden" value="@Model.ChatVM.UserName" id="username" name="username" />
-                    <input type="hidden" value="@Model.ChatVM.GroupName" id="groupname" name="groupname" />
-                    <div class="card-header">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-2"><img src="~/images/core/livechat.png" class="w-100" /></div>
-                            <div class="col-10">
-                                <div class="btn-group">
-                                    <button class="btn btn-success mr-1" id="joinButton"><span class="fas fa-plus-circle"></span> Join</button>
-                                    <button class="btn btn-success mr-1" id="leaveButton"><span class="fas fa-sign-out-alt"></span> Leave</button>
-                                </div>
-
-                            </div>
+        <div class="card bg-dark rounded-0 pb-3 my-1">
+            <input type="hidden" value="@Model.ChatVM.UserName" id="username" name="username" />
+            <input type="hidden" value="@Model.ChatVM.GroupName" id="groupname" name="groupname" />
+            <div class="card-header">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-2"><img src="~/images/core/livechat.png" class="w-100" /></div>
+                    <div class="col-10">
+                        <div class="btn-group">
+                            <button class="btn btn-success mr-1" id="joinButton"><span class="fas fa-plus-circle"></span> Join</button>
+                            <button class="btn btn-success mr-1" id="leaveButton"><span class="fas fa-sign-out-alt"></span> Leave</button>
                         </div>
+
                     </div>
                 </div>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid p-0 my-0">
 
-                <div id="messages" class="scroll bg-dark" style="min-height: 50vh;overflow-y: scroll;">
-                    <div id="scroller">
-                        <!-- append content here -->
-                        <div id="anchor"></div>
-                    </div>
-                </div>
+        <div id="messages" class="scroll bg-dark" style="min-height: 50vh;overflow-y: scroll;">
+            <div id="scroller">
+                <!-- append content here -->
+                <div id="anchor"></div>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid p-0 my-0">
 
-                <div class="card bg-dark rounded-0 my-1">
-                    <div class="card-body" id="msgdiv" hidden>
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label class="sr-only">Message</label>
-                                <input type="text" class="form-control" id="message" placeholder="">
-                            </div>
-                            <input type="button" id="sendButton" value="Send Message" class="btn btn-primary mb-2" />
-                        </form>
+        <div class="card bg-dark rounded-0 my-1">
+            <div class="card-body" id="msgdiv" hidden>
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label class="sr-only">Message</label>
+                        <input type="text" class="form-control" id="message" placeholder="">
                     </div>
-                </div>
-            
+                    <input type="button" id="sendButton" value="Send Message" class="btn btn-primary mb-2" />
+                </form>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -224,7 +224,7 @@
                                                                         </a>
                                                                         @if (string.IsNullOrWhiteSpace(@item.RefLink1) == false && (string.IsNullOrEmpty(item.RefLink1) == false))
                                                                         {
-                                                    <a href="@item.RefLink1" class="btn btn-light txt-twit mr-1">
+                                                    <a href="@item.RefLink1" class="btn btn-light txt-twit mr-1" data-toggle="modal" data-target="#AttnModal" data-title="@item.Title" data-classid="@item.ClassworkID">
                                                         <span class="fas fa-video"></span>
                                                         <span class="d-none d-md-block d-lg-block d-xl-block">Join</span>
                                                     </a>}
@@ -275,8 +275,53 @@
 
 
 
-@section Scripts {
+<div class="modal fade" id="AttnModal" tabindex="-1" aria-labelledby="AttnModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content  bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="AttnModalLabel">dafsd</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-area="Lms" asp-controller="MyClassworks" asp-action="ClassWorkAtten">
+                    <input type="hidden" name="ClassworkID" id="ClassworkID" value="" />
+                    <div class="form-group p-0">
+                        <textarea class="form-control" id="Description" name="Description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <span class="fas fa-undo"></span>
+                        Join
+                    </button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">
+                        <span class="fas fa-undo"></span>
+                        Close
+                    </button>
 
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $('#AttnModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var title = button.data('title') // Extract info from data-* attributes
+            var classid = button.data('classid')
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('' + title)
+            modal.find('#ClassworkID').val(classid)
+        })
+    </script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
 }

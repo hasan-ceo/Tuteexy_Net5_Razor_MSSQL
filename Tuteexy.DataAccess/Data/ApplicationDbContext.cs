@@ -39,6 +39,7 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<SchoolNotice> SchoolNotice { get; set; }
         public DbSet<ClassRoomNotice> ClassRoomNotice { get; set; }
         public DbSet<ClassRoutine> ClassRoutine { get; set; }
+        public DbSet<ClassworkAttendance> ClassworkAttendance { get; set; }
         public DbSet<Holiday> Holiday { get; set; }
         public DbSet<Classwork> Classwork { get; set; }
         public DbSet<ClassworkSheet> ClassworkSheet { get; set; }

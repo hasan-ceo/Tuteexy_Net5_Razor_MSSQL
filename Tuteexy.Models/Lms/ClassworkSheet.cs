@@ -31,5 +31,10 @@ namespace Tuteexy.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime SubmittedDate { get; set; }
 
+        [DefaultValue("")]
+        [MaxLength(20)]
+        [Display(Name = "Status")]
+        public string AttnStatus { get; set; }
+
     }
 }

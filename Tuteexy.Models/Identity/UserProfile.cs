@@ -76,6 +76,10 @@ namespace Tuteexy.Models
 
         [MaxLength(150)]
         public string ImageUrl { get; set; }
+
+        [MaxLength(150)]
+        public string FullName { get; set; }
+
         //RollNo
         //AdmissionDate
         //SMS Alert

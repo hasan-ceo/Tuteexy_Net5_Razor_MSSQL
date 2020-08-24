@@ -21,6 +21,7 @@ namespace Tuteexy.DataAccess.Repository
             {
                 objFromDb.Description = classworksheet.Description;
                 objFromDb.SubmittedDate = classworksheet.SubmittedDate;
+                objFromDb.AttnStatus = classworksheet.AttnStatus;
             }
         }
     }

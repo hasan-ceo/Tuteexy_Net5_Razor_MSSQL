@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -98,6 +99,42 @@ namespace Tuteexy.Areas.Lms.Controllers
                 //return RedirectToAction("Answer", questionthread.ClassworkSheetID);
             }
             return RedirectToAction("ClassworkReply", questionthread.ClassworkSheetID);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ClassWorkAtten(ClassworkSheet questionthread)
+        {
+            if (ModelState.IsValid)
+            {
+                if (questionthread.ClassworkSheetID == 0)
+                {
+                    questionthread.SubmittedDate = DateTime.Now;
+                    questionthread.UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    var ct = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(c=>c.ClassworkID== questionthread.ClassworkID);
+                    if (DateTime.Now>=ct.TimeStart && DateTime.Now<= ct.TimeStart.AddMinutes(10))
+                    {
+                        questionthread.AttnStatus = "Present";
+                    }
+                    else{
+                        questionthread.AttnStatus = "Absent";
+                    }
+                    await _unitOfWork.ClassworkSheet.AddAsync(questionthread);
+                }
+                else
+                {
+                    var tmpQ = await _unitOfWork.ClassworkSheet.GetAsync(questionthread.ClassworkSheetID);
+                    tmpQ.SubmittedDate = DateTime.Now;
+                    tmpQ.Description = questionthread.Description;
+                    _unitOfWork.ClassworkSheet.Update(questionthread);
+                }
+
+                _unitOfWork.Save();
+                //return RedirectToAction("Answer", questionthread.ClassworkSheetID);
+            }
+            var t = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(c=>c.ClassworkID== questionthread.ClassworkID);
+            return Redirect(t.RefLink1);
         }
 
 

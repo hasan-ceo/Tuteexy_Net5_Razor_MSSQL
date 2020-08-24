@@ -35,7 +35,7 @@
                     <img class="marg-auto" style="height:100%; width:100%;" src="/images/profiles/@Model.ImageUrl">
                     <div class="w-100 text-center imgeditprof"><i class="fas fa-camera"></i></div>
                 </div>
-                <p class="text-center">@Model.User.FullName</p>
+                @*<p class="text-center">@Model.FullName</p>*@
             </div>
 
         </div>
@@ -45,6 +45,13 @@
 
             <div class="form-group row">
                 <label class="col-sm-12 col-form-label txt-tuteegreen" asp-for="ECPersonName">Your Profile</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="FullName">Full Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="FullName">
+                </div>
             </div>
 
             <div class="form-group row">
@@ -187,16 +194,16 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 @if (Model.UserProfileID != 0)
                 {
-    <button type="submit" onclick="return validateInput()" class="btn btn-success" asp-route-id="@Model.UserProfileID">
-        <span class="fas fa-save"></span>
-        Update
-    </button> }
-else
-{
-<button type="submit" class="btn btn-success">
-    <span class="fas fa-save"></span>
-    Create
-</button>}
+        <button type="submit" onclick="return validateInput()" class="btn btn-success" asp-route-id="@Model.UserProfileID">
+            <span class="fas fa-save"></span>
+            Update
+        </button> }
+    else
+    {
+        <button type="submit" class="btn btn-success">
+            <span class="fas fa-save"></span>
+            Create
+        </button>}
                 <button class="btn btn-light" asp-area="Hub" asp-controller="Dashboard" asp-action="Index">
                     <span class="fas fa-undo"></span>
                     Cancel

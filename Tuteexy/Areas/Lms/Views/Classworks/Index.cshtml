@@ -68,7 +68,7 @@
                                                 <span class="d-none d-md-block d-lg-block d-xl-block">Delete</span>
 
                                             </a>
-                                            <a class="btn btn-warning text-white mr-1" asp-area="Lms" asp-controller="MyClassworks" asp-action="LiveClass" asp-route-id="@item.ClassworkID"  data-toggle="tooltip" data-placement="top" title="Live discussion">
+                                            <a class="btn btn-warning text-white mr-1" asp-area="Lms" asp-controller="MyClassworks" asp-action="LiveClass" asp-route-id="@item.ClassworkID" data-toggle="tooltip" data-placement="top" title="Live discussion">
                                                 <span class="fas fa-video"></span>
                                                 <span class="d-none d-md-block d-lg-block d-xl-block">Live</span>
                                             </a>
@@ -89,24 +89,24 @@
 
                                             @if (string.IsNullOrWhiteSpace(@item.RefLink3) == false && (string.IsNullOrEmpty(item.RefLink3) == false))
                                             {
-                                    <a href="@item.RefLink3" class="btn btn-light txt-twit mr-1">
-                                        <span class="fas fa-link">
-                                        </span> <span class="d-none d-md-block d-lg-block d-xl-block">At-3</span>
-                                    </a>}
+                                        <a href="@item.RefLink3" class="btn btn-light txt-twit mr-1">
+                                            <span class="fas fa-link">
+                                            </span> <span class="d-none d-md-block d-lg-block d-xl-block">At-3</span>
+                                        </a>}
 
                                             @if (string.IsNullOrWhiteSpace(@item.RefLink4) == false && (string.IsNullOrEmpty(item.RefLink4) == false))
                                             {
-                                    <a href="@item.RefLink4" class="btn btn-light txt-twit mr-1">
-                                        <span class="fas fa-link">
-                                        </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-4</span>
-                                    </a>}
+                                        <a href="@item.RefLink4" class="btn btn-light txt-twit mr-1">
+                                            <span class="fas fa-link">
+                                            </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-4</span>
+                                        </a>}
 
                                             @if (string.IsNullOrWhiteSpace(@item.RefLink5) == false && (string.IsNullOrEmpty(item.RefLink5) == false))
                                             {
-                                    <a href="@item.RefLink5" class="btn btn-light txt-twit">
-                                        <span class="fas fa-link">
-                                        </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-5</span>
-                                    </a>}
+                                        <a href="@item.RefLink5" class="btn btn-light txt-twit">
+                                            <span class="fas fa-link">
+                                            </span>  <span class="d-none d-md-block d-lg-block d-xl-block">At-5</span>
+                                        </a>}
 
                                         </div>
                                    </div>

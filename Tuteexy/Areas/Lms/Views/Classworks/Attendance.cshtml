@@ -1,0 +1,63 @@
+﻿@{ ViewData["Title"] = "Class Attendance"; }
+@model IEnumerable<Tuteexy.Models.ClassRoomStudent>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Class Attendance</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
+                                <tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-card text-dark rounded shadow my-1">
+                                <div class="card-body">
+
+                                    <div class="container">
+                                        <div class="row justify-content-between">
+
+                                            <div class="col-12 col-md-7">
+                                                <p class="card-title py-0 my-0">@item.Student.FullName</p>
+                                                <p class="card-subtitle py-0 my-0"></p>
+                                            </div>
+                                            <div class="col-12 col-md-5 text-right">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/ClassRoomNotices/Delete/") data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <span class="fas fa-trash-alt"></span>
+                                                        <span class="d-none d-md-block d-lg-block d-xl-block">Delete</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>}
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

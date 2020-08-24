@@ -46,6 +46,11 @@ namespace Tuteexy.Areas.Lms.Controllers
 
         }
 
+        public async Task<IActionResult> Attendance(long Id)
+        {
+            var tmp = await _unitOfWork.ClassRoomStudent.GetAllAsync(c => c.ClassRoomID == Id, includeProperties: "Student");
+            return View(tmp);
+        }
 
         public async Task<IActionResult> Upsert(long? Id)
         {
