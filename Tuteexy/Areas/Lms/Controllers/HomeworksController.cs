@@ -229,7 +229,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             return ViewComponent("QuestionA", new { id = Id });
         }
 
-        public IActionResult rptHomeworks()
+        public IActionResult RptHomeworks()
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var parameter = new DynamicParameters();

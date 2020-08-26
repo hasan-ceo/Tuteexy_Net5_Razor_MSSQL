@@ -9,9 +9,9 @@ namespace Tuteexy.Models.ViewModels
         public string Subject { get; set; }
         public string Title { get; set; }
         public DateTime DateDue { get; set; }
-        public long TotalStudent { get; set; }
-        public long TotalPending { get; set; }
-        public long TotalSubmitted { get; set; }
-        public long TotalAccepted { get; set; }
+        public int TotalStudent { get; set; }
+        public int TotalPending { get; set; }
+        public int TotalSubmitted { get; set; }
+        public int TotalAccepted { get; set; }
     }
 }

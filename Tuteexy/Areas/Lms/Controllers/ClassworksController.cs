@@ -12,6 +12,8 @@ using Tuteexy.Models;
 using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
 
+using Dapper;
+
 namespace Tuteexy.Areas.Lms.Controllers
 {
     [Area("Lms")]
@@ -201,6 +203,15 @@ namespace Tuteexy.Areas.Lms.Controllers
                 //return RedirectToAction("Answer", questionthread.ClassworkSheetID);
             }
             return RedirectToAction("CWPreview", questionthread.ClassworkSheetID);
+        }
+
+        public IActionResult rptClassworks(long Id)
+        {
+            _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var parameter = new DynamicParameters();
+            parameter.Add("@ClassworkID", Id);
+            var rptCWAttendanceVM = _unitOfWork.SP_Call.List<RptCWAttendanceVM>(SD.Proc_rptCWAttendance, parameter);
+            return View(rptCWAttendanceVM.OrderBy(r => r.StudentName).ThenByDescending(r => r.WorkDate));
         }
 
         #region API CALLS

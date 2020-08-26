@@ -85,6 +85,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 {
                     questionthread.SubmittedDate = DateTime.Now;
                     questionthread.UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    questionthread.AttnStatus = "";
                     await _unitOfWork.ClassworkSheet.AddAsync(questionthread);
                 }
                 else
@@ -112,13 +113,23 @@ namespace Tuteexy.Areas.Lms.Controllers
                 {
                     questionthread.SubmittedDate = DateTime.Now;
                     questionthread.UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                    var ct = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(c=>c.ClassworkID== questionthread.ClassworkID);
-                    if (DateTime.Now>=ct.TimeStart && DateTime.Now<= ct.TimeStart.AddMinutes(10))
+                    questionthread.AttnStatus = "";
+                    var tmpQ = await _unitOfWork.ClassworkSheet.GetFirstOrDefaultAsync(c => c.ClassworkID == questionthread.ClassworkID && c.UserID== questionthread.UserID && (c.AttnStatus== SD.AttnStatusPresent || c.AttnStatus==SD.AttnStatusLate || c.AttnStatus==SD.AttnStatusAbsent));
+                    if (tmpQ==null)
                     {
-                        questionthread.AttnStatus = "Present";
-                    }
-                    else{
-                        questionthread.AttnStatus = "Absent";
+                        var ct = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(c => c.ClassworkID == questionthread.ClassworkID);
+                        if (DateTime.Now >= ct.TimeStart && DateTime.Now <= ct.TimeStart.AddMinutes(1))
+                        {
+                            questionthread.AttnStatus = SD.AttnStatusPresent;
+                        }
+                        else if (DateTime.Now >= ct.TimeStart.AddMinutes(1) && DateTime.Now <= ct.TimeEnd)
+                        {
+                            questionthread.AttnStatus = SD.AttnStatusLate;
+                        }
+                        else
+                        {
+                            questionthread.AttnStatus = SD.AttnStatusAbsent;
+                        }
                     }
                     await _unitOfWork.ClassworkSheet.AddAsync(questionthread);
                 }

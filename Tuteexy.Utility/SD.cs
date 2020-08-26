@@ -5,7 +5,8 @@ namespace Tuteexy.Utility
     public static class SD
     {
         public const string Proc_rptHomework = "rptlmsHomework";
-        public const string Proc_CoverType_Get = "usp_GetCoverType";
+        public const string Proc_rptCWAttendance = "rptCWAttendance";
+
         public const string Proc_CoverType_GetAll = "usp_GetCoverTypes";
         public const string Proc_CoverType_Update = "usp_UpdateCoverType";
         public const string Proc_CoverType_Delete = "usp_DeleteCoverType";
@@ -32,7 +33,9 @@ namespace Tuteexy.Utility
         public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
         public const string PaymentStatusRejected = "Rejected";
 
-
+        public const string AttnStatusPresent = "Present";
+        public const string AttnStatusLate = "Late";
+        public const string AttnStatusAbsent = "Absent";
 
         public static double GetPriceBasedOnQuantity(double quantity, double price, double price50, double price100)
         {

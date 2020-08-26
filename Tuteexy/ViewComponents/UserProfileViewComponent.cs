@@ -20,6 +20,7 @@ namespace Tuteexy.ViewComponents
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _unitOfWork.ApplicationUser.GetFirstOrDefaultAsync(u => u.Id == claims.Value);
             var userFromDb = await _unitOfWork.UserProfile.GetFirstOrDefaultAsync(u => u.UserID == claims.Value, includeProperties: "User");
             if (userFromDb == null)
             {
@@ -41,7 +42,8 @@ namespace Tuteexy.ViewComponents
                     ECPersonRelation = "",
                     ECPersonPhoneNumber = "",
                     ECPersonEmail = "",
-                    ImageUrl = ""
+                    ImageUrl = "profile.jpg",
+                    FullName=user.FullName
                 };
                 await _unitOfWork.UserProfile.AddAsync(userprofile);
                 _unitOfWork.Save();
