@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
@@ -135,6 +136,7 @@ namespace Tuteexy.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
+                    CreatedDate = DateTime.Now
                 };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

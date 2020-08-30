@@ -67,7 +67,8 @@ namespace Tuteexy.Areas.Lms.Controllers
                     Email = Input.Email,
                     FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
-                    Role = SD.Role_User
+                    Role = SD.Role_User,
+                    CreatedDate = DateTime.Now
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -189,7 +190,8 @@ namespace Tuteexy.Areas.Lms.Controllers
                     Email = Input.Email,
                     FullName = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
-                    Role = SD.Role_User
+                    Role = SD.Role_User,
+                    CreatedDate = DateTime.Now
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
