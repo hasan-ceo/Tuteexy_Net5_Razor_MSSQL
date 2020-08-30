@@ -128,6 +128,7 @@ namespace Tuteexy.Areas.Hub.Controllers
             return View(shortstory);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(long? Id)
         {
             var question = await _unitOfWork.ShortStory.GetFirstOrDefaultAsync(q => q.ShortStoryID == Id, includeProperties: "User");
@@ -136,7 +137,7 @@ namespace Tuteexy.Areas.Hub.Controllers
             {
                 ShortStory = question,
                 ShortStoryThread = questionthread,
-                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
+                UserId = question.User.FullName
             };
             //var allObj = await _unitOfWork.ShortStory.GetAllAsync(c => c.CreatedBy == User.Identity.Name);
             return View(shortstoryVM);

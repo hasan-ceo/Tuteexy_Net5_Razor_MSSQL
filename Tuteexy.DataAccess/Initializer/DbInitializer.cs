@@ -48,7 +48,8 @@ namespace Tuteexy.DataAccess.Initializer
                 Email = "admin@titan.com",
                 EmailConfirmed = true,
                 FullName = "Hasan Habib",
-                PhoneNumber = "+8801765263343"
+                PhoneNumber = "+8801765263343",
+                CreatedDate=DateTime.Now
             }, "Admin123!").GetAwaiter().GetResult();
 
             ApplicationUser user = _db.ApplicationUsers.Where(u => u.Email == "admin@titan.com").FirstOrDefault();

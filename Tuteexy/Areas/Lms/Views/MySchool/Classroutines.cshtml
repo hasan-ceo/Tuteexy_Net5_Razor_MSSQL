@@ -43,16 +43,42 @@
                             <div style="float:left">
                                 <p class="py-0 my-0">Name: @item.ClassRoom.ClassRoomName</p>
                                 <p class="py-0 my-0">Day : @item.DayName</p>
-                                <p class="py-0 my-0">Period - 1 : @item.Period1</p>
-                                <p class="py-0 my-0">Period - 2 : @item.Period2</p>
-                                <p class="py-0 my-0">Period - 3 : @item.Period3</p>
-                                <p class="py-0 my-0">Period - 4 : @item.Period4</p>
-                                <p class="py-0 my-0">Period - 5 : @item.Period5</p>
-                                <p class="py-0 my-0">Period - 6 : @item.Period6</p>
-                                <p class="py-0 my-0">Period - 7 : @item.Period7</p>
-                                <p class="py-0 my-0">Period - 8 : @item.Period8</p>
-                                <p class="py-0 my-0">Period - 9 : @item.Period9</p>
-                                <p class="py-0 my-0">Period - 10 : @item.Period10</p>
+
+                                @if (string.IsNullOrEmpty(item.Period1) == false && string.IsNullOrWhiteSpace(item.Period1) == false)
+                                {
+                            <p class="py-0 my-0">Period - 1 : @item.Period1, @item.PeriodTime1.ToString("hh:mm tt")</p>}
+
+                                @if (string.IsNullOrEmpty(item.Period2) == false && string.IsNullOrWhiteSpace(item.Period2) == false)
+                                {
+                            <p class="py-0 my-0">Period - 2 : @item.Period2, @item.PeriodTime2.ToString("hh:mm tt")</p>}
+
+                                @if (string.IsNullOrEmpty(item.Period3) == false && string.IsNullOrWhiteSpace(item.Period3) == false)
+                                {
+                            <p class="py-0 my-0">Period - 3 : @item.Period3, @item.PeriodTime3.ToString("hh:mm tt")</p>}
+
+                                @if (string.IsNullOrEmpty(item.Period4) == false && string.IsNullOrWhiteSpace(item.Period4) == false)
+                                {
+                            <p class="py-0 my-0">Period - 4 : @item.Period4, @item.PeriodTime4.ToString("hh:mm tt")</p>}
+
+                                @if (string.IsNullOrEmpty(item.Period5) == false && string.IsNullOrWhiteSpace(item.Period5) == false)
+                                {
+                            <p class="py-0 my-0">Period - 5 : @item.Period5, @item.PeriodTime5.ToString("hh:mm tt")</p>}
+                                @if (string.IsNullOrEmpty(item.Period6) == false && string.IsNullOrWhiteSpace(item.Period6) == false)
+                                {
+                            <p class="py-0 my-0">Period - 6 : @item.Period6, @item.PeriodTime6.ToString("hh:mm tt")</p>}
+                                @if (string.IsNullOrEmpty(item.Period7) == false && string.IsNullOrWhiteSpace(item.Period7) == false)
+                                {
+                            <p class="py-0 my-0">Period - 7 : @item.Period7, @item.PeriodTime7.ToString("hh:mm tt")</p>}
+                                @if (string.IsNullOrEmpty(item.Period8) == false && string.IsNullOrWhiteSpace(item.Period8) == false)
+                                {
+                            <p class="py-0 my-0">Period - 8 : @item.Period8, @item.PeriodTime8.ToString("hh:mm tt")</p>}
+                                @if (string.IsNullOrEmpty(item.Period9) == false && string.IsNullOrWhiteSpace(item.Period9) == false)
+                                {
+                            <p class="py-0 my-0">Period - 9 : @item.Period9, @item.PeriodTime9.ToString("hh:mm tt")</p>}
+                                @if (string.IsNullOrEmpty(item.Period10) == false && string.IsNullOrWhiteSpace(item.Period10) == false)
+                                {
+                            <p class="py-0 my-0">Period - 10 : @item.Period10, @item.PeriodTime10.ToString("hh:mm tt")</p>}
+
                             </div>
 
                         </div>

@@ -1,13 +1,31 @@
 ﻿@model Tuteexy.Models.ViewModels.ShortStoryVM
+@{ Layout = "~/Areas/Hub/Views/Shared/_LayoutSrories.cshtml"; }
 
-@{ ViewData["Title"] = "Pencil Story"; }
+@section Srories {
+    <title>Tuteexy - @Model.ShortStory.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="Tuteexy - @Model.ShortStory.Title">
+    <meta property="og:description" content="Tuteexy short stories">
+    <meta property="og:image" content="http://www.tuteexy.com/images/stories/@Model.ShortStory.ImageUrl">
+    <meta property="og:url" content="http://www.tuteexy.com/Hub/ShortStories/Details/@Model.ShortStory.ShortStoryID">
+
+    <meta name="twitter:title" content="Tuteexy - @Model.ShortStory.Title">
+    <meta name="twitter:description" content="Tuteexy short stories">
+    <meta name="twitter:image" content="http://www.tuteexy.com/images/stories/@Model.ShortStory.ImageUrl">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/Images/core/icon.png" sizes="any" type="image/svg+xml">
+}
+
 
 <div class="row row-cols-1">
     <div class="col-12">
         <div class="card bg-Alabaster mb-2">
             <div class="card-body text-dark">
                 <h3 class="card-title">@Model.ShortStory.Title</h3>
-                <img src="/images/stories/@Model.ShortStory.ImageUrl" class="card-img"/>
+                <img src="/images/stories/@Model.ShortStory.ImageUrl" class="card-img" />
             </div>
         </div>
     </div>
@@ -20,6 +38,8 @@
         <div class="card bg-Alabaster mb-2">
             <div class="card-header text-dark">
                 <p class="card-subtitle" style="font-size:smaller">@Model.ShortStory.User.FullName, @Model.ShortStory.SubmittedDate</p>
+                @{ var t = @"https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftuteexy.com%2FHub%2FShortStories%2FDetails%2F" + Model.ShortStory.ShortStoryID + @"&amp;src=sdkpreparse";}
+                <div class="fb-share-button" data-href="https://tuteexy.com/Hub/ShortStories/Details/@Model.ShortStory.ShortStoryID" data-layout="button_count" data-size="large"><a target="_blank" href=@t class="fb-xfbml-parse-ignore">Share</a></div>
             </div>
             @*<img src="/images/stories/@Model.ShortStory.ImageUrl" class="card-img-top" alt="Storydrop"">*@
 

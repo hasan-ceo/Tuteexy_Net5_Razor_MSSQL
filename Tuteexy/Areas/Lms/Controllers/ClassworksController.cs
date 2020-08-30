@@ -211,7 +211,7 @@ namespace Tuteexy.Areas.Lms.Controllers
             var parameter = new DynamicParameters();
             parameter.Add("@ClassworkID", Id);
             var rptCWAttendanceVM = _unitOfWork.SP_Call.List<RptCWAttendanceVM>(SD.Proc_rptCWAttendance, parameter);
-            return View(rptCWAttendanceVM.OrderBy(r => r.StudentName).ThenByDescending(r => r.WorkDate));
+            return View(rptCWAttendanceVM.OrderByDescending(r => r.AttenStatus));
         }
 
         #region API CALLS
