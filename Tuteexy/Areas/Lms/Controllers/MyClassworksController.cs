@@ -118,7 +118,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                     if (tmpQ==null)
                     {
                         var ct = await _unitOfWork.Classwork.GetFirstOrDefaultAsync(c => c.ClassworkID == questionthread.ClassworkID);
-                        if (DateTime.Now >= ct.TimeStart && DateTime.Now <= ct.TimeStart.AddMinutes(1))
+                        if (DateTime.Now >= ct.TimeStart && DateTime.Now <= ct.TimeStart.AddMinutes(10))
                         {
                             questionthread.AttnStatus = SD.AttnStatusPresent;
                         }
