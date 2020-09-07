@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Tuteexy.Models.Exam>
+@{ ViewData["Title"] = "All My Exams"; }
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+@*<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                In this 'Exams' section, you get to view all the homeworks or assignments declared in <b>your</b>
+                particular class that you need to submit before a fixed date for your regular or academic assessment, in real
+                life or online.
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            @foreach (Exam item in Model)
+            {
+<div class="card bg-card card-pointer text-dark">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="card-title py-0 my-0">@item.Title</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="card-title py-0 my-0"><strong>Exam No:</strong>@item.ExamID</p>
+                    <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                    <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="card-subtitle py-0 my-0"><strong>Exam Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
+                    <p class="card-subtitle py-0 my-0"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
+                    <p class="card-subtitle py-0 my-0"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
+                </div>
+
+                <div class="col-md-12 text-center mt-2">
+                    @*<a class="btn bg-homework-light txtwhite w-50" asp-area="Lms" asp-controller="MyExams" asp-action="ExamReply" asp-route-id="@item.ExamID">
+                        <span class="fas fa-click"></span>
+                        H.W. Details!
+                    </a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>}
+        </div>
+    </div>
+</div>

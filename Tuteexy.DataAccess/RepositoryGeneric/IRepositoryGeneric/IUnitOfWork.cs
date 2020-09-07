@@ -10,7 +10,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IApplicationUserRepository ApplicationUser { get; }
         ISP_Call SP_Call { get; }
 
-        IuserlistRepository userlist { get; }
+        
         //IM End
 
         //Lms start
@@ -39,6 +39,8 @@ namespace Tuteexy.DataAccess.Repository.IRepository
 
         ITutorJobRepository TutorJob { get; }
         IUserProfileRepository UserProfile { get; }
+
+        IExamRepository Exam { get; }
         //Lms End
 
 

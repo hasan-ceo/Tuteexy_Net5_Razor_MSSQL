@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Tuteexy.Models.ViewModels.RptHomeworkVM>
+@{ ViewData["Title"] = "View All Homeworks"; }
+
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <h5 class="card-title">Homework Summary</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-striped table-sm table-hover table-full-width table-font-size">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Teacher</th>
+                                    <th>Subject</th>
+                                    <th>Title</th>
+                                    <th>Date Due</th>
+                                    <th>T</th>
+                                    <th>P</th>
+                                    <th>S</th>
+                                    <th>A</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.ClassRoomName</td>
+                                            <td>@item.TeacherName</td>
+                                            <td>@item.Subject</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.DateDue.ToString("dd/MMM/yyyy")</td>
+                                            <td>@item.TotalStudent</td>
+                                            <td>@item.TotalPending</td>
+                                            <td>@item.TotalSubmitted</td>
+                                            <td>@item.TotalAccepted</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>$('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });</script>
+}

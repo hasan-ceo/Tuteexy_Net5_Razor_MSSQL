@@ -27,7 +27,7 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.Country = school.Country;
                 objFromDb.UpdatedBy = school.UpdatedBy;
                 objFromDb.UpdatedDate = school.UpdatedDate;
-
+                objFromDb.ShortName = school.ShortName;
             }
         }
 

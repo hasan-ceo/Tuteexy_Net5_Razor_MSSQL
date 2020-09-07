@@ -91,6 +91,11 @@ namespace Tuteexy.Utility
 
         }
 
+        public static IEnumerable<string> GetExam()
+        {
+            return new List<string> { "Half Yearly Exam", "Final Exam" };
+        }
+
         public static IEnumerable<string> GetGender()
         {
             return new List<string> { "N/A","Female", "Male" };

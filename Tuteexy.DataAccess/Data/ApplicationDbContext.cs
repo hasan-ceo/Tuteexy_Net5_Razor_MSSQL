@@ -13,7 +13,7 @@ namespace Tuteexy.DataAccess.Data
         //Iron Man
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Page> Page { get; set; }
-        public DbSet<userlist> userlist { get; set; }
+
 
 
         //public DbSet<Holiday> Holidays { get; set; }
@@ -54,6 +54,8 @@ namespace Tuteexy.DataAccess.Data
 
         public DbSet<TutorJob> TutorJob { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<Exam> Exam { get; set; }
+
     }
 }
 

@@ -1,0 +1,41 @@
+﻿@model Tuteexy.Models.ViewModels.SchoolTeacherVM
+
+@{ var title = "Add Teacher";
+    ViewData["Title"] = title; }
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            @title
+        </div>
+    </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-route-returnUrl="">
+            <input type="hidden" asp-for="SchoolID" />
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="TeacherEmail">Teacher Email</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="TeacherEmail" required>
+                </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-success">
+                    <span class="fas fa-save"></span>
+                    Add Teacher
+                </button>
+                <a class="btn btn-light" asp-area="Lms" asp-controller="Schools" asp-action="Index">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

@@ -82,22 +82,28 @@
                         <span>School</span>
                     </a>
 
+                    <a class="btn btn-outline-dark my-1" asp-area="Lms" asp-controller="SchoolTeachers" asp-action="AddTeacher">
+                        <span class="fas fa-plus-circle"></span>
+                        <span>Invite Teacher</span>
+                    </a>
+
+
                     @if (item.isauthorize != "Authorized")
                     {
 <a onclick=Delete("/Lms/Schools/Delete/@item.SchoolID") class="btn btn-outline-dark my-1" href="#">
     <span class="fas fa-trash-alt"></span>
     <span>Delete</span>
 </a>}
-                <button class="btn btn-outline-dark my-1" data-toggle="modal" data-target="#ResetModal">
-                    <span class="fas fa-unlock-alt"></span>
-                    <span>Reset Password</span>
-                </button>
+                    <button class="btn btn-outline-dark my-1" data-toggle="modal" data-target="#ResetModal">
+                        <span class="fas fa-unlock-alt"></span>
+                        <span>Reset Password</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>}
-            }
+}
 
 
 <script>

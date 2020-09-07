@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Tuteexy.DataAccess.Repository.IRepository;
 using Tuteexy.Models;
+using Tuteexy.Models.ViewModels;
 using Tuteexy.Utility;
 
 namespace Tuteexy.Areas.Lms.Controllers
@@ -15,13 +17,15 @@ namespace Tuteexy.Areas.Lms.Controllers
     [Authorize(Roles = SD.Role_User)]
     public class SchoolTeachersController : Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<SchoolTeachersController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private string _userId;
 
 
-        public SchoolTeachersController(ILogger<SchoolTeachersController> logger, IUnitOfWork unitOfWork)
+        public SchoolTeachersController(UserManager<IdentityUser> userManager, ILogger<SchoolTeachersController> logger, IUnitOfWork unitOfWork)
         {
+            _userManager = userManager;
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
@@ -34,60 +38,52 @@ namespace Tuteexy.Areas.Lms.Controllers
             return View(allObj);
         }
 
-        public async Task<IActionResult> Upsert(long? Id)
+        public IActionResult AddTeacher(long Id)
         {
-
-            School school = new School();
-            if (Id == null)
-            {
-                //this is for create
-                return View(school);
-            }
-            //this is for edit
-            school = await _unitOfWork.School.GetAsync(Id.GetValueOrDefault());
-            if (school == null)
-            {
-                return NotFound();
-            }
-            return View(school);
-
+            SchoolTeacherVM st = new SchoolTeacherVM { 
+                SchoolID=Id,
+                TeacherEmail=""
+            };
+            return View(st);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(School school)
+        public async Task<IActionResult> AddTeacher(SchoolTeacherVM stVM)
         {
             if (ModelState.IsValid)
             {
-                var workdate = DateTime.Now;
-
-
-                if (school.SchoolID == 0)
+                var user = await _userManager.FindByEmailAsync(stVM.TeacherEmail);
+                if (user == null)
                 {
-                    _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-                    school.OwnerId = _userId;
-
-                    school.CreatedBy = User.Identity.Name;
-                    school.CreatedDate = workdate;
-                    school.UpdatedBy = User.Identity.Name;
-                    school.UpdatedDate = workdate;
-                    _unitOfWork.School.AddAsync(school);
-
-                }
-                else
-                {
-
-                    school.UpdatedBy = User.Identity.Name;
-                    school.UpdatedDate = workdate;
-
-                    _unitOfWork.School.Update(school);
+                    // Don't reveal that the user does not exist or is not confirmed
+                    TempData["StatusMessage"] = $"Error : Please enter correct teacher's email.";
+                    return View(stVM);
                 }
 
+                var tmp=await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(s=>s.TeacherID == user.Id && s.SchoolID==stVM.SchoolID);
+                if (tmp == null)
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    TempData["StatusMessage"] = $"Error : Teacher already added.";
+                    return View(stVM);
+                }
+
+                var st = new SchoolTeacher
+                {
+                    SchoolID = stVM.SchoolID,
+                    TeacherID = user.Id,
+                    ApprovedBy = User.Identity.Name,
+                    ApprovedDate = DateTime.Now,
+                    IsApproved = true
+                };
+                await _unitOfWork.SchoolTeacher.AddAsync(st);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
+
+                TempData["StatusMessage"] = $"Successfully add teacher's email";
+                return LocalRedirect("/Lms/Schools/Index");
             }
-            return View(school);
+            return View(stVM);
         }
 
         #region API CALLS

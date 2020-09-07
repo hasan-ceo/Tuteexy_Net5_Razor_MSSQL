@@ -1,0 +1,132 @@
+﻿@{ ViewData["Title"] = "View All Exam"; }
+@model IEnumerable<Tuteexy.Models.Exam>
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Exam's List</h5>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Exams" asp-action="Upsert"><span class="fas fa-plus-circle"></span> New</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
+                                <tr>
+                                    <th></th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (Exam item in Model)
+                                    {
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-card text-dark rounded shadow my-1">
+                                <div class="card-body">
+
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div class="col-12"> <p class="card-title py-0 my-0">@item.Title</p></div>
+                                            <div class="col-auto">
+                                                <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Class Name:</strong> @item.ClassRoom.ClassRoomName</p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+
+                                            </div>
+                                            <div class="col-auto">
+                                                <p class="card-subtitle py-0 my-0"><strong>Exam Date:</strong> @item.TimeStart.ToString("dd/MMM/yyyy") </p>
+                                                <p class="card-subtitle py-0 my-0"><strong>Start Time:</strong> @item.TimeStart.ToString("hh:mm tt") </p>
+                                                <p class="card-subtitle py-0 my-0"><strong>End Time:</strong> @item.TimeEnd.ToString("hh:mm tt") </p>
+
+                                            </div>
+                                        </div>
+
+                                        @*<div class="">
+                                            <a class="btn bg-classwork-light txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="Exams" asp-action="HWPreview" asp-route-id="@item.ExamID" data-toggle="tooltip" data-placement="top" title="Details">
+                                                <span class="fas fa-layer-group"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">H.W.</span>
+                                            </a>
+                                            <a class="btn btn-success txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="Exams" asp-action="Upsert" asp-route-id="@item.ExamID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <span class="fas fa-edit"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">Edit</span>
+
+                                            </a>
+                                            <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/Exams/Delete/@item.ExamID") data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <span class="fas fa-trash-alt"></span>
+                                                <span class="d-none d-md-block d-lg-block d-xl-block">Delete</span>
+
+                                            </a>
+
+                                           
+
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+}
+            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    <script>
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
+        function Delete(url) {
+            swal({
+                title: "Are you sure you want to Delete?",
+                text: "You will not be able to restore the data!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                location.reload();
+                            }
+                            else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Tuteexy.Models.ViewModels.HomeworkSheetVM>
+@{ ViewData["Title"] = "HW Submission List"; }
+
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row justify-content-between">
+                        <div class=" col-7">
+                            <h5 class="card-title">Homework Reply</h5>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn btn-success w-100" asp-area="Lms" asp-controller="Homeworks" asp-action="rptHomeworks">Summary</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" class="table table-sm table-full-width table-font-size table-borderless">
+                            <thead class="invisible">
+                                <tr>
+                                    <th></th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                    <tr class="py-0 my-0">
+                        <td class="py-0 my-0">
+                            <div class="card bg-homework rounded shadow my-1">
+                                <div class="card-body">
+
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div class="col-12"> <p class="card-title text-white py-0 my-0">@item.Title</p></div>
+                                            <div class="col-auto">
+
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Class Name:</strong> @item.ClassRoomName</p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Student Name:</strong> @item.StudentName</p>
+                                            </div>
+                                            <div class="col-auto">
+                                             
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Schedule Date:</strong> @item.ScheduleDateTime.ToString("dd/MMM/yyyy") </p>
+                                                <p class="card-subtitle text-white py-0 my-0"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                                            </div>
+                                        </div>
+                                        @{ var tc = item.HWStatus == "Accepted" ? "success" : @item.HWStatus == "Submitted" ? "warning" : "danger"; }
+                                    <a class="btn btn-@tc mt-1" asp-area="Lms" asp-controller="Homeworks" asp-action="MarkUpdate" asp-route-id="@item.HomeworkSheetID" data-toggle="tooltip" data-placement="top" title="Marks">
+                                        <i class="far fa-edit"></i>
+                                        @item.HWStatus
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>}
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+        $('#tblData').DataTable({
+            "pageLength": 100,
+            "ordering": false
+        });
+
+    </script>
+}
+

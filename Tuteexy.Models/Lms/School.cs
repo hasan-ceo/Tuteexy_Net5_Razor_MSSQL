@@ -42,5 +42,10 @@ namespace Tuteexy.Models
         [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }
 
+        [Display(Name = "Short Name")]
+        [Required]
+        [MaxLength(10)]
+        public string ShortName { get; set; }
+
     }
 }

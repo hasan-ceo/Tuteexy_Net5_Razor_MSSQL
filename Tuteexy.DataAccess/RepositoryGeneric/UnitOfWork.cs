@@ -16,7 +16,7 @@ namespace Tuteexy.DataAccess.Repository
 
             ClassRoom = new ClassRoomRepository(_db);
             ClassRoomStudent = new ClassRoomStudentRepository(_db);
-            userlist = new userlistRepository(_db);
+            Exam = new ExamRepository(_db);
             School = new SchoolRepository(_db);
             SchoolTeacher = new SchoolTeacherRepository(_db);
             Homework = new HomeworkRepository(_db);
@@ -43,7 +43,7 @@ namespace Tuteexy.DataAccess.Repository
         public IPageRepository Page { get; private set; }
 
         public ISP_Call SP_Call { get; private set; }
-        public IuserlistRepository userlist { get; private set; }
+        public IExamRepository Exam { get; private set; }
 
 
         public ISchoolRepository School { get; private set; }

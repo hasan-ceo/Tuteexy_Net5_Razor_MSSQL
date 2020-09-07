@@ -53,21 +53,23 @@ namespace Tuteexy.Areas.Lms.Controllers
         public async Task<IActionResult> Upsert(long? Id)
         {
             _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
+            var y = await _unitOfWork.SchoolTeacher.GetAllAsync(t => t.TeacherID == _userId);
+
             if (y == null)
             {
                 TempData["StatusMessage"] = $"Error : Please register as teacher";
                 return LocalRedirect("/Lms/Homeworks/Index");
             }
+            var listOfIds = y.Select(a=>a.SchoolID);
 
-            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => listOfIds.Contains(c.SchoolID), includeProperties:"School");
             if (clsList == null)
             {
                 TempData["StatusMessage"] = $"Error : Please create class room from manage school";
                 return LocalRedirect("/Lms/Homeworks/Index");
             }
 
-            IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
+            IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => listOfIds.Contains(c.SchoolID));
             if (clsList == null)
             {
                 TempData["StatusMessage"] = $"Error : Please create subject from manage school";
@@ -83,7 +85,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 ScheduleTime = DateTime.Now,
                 ClassRoomList = clsList.Select(i => new SelectListItem
                 {
-                    Text = i.ClassRoomName,
+                    Text =i.School.ShortName + "-" + i.ClassRoomName,
                     Value = i.ClassRoomID.ToString()
                 }),
                 SubjectList = SubList.Select(i => new SelectListItem
@@ -135,13 +137,14 @@ namespace Tuteexy.Areas.Lms.Controllers
             else
             {
                 _userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                var y = await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(t => t.TeacherID == _userId);
-                IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => c.SchoolID == y.SchoolID);
-                IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => c.SchoolID == y.SchoolID);
+                var y = await _unitOfWork.SchoolTeacher.GetAllAsync(t => t.TeacherID == _userId);
+                var listOfIds = y.Select(a => a.SchoolID);
+                IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => listOfIds.Contains(c.SchoolID), includeProperties: "School");
+                IEnumerable<Subject> SubList = await _unitOfWork.Subject.GetAllAsync(c => listOfIds.Contains(c.SchoolID));
 
                 homeworkVM.ClassRoomList = clsList.Select(i => new SelectListItem
                 {
-                    Text = i.ClassRoomName,
+                    Text = i.School.ShortName + "-" + i.ClassRoomName,
                     Value = i.ClassRoomID.ToString()
                 });
                 homeworkVM.SubjectList = SubList.Select(i => new SelectListItem
