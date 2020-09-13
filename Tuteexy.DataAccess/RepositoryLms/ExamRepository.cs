@@ -14,15 +14,15 @@ namespace Tuteexy.DataAccess.Repository
             _db = db;
         }
 
-        public void Update(Exam homework)
+        public void Update(Exam exam)
         {
-            var objFromDb = _db.Exam.FirstOrDefault(s => s.ExamID == homework.ExamID);
+            var objFromDb = _db.Exam.FirstOrDefault(s => s.ExamID == exam.ExamID);
             if (objFromDb != null)
             {
-                objFromDb.Subject = homework.Subject;
-                objFromDb.Title = homework.Title;
-                objFromDb.TimeStart = homework.TimeStart;
-                objFromDb.TimeEnd = homework.TimeEnd;
+                objFromDb.Subject = exam.Subject;
+                objFromDb.Title = exam.Title;
+                objFromDb.TimeStart = exam.TimeStart;
+                objFromDb.TimeEnd = exam.TimeEnd;
             }
         }
 

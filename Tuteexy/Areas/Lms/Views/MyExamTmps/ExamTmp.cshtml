@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Tuteexy.Models.ExamTmp>
+@{ ViewData["Title"] = "All My ExamTmps"; }
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                In this 'ExamTmps' section, you get to view all the examtmps or assignments declared in <b>your</b>
+                particular class that you need to submit before a fixed date for your regular or academic assessment, in real
+                life or online.
+            </div>
+            @*<div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">My examtmps</h5>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-12">
+            @foreach (ExamTmp item in Model)
+            {
+<div class="card bg-secondary card-pointer">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="card-title text-white py-0 my-0">@item.Title</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="card-title text-white py-0 my-0"><strong>ExamTmp No:</strong>@item.ExamTmpID</p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Post By:</strong> @item.Teacher.FullName</p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Subject:</strong> @item.Subject </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="card-title text-white py-0 my-0"><strong>Marks:</strong>@item.ExmMarks</p>
+                    <p class="card-subtitle text-white py-0 my-0"><strong>Date Assigned:</strong> @item.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                    <p class="card-subtitle text-white"><strong>Date Due:</strong> @item.DateDue.ToString("dd/MMM/yyyy") </p>
+                </div>
+
+                <div class="col-md-12 text-center mt-2">
+                    <a class="btn bg-info txtwhite w-50" asp-area="Lms" asp-controller="MyExamTmps" asp-action="ExamTmpSheet" asp-route-id="@item.ExamTmpID">
+                        <span class="fas fa-click"></span>
+                        Exam Details!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>}
+        </div>
+    </div>
+</div>

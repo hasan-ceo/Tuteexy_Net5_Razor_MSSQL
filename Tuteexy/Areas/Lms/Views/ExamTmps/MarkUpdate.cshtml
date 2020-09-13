@@ -1,0 +1,124 @@
+﻿@model Tuteexy.Models.ExamTmpSheet
+@{ ViewData["Title"] = "Update exam marks"; }
+
+<partial name="_StatusMessage" for="@TempData["StatusMessage"]" />
+
+<div class="card">
+    <div class="card-header pb-0">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0">@Model.ExamTmp.Title</p>
+                        </div>
+                        <div class="col-md-6 text-center bg-white rounded">
+                            <p class="card-title py-0 my-0 text-danger">@Model.ExmStatus</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>ExamTmp #:</strong> @Model.ExamTmpID</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Post By:</strong> @Model.ExamTmp.TeacherName</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Subject:</strong> @Model.ExamTmp.Subject </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-title py-0 my-0"><strong>Marks:</strong> @Model.ExamTmp.ExmMarks</p>
+                            <p class="card-subtitle py-0 my-0"><strong>Date Assigned:</strong> @Model.ExamTmp.DateAssigned.ToString("dd/MMM/yyyy hh:mm tt") </p>
+                            <p class="card-subtitle"><strong>Date Due:</strong> @Model.ExamTmp.DateDue.ToString("dd/MMM/yyyy") </p>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            @Html.Raw(Model.ExamTmp.Description)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body pt-0">
+        <div class="container">
+            <div class="row">
+                @if (Model.ExmStatus != Tuteexy.Utility.SD.StatusPending)
+                {
+    <div class="col-12 px-0">
+        <p class="card-title py-0 my-0"><strong>Submitted time: </strong>  @Model.DateSubmitted.ToString("dd/MMM/yyyy hh:mm tt")</p>
+        @if (Model.ExmStatus == Tuteexy.Utility.SD.StatusAccepted)
+        {
+<p class="card-title py-1 my-0"><strong>Obtain Marks: </strong>  @Model.ExmMarks</p>}
+    </div>}
+                <div class="col-12 px-0">
+                    <div class="btn-group">
+                        @if (Model.AttachLink1 != "")
+                        {
+            <a type="button" class="btn btn-secondary" href="~/images/examtmps/@Model.AttachLink1">
+                <span class="fas fa-link"></span>
+                At - 1
+            </a>}
+
+                        @if (Model.AttachLink2 != "")
+                        {
+            <a type="button" class="btn btn-secondary" href="~/images/examtmps/@Model.AttachLink2">
+                <span class="fas fa-link"></span>
+                At - 2
+            </a>}
+
+                        @if (Model.AttachLink3 != "")
+                        {
+            <a type="button" class="btn btn-secondary" href="~/images/examtmps/@Model.AttachLink3">
+                <span class="fas fa-link"></span>
+                At- 3
+            </a>}
+
+                        @if (Model.AttachLink4 != "")
+                        {
+            <a type="button" class="btn btn-secondary" href="~/images/examtmps/@Model.AttachLink4">
+                <span class="fas fa-link"></span>
+                At - 4
+            </a>}
+
+                        @if (Model.AttachLink5 != "")
+                        {
+            <a type="button" class="btn btn-secondary" href="~/images/examtmps/@Model.AttachLink5">
+                <span class="fas fa-link"></span>
+                At - 5
+            </a>}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.ExmStatus == "Submitted")
+        {
+<div asp-validation-summary="All" class="text-danger"></div>
+<form method="post" autocomplete="off" asp-route-returnUrl="" enctype="multipart/form-data">
+    <input type="hidden" asp-for="ExamTmpSheetID" />
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="ExmMarks">Marks</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="ExmMarks">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="ExmComments">Comments</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="ExmComments">
+        </div>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="submit" class="btn btn-success" asp-route-id="@Model.ExamTmpSheetID">
+            <span class="fas fa-check"></span>
+            Accepted
+        </button>
+
+        <button class="btn btn-light" asp-area="Lms" asp-controller="ExamTmps" asp-action="Replylist">
+            <span class="fas fa-undo"></span>
+            Cancel
+        </button>
+    </div>
+</form>}
+    </div>
+</div>

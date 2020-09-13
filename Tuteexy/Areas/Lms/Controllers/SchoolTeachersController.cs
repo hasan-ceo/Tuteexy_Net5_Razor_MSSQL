@@ -62,7 +62,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 }
 
                 var tmp=await _unitOfWork.SchoolTeacher.GetFirstOrDefaultAsync(s=>s.TeacherID == user.Id && s.SchoolID==stVM.SchoolID);
-                if (tmp == null)
+                if (tmp != null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     TempData["StatusMessage"] = $"Error : Teacher already added.";

@@ -34,7 +34,11 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<SchoolTeacher> SchoolTeacher { get; set; }
         public DbSet<ClassRoomStudent> ClassRoomStudent { get; set; }
         public DbSet<Homework> Homework { get; set; }
-        public DbSet<HomeworkSheet> HomeworkReply { get; set; }
+        public DbSet<HomeworkSheet> HomeworkSheet { get; set; }
+
+        public DbSet<ExamTmp> ExamTmp { get; set; }
+        public DbSet<ExamTmpSheet> ExamTmpSheet { get; set; }
+
         public DbSet<Subject> Subject { get; set; }
         public DbSet<SchoolNotice> SchoolNotice { get; set; }
         public DbSet<ClassRoomNotice> ClassRoomNotice { get; set; }
@@ -55,6 +59,7 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<TutorJob> TutorJob { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<Exam> Exam { get; set; }
+        public DbSet<ExamQuestion> ExamQuestion { get; set; }
 
     }
 }

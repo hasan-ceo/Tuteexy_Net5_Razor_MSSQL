@@ -14,21 +14,21 @@ namespace Tuteexy.DataAccess.Repository
             _db = db;
         }
 
-        public void Update(HomeworkSheet homeworkreply)
+        public void Update(HomeworkSheet homeworksheet)
         {
-            var objFromDb = _db.HomeworkReply.FirstOrDefault(s => s.HomeworkID == homeworkreply.HomeworkID);
+            var objFromDb = _db.HomeworkSheet.FirstOrDefault(s => s.HomeworkID == homeworksheet.HomeworkID);
             if (objFromDb != null)
             {
-                objFromDb.Description = homeworkreply.Description;
-                objFromDb.DateSubmitted = homeworkreply.DateSubmitted;
-                objFromDb.AttachLink1 = homeworkreply.AttachLink1;
-                objFromDb.AttachLink2 = homeworkreply.AttachLink2;
-                objFromDb.AttachLink3 = homeworkreply.AttachLink3;
-                objFromDb.AttachLink4 = homeworkreply.AttachLink4;
-                objFromDb.AttachLink5 = homeworkreply.AttachLink5;
-                objFromDb.HwMarks = homeworkreply.HwMarks;
-                objFromDb.HWStatus = homeworkreply.HWStatus;
-                objFromDb.HWComments = homeworkreply.HWComments;
+                objFromDb.Description = homeworksheet.Description;
+                objFromDb.DateSubmitted = homeworksheet.DateSubmitted;
+                objFromDb.AttachLink1 = homeworksheet.AttachLink1;
+                objFromDb.AttachLink2 = homeworksheet.AttachLink2;
+                objFromDb.AttachLink3 = homeworksheet.AttachLink3;
+                objFromDb.AttachLink4 = homeworksheet.AttachLink4;
+                objFromDb.AttachLink5 = homeworksheet.AttachLink5;
+                objFromDb.HwMarks = homeworksheet.HwMarks;
+                objFromDb.HWStatus = homeworksheet.HWStatus;
+                objFromDb.HWComments = homeworksheet.HWComments;
             }
         }
 

@@ -20,6 +20,11 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         ISchoolTeacherRepository SchoolTeacher { get; }
         IHomeworkRepository Homework { get; }
         IHomeworkSheetRepository HomeworkSheet { get; }
+
+        IExamTmpRepository ExamTmp { get; }
+        IExamTmpSheetRepository ExamTmpSheet { get; }
+
+
         IClassworkRepository Classwork { get; }
         IClassworkAttendanceRepository ClassworkAttendance { get; }
         IClassworkSheetRepository ClassworkSheet { get; }
@@ -41,6 +46,7 @@ namespace Tuteexy.DataAccess.Repository.IRepository
         IUserProfileRepository UserProfile { get; }
 
         IExamRepository Exam { get; }
+        IExamQuestionRepository ExamQuestion { get; }
         //Lms End
 
 

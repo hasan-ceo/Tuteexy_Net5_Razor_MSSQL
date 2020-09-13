@@ -1,5 +1,6 @@
 ﻿using Tuteexy.DataAccess.Data;
 using Tuteexy.DataAccess.Repository.IRepository;
+using Tuteexy.Models;
 
 namespace Tuteexy.DataAccess.Repository
 {
@@ -17,10 +18,13 @@ namespace Tuteexy.DataAccess.Repository
             ClassRoom = new ClassRoomRepository(_db);
             ClassRoomStudent = new ClassRoomStudentRepository(_db);
             Exam = new ExamRepository(_db);
+            ExamQuestion = new ExamQuestionRepository(_db);
             School = new SchoolRepository(_db);
             SchoolTeacher = new SchoolTeacherRepository(_db);
             Homework = new HomeworkRepository(_db);
             HomeworkSheet = new HomeworkSheetRepository(_db);
+            ExamTmp = new ExamTmpRepository(_db);
+            ExamTmpSheet = new ExamTmpSheetRepository(_db);
             Classwork = new ClassworkRepository(_db);
             ClassworkAttendance = new ClassworkAttendanceRepository(_db);
             Subject = new SubjectRepository(_db);
@@ -45,13 +49,15 @@ namespace Tuteexy.DataAccess.Repository
         public ISP_Call SP_Call { get; private set; }
         public IExamRepository Exam { get; private set; }
 
-
+        public IExamQuestionRepository ExamQuestion { get; private set; }
         public ISchoolRepository School { get; private set; }
         public ISchoolTeacherRepository SchoolTeacher { get; private set; }
         public IClassRoomRepository ClassRoom { get; private set; }
         public IClassRoomStudentRepository ClassRoomStudent { get; private set; }
         public IHomeworkRepository Homework { get; private set; }
         public IHomeworkSheetRepository HomeworkSheet { get; private set; }
+        public IExamTmpRepository ExamTmp { get; private set; }
+        public IExamTmpSheetRepository ExamTmpSheet { get; private set; }
         public IClassworkRepository Classwork { get; private set; }
         public IClassworkAttendanceRepository ClassworkAttendance { get; private set; }
         public IClassworkSheetRepository ClassworkSheet { get; private set; }

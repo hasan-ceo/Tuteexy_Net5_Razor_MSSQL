@@ -5,6 +5,7 @@ namespace Tuteexy.Utility
     public static class SD
     {
         public const string Proc_rptHomework = "rptlmsHomework";
+        public const string Proc_rptExamTmp = "rptlmsExamTmp";
         public const string Proc_rptCWAttendance = "rptCWAttendance";
 
         public const string Proc_CoverType_GetAll = "usp_GetCoverTypes";

@@ -1,10 +1,12 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,13 +23,15 @@ namespace Tuteexy.Areas.Lms.Controllers
     {
         private readonly ILogger<ExamsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private string _userId;
 
 
-        public ExamsController(ILogger<ExamsController> logger, IUnitOfWork unitOfWork)
+        public ExamsController(ILogger<ExamsController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         public async Task<IActionResult> Index()
@@ -60,9 +64,9 @@ namespace Tuteexy.Areas.Lms.Controllers
                 TempData["StatusMessage"] = $"Error : Please register as teacher";
                 return LocalRedirect("/Lms/Exams/Index");
             }
-            var listOfIds = y.Select(a=>a.SchoolID);
+            var listOfIds = y.Select(a => a.SchoolID);
 
-            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => listOfIds.Contains(c.SchoolID), includeProperties:"School");
+            IEnumerable<ClassRoom> clsList = await _unitOfWork.ClassRoom.GetAllAsync(c => listOfIds.Contains(c.SchoolID), includeProperties: "School");
             if (clsList == null)
             {
                 TempData["StatusMessage"] = $"Error : Please create class room from manage school";
@@ -86,7 +90,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 TimeEnd = DateTime.Now,
                 ClassRoomList = clsList.Select(i => new SelectListItem
                 {
-                    Text =i.School.ShortName + "-" + i.ClassRoomName,
+                    Text = i.School.ShortName + "-" + i.ClassRoomName,
                     Value = i.ClassRoomID.ToString()
                 }),
                 SubjectList = SubList.Select(i => new SelectListItem
@@ -134,7 +138,7 @@ namespace Tuteexy.Areas.Lms.Controllers
                 {
                     var t = examVM.Exam.TimeStart;
                     examVM.Exam.TimeStart = t.Add(examVM.TimeStart.TimeOfDay);
-                    examVM.Exam.TimeEnd = t.Add(examVM.TimeEnd.TimeOfDay); 
+                    examVM.Exam.TimeEnd = t.Add(examVM.TimeEnd.TimeOfDay);
                     _unitOfWork.Exam.Update(examVM.Exam);
                 }
                 _unitOfWork.Save();
@@ -167,27 +171,78 @@ namespace Tuteexy.Areas.Lms.Controllers
         }
 
 
-        public async Task<IActionResult> HWPreview(long id)
+        public async Task<IActionResult> AddQuestion(long Id)
         {
-            var t = await _unitOfWork.Exam.GetFirstOrDefaultAsync(h => h.ExamID == id, includeProperties: "ClassRoom,Teacher");
-            return View(t);
+            var eql = await _unitOfWork.ExamQuestion.GetAllAsync(e=>e.ExamID==Id);
+            ExamQuestionVM eq = new ExamQuestionVM
+            {
+                ExamQuestion = new ExamQuestion { ExamID = Id },
+                ExamQuestionList=eql
+            };
+            return View(eq);
         }
 
-
-      
-
-       
-        public IActionResult Hwd(long Id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddQuestion(ExamQuestionVM examquestionVM)
         {
-            return ViewComponent("QuestionA", new { id = Id });
+            if (ModelState.IsValid)
+            {
+                string webRootPath = _hostEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\questions");
+                    var extenstion = Path.GetExtension(files[0].FileName);
+
+
+                    using (var filesStreams = new FileStream(Path.Combine(uploads, fileName + extenstion), FileMode.Create))
+                    {
+                        files[0].CopyTo(filesStreams);
+                    }
+                    examquestionVM.ExamQuestion.ImageUrl = fileName + extenstion;
+                }
+                else
+                {
+                    examquestionVM.ExamQuestion.ImageUrl ="";
+
+                }
+
+                if (examquestionVM.ExamQuestion.ExamQuestionID == 0)
+                {
+                    if (string.IsNullOrEmpty(examquestionVM.ExamQuestion.Option1)==true && string.IsNullOrWhiteSpace(examquestionVM.ExamQuestion.Option1)==true)
+                    {
+                        examquestionVM.ExamQuestion.Option1 = "";
+                    }
+                    if (string.IsNullOrEmpty(examquestionVM.ExamQuestion.Option2) == true && string.IsNullOrWhiteSpace(examquestionVM.ExamQuestion.Option2) == true)
+                    {
+                        examquestionVM.ExamQuestion.Option2 = "";
+                    }
+                    if (string.IsNullOrEmpty(examquestionVM.ExamQuestion.Option3) == true && string.IsNullOrWhiteSpace(examquestionVM.ExamQuestion.Option3) == true)
+                    {
+                        examquestionVM.ExamQuestion.Option3 = "";
+                    }
+                    if (string.IsNullOrEmpty(examquestionVM.ExamQuestion.Option4) == true && string.IsNullOrWhiteSpace(examquestionVM.ExamQuestion.Option4) == true)
+                    {
+                        examquestionVM.ExamQuestion.Option4 = "";
+                    }
+                    if (string.IsNullOrEmpty(examquestionVM.ExamQuestion.CorrectAnswer) == true && string.IsNullOrWhiteSpace(examquestionVM.ExamQuestion.CorrectAnswer) == true)
+                    {
+                        examquestionVM.ExamQuestion.CorrectAnswer = "";
+                    }
+                    await _unitOfWork.ExamQuestion.AddAsync(examquestionVM.ExamQuestion);
+                }
+
+                _unitOfWork.Save();
+                
+            }
+
+            return RedirectToAction("AddQuestion", new { Id = examquestionVM.ExamQuestion.ExamID });
         }
 
         
-
-
         #region API CALLS
-
-        
 
         [HttpDelete]
         public async Task<IActionResult> Delete(long id)
@@ -198,6 +253,33 @@ namespace Tuteexy.Areas.Lms.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
             await _unitOfWork.Exam.RemoveEntityAsync(objFromDb);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successful" });
+
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> ExamQuestionDelete(long id)
+        {
+            var objFromDb = await _unitOfWork.ExamQuestion.GetAsync(id);
+            if (objFromDb == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+
+            if (objFromDb.ImageUrl != null)
+            {
+                //this is an edit and we need to remove old image
+                string webRootPath = _hostEnvironment.WebRootPath;
+                var uploads = Path.Combine(webRootPath, @"images\questions");
+                var imagePath = Path.Combine(uploads, objFromDb.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            await _unitOfWork.ExamQuestion.RemoveEntityAsync(objFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 

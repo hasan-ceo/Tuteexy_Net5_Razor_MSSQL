@@ -1,0 +1,153 @@
+﻿@model Tuteexy.Models.ViewModels.ExamTmpVM
+
+@{ var title = "Create ExamTmp";
+    ViewData["Title"] = title;
+    }
+@if (Model.ExamTmp.ExamTmpID != 0)
+{
+    //edit
+    title = "Edit ExamTmp";
+    ViewData["Title"] = title;
+}
+
+
+
+@section Scripts {
+    <partial name="_tinymceScriptPartial" />
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            @if (Model.ExamTmp.ExamTmpID != 0)
+            {
+                //edit
+                title = "Edit ExamTmp";
+            }
+            @title
+        </div>
+    </div>
+    <div class="card-body">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" autocomplete="off" asp-route-returnUrl="">
+            <input type="hidden" asp-for="ExamTmp.ExamTmpID" />
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.ClassRoomID">Class Name</label>
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(m => m.ExamTmp.ClassRoomID, Model.ClassRoomList, "-Select a Class Room", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.Subject">Subject</label>
+                <div class="col-sm-10">
+                    @Html.DropDownListFor(m => m.ExamTmp.Subject, Model.SubjectList, "-Select a Subject", new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.Title">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.Title">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.ExmMarks">Marks</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.ExmMarks">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.Description">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" asp-for="ExamTmp.Description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.RefLink1">Ref Link - 1</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.RefLink1">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.RefLink2">Ref Link - 2</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.RefLink2">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.RefLink3">Ref Link - 3</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.RefLink3">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.RefLink4">Ref Link - 4</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.RefLink4">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.RefLink5">Ref Link - 5</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" asp-for="ExamTmp.RefLink5">
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.ScheduleDateTime">Schedule Date</label>
+                <div class="col-sm-10">
+                    <input id="datepicker" class="form-control" type="date" asp-for="ExamTmp.ScheduleDateTime">
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.ScheduleDateTime">Schedule Time</label>
+                <div class="col-sm-10">
+                    <input id="datepicker" class="form-control" type="time" asp-format="{0:HH:mm}" asp-for="ScheduleTime">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" asp-for="ExamTmp.DateDue">Date Due</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="date" asp-format="{0:yyyy-MM-dd}" asp-for="ExamTmp.DateDue">
+                </div>
+            </div>
+
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                @if (Model.ExamTmp.ExamTmpID != 0)
+                {
+    <button type="submit" class="btn btn-success" asp-route-id="@Model.ExamTmp.ExamTmpID">
+        <span class="fas fa-save"></span>
+        Update
+    </button> }
+else
+{
+<button type="submit" class="btn btn-success">
+    <span class="fas fa-save"></span>
+    Create
+</button>}
+                <a class="btn btn-light" asp-area="Lms" asp-controller="ExamTmps" asp-action="Index">
+                    <span class="fas fa-undo"></span>
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
