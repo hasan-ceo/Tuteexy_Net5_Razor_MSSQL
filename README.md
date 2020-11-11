@@ -2,7 +2,7 @@
 All your school management and learning problems solved faster and better in a snap 👆 
 
 ## Technology Areas?
-* Bankend: C#, Asp.net core 3.5, Entity Framework
+* Bankend: C#, Asp.Net 5, Entity Framework
 * Frontend: Razor pages, Javascript, HTML, Bootstrap
 * Database: Microsoft SQL Server
 * IDE: Visual Studio 
