@@ -43,13 +43,17 @@
                                             </div>
                                             <div class="col-12 col-md-5 text-right">
                                                 <div class="btn-group">
+                                                    <a class="btn btn-info txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="ClassRoomStudents" asp-action="AddStudent" asp-route-id="@item.ClassRoomID" data-toggle="tooltip" data-placement="top" title="Invite Student">
+                                                        <span class="fas fa-layer-group"></span>
+                                                        <span class="d-none d-md-block d-lg-block d-xl-block">Invite Student</span>
+                                                    </a>
                                                     <a class="btn bg-classwork-light txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="ClassRoomNotices" asp-action="Create" asp-route-id="@item.ClassRoomID" data-toggle="tooltip" data-placement="top" title="Class Wise Notice">
                                                         <span class="fas fa-layer-group"></span>
                                                         <span class="d-none d-md-block d-lg-block d-xl-block">Notice</span>
                                                     </a>
-                                                    <a class="btn btn-success txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="ClassRoomStudents" asp-action="Index" asp-route-id="@item.ClassRoomID" data-toggle="tooltip" data-placement="top" title="Student List">
+                                                    <a class="btn btn-success txtwhite mr-1 mt-1" asp-area="Lms" asp-controller="ClassRoomStudents" asp-action="Index" asp-route-id="@item.ClassRoomID" data-toggle="tooltip" data-placement="top" title="Student's List">
                                                         <span class="fas fa-edit"></span>
-                                                        <span class="d-none d-md-block d-lg-block d-xl-block">Student</span>
+                                                        <span class="d-none d-md-block d-lg-block d-xl-block">Student's List</span>
 
                                                     </a>
                                                     <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/ClassRooms/Delete/@item.ClassRoomID") data-toggle="tooltip" data-placement="top" title="Delete">

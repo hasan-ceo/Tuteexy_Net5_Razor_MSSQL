@@ -61,6 +61,8 @@ namespace Tuteexy.DataAccess.Data
         public DbSet<Exam> Exam { get; set; }
         public DbSet<ExamQuestion> ExamQuestion { get; set; }
 
+        public DbSet<Subjecttest> Subjecttest { get; set; }
+
     }
 }
 

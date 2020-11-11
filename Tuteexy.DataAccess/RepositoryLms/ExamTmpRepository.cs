@@ -30,6 +30,8 @@ namespace Tuteexy.DataAccess.Repository
                 objFromDb.RefLink3 = examtmp.RefLink3;
                 objFromDb.RefLink4 = examtmp.RefLink4;
                 objFromDb.RefLink5 = examtmp.RefLink5;
+                objFromDb.EmailTo = examtmp.EmailTo;
+                objFromDb.EmailCc = examtmp.EmailCc;
             }
         }
 
