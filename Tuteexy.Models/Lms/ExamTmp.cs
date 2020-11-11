@@ -86,6 +86,16 @@ namespace Tuteexy.Models
         [Display(Name = "Exam marks")]
         public double ExmMarks { get; set; }
 
+        [DefaultValue("")]
+        [MaxLength(150)]
+        [Display(Name = "Email To")]
+        public string EmailTo { get; set; }
+
+        [DefaultValue("")]
+        [MaxLength(150)]
+        [Display(Name = "Email Cc")]
+        public string EmailCc { get; set; }
+
         //[MaxLength(150)]
         //[Display(Name = "Attachment")]
         //public string Attachment { get; set; }

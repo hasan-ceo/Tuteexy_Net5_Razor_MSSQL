@@ -31,7 +31,9 @@ namespace Tuteexy.DataAccess.Repository
             return await dbSet.FindAsync(Id);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public async Task<IEnumerable<T>> GetAllAsync(
+        Expression<Func<T, bool>> filter = null, 
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -52,8 +54,12 @@ namespace Tuteexy.DataAccess.Repository
             {
                 return await orderBy(query).ToListAsync();
             }
+
             return await query.ToListAsync();
         }
+
+
+        
 
         public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
