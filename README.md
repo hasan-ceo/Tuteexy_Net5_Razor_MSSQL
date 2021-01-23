@@ -26,6 +26,7 @@ That's it!
 | Asp.Net Core              |https://www.youtube.com/playlist?list=PLHUiHsvHlPzLcx856PZpyuFXIhwaqTrvH |   | Paypal |  https://www.paypal.me/iamhasanhabib                 |
 |                           | |   | :point_right:        | Follow Us                            |
 |                           | |   |Website               |http://www.devopshasan.com          |
+|                           | |   |Linkedin               |https://www.linkedin.com/in/hasan-full-stack-software-developer/      | 
 |                           | |   |YouTube               |https://www.youtube.com/devopshasan  |
 |                           | |   |Facebook              |https://www.facebook.com/devopshasan |
 |                           | |   |Twitter               |https://twitter.com/devopshasan      | 
