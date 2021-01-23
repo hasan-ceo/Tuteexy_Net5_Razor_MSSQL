@@ -21,7 +21,7 @@
                                     <th>Student Name</th>
                                     <th>Approved By</th>
                                     <th>Is Approved</th>
-
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,6 +33,15 @@
                         <td>@item.Student.FullName</td>
                         <td>@item.ApprovedBy</td>
                         <td>@item.IsApproved</td>
+                        <td>
+                            <div class="btn-group">
+
+                                <a class="btn btn-danger text-white mr-1 mt-1" onclick=Delete("/Lms/ClassRoomStudents/Delete/@item.ClassRoomStudentID") data-toggle="tooltip" data-placement="top" title="Separate">
+                                    <span class="fas fa-sign-out-alt"></span>
+                                    <span class="d-none d-md-block d-lg-block d-xl-block">Separate</span>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
 }
                             </tbody>
@@ -52,6 +61,30 @@
             "pageLength": 100,
             "ordering": false
         });
-
+        function Delete(url) {
+            swal({
+                title: "Are you sure you want to Separate?",
+                text: "You will not be able to restore the data!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                dataTable.ajax.reload();
+                            }
+                            else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
     </script>
 }

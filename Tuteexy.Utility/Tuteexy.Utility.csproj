@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Braintree" Version="5.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
-    <PackageReference Include="Sendgrid" Version="9.21.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
+    <PackageReference Include="Sendgrid" Version="9.22.0" />
   </ItemGroup>
 
   <ItemGroup>
